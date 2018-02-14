@@ -18,7 +18,7 @@ archlinux
 >(simple pon if has file provider in catalog peers)
 
 5. change routing table with dhcp on pppoe
-```bash
+```pythin
 ip route
 sudo ip route replace default dev ppp0
 ping 8.8.8.8
