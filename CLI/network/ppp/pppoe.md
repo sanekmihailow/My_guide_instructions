@@ -19,9 +19,9 @@ archlinux
 
 5. change routing table with dhcp on pppoe
 ```php
-ip route
-sudo ip route replace default dev ppp0
-ping 8.8.8.8
+    ip route
+    sudo ip route replace default dev ppp0
+    ping 8.8.8.8
 ```
 ![](https://github.com/sanekmihailow/My_guide_instructions/blob/master/images/pppoe%20setup.png "")
 ### -------------------------------- BACK to dchp -----------------------------
