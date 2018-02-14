@@ -1,3 +1,5 @@
+archlinux
+==========
 1)   	sudo pacman -S ppp
         sudo pacman -S rp-pppoe
         sudo systemctl stop dhcpcd
