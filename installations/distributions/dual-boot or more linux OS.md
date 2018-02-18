@@ -28,7 +28,7 @@ better way use ubuntu-grub from all OS
             2) vim /etc/grub.d/30_os-prober
 ```
 ```bash
-            add
+            add LINITRD=".... "
                     -> | tr '^' ' '
            like this
                           for LINUX in ${LINUXPROBED}; do
