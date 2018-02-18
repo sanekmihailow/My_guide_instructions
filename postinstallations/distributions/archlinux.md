@@ -43,3 +43,10 @@ groupadd sudo
 usermod -aG sudo user
 sudo passwd -l root
 ```
+
+#### 4) update mirrorlist
+```nginx
+sudo pacman -Syu
+yaourt -Syu
+```
+
