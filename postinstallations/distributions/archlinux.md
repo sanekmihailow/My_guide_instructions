@@ -110,3 +110,10 @@ yaourt -Syu
              sudo systemctl enable static.eth0
              reboot
 ```
+
+#### 6) enable DE
+```nginx
+            sudo systemctl start gdm
+            sudo systemctl enable gdm
+            reboot
+```
