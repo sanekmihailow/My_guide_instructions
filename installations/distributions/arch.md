@@ -69,7 +69,7 @@ loadkeys ru
                  like this GRUB_PRELOAD_MODULES="part_gpt part_msdos lvm"
                  )
                  
- ### 6) grub install ( miss this if you have ubuntu or other linux OS  (in ubuntu sudo grub-update) )
+ ### 6) grub install ( miss this if you have ubuntu or other linux OS  (in ubuntu sudo update-grub) )
  
         grub-install /dev/sdA (no sda1 or sda3 ....)
        #pacman -S os-prober
