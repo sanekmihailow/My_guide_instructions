@@ -17,14 +17,17 @@ loadkeys ru
         vgreate vg_host_sys /dev/sda2
         lvcreate -L 20G vg_host_sys -n lv_root
         .....
+ 
         
   ### 2) format filysystem
   
+  ```shell
         mkfs.ext4 /dev/mapper/vg_host_sys-lv_root
         mkfs.ext2 /dev/mapper/vg_host_sys-lv-boot     or    /dev/sdaX (2 method for two or more grub)
         .....
         mkswap /dev/mapper/vg_host_sys-lv_swap        or    /dev/sdaX (2 method for dual or more linux OS)
-        
+  ```
+  
   ### 3) mount partitions
   
         mount /dev/mapper/vg_host_sys-lv-root /mnt
