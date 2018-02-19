@@ -2,6 +2,7 @@
 
 ##### 1) easy rsa
 ```nginx
+apt install openvpn openssl easy-rsa iptables
 mkdir /etc/openvpn/easy-rsa
 cp  -r /usr/share/easy-rsa/* /etc/openvpn/easy-rsa/
 vim /etc/openvpn/easy-rsa/vars
