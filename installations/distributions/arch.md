@@ -29,11 +29,13 @@ loadkeys ru
   ```
   
   ### 3) mount partitions
-  
+
+```sh
         mount /dev/mapper/vg_host_sys-lv-root /mnt
         mkdir /mnt/{boot,home,opt,var}
         mkdir -p /mnt/usr/{local,share}
-        
+```
+
  ### 4) Prepare to download and dowload packages      
         
         vim /etc/pacman.d/mirrorlist       (-> RU) or (yandex)
