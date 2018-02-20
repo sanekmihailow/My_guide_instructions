@@ -31,9 +31,9 @@ archlinux
 ```
 >(simple poff if has file provider in catalog peers)
 
-7. change the routing table back on dchp
+7. change the routing table back on dhcp
 ```php
-sudo systemctl start dchpcd
+sudo systemctl start dhcpcd
 sudo ip route replace default dev enp2s0 
 ```
 >(enp2s0 or other interface)
