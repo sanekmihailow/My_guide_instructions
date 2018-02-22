@@ -45,7 +45,7 @@ chmod -R 750 /etc/zabbix/zabbix_scripts
           Description:
           UserParameter=<any-key[all usable metric]>,<command or path/to/your/script>
 ```
-##### how to chek
+##### how to check
  ```sh
  1) sudo -u zabbix path/to/your/script <metric>
           Decription:
@@ -119,3 +119,19 @@ UserParameter=mysql-stats[*],/etc/zabbix/zabbix_scripts/mysql-stats.sh "$1" Andr
 Ver 14.14 Distrib 5.7.20, for Linux (x86_64) using  EditLine wrapper
 ```
 
+in /etc/zabbix/zabbix_agent.conf
+```sh
+Hostname wiil be a match of agent.conf and web on zabbix-server
+like this:
+```
+```python
+ $ egrep -v "^#|^$|^;" /etc/zabbix/zabbix_agentd.conf
+PidFile=/var/run/zabbix/zabbix_agentd.pid
+LogFile=/var/log/zabbix/zabbix_agentd.log
+LogFileSize=0
+Server=192.168.1.7
+ServerActive=192.168.1.7
+Hostname=develop
+Include=/etc/zabbix/zabbix_agentd.d/
+```
+![](https://github.com/sanekmihailow/My_guide_instructions/blob/master/images/zabbix_host.png)
