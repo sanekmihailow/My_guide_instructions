@@ -135,3 +135,8 @@ Hostname=develop
 Include=/etc/zabbix/zabbix_agentd.d/
 ```
 ![](https://github.com/sanekmihailow/My_guide_instructions/blob/master/images/zabbix_host.png)
+
+and
+```sh 
+<key> and <metric> in client (zabbix-agent)  and  <key> <metric> in template ( zabbix-server(web) ) must match
+```
