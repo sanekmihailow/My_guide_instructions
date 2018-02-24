@@ -29,7 +29,7 @@ May add or edit folder (contents userparams files) in config file (/etc/zabbix/z
 ###### /etc/zabbix/zabbix_scripts
 ```sh
 This folder created by me
-and sets permissions (in conf fie set path/to/script, see top)
+and sets permissions (in conf file set path/to/script, see top)
 ```
 ```nginx
 chown -R root:zabbix /etc/zabbix/zabbix_scripts
@@ -43,7 +43,7 @@ chmod -R 750 /etc/zabbix/zabbix_scripts
 
 2) UserParameter=<key>[*],<command>
           Description:
-          UserParameter=<any-key[all usable metric]>,<command or path/to/your/script>
+          UserParameter=<any-key>[all usable metric],<command or path/to/your/script>
 ```
 ##### how to check
  ```sh
