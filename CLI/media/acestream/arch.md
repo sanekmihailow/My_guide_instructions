@@ -1,3 +1,5 @@
+# Method 1 ( do not work playlist play )
+
 ### Version installs
 ![](https://github.com/sanekmihailow/My_guide_instructions/blob/master/images/acestream_version.png)
 
@@ -54,3 +56,13 @@ sudo pacman -S libappindicator
 ![](https://github.com/sanekmihailow/My_guide_instructions/blob/master/images/acestream_transport_dlna.png)
 
 ##### save torrent files in /home/acestream/streams
+```bash
+sudo chown -R $USER /home/acestream/streams
+```
+
+# Method 2 ( work playlist switching him )
+```bash
+yaourt -S snapd
+systemctl start snapd.service
+sudo snap install acestreamplayer --beta
+```
