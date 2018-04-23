@@ -60,7 +60,7 @@ sudo pacman -S libappindicator
 sudo chown -R $USER /home/acestream/streams
 ```
 
-# Method 2 ( work playlist switching him )
+# Method 2 ( worked playlist switching him )
 ```bash
 yaourt -S snapd
 systemctl start snapd.service
