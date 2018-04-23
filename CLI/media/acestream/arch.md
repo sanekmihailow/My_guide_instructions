@@ -1,4 +1,4 @@
-# Method 1 ( do not work playlist play )
+# Method 1 ( do not worked playlist play )
 
 ### Version installs
 ![](https://github.com/sanekmihailow/My_guide_instructions/blob/master/images/acestream_version.png)
