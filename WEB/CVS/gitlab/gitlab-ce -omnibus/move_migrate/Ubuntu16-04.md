@@ -57,6 +57,7 @@ sudo gitlab-rake gitlab:check SANITIZE=true
  sudo cp /etc/gitlab/gitlab-secrets.json{,.bak}
  sudo cp gitlab-secrets.json /etc/gitlab/gitlab-secrets.json
  cat authorized_keys |sudo tee /var/opt/gitlab/.ssh/authorized_keys
+ sudo gitlab-ctl reconfigure
  ```
 
 
