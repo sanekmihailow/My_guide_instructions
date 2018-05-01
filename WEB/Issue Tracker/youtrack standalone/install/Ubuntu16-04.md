@@ -18,6 +18,7 @@ sudo apt install openjdk-9-jre
 ```nginx
 cd /var/www/
 sudo unzip youtrack-2018.1.41051.zip
+sudo chown -R www-data:www-data ./youtrack-2018.1.41051
 ```
 create database
 ```mysql
