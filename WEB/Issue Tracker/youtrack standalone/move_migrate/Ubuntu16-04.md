@@ -21,7 +21,7 @@ sudo chown -R www-data:www-data ./youtrack-version
 sudo sh ./youtrack-version/bin/youtrack.sh start --no-browser
 sudo cp ~/backups/2018-04-26-16-13-35.zip /var/www/youtrack-version/backups
 ```
-go web url and press ```UPDATE ```
+go web url and press ```Upgrade ```
 
 #### 3) create backup current version
 > go to web url
@@ -38,7 +38,7 @@ sudo scp -P $port /var/www/youtrack-version/backups/2018-04-26-16-15-39.zip remo
  > 2. unzip
  > 3. start --no-browser options
  > 4. copy your backup to youtrack-version/bakcups folder
- > 5. in web url select ```Update```
+ > 5. in web url select ```Upgrade```
 
 
 
