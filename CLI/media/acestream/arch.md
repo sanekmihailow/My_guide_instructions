@@ -61,7 +61,7 @@ sudo chown -R $USER /home/acestream/streams
 ```
 
 # Method 2 ( worked playlist switching him )
-```bash
+```nginx
 yaourt -S snapd
 systemctl start snapd.service
 sudo snap install acestreamplayer --beta
