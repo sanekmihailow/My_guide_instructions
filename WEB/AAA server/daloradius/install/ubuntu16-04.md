@@ -1,9 +1,15 @@
 links
 ==
+<deatils>
+<details>
+ <summary>spoiler</summary>
+
 [1](http://ittraveler.org/ustanovka-i-nastrojka-radius-servera-na-ubuntu-s-veb-interfejsom/)
 
 [2](https://github.com/lirantal/daloradius/issues/5)
 
+</deatils>
+</details>
 
 install daloradius (manage radius users and other)
 ==
