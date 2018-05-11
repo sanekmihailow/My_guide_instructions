@@ -56,6 +56,6 @@ $dbSocket->query("SET GLOBAL sql_mode = '';");
 ```
 ```bash
 def pass to daloradius
-              login -     administrator
+              login    -  administrator
               password -  radius
 ```
