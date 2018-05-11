@@ -786,7 +786,7 @@ database = "mysql"
 login =  "db_user"
 password =  "db_password"
 readclients = "yes"
-radius_db = “db”
+radius_db = "db"
 ```
 > version 3.x
 ```nginx
@@ -795,11 +795,11 @@ radius_db = “db”
 ```
 ```bash
 sql {
-driver = “rlm_sql_mysql”
-server = “localhost”
-login = “db_user”
-password = “db_password”
-radius_db = “db”
+driver = "rlm_sql_mysql"
+server = "localhost"
+login = "db_user"
+password = "db_password"
+radius_db = "db"
 }
 ```
 ### 5) edit site conf
@@ -968,11 +968,11 @@ rad_recv: Access-Accept packet from host 127.0.0.1 port 1812, id=45, length=20
 ```
 ```bash
 sql {
-driver = “rlm_sql_mysql”
-server = “localhost”
-login = “db_user”
-password = “db_password”
-radius_db = “db”
+driver = "rlm_sql_mysql"
+server = "localhost"
+login = "db_user"
+password = "db_password"
+radius_db = "db"
 }
 ```
 ### 5) edit site conf
