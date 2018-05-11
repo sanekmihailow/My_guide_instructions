@@ -898,12 +898,12 @@ client office1_2-wifi {
 METHOD 2 (src installation)
 =========
 
-# 1. isntall xstow for managing installed src (it's created symlinks in /usr/local)
+## 1. isntall xstow for managing installed src (it's created symlinks in /usr/local)
 
 ```nginx
             sudo apt install xstow
 ```
-# 2. install freeradius version 3
+## 2. install freeradius version 3
 
 ### 1) install dependencies and headers
 ```nginx
