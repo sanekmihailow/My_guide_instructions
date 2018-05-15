@@ -1037,16 +1037,177 @@ debug mode
             sudo radiusd -Xx
 ```
 
-##### and connect at wifi-ap
-and kill & start normaly
+and connect at wifi-ap (check works)
+> kill radiusd
 ```nginx
             sudo pkill radiusd
-            radiusd
 ```            
+### 9) change permissions
 
+##### create new user
+```nginx
+           sudo useradd -r -s /bin/false local_freerad
+```           
 
+<deatils>
+<details>
+ <summary>bash script</summary>
 
+```bash 
+ !#/bin/bash
+raduser='local_freerad'
 
+freepath="/usr/local/stow/freeradius-3/"
+
+list="/usr/local/stow/freeradius-3/etc/raddb/mods-available
+/usr/local/stow/freeradius-3/etc/raddb/mods-config
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/attr_filter
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/files
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/perl
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/preprocess
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/python
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/counter
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/counter/mysql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/counter/postgresql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/counter/sqlite
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/cui
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/cui/mysql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/cui/postgresql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/cui/sqlite
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool/mysql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool/oracle
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool/postgresql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool/sqlite
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool-dhcp
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool-dhcp/mysql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool-dhcp/oracle
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool-dhcp/sqlite
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/mssql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/mysql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/mysql/extras
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/mysql/extras/wimax
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/ndb
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/oracle
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/postgresql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/postgresql/extras
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/sqlite
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/moonshot-targeted-ids
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/moonshot-targeted-ids/mysql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/moonshot-targeted-ids/postgresql
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/moonshot-targeted-ids/sqlite
+/usr/local/stow/freeradius-3/etc/raddb/mods-config/unbound
+/usr/local/stow/freeradius-3/etc/raddb/mods-enabled
+/usr/local/stow/freeradius-3/etc/raddb/modules
+/usr/local/stow/freeradius-3/etc/raddb/policy.d
+/usr/local/stow/freeradius-3/etc/raddb/sites-available
+/usr/local/stow/freeradius-3/etc/raddb/sites-enabled"
+
+list1="/usr/local/stow/freeradius-3/etc/raddb/acct_users                                                                   
+/usr/local/stow/freeradius-3/etc/raddb/attrs                                                                               
+/usr/local/stow/freeradius-3/etc/raddb/attrs.access_challenge                                                              
+/usr/local/stow/freeradius-3/etc/raddb/attrs.access_reject                                                                 
+/usr/local/stow/freeradius-3/etc/raddb/attrs.accounting_response                                                           
+/usr/local/stow/freeradius-3/etc/raddb/attrs.pre-proxy                                                                     
+/usr/local/stow/freeradius-3/etc/raddb/certs                                                                               
+/usr/local/stow/freeradius-3/etc/raddb/clients.conf                                                                         
+/usr/local/stow/freeradius-3/etc/raddb/dictionary                                                                           
+/usr/local/stow/freeradius-3/etc/raddb/eap.conf                                                                             
+/usr/local/stow/freeradius-3/etc/raddb/experimental.conf                                                                   
+/usr/local/stow/freeradius-3/etc/raddb/ldap.attrmap                                                                         
+/usr/local/stow/freeradius-3/etc/raddb/policy.conf                                                                         
+/usr/local/stow/freeradius-3/etc/raddb/policy.txt                                                                           
+/usr/local/stow/freeradius-3/etc/raddb/preproxy_users                                                                       
+/usr/local/stow/freeradius-3/etc/raddb/proxy.conf                                                                           
+/usr/local/stow/freeradius-3/etc/raddb/radiusd.conf                                                                         
+/usr/local/stow/freeradius-3/etc/raddb/sites-available                                                                     
+/usr/local/stow/freeradius-3/etc/raddb/sites-enabled                                                                        /usr/local/stow/freeradius-3/etc/raddb/sql.conf"
+
+path_cert="/usr/local/stow/freeradius-3/etc/raddb/certs"
+path_a="/usrlocal/stow/freeradius-3/etc/raddb/sites-available"
+path_e="/usr/local/stow/freeradius-3/etc/raddb/sites-enabled"
+path_r="/usr/local/stow/freeradius-3/var/run/radiusd"
+
+chown -R root:root $freepath
+chown root:"$raduser" $list
+chown root:"$raduser" $list1
+chown root:"$raduser" "$path_cert"/*
+chown "$raduser":"$raduser" $path_cert
+chown "$raduser":"$raduser" $path_a
+chown "$raduser":"$raduser" $path_e
+chown -R "$raduser":"$raduser" $path_r
+
+exit 0
+```
+</details>
+</details>
+
+### 10) create systemd daemon
+
+```nginx
+           sudo mkdir /usr/local/stow/freeradius-3/etc/default/
+           sudo vim /usr/local/stow/freeradius-3/etc/default/freeradius
+```
+add
+```bash
+FREERADIUS_OPTIONS=""
+```
+
+```nginx
+           sudo vim /etc/systemd/system/local_freeradius.service
+```
+add
+<deatils>
+<details>
+ <summary>systemd</summary>
+ 
+```bash
+[Unit]                                                                                                                     
+
+Description=Local freeradius service daemon                                                                                 
+Before=multi-user.target                                                                                                   
+Before=multi-user.target                                                                                                   
+Before=multi-user.target                                                                                                   
+Before=graphical.target                                                                                                     
+Before=shutdown.target                                                                                                     
+After=remote-fs.target                                                                                                     
+After=network-online.target                                                                                                 
+After=systemd-journald-dev-log.socket                                                                                       
+After=time-sync.target                                                                                                     
+After=mysql.service                                                                                                         
+After=slapd.service                                                                                                         
+After=postgresql.service                                                                                                   
+After=samba.service                                                                                                         
+After=krb5-kdc.service                                                                                                     
+Wants=network-online.target                                                                                                 
+Conflicts=shutdown.target                                                                                                   
+
+[Service]                                                                                                                   
+
+Type=forking                                                                                                               
+User=local_freerad                                                                                                         
+Group=local_freerad                                                                                                         
+PIDFile=/usr/local//var/run/radiusd/radiusd.pid                                                                             
+EnvironmentFile=-/usr/local/etc/default/freeradius                                                                         
+ExecStartPre=/usr/local/sbin/radiusd $FREERADIUS_OPTIONS -Cxm -lstdout                                                     
+ExecStart=/usr/local/sbin/radiusd $FREERADIUS_OPTION                                                                       
+Restart=on-abnormal                                                                                                         
+
+[Install]                                                                                                                   
+
+WantedBy=multi-user.target       
+```
+</details>
+</details>
+and
+
+```nginx
+           sudo systemctl enable local_freeradius.service # autostart after reboot
+           sudo systemctl start local_freeradius.service
+```
+WELL DONE
 
 
 
