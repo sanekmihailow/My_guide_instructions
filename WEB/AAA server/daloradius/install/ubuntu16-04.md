@@ -48,9 +48,10 @@ $configValues['CONFIG_DB_PASS'] = 'db_pass';
 $configValues['CONFIG_DB_NAME'] = 'db';
 ```
 ```nginx
-            sudo vim /var/www/daloradius/library/daloradius.conf.php
+            sudo vim /var/www/daloradius/library/opendb.php.php
 ```
 add to end
+
 ```bash
 $dbSocket->query("SET GLOBAL sql_mode = '';");
 ```
