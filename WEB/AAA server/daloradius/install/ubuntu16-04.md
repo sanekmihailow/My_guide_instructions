@@ -55,6 +55,8 @@ add to end
 ```bash
 $dbSocket->query("SET GLOBAL sql_mode = '';");
 ```
+
+and go to web page
 ```bash
 def pass to daloradius
               login    -  administrator
