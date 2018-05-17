@@ -753,7 +753,18 @@ METHOD 1 (package installation)
             wget https://mirror.yandex.ru/ubuntu/pool/universe/f/freeradius/freeradius-mysql_3.0.16+dfsg-3ubuntu1_amd64.deb 
             dpkg -i *.deb
 ```
-### 2) create database
+            
+
+### 2) push freeradius sql schema
+> version 2.x
+```nginx
+            mysql -u root -p database < /etc/freeradius/sql/mysql/schema.sql
+```
+> version 3.x
+```nginx
+            mysql -u root -p database < /etc/freeradius/mods-config/sql/main/mysql/schema.sql
+```
+### 3) create database
 
 ##### crete testsql user
 ```nginx
@@ -764,17 +775,8 @@ METHOD 1 (package installation)
                              mysql> use db;
                              mysql> INSERT INTO radcheck (UserName, Attribute, Value) VALUES ('sqltest', 'Password', 'testpwd');
                              mysql> \q
-```            
+```
 
-### 3) push freeradius sql schema
-> version 2.x
-```nginx
-            mysql -u root -p database < /etc/freeradius/sql/mysql/schema.sql
-```
-> version 3.x
-```nginx
-            mysql -u root -p database < /etc/freeradius/mods-config/sql/main/mysql/schema.sql
-```
 ### 4) edit sql.conf
 > version 2.x
 ```nginx
