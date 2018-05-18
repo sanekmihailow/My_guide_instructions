@@ -773,7 +773,7 @@ METHOD 1 (package installation)
 ```
 ```sql
                              mysql> use db;
-                             mysql> INSERT INTO radcheck (UserName, Attribute, Value) VALUES ('sqltest', 'Password', 'testpwd');
+                             mysql> INSERT INTO radcheck (UserName, Attribute, op, Value) VALUES ('sqltest', 'Cleartext-Password', ':=' , 'testpwd');
                              mysql> \q
 ```
 
@@ -874,7 +874,7 @@ it means all ok
 ```
 ##### and open new window (new ssh session) and check it is works
 ```nginx
-            radtest sqltest testpwd localhost 18128 testing123
+            radtest sqltest testpwd localhost 1812 testing123
 ```
 if you will view
 ```bash
