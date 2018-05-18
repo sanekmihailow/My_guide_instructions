@@ -913,6 +913,11 @@ client office1_2-wifi {
 }
 ```
 ##### and restart freeradius
+> Note in db, table "radcheck" contains users and passwords if you use sql may froget "users file" in radius directory.
+
+
+
+
 
 
 
