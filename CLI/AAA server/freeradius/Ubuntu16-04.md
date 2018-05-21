@@ -757,6 +757,9 @@ links
 METHOD 1 (package installation)
 ====
 
+
+[create](#3-create-database)
+
 ### 1) install freeradius and dependencies
 ```nginx
              sudo apt update
@@ -787,7 +790,7 @@ METHOD 1 (package installation)
 ```nginx
             mysql -u root -p database < /etc/freeradius/mods-config/sql/main/mysql/schema.sql
 ```
-### 3) create database
+### 3 create database
 
 ##### crete testsql user
 ```nginx
