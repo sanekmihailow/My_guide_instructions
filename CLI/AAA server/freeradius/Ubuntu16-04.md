@@ -1063,92 +1063,33 @@ and connect at wifi-ap (check works)
  <summary>bash script</summary>
 
 ```bash 
- !#/bin/bash
+ #!/bin/bash
 raduser='local_freerad'
+freepath="/usr/local/stow/freeradius-3"
 
-freepath="/usr/local/stow/freeradius-3/"
+list_etc="$freepath/etc/raddb/mods-enabled
+	$freepath/etc/raddb/mods-available
+	$freepath/etc/raddb/policy.d
+	$freepath/etc/raddb/sites-enabled
+	$freepath/etc/raddb/mods-config
+	$freepath/etc/raddb/certs
+	$freepath/etc/raddb/sites-available
+	$freepath/etc/raddb/policy.d
+	$freepath/etc/raddb/clients.conf
+	$freepath/etc/raddb/users
+	$freepath/etc/raddb/dictionary
+	$freepath/etc/raddb/radiusd.conf"
 
-list="/usr/local/stow/freeradius-3/etc/raddb/mods-available
-/usr/local/stow/freeradius-3/etc/raddb/mods-config
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/attr_filter
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/files
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/perl
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/preprocess
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/python
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/counter
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/counter/mysql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/counter/postgresql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/counter/sqlite
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/cui
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/cui/mysql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/cui/postgresql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/cui/sqlite
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool/mysql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool/oracle
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool/postgresql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool/sqlite
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool-dhcp
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool-dhcp/mysql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool-dhcp/oracle
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/ippool-dhcp/sqlite
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/mssql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/mysql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/mysql/extras
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/mysql/extras/wimax
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/ndb
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/oracle
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/postgresql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/postgresql/extras
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/main/sqlite
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/moonshot-targeted-ids
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/moonshot-targeted-ids/mysql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/moonshot-targeted-ids/postgresql
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/sql/moonshot-targeted-ids/sqlite
-/usr/local/stow/freeradius-3/etc/raddb/mods-config/unbound
-/usr/local/stow/freeradius-3/etc/raddb/mods-enabled
-/usr/local/stow/freeradius-3/etc/raddb/modules
-/usr/local/stow/freeradius-3/etc/raddb/policy.d
-/usr/local/stow/freeradius-3/etc/raddb/sites-available
-/usr/local/stow/freeradius-3/etc/raddb/sites-enabled"
-
-list1="/usr/local/stow/freeradius-3/etc/raddb/acct_users                                                                   
-/usr/local/stow/freeradius-3/etc/raddb/attrs                                                                               
-/usr/local/stow/freeradius-3/etc/raddb/attrs.access_challenge                                                              
-/usr/local/stow/freeradius-3/etc/raddb/attrs.access_reject                                                                 
-/usr/local/stow/freeradius-3/etc/raddb/attrs.accounting_response                                                           
-/usr/local/stow/freeradius-3/etc/raddb/attrs.pre-proxy                                                                     
-/usr/local/stow/freeradius-3/etc/raddb/certs                                                                               
-/usr/local/stow/freeradius-3/etc/raddb/clients.conf                                                                         
-/usr/local/stow/freeradius-3/etc/raddb/dictionary                                                                           
-/usr/local/stow/freeradius-3/etc/raddb/eap.conf                                                                             
-/usr/local/stow/freeradius-3/etc/raddb/experimental.conf                                                                   
-/usr/local/stow/freeradius-3/etc/raddb/ldap.attrmap                                                                         
-/usr/local/stow/freeradius-3/etc/raddb/policy.conf                                                                         
-/usr/local/stow/freeradius-3/etc/raddb/policy.txt                                                                           
-/usr/local/stow/freeradius-3/etc/raddb/preproxy_users                                                                       
-/usr/local/stow/freeradius-3/etc/raddb/proxy.conf                                                                           
-/usr/local/stow/freeradius-3/etc/raddb/radiusd.conf                                                                         
-/usr/local/stow/freeradius-3/etc/raddb/sites-available                                                                     
-/usr/local/stow/freeradius-3/etc/raddb/sites-enabled                                                                        /usr/local/stow/freeradius-3/etc/raddb/sql.conf"
-
-path_cert="/usr/local/stow/freeradius-3/etc/raddb/certs"
-path_a="/usrlocal/stow/freeradius-3/etc/raddb/sites-available"
-path_e="/usr/local/stow/freeradius-3/etc/raddb/sites-enabled"
-path_r="/usr/local/stow/freeradius-3/var/run/radiusd"
+list_var="$freepath/var/log/radius
+	$freepath/var/run/radiusd"
 
 chown -R root:root $freepath
-chown root:"$raduser" $list
-chown root:"$raduser" $list1
-chown root:"$raduser" "$path_cert"/*
-chown "$raduser":"$raduser" $path_cert
-chown "$raduser":"$raduser" $path_a
-chown "$raduser":"$raduser" $path_e
-chown -R "$raduser":"$raduser" $path_r
+chmod -R g+Xr $freepath
+chown -R root:"$raduser" $list_etc
+chown -R "$raduser":"$raduser" $list_var
 
 exit 0
+
 ```
 </details>
 </details>
