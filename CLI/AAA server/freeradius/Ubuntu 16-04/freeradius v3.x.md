@@ -1,6 +1,6 @@
 
 
-METHO 1
+METHOD 1
 ===
 
 
@@ -176,3 +176,165 @@ client office1_2-wifi {
 > nas contains clients
 
 > radacct contains session info
+
+
+METHOD 2
+===
+
+## 1. isntall xstow for managing installed src (it's created symlinks in /usr/local)
+
+```nginx
+            sudo apt install xstow
+```
+## 2. install freeradius
+
+### 1 install dependencies and headers
+```nginx
+           sudo apt install sqlite3 libsqlite3-dev libpcap0.8-dev libcap-dev libtalloc2 libtalloc-dev libssl-dev libperl-dev libpam0g-dev libmemcached-dev libjson0-dev libpython2.7-dev libsystemd-dev libmysqld-dev libevent-dev python-dev
+```           
+### 2 change directory and download src freeradius
+```nginx
+           sudo mkdir -p /usr/local/need_install/src/freeradius
+           cd /usr/local/need_install/src/freeradius
+           sudo wget https://github.com/FreeRADIUS/freeradius-server/archive/v3.0.x.zip
+           sudo unzip v3.0.x.zip
+           cd freeradius-server-3.0.x/
+```
+### 3 start configure
+```nginx
+           sudo ./configure --prefix=/usr/local/stow/freeradius-3 --enable-developer
+           sudo make
+           sudo ldconfig -v
+           sudo make install
+           cd /usr/local/stow/
+           sudo xstow freeradius-3
+```
+
+###  create database ( 2-6 higher)
+
+[higher][[2-create-database]
+
+
+### 4 start in debug mode
+##### add user
+```nginx
+            sudo vim /etc/freeradius/users
+```
+add
+```bash
+sqltest Cleartext-Password := “testpwd”
+```
+debug mode
+```nginx
+            sudo radiusd -Xx
+```
+
+and connect at wifi-ap (check works)
+> kill radiusd
+```nginx
+            sudo pkill radiusd
+```            
+### 5 change permissions
+
+##### create new user
+```nginx
+           sudo useradd -r -s /bin/false local_freerad
+```           
+
+<deatils>
+<details>
+  <summary>bash script</summary>
+
+```bash 
+ #!/bin/bash
+raduser='local_freerad'
+freepath="/usr/local/stow/freeradius-3"
+
+list_etc="$freepath/etc/raddb/mods-enabled
+	$freepath/etc/raddb/mods-available
+	$freepath/etc/raddb/policy.d
+	$freepath/etc/raddb/sites-enabled
+	$freepath/etc/raddb/mods-config
+	$freepath/etc/raddb/certs
+	$freepath/etc/raddb/sites-available
+	$freepath/etc/raddb/policy.d
+	$freepath/etc/raddb/clients.conf
+	$freepath/etc/raddb/users
+	$freepath/etc/raddb/dictionary
+	$freepath/etc/raddb/radiusd.conf
+	$freepath/etc/raddb/proxy.conf"
+
+list_var="$freepath/var/log/radius
+	$freepath/var/run/radiusd"
+
+chown -R root:root $freepath
+chown -R root:"$raduser" $list_etc
+chown -R "$raduser":"$raduser" $list_var
+
+exit 0
+```
+
+</details>
+</details>
+
+### 6 create systemd daemon
+
+```nginx
+           sudo mkdir /usr/local/stow/freeradius-3/etc/default/
+           sudo vim /usr/local/stow/freeradius-3/etc/default/freeradius
+```
+add
+```bash
+FREERADIUS_OPTIONS=""
+```
+
+```nginx
+           sudo vim /etc/systemd/system/local_freeradius.service
+```
+add
+<deatils>
+<details>
+ <summary>systemd</summary>
+ 
+```bash
+[Unit]                                                                                                                     
+Description=Local freeradius service daemon                                                         
+Before=multi-user.target                                                                                        
+Before=multi-user.target                                                                                        
+Before=multi-user.target                                                                                        
+Before=graphical.target                                                                                         
+Before=shutdown.target                                                                                         
+After=remote-fs.target                                                                                         
+After=network-online.target                                                                                     
+After=systemd-journald-dev-log.socket                                                                           
+After=time-sync.target                                                                                         
+After=mysql.service                                                                                         
+After=slapd.service                                                                                          
+After=postgresql.service                                                                                       
+After=samba.service                                                                                            
+After=krb5-kdc.service                                                                                         
+Wants=network-online.target                                                                                    
+Conflicts=shutdown.target                                                                                                   
+[Service]                                                                                                               
+Type=forking                                                                                            
+User=local_freerad                                                                                         
+Group=local_freerad                                                                                          
+PIDFile=/usr/local//var/run/radiusd/radiusd.pid                                                             
+EnvironmentFile=-/usr/local/etc/default/freeradius                                                      
+ExecStartPre=/usr/local/sbin/radiusd $FREERADIUS_OPTIONS -Cxm -lstdout                                  
+ExecStart=/usr/local/sbin/radiusd $FREERADIUS_OPTION                                                    
+Restart=on-abnormal                                                                                                         
+
+[Install]                                                                                                                   
+WantedBy=multi-user.target       
+```
+</details>
+</details>
+
+and
+
+```nginx
+           sudo systemctl enable local_freeradius.service # autostart after reboot
+           sudo systemctl start local_freeradius.service
+```
+WELL DONE
