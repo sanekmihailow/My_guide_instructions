@@ -1,5 +1,20 @@
+
 links
 ==
+<deatils>
+<details>
+ <summary>spoiler</summary>
+
+[1](http://ittraveler.org/ustanovka-i-nastrojka-radius-servera-na-ubuntu-s-veb-interfejsom/)
+
+[2](https://www.howtoforge.com/setting-up-a-freeradius-based-aaa-server-with-mysql-and-management-with-daloradius)
+
+[3](https://lalitvc.wordpress.com/2014/07/03/freeradius-3-0-x-installation-and-configuration-with-mysql/)
+
+[4](https://github.com/FreeRADIUS/freeradius-server/blob/v3.0.x/INSTALL.rst)
+
+</deatils>
+</details>
 
 [installed](https://github.com/sanekmihailow/My_guide_instructions/blob/master/CLI/AAA%20server/freeradius/Ubuntu16-04.md#installed-versions)
 
@@ -10,6 +25,8 @@ installed versions
 <deatils>
 <details>
  <summary>spoiler</summary>
+ 
+ 
 
 #### php
 
