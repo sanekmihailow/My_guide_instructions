@@ -212,7 +212,7 @@ METHOD 2
 
 ###  create database ( 2-6 higher)
 
-[higher][[2-create-database]
+[higher](#2-create-database)
 
 
 ### 4 start in debug mode
