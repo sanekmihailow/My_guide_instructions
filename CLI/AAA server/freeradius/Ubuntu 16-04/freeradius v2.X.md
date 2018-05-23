@@ -1,13 +1,32 @@
+
 links
 ==
+<deatils>
+<details>
+ <summary>spoiler</summary>
+
+[1](http://ittraveler.org/ustanovka-i-nastrojka-radius-servera-na-ubuntu-s-veb-interfejsom/)
+
+[2](https://www.howtoforge.com/setting-up-a-freeradius-based-aaa-server-with-mysql-and-management-with-daloradius)
+
+[3](https://lalitvc.wordpress.com/2014/07/03/freeradius-3-0-x-installation-and-configuration-with-mysql/)
+
+[4](https://github.com/FreeRADIUS/freeradius-server/blob/v3.0.x/INSTALL.rst)
+
+</deatils>
+</details>
 
 [installed](https://github.com/sanekmihailow/My_guide_instructions/blob/master/CLI/AAA%20server/freeradius/Ubuntu16-04.md#installed-versions)
+
+[install](#installed-versions)
 
 installed versions
 ====
 <deatils>
 <details>
  <summary>spoiler</summary>
+ 
+ 
 
 #### php
 
@@ -737,3 +756,171 @@ ii  zabbix-server-mysql                          1:3.0.13-4+xenial              
 
 </details>
 </details>
+
+
+METHO 1
+===
+
+[create](#3-create-database)
+
+### 1 install freeradius and dependencies
+```nginx
+             sudo apt update
+             sudo apt install freeradius freeradius-common freeradius-mysql freeradius-utils           
+```
+
+### 2 create database
+```nginx        
+        $ mysql -u root -p
+              mysql> show databases;
+              mysql> create database radius_db;
+              mysql> GRANT ALL ON radius_db.* to 'radius_user'@'localhost' IDENTIFIED BY 'new_password_for_acceess_radius-user';
+              mysql> flush priveleges;
+              mysql> \q
+ ```            
+### 2 push freeradius sql schema to db
+> version 2.x
+```nginx
+            mysql -u root -p radius_db < /etc/freeradius/sql/mysql/schema.sql
+```
+##### crete testsql user
+```nginx
+            mysql -u root -p
+            
+```
+```sql
+                             mysql> use db;
+                             mysql> INSERT INTO radcheck (UserName, Attribute, op, Value) VALUES ('sqltest', 'Cleartext-Password', ':=' , 'testpwd');
+                             mysql> \q
+```
+
+
+### 3 check work freeradius serv
+
+##### add user
+```nginx
+            sudo vim /etc/freeradius/users
+```
+add
+```bash
+test Cleartext-Password := “testp”
+```
+
+##### test user
+
+> start in debug mode
+```nginx
+            sudo freeradius -Xx
+```
+> and open new window (new ssh session) and check it is works
+```nginx
+            radtest test testp localhost 0 testing123
+```
+if you will view
+```bash
+Sending Access-Request of id 45 to 127.0.0.1 port 1812
+        User-Name = "test"
+        User-Password = "testp"
+        NAS-IP-Address = 127.0.1.1
+        NAS-Port = 0
+        Message-Authenticator = 0x00000000000000000000000000000000
+rad_recv: Access-Accept packet from host 127.0.0.1 port 1812, id=45, length=20
+```
+it means all ok
+
+### 4 add sql
+
+##### edit sql.conf
+
+```nginx
+            sudo vim /etc/freeradius/sql.conf
+```            
+```bash
+server = "localhost"
+database = "mysql"
+login =  "db_user"
+password =  "db_password"
+readclients = "yes"
+radius_db = "db"
+```
+
+##### edit site conf
+```nginx
+            sudo vim etc/freeradius/sites-enabled/default
+```
+uncomment sql in the next sections
+```bash
+authorize {
+sql
+}
+accounting {
+sql
+}
+session {
+sql
+}
+post-auth {
+sql
+}
+```
+##### include sql in radius.conf
+
+```nginx
+            sudo vim /etc/freeradius/radiusd.conf
+```
+uncomment 
+```bash
+$INCLUDE sql.conf
+```
+### 5 check works sql
+
+```nginx
+            sudo freeradius -Xx
+```
+##### and open new window (new ssh session) and check it is works
+```nginx
+            radtest sqltest testpwd localhost 1812 testing123
+```
+if you will view
+```bash
+Sending Access-Request of id 45 to 127.0.0.1 port 1812
+        User-Name = "sqltest"
+        User-Password = "testpwd"
+        NAS-IP-Address = 127.0.1.1
+        NAS-Port = 18128
+        Message-Authenticator = 0x00000000000000000000000000000000
+rad_recv: Access-Accept packet from host 127.0.0.1 port 1812, id=45, length=20
+```
+it means all ok and sql worked
+
+### 6 add wifi-AP in client.conf
+```nginx
+            sudo vim /etc/freeradius/clients.conf
+```
+after
+```php
+                     client localhost {
+                     ....
+                     }
+```
+add
+```bash
+client office1-wifi {
+       ipaddr = 192.168.0.6 #addr widi-AP1
+       secret = password1
+       require_message_authentificator = no
+}
+
+client office1_2-wifi {
+       ipaddr = 192.168.0.7 #addr wifi-AP2
+       secret = password2
+       require_message_authentificator = no
+}
+```
+##### and restart freeradius
+
+> Note in db, table "radcheck" contains users and passwords if you use sql may forget "users file" in radius directory.
+
+> nas contains clients
+
+> radacct contains session info
