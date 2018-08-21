@@ -62,6 +62,10 @@ loadkeys ru
                  like this HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck keymap)
                  )
           
+          # /etc/modprobe.d/blacklist.conf 
+               add
+                        ->   blacklist pcspkr
+                        
         mkinitcpio -p linux
         vim /etc/default/grub
                  (GRUB_PRELOAD_MODULES add to end
