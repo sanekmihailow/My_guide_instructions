@@ -36,7 +36,7 @@ loadkeys ru
         vim /etc/pacman.d/mirrorlist       (-> RU) or (yandex)
         pacstrap -i /mnt base base-devel sudo net-tools gvim openssh git
         genfstab -U -p /mnt >> /mnt/etc/fstab
-       #cp install.txt /mnt/root
+    #cp install.txt /mnt/root
         arch-chroot /mnt
         
 ### 5) arch-chroot settings
@@ -44,11 +44,15 @@ loadkeys ru
         echo archlinux > /etc/hostname
         ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
         vim /etc/locale.gen   
-                        -->  en_US.UTF-8;ru_RU.UTF-8 + KOIR8 (если проблемы и начались символы оставить KOIR)
-        echo LANG="ru_RU.UTF-8" >> /etc/locale.conf
+                        -->  en_US.UTF-8;ru_RU.UTF-8 + KOIR8 (если проблемы и начались символы оставить KOIR или LC_messages english)
+        vim /etc/locale.conf
+                        -->  LANG=ru_RU.UTF-8
+                             LANGUAGE=ru_RU.UTF-8:en_US.UTF-8
+                             LC_MESSAGES=en_US.UTF-8
+
         hwclock --systohc --utc
         locale-gen
-       #locale >> /etc/locale.conf
+    #locale >> /etc/locale.conf
         vim /etc/vconsole.conf
                  add
                     ->    KEYMAP=us
@@ -62,7 +66,7 @@ loadkeys ru
                  like this HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck keymap)
                  )
           
-          # /etc/modprobe.d/blacklist.conf 
+       /etc/modprobe.d/blacklist.conf 
                add
                         ->   blacklist pcspkr
                         
