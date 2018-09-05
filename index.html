@@ -1,125 +1,341 @@
 
-<!DOCTYPE html> <html lang=en> <head> <meta charset=UTF-8 /> <meta content='width=device-width, initial-scale=1.0' name=viewport /> <script>document.documentElement.className = 'html--js'</script> <script src='https://cdn.optimizely.com/js/7718922374.js'></script> <script type='application/ld+json'>{"@context":"http://schema.org","@type":"Organization","name":"GitLab","legalName":"GitLab Inc.","url":"","logo":"https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo.png","foundingDate":"2011","founders":[{"@type":"Person","name":"Sid Sijbrandij"},{"@type":"Person","name":"Dmitriy Zaporozhets"}],"address":{"@type":"PostalAddress","streetAddress":"1233 Howard St 2F","addressLocality":"San Francisco","addressRegion":"CA","postalCode":"94103","addressCountry":"USA"},"sameAs":["https://www.facebook.com/gitlab","https://twitter.com/gitlab","https://www.linkedin.com/company/gitlab-com","https://plus.google.com/107491817347842790515/","https://www.youtube.com/channel/UCnMGQ8QHMAnVIsI3xJrihhg"]}</script> <script async='' data-cbid=36a06ac5-ddb4-4f91-8337-067ad19ad8d5 id=Cookiebot src='https://consent.cookiebot.com/uc.js'></script> <script async='' src='//cdn.bizible.com/scripts/bizible.js'></script> <title> Hosting on GitLab.com with GitLab Pages | GitLab </title> <meta content='Learn how to host your website on GitLab.com with GitLab Pages' name=description /> <meta content='Learn how to host your website on GitLab.com with GitLab Pages' name='twitter:description'/> <meta content='Learn how to host your website on GitLab.com with GitLab Pages' name='og:description'/> <meta content=GitLab property='og:site_name'/> <meta content='Hosting on GitLab.com with GitLab Pages' property='og:title'/> <meta content=article property='og:type'/> <meta content='https://about.gitlab.com/2016/04/07/gitlab-pages-setup/' property='og:url'/> <meta content='2016-04-07 10:00:00 +0000' property='article:published_time'/> <meta content='https://about.gitlab.com/about' property='article:author'/> <meta content='https://about.gitlab.com/images/tweets/gitlab-pages-setup.png' property='og:image'/> <meta content='https://about.gitlab.com/images/tweets/gitlab-pages-setup.png' name='twitter:image'/> <meta content=summary_large_image name='twitter:card'/> <meta content='@GitLab' name='twitter:site'/> <meta content='Hosting on GitLab.com with GitLab Pages' name='twitter:title'/> <meta content='@GitLab' name='twitter:creator'/> <link href='/atom.xml' rel=alternate title=Blog type='application/atom+xml'/> <link href='/ico/favicon.ico' rel='shortcut icon'/> <link href='/ico/apple-touch-icon-57x57.png' rel=apple-touch-icon sizes=57x57 /> <link href='/ico/apple-touch-icon-114x114.png' rel=apple-touch-icon sizes=114x114 /> <link href='/ico/apple-touch-icon-72x72.png' rel=apple-touch-icon sizes=72x72 /> <link href='/ico/apple-touch-icon-144x144.png' rel=apple-touch-icon sizes=144x144 /> <link href='/ico/apple-touch-icon-60x60.png' rel=apple-touch-icon sizes=60x60 /> <link href='/ico/apple-touch-icon-120x120.png' rel=apple-touch-icon sizes=120x120 /> <link href='/ico/apple-touch-icon-76x76.png' rel=apple-touch-icon sizes=76x76 /> <link href='/ico/apple-touch-icon-152x152.png' rel=apple-touch-icon sizes=152x152 /> <link href='/ico/apple-touch-icon-180x180.png' rel=apple-touch-icon sizes=180x180 /> <link href='/ico/favicon-192x192.png' rel=icon sizes=192x192 type='image/png'/> <link href='/ico/favicon-160x160.png' rel=icon sizes=160x160 type='image/png'/> <link href='/ico/favicon-96x96.png' rel=icon sizes=96x96 type='image/png'/> <link href='/ico/favicon-16x16.png' rel=icon sizes=16x16 type='image/png'/> <link href='/ico/favicon-32x32.png' rel=icon sizes=32x32 type='image/png'/> <meta content='#554488' name=msapplication-TileColor /> <meta content='/ico/mstile-144x144.png' name=msapplication-TileImage /> <meta content='/ico/browserconfig.xml' name=msapplication-config /> <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,500,600' rel=stylesheet /> <link crossorigin=anonymous href='https://use.fontawesome.com/releases/v5.1.0/css/all.css' integrity='sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt' rel=stylesheet /> <link href="/stylesheets/styles.css" rel=stylesheet /><link href="/stylesheets/highlight.css" rel=stylesheet /> </head> <body data-spy=scroll data-target='.qnav'> <noscript> <iframe height=0 src='//www.googletagmanager.com/ns.html?id=GTM-NJXWQL' style='display:none;visibility:hidden' width=0></iframe> </noscript> <script>
-  //<![CDATA[
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NJXWQL')
-  //]]>
-</script> <header class=navbar id=main-nav role=navigation> <div class=navbar-left> <a class='navbar-brand animated' href='/'> <svg height=36 viewBox="0 0 1231 342" xmlns="http://www.w3.org/2000/svg" class=nav-logo> <g fill=none fill-rule=evenodd> <g fill="#8C929D" class=wordmark> <path d="M764.367 94.13h-20.803l.066 154.74h84.155v-19.136h-63.352l-.066-135.603zM907.917 221.7c-5.2 5.434-13.946 10.87-25.766 10.87-15.838 0-22.22-7.797-22.22-17.957 0-15.354 10.637-22.678 33.332-22.678 4.255 0 11.11.472 14.655 1.18v28.586zm-21.51-93.787c-16.8 0-32.208 5.952-44.23 15.858l7.352 12.73c8.51-4.962 18.91-9.924 33.802-9.924 17.02 0 24.585 8.742 24.585 23.39v7.56c-3.31-.71-10.164-1.184-14.42-1.184-36.404 0-54.842 12.757-54.842 39.454 0 23.86 14.656 35.908 36.876 35.908 14.97 0 29.314-6.852 34.278-17.954l3.782 15.118h14.657v-79.14c0-25.04-10.874-41.815-41.84-41.815zM995.368 233.277c-7.802 0-14.657-.945-19.858-3.308v-71.58c7.093-5.908 15.84-10.16 26.95-10.16 20.092 0 27.893 14.174 27.893 37.09 0 32.6-12.53 47.957-34.985 47.957m8.742-105.364c-18.592 0-28.6 12.64-28.6 12.64V120.59l-.066-26.458H955.116l.066 150.957c10.164 4.25 24.11 6.613 39.24 6.613 38.768 0 57.442-24.804 57.442-67.564 0-33.783-17.26-56.227-47.754-56.227M538.238 110.904c18.438 0 30.258 6.142 38.06 12.285l8.938-15.477c-12.184-10.678-28.573-16.417-46.053-16.417-44.204 0-75.17 26.932-75.17 81.267 0 56.935 33.407 79.14 71.624 79.14 19.148 0 35.46-4.488 46.096-8.976l-.435-60.832V162.76h-56.734v19.135h36.167l.437 46.184c-4.727 2.362-13 4.252-24.11 4.252-30.73 0-51.297-19.32-51.297-60.006 0-41.34 21.275-61.422 52.478-61.422M684.534 94.13h-20.33l.066 25.988v89.771c0 25.04 10.874 41.814 41.84 41.814 4.28 0 8.465-.39 12.53-1.126v-18.245c-2.943.45-6.083.707-9.455.707-17.02 0-24.585-8.74-24.585-23.387v-61.895h34.04v-17.01H684.6l-.066-36.617zM612.62 248.87h20.33V130.747h-20.33v118.12zM612.62 114.448h20.33V94.13h-20.33v20.318z"/> </g> <path d="M185.398 341.13l68.013-209.322H117.39L185.4 341.13z" fill="#E24329" class="logo-svg-shape logo-dark-orange-shape"/> <path d="M185.398 341.13l-68.013-209.322h-95.32L185.4 341.128z" fill="#FC6D26" class="logo-svg-shape logo-orange-shape"/> <path d="M22.066 131.808l-20.67 63.61c-1.884 5.803.18 12.16 5.117 15.744L185.398 341.13 22.066 131.807z" fill="#FCA326" class="logo-svg-shape logo-light-orange-shape"/> <path d="M22.066 131.808h95.32L76.42 5.735c-2.107-6.487-11.284-6.487-13.39 0L22.065 131.808z" fill="#E24329" class="logo-svg-shape logo-dark-orange-shape"/> <path d="M185.398 341.13l68.013-209.322h95.32L185.4 341.128z" fill="#FC6D26" class="logo-svg-shape logo-orange-shape"/> <path d="M348.73 131.808l20.67 63.61c1.884 5.803-.18 12.16-5.117 15.744L185.398 341.13 348.73 131.807z" fill="#FCA326" class="logo-svg-shape logo-light-orange-shape"/> <path d="M348.73 131.808h-95.32L294.376 5.735c2.108-6.487 11.285-6.487 13.392 0l40.963 126.073z" fill="#E24329" class="logo-svg-shape logo-dark-orange-shape"/> </g> </svg> </a> </div> <div class=navbar-right> <ul> <li> <a class=main-nav-link href='/product/'>Product</a> <div class=dropdown> <a href='/services/'>Services</a> <a href='/solutions/'>Solutions</a> <a href='/support/'>Support</a> </div> </li> <li> <a class=main-nav-link href='/blog/'>Learn</a> <div class=dropdown> <a href='/blog/'>Blog</a> <a href='/resources/'>Resources</a> <a href='/partners/'>Partners</a> <a href='/events/'>Events</a> </div> </li> <li> <a class=main-nav-link href='/community/'>Community</a> <div class=dropdown> <a href='/customers/'>Customers</a> <a href='/installation/'>Install</a> <a href='/contributing/'>Contribute</a> <a href='https://docs.gitlab.com/'>Docs</a> <a href='https://gitlab.com/explore'>Explore open source</a> </div> </li> <li> <a class=main-nav-link href='/pricing/'>Pricing</a> <div class=dropdown> <a href='/pricing/#self-managed'>Self-managed</a> <a href='/pricing/#gitlab-com'>GitLab.com</a> </div> </li> <li> <a class=main-nav-link href='/contact/'>Contact</a> </li> <li> <a class=main-nav-link href='/free-trial/'>Free trial</a> </li> <li> <button aria-label=Search class='search-icon js-search-toggle' type=button> <i class='fa fa-search'></i> </button> </li> <li class=nosubmenu> <a class='main-nav-link sign-up' href='https://gitlab.com/explore'> Explore GitLab.com </a> </li> <li class=nosubmenu> <a class='main-nav-link sign-up' href='https://gitlab.com/users/sign_in'> Sign In/Register </a> </li> </ul> </div> <div class=mobile-icons> <button aria-label=Search class='search-icon js-search-toggle' type=button> <i class='fas fa-search'></i> </button> <button class=mobile-icon id=mobile-icon> <div class=icon-bar></div> <div class=icon-bar></div> <div class=icon-bar></div> </button> </div> <div class='display-none mobile-menu' id=mobile-menu> <button class=exit-icon-container id=exit-icon> <img class=exit-icon src='/images/icons/x.svg'/> </button> <ul> <li> <a class=main-nav-link href='/product/'>Product</a> <div class=dropdown> <a href='/services/'>Services</a> <a href='/solutions/'>Solutions</a> <a href='/support/'>Support</a> </div> </li> <li> <a class=main-nav-link href='/blog/'>Learn</a> <div class=dropdown> <a href='/blog/'>Blog</a> <a href='/resources/'>Resources</a> <a href='/partners/'>Partners</a> <a href='/events/'>Events</a> </div> </li> <li> <a class=main-nav-link href='/community/'>Community</a> <div class=dropdown> <a href='/customers/'>Customers</a> <a href='/installation/'>Install</a> <a href='/contributing/'>Contribute</a> <a href='https://docs.gitlab.com/'>Docs</a> <a href='https://gitlab.com/explore'>Explore open source</a> </div> </li> <li> <a class=main-nav-link href='/pricing/'>Pricing</a> <div class=dropdown> <a href='/pricing/#self-managed'>Self-managed</a> <a href='/pricing/#gitlab-com'>GitLab.com</a> </div> </li> <li> <a class=main-nav-link href='/contact/'>Contact</a> </li> <li> <a class=main-nav-link href='/free-trial/'>Free trial</a> </li> <li> <button aria-label=Search class='search-icon js-search-toggle' type=button> <i class='fa fa-search'></i> </button> </li> <li class=nosubmenu> <a class='main-nav-link sign-up' href='https://gitlab.com/explore'> Explore GitLab.com </a> </li> <li class=nosubmenu> <a class='main-nav-link sign-up' href='https://gitlab.com/users/sign_in'> Sign In/Register </a> </li> </ul> </div> <div class='search-box js-search-box'> <i class='fa fa-search search-box-icon'></i> <input class='search-input js-search' placeholder='Search...'/> <button aria-label='Close search' class='search-close js-search-toggle' type=button> <i class='fa fa-times'></i> </button> </div> </header> <script src='/javascripts/mobile-menu.js'></script> <script src='/javascripts/libs/tweenmax.min.js'></script> <div class='blog article'> <div class=cover style='background-image: url(/images/blogimages/gitlab-pages-setup-cover.jpg);'> <div class=overlay> <div class='wrapper header'> <span class=date> Apr 7, 2016 </span> <span>-</span> <span class=author> Marcia Ramos <a href="https://gitlab.com/marcia"><span>&nbsp;</span> <spam class=author-gitlab> <i class='fab fa-gitlab'></i> </spam> </a><a href="https://twitter.com/XMDRamos"><span>&nbsp;</span> <spam class=author-twitter> <i class='fab fa-twitter'></i> </spam> </a></span> <h1> Hosting on GitLab.com with GitLab Pages </h1> <p class=description> Learn how to host your website on GitLab.com with GitLab Pages </p> </div> </div> </div> <div class='wrapper body'> <div class=category-back-link> <a href="/blog/categories/engineering"><span>&#8592;</span> <span>Back to</span> <span>engineering</span> </a></div> <div class=content> <p>In this article we provide you with detailed information about using <a href="https://pages.gitlab.io">GitLab Pages</a> to host your website for free on <a href="https://gitlab.com/users/sign_in" title="Sign Up, it's free!">GitLab.com</a>.</p> <p>We've prepared a step-by-step tutorial on creating a new project for GitLab Pages so you won't get lost in the process.</p> <p>GitLab Pages supports <a href="https://en.wikipedia.org/wiki/Static_web_page">static websites</a> and builds <strong>any</strong> <a href="https://www.staticgen.com/">Static Site Generator (SSG)</a>, such as <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://gohugo.io/">Hugo</a>, <a href="https://hexo.io/">Hexo</a>, <a href="https://middlemanapp.com/">Middleman</a> and <a href="http://blog.getpelican.com/">Pelican</a>.</p> <p>We are assuming that you are familiar with <a href="https://git-scm.com/about">Git</a> and with the web development process, from creation to publishing.</p> <hr/> <h3 class=no_toc id=whats-in-this-tutorial>What's in this tutorial?</h3> <ul id=markdown-toc> <li><a href="#getting-started" id=markdown-toc-getting-started>Getting Started</a></li> <li><a href="#website-types" id=markdown-toc-website-types>Website Types</a> <ul> <li><a href="#group-websites" id=markdown-toc-group-websites>A note regarding GitLab Groups and Namespaces</a></li> </ul> </li> <li><a href="#gitlab-ci" id=markdown-toc-gitlab-ci>About GitLab CI for GitLab Pages</a></li> <li><a href="#creating-new-pages-projects" id=markdown-toc-creating-new-pages-projects>Creating new GitLab Pages projects</a></li> <li><a href="#step-by-step" id=markdown-toc-step-by-step>Step-by-step</a> <ul> <li><a href="#creating-new-project" id=markdown-toc-creating-new-project>Step 1: Create a new project</a></li> <li><a href="#add-gitlab-ci" id=markdown-toc-add-gitlab-ci>Step 2: Add the configuration file: <code>.gitlab-ci.yml</code></a></li> <li><a href="#upload-content" id=markdown-toc-upload-content>Step 3: Upload your website content</a></li> <li><a href="#custom-domains" id=markdown-toc-custom-domains>Step 4: Add your custom domain</a></li> </ul> </li> <li><a href="#examples" id=markdown-toc-examples>Examples</a></li> <li><a href="#faq" id=markdown-toc-faq>FAQ</a></li> <li><a href="#getting-help" id=markdown-toc-getting-help>Getting Help</a></li> <li><a href="#conclusions" id=markdown-toc-conclusions>Conclusion</a></li> </ul> <hr/> <h2 id=getting-started>Getting Started</h2> <p>There are two ways of getting started with GitLab Pages: either you fork an existing project, or you create a new one for yourself.</p> <p>On the <a href="https://pages.gitlab.io">GitLab Pages Quick Start Guide</a>, which is, by the way, a site built with <a href="https://middlemanapp.com/">Middleman</a>, you will find the steps for forking an existing project from a list of examples prepared for you. There are some popular SSGs, like Jekyll, Hugo, Hexo, Bruch, etc.</p> <p>However, if you want to understand the process of creating a new project from scratch, this post is for you.</p> <p>On the official documentation you can learn about <a href="http://doc.gitlab.com/ee/pages/README.html#getting-started-with-gitlab-pages">GitLab Pages</a>, but here we will focus on the <strong>steps</strong> for creating your own project.</p> <p class=note><strong>Note:</strong> <a href="/2016/04/04/gitlab-pages-get-started/">GitLab Pages was introduced in GitLab EE 8.3</a>. It is available for <a href="https://gitlab.com/users/sign_in" title="Sign Up, it's free!">GitLab.com</a> and <a href="/features/#enterprise">GitLab Enterprise Edition</a> users. Update: <a href="/2017/02/22/gitlab-8-17-released/#gitlab-pages-in-community-edition">GitLab 8.17</a> brought GitLab Pages to GitLab Community Edition! Enjoy!</p> <h2 id=website-types>Website Types</h2> <p>In general, you are allowed to create and host two sorts of websites with GitLab Pages:</p> <ol> <li>User/Group Websites - a single site per user or group</li> <li>Project Websites - as many sites you want</li> </ol> <p>You can find out more about them on the <a href="http://doc.gitlab.com/ee/pages/README.html#getting-started-with-gitlab-pages">docs</a>.</p> <h3 id=group-websites>A note regarding GitLab Groups and Namespaces</h3> <p>Creating a <a href="http://doc.gitlab.com/ee/workflow/groups.html">group</a> on GitLab is very useful when you have several projects with the same subject. A group has its own <strong>namespace</strong>, which is unique for each group (and for each user).</p> <p>The important matter is, when you create your account on GitLab, it's better to choose a username for yourself as a person, not as a company. You can create your "company username" later, as a group namespace. For example, let's say your name is "John Doe" and your company is called "Foo Master". First, register yourself as <code>johndoe</code> and later create a group called Foo Master within the namespace of <code>foomaster</code>. This will allow you to separate your personal projects from your company ones.</p> <p>If you follow this tip, you will be able to access your personal site under <code>https://username.gitlab.io</code> and your company site under <code>https://groupname.gitlab.io</code>.</p> <h2 id=gitlab-ci>About GitLab CI for GitLab Pages</h2> <p>The key to having everything up and running as expected is the <a href="http://doc.gitlab.com/ee/ci/quick_start/README.html#creating-a-.gitlab-ci.yml-file"><strong>GitLab CI</strong> configuration file</a>, called <code>.gitlab-ci.yml</code>.</p> <p>This file <a href="http://doc.gitlab.com/ee/ci/yaml/README.html">configures</a> how your website will be built by a <em><a href="http://doc.gitlab.com/ee/ci/quick_start/README.html#configuring-a-runner">Runner</a></em>. It is written in <a href="http://yaml.org/">YAML</a>, which has its own syntax, so we recommend you follow this <a href="http://doc.gitlab.com/ee/ci/quick_start/README.html">quick start guide</a> before setting it up. It needs to be placed at your root directory.</p> <p>The most important fact is that with GitLab CI, <strong>you</strong> take control over your builds. They won't be in an invisible black box where you don't know what is going on! You can actually <strong>see</strong> any build running live by navigating to your project's <strong>Pipelines &gt; Builds &gt; Build ID</strong>. You can also add any command to your script. This is far beyond useful as it allows you to do pretty much anything you do on your local machine!</p> <p>For example, you can add any <a href="https://jekyllrb.com/docs/plugins/">Jekyll Plugin</a> to your Jekyll site, you can require any <code>gem</code> you need in your <code>Gemfile</code>, run <code>npm</code>, run <code>bundle</code> and much more. Bottom line, it's as handy as having your own command line on your GitLab UI.</p> <p>Additionally, you can have a distinct <code>.gitlab-ci.yml</code> for each repository - even for each branch. This means you can test your script in parallel branches before pushing to your <code>master</code> branch. If the build succeeds, you merge. If it doesn't, you can make adjustments and try building again without messing up your <code>master</code> branch.</p> <p>Before you push any <code>.gitlab-ci.yml</code> to your project, you can validate its syntax with the tool called <a href="https://gitlab.com/ci/lint" title="Try me!">CI Lint</a>. You need to be logged into your account to have access to this tool. It's found by navigating to your project's <strong>Pipelines</strong>: there is a button at the top-right of your screen.</p> <p><img src="/images/blogimages/gitlab-pages/gitlab-ci-lint.png" alt=CI-Lint /></p> <p>You can read through the <a href="http://doc.gitlab.com/ee/ci/yaml/README.html">full documentation for <code>.gitlab-ci.yml</code></a> for more information.</p> <h2 id=creating-new-pages-projects>Creating new GitLab Pages projects</h2> <p>Here is an overview of the steps we'll take, assuming you already have your GitLab.com account:</p> <ol> <li>Create a new project</li> <li>Add the configuration file (<code>.gitlab-ci.yml</code>)</li> <li>Upload your website content</li> <li>Add your custom domain <em>(optional)</em></li> <li>Done!</li> </ol> <h2 id=step-by-step>Step-by-step</h2> <p>Now we will go through this process step-by-step. Update: watch the video tutorial on <a href="https://youtu.be/TWqh9MtT4Bg">How to Publish a Website with GitLab Pages on GitLab.com from a forked project</a>!</p> <h3 id=creating-new-project>Step 1: Create a new project</h3> <p>This is as straight-forward as you can imagine:</p> <ul> <li>On your <strong>dashboard</strong> you will see a big green button called <strong>+ New Project</strong>. Click on it.</li> <li>Set the first things up: <ul> <li><strong>Project path</strong> - your project's name, accessed via <code>https://gitlab.com/namespace/projectname</code></li> <li><strong>Privacy</strong> - choose if you want your project to be visible and accessible just for you (<code>private</code>), just for GitLab.com users (<code>internal</code>) or free to anyone to view, clone, fork and download it (<code>public</code>)</li> </ul> </li> </ul> <p class=note><strong>Note</strong>: you can host your website on <a href="/gitlab-com/">GitLab.com</a> even if it is stored in a private repository. If you do so, you can have your project protected - only the static site will be visible to the public - via "Inspect Element" or "View-Source" from their web browsers.</p> <h3 id=add-gitlab-ci>Step 2: Add the configuration file: <code>.gitlab-ci.yml</code></h3> <p>Now we can have some fun! Let's tell GitLab CI how to build the site. You will see a few examples below (options A, B, and C) to understand how they work.</p> <h3 class=no_toc id=option-a-gitlab-ci-for-plain-html-websites>Option A: GitLab CI for plain HTML websites</h3> <p>In order to build your <a href="http://doc.gitlab.com/ee/pages/README.html#how-.gitlab-ci.yml-looks-like-when-the-static-content-is-in-your-repository">plain HTML site</a> with GitLab Pages, your <code>.gitlab-ci.yml</code> file doesn't need much:</p> <pre class="highlight yaml"><code><span class="na">pages</span><span class="pi">:</span>
-  <span class="na">stage</span><span class="pi">:</span> <span class="s">deploy</span>
-  <span class="na">script</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">mkdir .public</span>
-  <span class="pi">-</span> <span class="s">cp -r * .public</span>
-  <span class="pi">-</span> <span class="s">mv .public public</span>
-  <span class="na">artifacts</span><span class="pi">:</span>
-    <span class="na">paths</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">public</span>
-  <span class="na">only</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">master</span>
-</code></pre> <p>What this code is doing is creating a <em><a href="http://doc.gitlab.com/ce/ci/yaml/README.html#jobs">job</a></em> called <em><a href="http://doc.gitlab.com/ee/pages/README.html#explore-the-contents-of-.gitlab-ci.yml">pages</a></em> telling the <em><a href="http://doc.gitlab.com/ee/ci/quick_start/README.html#shared-runners">Runner</a></em> to <em><a href="http://doc.gitlab.com/ce/ci/yaml/README.html#stages">deploy</a></em> the website <em><a href="http://doc.gitlab.com/ee/ci/yaml/README.html#artifacts">artifacts</a></em> to a <em><a href="http://doc.gitlab.com/ee/pages/README.html#explore-the-contents-of-.gitlab-ci.yml">public path</a></em>, whenever a commit is pushed <em><a href="http://doc.gitlab.com/ee/ci/yaml/README.html#only-and-except">only</a></em> to the <code>master</code> branch.</p> <p>All pages are created after the build completes successfully and the artifacts for the pages job are uploaded to GitLab.</p> <h3 class=no_toc id=option-b-gitlab-ci-for-jekyll-websites>Option B: GitLab CI for Jekyll websites</h3> <p>Jekyll is so far the most popular <a href="https://www.staticgen.com/">Static Site Generator (SSG)</a> available, that's why we'll use it as a first example for configuring our GitLab CI. On the next section you'll find more <a href="#examples">examples</a> for SSGs already tested with GitLab Pages.</p> <p>Jekyll is written in <a href="https://www.ruby-lang.org/">Ruby</a> and generates static blog-aware websites. Blog-aware means a website generator will create blog-style content, such as lists of content in reverse chronological order, archive lists, and other common blog-style features.</p> <p>We can write dynamically with <a href="https://github.com/Shopify/liquid/wiki">Liquid</a>, <a href="http://daringfireball.net/projects/markdown/">Markdown</a> and <a href="http://yaml.org/">YAML</a> and Jekyll builds the static site (HTML, CSS, JS) for us. You will find the same functionality for every SSG, yet each of them uses its own environment, template system, markup language, etc.</p> <p>If you want GitLab Pages to <a href="http://doc.gitlab.com/ee/pages/README.html#how-.gitlab-ci.yml-looks-like-when-using-a-static-generator">build your Jekyll website</a>, you can start with the simple script below:</p> <pre class="highlight yaml"><code><span class="na">image</span><span class="pi">:</span> <span class="s">ruby:2.1</span>
-
-<span class="na">pages</span><span class="pi">:</span>
-  <span class="na">script</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">gem install jekyll</span>
-  <span class="pi">-</span> <span class="s">jekyll build -d public/</span>
-  <span class="na">artifacts</span><span class="pi">:</span>
-    <span class="na">paths</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">public</span>
-  <span class="na">only</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">master</span>
-</code></pre> <p>This code requires the <em><a href="http://doc.gitlab.com/ee/ci/yaml/README.html#script">script</a></em> to run on the <em><a href="http://doc.gitlab.com/ee/ci/yaml/README.html#image-and-services">environment</a></em> of <a href="https://www.ruby-lang.org/">Ruby</a> 2.1.x, installs the Jekyll gem, and builds the site to the <em><a href="http://doc.gitlab.com/ee/pages/README.html#explore-the-contents-of-.gitlab-ci.yml">public path</a></em>. The result affects <em><a href="http://doc.gitlab.com/ee/ci/yaml/README.html#only-and-except">only</a></em> the master branch. For building a regular Jekyll site, you can just copy this code and paste it into your <code>.gitlab-ci.yml</code>.</p> <p>If you are familiar with Jekyll, you will probably want to use <a href="http://bundler.io/">Bundler</a> to build your Jekyll site. We've prepared an <a href="https://gitlab.com/jekyll-themes/default-bundler">example</a> for that. Also, if you want to use a specific Jekyll version, you can find an <a href="https://gitlab.com/jekyll-themes/carte-noire">example</a> in the <a href="https://gitlab.com/groups/jekyll-themes">Jekyll Themes</a> group I set up for the purposes of this post. And of course, since you are the one who controls how GitLab CI builds your site, you are free to use any <a href="https://jekyllrb.com/docs/plugins/">Jekyll Plugins</a>. <em>Yep!</em></p> <h3 class=no_toc id=option-c-gitlab-ci-for-hexo-websites>Option C: GitLab CI for Hexo websites</h3> <p>Let's see another example. <a href="https://hexo.io/">Hexo</a> is a powerful blog-aware framework built with <a href="https://nodejs.org/en/">NodeJS</a>, a server-side JavaScript environment based on <a href="https://developers.google.com/v8/">Google V8</a> high-performance engine.</p> <p>To build our Hexo site, we can start with this <code>.gitlab-ci.yml</code>:</p> <pre class="highlight yaml"><code><span class="na">image</span><span class="pi">:</span> <span class="s">node:4.2.2</span>
-
-<span class="na">pages</span><span class="pi">:</span>
-  <span class="na">cache</span><span class="pi">:</span>
-    <span class="na">paths</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">node_modules/</span>
-
-  <span class="na">script</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s">npm install hexo-cli -g</span>
-  <span class="pi">-</span> <span class="s">npm install</span>
-  <span class="pi">-</span> <span class="s">hexo deploy</span>
-  <span class="na">artifacts</span><span class="pi">:</span>
-    <span class="na">paths</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">public</span>
-  <span class="na">only</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">master</span>
-</code></pre> <p>Note that the <a href="https://hub.docker.com/_/node/">Docker image</a> we require is <code>node:4.2.2</code>. We are archiving <code>npm</code> modules into the <code>cache</code>, installing <code>hexo-cli</code> and deploying our <code>hexo</code> site to the default <code>public</code> directory, uploaded to GitLab as <code>artifacts</code>. The <code>pages</code> job is <code>only</code> affecting the <code>master</code> branch.</p> <p>On the <a href="https://gitlab.com/groups/pages">Pages</a> group you will find a default <a href="https://gitlab.com/pages/hexo">Hexo site</a> deployed with GitLab Pages, and on <a href="https://gitlab.com/themes-templates">this group</a>, another <a href="https://gitlab.com/themes-templates/hexo">example</a> with a slightly different configuration.</p> <h3 id=upload-content>Step 3: Upload your website content</h3> <p>Push the content to your remote project and keep an eye on the build!</p> <p><strong>Don't forget:</strong> when you are using GitLab Pages with a Static Site Generator, do not upload the directory which your SSG generated locally, otherwise you'll have duplicated contents and you might face build errors. For example, do not commit the <code>_site</code> directory (<a href="https://jekyllrb.com">Jekyll</a>) or the <code>build</code> directory (<a href="https://middlemanapp.com/">Middleman</a>) or the <code>public</code> directory (<a href="https://hexo.io/">Hexo</a>). You can do this automatically by adding them to a <code>.gitignore</code> file, placed at your project's root directory.</p> <p>E.g., if you are building a Jekyll site, your <code>.gitignore</code> will have this line:</p> <pre class="highlight plaintext"><code>_site
-</code></pre> <p>A <code>.gitignore</code> is very useful to avoid uploading to your remote repository any file or folder within your project. If you want to know more about it, check the <a href="https://git-scm.com/docs/gitignore"><code>.gitignore</code> official docs</a>.</p> <h3 id=custom-domains>Step 4: Add your custom domain</h3> <p class=note><strong>Note:</strong> Custom CNAMEs with TLS support were introduced in <a href="https://gitlab.com/gitlab-org/gitlab-ee/merge_requests/173">GitLab EE 8.5</a>.</p> <p>If you want, you are free to <a href="http://doc.gitlab.com/ee/pages/README.html#add-a-custom-domain-to-your-pages-website">add your own domain(s) name</a> to your website hosted by GitLab.com. It's not required though, you can always use the standard GitLab Pages subdomain accessed under <code>https://mynamespace.gitlab.io</code>.</p> <p><em>Features</em></p> <ul> <li>Besides including your own domain, you can add your custom <strong>subdomain</strong> to your GitLab Pages project (e.g., <code>subdomain.example.com</code>)</li> <li>You can enter more than one domain alias <strong>per project</strong> (e.g., <code>example.com</code>, <code>example.net</code> <code>my.example.org</code> and <code>another-example.com</code> pointing to your project under <code>mynamespace.gitlab.io</code> or <code>mynamespace.gitlab.io/myproject</code>). A domain alias is like having multiple front doors to one location.</li> <li>If you want to enable an HTTPS secure connection to your domains, you can affix your own SSL/TLS digital certificate to <strong>each</strong> custom domain or subdomain you've added to your projects.</li> </ul> <p><em>Steps to set up a custom domain</em></p> <ul> <li>From your project's dashboard, go to <strong>Settings</strong> (<i class="fas fa-cog" aria-hidden=true></i>) <strong>&gt; Pages &gt; New Domain</strong></li> <li>Add your domain to the first field: <code>mydomain.com</code></li> <li>If you have an SSL/TLS digital certificate and its key, add them to their respective fields. If you don't, just leave the fields blank.</li> <li>Click on <strong>Create New Domain</strong>.</li> <li>Finally, access your domain control panel and create a new <a href="https://support.dnsimple.com/articles/a-record/">DNS <code>A</code> record</a> pointing to the <a href="/gitlab-com/settings/#gitlab-pages">IP of GitLab Pages server</a>:</li> </ul> <pre class="highlight plaintext"><code>mydomain.com A 52.167.214.135
-</code></pre> <p class=note><strong>Update:</strong> GitLab Pages IP address on GitLab.com <a href="/2017/03/06/we-are-changing-the-ip-of-gitlab-pages-on-gitlab-com/">has changed</a> from <code>104.208.235.32</code> to <code>52.167.214.135</code>. Updated by Marcia Ramos on 2017/03/06.</p> <p>Alternatively, a similar procedure can be applied for <strong>custom subdomains</strong>:</p> <ul> <li> <p>Add the subdomain to the first field: <code>subdomain.mydomain.com</code></p> </li> <li> <p>Then create a new <a href="https://en.wikipedia.org/wiki/CNAME_record">DNS <code>CNAME</code> record</a> pointing to <code>myusername.gitlab.io</code>:</p> </li> </ul> <pre class="highlight plaintext"><code>subdomain.mydomain.com CNAME myusername.gitlab.io
-</code></pre> <p>Repeat these steps for any additional domain aliases.</p> <p>Note that how you set up your DNS records will depend upon which company you used to register your domain name. Every company has its own methods for DNS Zone Management. On this link you can find an <a href="http://docs.businesscatalyst.com/user-manual/site-settings/site-domains/updating-dns-records-with-a-domain-registrar-external-dns">overview for some providers</a>, it might help you to follow through. Please contact your provider directly if you need some extra help.</p> <p>Ordinarily, DNS propagation needs some time to take effect, so don't worry if you can't access your website under your custom domain instantaneously. Wait a few minutes and check it again.</p> <h2 id=examples>Examples</h2> <p>Check out the <a href="https://gitlab.com/groups/pages">Pages</a> official group for a list of example projects, where you can explore some good options for Static Site Generators for Ruby, NodeJS and Python environments. You can also find more specific examples on the following groups, which I prepared for the purposes of this post:</p> <ul> <li><a href="https://gitlab.com/groups/jekyll-themes">Jekyll Themes</a> (Ruby/Jekyll)</li> <li><a href="https://gitlab.com/groups/middleman-themes">Middleman Themes</a> (Ruby/Middleman)</li> <li><a href="https://gitlab.com/themes-templates">Themes and Templates</a> (Miscellaneous)</li> <li><a href="https://gitlab.com/groups/html-themes">HTML Themes</a> (plain HTML)</li> </ul> <p class=note><strong>Note:</strong> these themes, templates and SSGs were casually chosen and listed on this post to provide you with some distinct GitLab CI configurations.</p> <h2 id=faq>FAQ</h2> <h3 class=no_toc id=is-all-of-this-really-free-to-use>Is all of this really free to use?</h3> <p>Yes, it is! On <a href="https://gitlab.com/users/sign_in" title="Sign Up, it's free!">GitLab.com</a> you can create your free account and enjoy all its <a href="/gitlab-com/">features</a>, including unlimited private repositories, projects, websites, and contributors. Also, you'll have 10GB disk space per project, <a href="/gitlab-com/settings/#gitlab-pages">1GB per Pages artifacts</a>, and unlimited total disk space. Awesome, isn't it? Why don't you take a peek at the <a href="https://gitlab.com/explore">public projects</a>?</p> <h3 class=no_toc id=where-is-the-public-folder>Where is the <code>public</code> folder?</h3> <p>When a build succeeds, you'll find your static site at your project's <strong>Pipelines &gt; Builds &gt; Build ID &gt; Browse</strong>. You can download the artifacts from the same screen.</p> <p><img src="/images/blogimages/gitlab-pages/gitlab-browse-download-artifacts.png" alt="Build Artifacts - Browse or Download"/></p> <h3 class=no_toc id=can-i-really-use-any-static-site-generator>Can I really use any Static Site Generator?</h3> <p>Yes, you can use any <a href="https://www.staticgen.com/">Static Site Generator</a> available.</p> <h3 class=no_toc id=can-i-use-free-ssltls-digital-certificates>Can I use free SSL/TLS digital certificates?</h3> <p>Yes, absolutely! Need a suggestion? Try <a href="/2016/04/11/tutorial-securing-your-gitlab-pages-with-tls-and-letsencrypt/">Let's Encrypt</a> or <a href="/2017/02/07/setting-up-gitlab-pages-with-cloudflare-certificates/">CloudFlare</a>.</p> <h3 class=no_toc id=can-i-contribute-to-the-themes>Can I contribute to the themes?</h3> <p>Sure! You are very welcome to contribute to the groups mentioned above. To do that, please set your website up and make sure it's working as you expected. Then, add an issue to the <a href="#examples">group</a> you're interested in. Don't forget to include a link to your project. After a brief evaluation, we'll be glad to fork your project and present your theme to our community!</p> <h3 class=no_toc id=can-i-use-php-pages-and-connect-databases-with-my-sites>Can I use <code>.php</code> pages and connect databases with my sites?</h3> <p>No. GitLab Pages hosts static websites only (HTML, CSS and JS).</p> <h2 id=getting-help>Getting Help</h2> <p>If you need some help regarding GitLab Pages on GitLab.com, feel free to use one of <a href="/getting-help">our channels</a>. You can also open an issue on the <a href="https://gitlab.com/pages/pages.gitlab.io/issues">Pages</a> group.</p> <p><a name=conclusions></a></p> <h2 id=conclusions>Conclusion</h2> <p>Hopefully now you understand how <strong><a href="https://pages.gitlab.io">GitLab Pages</a></strong> works and how to create your new site.</p> <p>Follow <a href="https://twitter.com/gitlab">@GitLab</a> on Twitter and stay tuned for updates!</p> <p>We're looking forward to seeing your sites!</p> <p class=note><strong>Note:</strong> this post has been updated (June 17th, 2016) to match the new GitLab UI.</p> <h2 class=no_toc id=about-guest-author-marcia-ramos>About guest author Marcia Ramos</h2> <p><a href="https://gitlab.com/u/marcia">Marcia</a> is a backend web developer specialized in WordPress and Jekyll sites at <a href="http://virtuacreative.com.br/en/">Virtua Creative</a>, though she does some frontend too. Her daily work is based on version-controlled systems for almost 15 years. She is driven by her thirst for knowledge and her eagerness to continuously expand her horizons. When she is not coding, she is writing articles, studying, teaching or contributing to open source projects here and there. Update: she's joined the <a href="/team/#XMDRamos">GitLab Team</a> in May, 2016.</p> <div class='panel panel-default twitter-block'> <a class='twitter-block-link panel-body' href='http://twitter.com/share?text=Hosting%20on%20GitLab.com%20with%20GitLab%20Pages%20via%20@XMDRamos&amp;url=https://about.gitlab.com/2016/04/07/gitlab-pages-setup/&amp;hashtags=' rel=nofollow target=_blank title='Tweet!'> <span class='twitter-text pull-left'> Hosting on GitLab.com with GitLab Pages via @XMDRamos </span> <span class=click-to-tweet> Click to tweet! <i class='fab fa-twitter'></i> </span> </a> </div> </div> <div class=social> <div class='share-butons clearfix'> <a class='share-btn share-btn-facebook' href='http://www.facebook.com/sharer.php?u=https://about.gitlab.com/2016/04/07/gitlab-pages-setup/' onclick='openSocialLink(this, 500, 400); return false;' target=_blank> <i class='fab fa-facebook'></i> <span class=sr-only> Share on Facebook </span> </a> <a class='share-btn share-btn-twitter' href='http://twitter.com/share?url=https://about.gitlab.com/2016/04/07/gitlab-pages-setup/&amp;text=Hosting on GitLab.com with GitLab Pages' onclick='openSocialLink(this, 500, 400); return false;' target=_blank> <i class='fab fa-twitter'></i> <span class=sr-only> Share on Twitter </span> </a> <a class='share-btn share-btn-linkedin' href='https://www.linkedin.com/shareArticle?mini=true&amp;url=https://about.gitlab.com/2016/04/07/gitlab-pages-setup/&amp;title=Hosting on GitLab.com with GitLab Pages&amp;summary=&amp;source=' onclick='openSocialLink(this, 500, 400); return false;' target=_blank> <i class='fab fa-linkedin'></i> <span class=sr-only> Share on LinkedIn </span> </a> <a class='share-btn share-btn-google' href='https://plusone.google.com/_/+1/confirm?hl=en&amp;url=https://about.gitlab.com/2016/04/07/gitlab-pages-setup/' onclick='openSocialLink(this, 500, 400); return false;' target=_blank> <i class='fab fa-google-plus'></i> <span class=sr-only> Share on Google+ </span> </a> </div> </div> <nav aria-label='Blog post pager'> <ul class=pager> <li class=pull-left> <a href="/2016/04/06/git-contributors-summit/" title="Notes from the Git Merge Core Contributors Summit"><i class='fa fa-chevron-left'></i> Previous </a></li> <li class=pull-right> <a href="/2016/04/07/stack-overflow-support-network/" title="Customer Story: Stack Overflow">Next <i class='fa fa-chevron-right'></i> </a></li> </ul> </nav> </div> <div class='wrapper signup'> <div class="panel panel-default nl panel-newsletter-signup"> <div class=row> <div class="col-sm-12 col-md-4 col-lg-4 col-follow-us"> <span>Follow us:</span> <a href="https://twitter.com/gitlab" class="social-link twitter-link" target=_blank data-toggle=tooltip title="GitLab on Twitter"> <i class="fab fa-twitter"></i> </a> <a href="https://www.linkedin.com/company/gitlab-com" class="social-link linkedin-link" target=_blank data-toggle=tooltip title="GitLab on LinkedIn"> <i class="fab fa-linkedin"></i> </a> <a href="https://www.facebook.com/gitlab" class="social-link facebook-link" target=_blank data-toggle=tooltip title="GitLab on Facebook"> <i class="fab fa-facebook-square"></i> </a> <a href="/atom.xml" class=social-link data-toggle=tooltip title="RSS Feed"> <i class="fas fa-rss"></i> </a> </div> <div class="col-sm-12 col-md-8 col-lg-8 newsletter"> <div class=newsletter-form> <span class=newsletter-preamble> Sign up for GitLab’s twice-monthly newsletter: </span> <script src="//app-ab13.marketo.com/js/forms2/js/forms2.min.js"></script> <form id=mktoForm_1077></form> <script>
-
-
-          MktoForms2.loadForm("//app-ab13.marketo.com", "194-VVC-221", 1077, function(form) {
-            form.onSuccess(function(values, followUpUrl) {
-
-              form.getFormElem().hide();
-              document.getElementById('confirmform').style.display = 'block';
-
-              dataLayer.push({event: 'mktoLead',mktoFormId: form.getId()});
-              return false;
-            });
-            function getgacid() {
-              try {
-                var tracker = ga.getAll()[0];
-                return tracker.get('clientId');
-              } catch (e) {
-                return 'n/a';
-              }
-            }
-            form.vals({
-              'gacid': getgacid()
-            });
-          });
-        </script> <div id=confirmform class=confirm-message style="display:none;"><p>Thanks for subscribing!</p></div> </div> </div> </div> </div> </div> <div class=callout> <h2> Install GitLab in 2 minutes </h2> <p> With Ubuntu, Debian, CentOS, openSUSE, and Raspbian packages or from source </p> <a class='btn btn-red' href='/installation/'>Install GitLab Now</a> </div> <div class='wrapper comments'> <div id=disqus_thread> <script>
-  //<![CDATA[
-    var disqus_shortname = 'gitlab'; // required: replace example with your forum shortname
-    //var disqus_developer = 1;
-    var disqus_identifier = disqus_identifier ? disqus_identifier : 'https://about.gitlab.com/2016/04/07/gitlab-pages-setup/';
-    var disqus_url = 'https://about.gitlab.com/2016/04/07/gitlab-pages-setup/';
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub:Help" />
+  <title>
+  
     
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  //]]>
-</script> </div> </div> <footer class=footer> <svg width=65 height=60 viewBox="0 0 210 194" class=footer-logo> <path d="M105.0614,193.655 L105.0614,193.655 L143.7014,74.734 L66.4214,74.734 L105.0614,193.655 L105.0614,193.655 Z" fill="#E24329" class="logo-svg-shape logo-dark-orange-shape"/> <path d="M105.0614,193.6548 L66.4214,74.7338 L12.2684,74.7338 L105.0614,193.6548 Z" fill="#FC6D26" class="logo-svg-shape logo-orange-shape"/> <path d="M12.2685,74.7341 L12.2685,74.7341 L0.5265,110.8731 C-0.5445,114.1691 0.6285,117.7801 3.4325,119.8171 L105.0615,193.6551 L12.2685,74.7341 Z" fill="#FCA326" class="logo-svg-shape logo-light-orange-shape"/> <path d="M12.2685,74.7342 L66.4215,74.7342 L43.1485,3.1092 C41.9515,-0.5768 36.7375,-0.5758 35.5405,3.1092 L12.2685,74.7342 Z" fill="#E24329" class="logo-svg-shape logo-dark-orange-shape"/> <path d="M105.0614,193.6548 L143.7014,74.7338 L197.8544,74.7338 L105.0614,193.6548 Z" fill="#FC6D26" class="logo-svg-shape logo-orange-shape"/> <path d="M197.8544,74.7341 L197.8544,74.7341 L209.5964,110.8731 C210.6674,114.1691 209.4944,117.7801 206.6904,119.8171 L105.0614,193.6551 L197.8544,74.7341 Z" fill="#FCA326" class="logo-svg-shape logo-light-orange-shape"/> <path d="M197.8544,74.7342 L143.7014,74.7342 L166.9744,3.1092 C168.1714,-0.5768 173.3854,-0.5758 174.5824,3.1092 L197.8544,74.7342 Z" fill="#E24329" class="logo-svg-shape logo-dark-orange-shape"/> </svg> <div class='animated container'> <ul class='text-center footer-social'> <li> <a href="https://twitter.com/gitlab"><i class='fab fa-twitter'></i> <span class=sr-only>Twitter</span> </a></li> <li> <a href="https://www.facebook.com/gitlab"><i class='fab fa-facebook'></i> <span class=sr-only>Facebook</span> </a></li> <li> <a href="https://www.youtube.com/channel/UCnMGQ8QHMAnVIsI3xJrihhg"><i class='fab fa-youtube'></i> <span class=sr-only>YouTube</span> </a></li> <li> <a href="https://www.linkedin.com/company/gitlab-com"><i class='fab fa-linkedin'></i> <span class=sr-only>LinkedIn</span> </a></li> </ul> <div class=row> <div class='col-sm-6 col-md-3 col-lg-2 col-lg-offset-2 footer-link-holder'> <h3 class=footer-link-title>Products</h3> <ul class='animated footer-links'> <li><a href="/features/">Features</a></li> <li><a href="/installation/">Installation</a></li> <li><a href="/pricing#gitlab-com">GitLab.com</a></li> <li><a href="/pricing/">Pricing</a></li> <li><a href="/releases/">Releases</a></li> </ul> </div> <div class='col-sm-6 col-md-3 col-lg-2 footer-link-holder'> <h3 class=footer-link-title>Services</h3> <ul class='animated footer-links'> <li><a href="/resellers/">Resellers</a></li> <li><a href="/services/">Services</a></li> </ul> </div> <div class='col-sm-6 col-md-3 col-lg-2 footer-link-holder'> <h3 class=footer-link-title>Community</h3> <ul class='animated footer-links'> <li><a href="/resources/">Resources</a></li> <li><a href="/events/">Events</a></li> <li><a href="/core-team/">Core Team</a></li> <li><a href="http://contributors.gitlab.com/">Contributors</a></li> <li><a href="/find-a-speaker/">Find a Speaker</a></li> <li><a href="https://docs.gitlab.com/">Documentation</a></li> <li><a href="/getting-help/">Getting Help</a></li> <li><a href="/contributing/">Contributing</a></li> <li><a href="/applications/">Applications</a></li> <li><a href="/mvp/">Hall of Fame</a></li> </ul> </div> <div class='col-sm-6 col-md-3 col-lg-2 footer-link-holder'> <h3 class=footer-link-title>Company</h3> <ul class='animated footer-links'> <li><a href="https://gitlab.com/groups/gitlab-org">Source Code</a></li> <li><a href="/blog/">Blog</a></li> <li><a href="/customers/">Customers</a></li> <li><a href="/press/">Press and Logos</a></li> <li><a href="https://shop.gitlab.com">Shop</a></li> <li><a href="/about/">About Us</a></li> <li><a href="/team/">Team</a></li> <li><a href="/direction/">Direction</a></li> <li><a href="/handbook/">Handbook</a></li> <li><a href="/jobs/">Jobs</a></li> <li><a href="/terms/">Terms</a></li> <li><a href="/privacy/">Privacy Policy</a></li> <li><a href="/contact/">Contact Us</a></li> </ul> </div> </div> </div> </footer> <div class='animated text-center source-link'> Edit <a href="https://gitlab.com/gitlab-com/www-gitlab-com/blob/master/source/posts/2016-04-07-gitlab-pages-setup.html.md" class=external-source-link>this page</a> &mdash; please <a href="https://gitlab.com/gitlab-com/www-gitlab-com/blob/master/CONTRIBUTING.md" class=external-source-link>contribute</a>. <a href='https://creativecommons.org/licenses/by-sa/4.0/' rel=license> <img src="/images/by-sa.svg" alt="Creative Commons License"/> </a> </div> <script src="/javascripts/libs/jquery.min.js"></script> <script src="/javascripts/libs/bootstrap.min.js"></script> <script src="/javascripts/libs/jqBootstrapValidation.js"></script> <script src="/javascripts/scripts.js"></script> <script>
-  //<![CDATA[
-    $.ajax({
-      url: '//munchkin.marketo.net/munchkin.js',
-      dataType: 'script',
-      cache: true,
-      success: function() {
-        Munchkin.init('194-VVC-221');
-      }
+      GitHub Community Guidelines - User Documentation
+    
+  
+  </title>
+  
+<link rel="icon" type="image/x-icon" href="/assets/images/site/favicon.ico">
+<link rel="stylesheet" href="/assets/stylesheets/application.css">
+<script src="/assets/javascripts/application.js"></script>
+
+<meta name="Description" content="Millions of developers host millions of projects on GitHub — both open and closed source — and we're honored to play a part in enabling collaboration across the community every day. Together, we all ha…">
+
+<script type="text/javascript">
+  $(function() {
+    $('#quicksearch-query').lunrSearch({
+      
+      indexUrl: '/search/search.json',
+      
+      quickSearchResults:  '.autocomplete-results',
+      quickSearchEntries:  '.result-group',
+      quickSearchTemplate: '#quicksearch-results-template',
+
+      searchResults: '.search-container',
+      searchEntries: '.search-results',
+      searchTemplate: '#search-results-template'
     });
-  //]]>
-</script> <script>
-  //<![CDATA[
-    var google_conversion_id = 968513482;
-    var google_conversion_label = "a-CXCPqluQUQlqi33AM";
-    var google_custom_params = window.google_tag_params;
-    var google_remarketing_only = true;
-  //]]>
-</script> <script src='//www.googleadservices.com/pagead/conversion.js'>
-<![CDATA[
-]]>
-</script> <noscript> <div style='display:inline;'> <img alt='' height=1 src='//googleads.g.doubleclick.net/pagead/viewthroughconversion/968513482/?value=0&amp;guid=ON&amp;script=0' style='border-style:none;' width=1 /> </div> </noscript> <script>
-  //<![CDATA[
-    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-    })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  });
+</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3769691-27']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+</head>
+
+<body id="com">
+
+<div id="not-footer">
+  
+
+
+  <div id="header">
+    <div class="clearfix">
+      <h1 class="site-logo"><a href="/">GitHub Help</a></h1>
+
+      <ul class="top-nav">
+        
+<li>
+  <button class="js-dropdown-button dropdown-button">Version <div class="dropdown-caret"></div></button>
+  <div class="dropdown-menu js-dropdown-menu">
+    <a href="/">GitHub.com</a>
     
-    _st('install','Z4n7msKyctXXfJs66EKx','2.0.0');
-  //]]>
-</script> <div class='sticky-banner js-sticky-banner active' id=sticky-banner> <div class=sticky-banner-content> <div class=sticky-banner-text> <p class=header-text> Try <a href='/products'>GitLab Enterprise Edition</a> risk-free for 30 days. </p> <p class=subheader-text> No credit card required. Have questions? <a class=contact-us href='/sales/'>Contact us.</a> </p> </div> <div class=action> <a class='btn featured-item-button' href='/free-trial/'>Get Your Free Trial Today</a> </div> </div> <img class=dismiss-trial id=dismiss-trial src='/images/icons/x.svg'/> </div> <script>
-  //<![CDATA[
-    (function() {
-      var trialDismissed = false
-      document.getElementById("dismiss-trial").addEventListener("click", dismissTrial)
-      function dismissTrial() {
-        document.getElementById('sticky-banner').style.display = "none";
-      }
-    })();
-  //]]>
-</script> </div> </body> </html>
+    <a href="/enterprise/2.14/">GitHub Enterprise 2.14</a>
+    
+    <a href="/enterprise/2.13/">GitHub Enterprise 2.13</a>
+    
+    <a href="/enterprise/2.12/">GitHub Enterprise 2.12</a>
+    
+  </div>
+</li>
+
+
+        
+          <li><a href="https://github.com/contact" onClick="_gaq.push(['_trackEvent', 'Contact Support', 'GitHub Community Guidelines', window.location.href]);">Contact Support</a></li>
+<li><a href="https://github.com/">Return to GitHub</a></li>
+
+        
+      </ul>
+    </div>
+  </div>
+
+  <div id="content-wrapper">
+
+    <div class="site">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+      <div class="content-header small">
+        <h6 class="breadcrumbs">
+          
+          <a href="/categories/site-policy">Site Policy</a>
+          /
+          
+          GitHub Community Guidelines
+        </h6>
+        <div class="search-form small right">
+          
+  
+
+
+<script id="quicksearch-results-template" type="text/mustache">
+  <div class="header">
+    <a class="initial quicksearch-seemore" href="/search?q=">See more results</a>
+  </div>
+  [[#entries]]
+    <tr class="article">
+      <td class="info">
+        <a href="[[url]]" class="js-articles-quicksearch-link">[[title]]</a>
+      </td>
+    </tr>
+  [[/entries]]
+</script>
+
+<form accept-charset="UTF-8" action="/search" id="articles-search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <div class="outer">
+    <div class="inner fade-label">
+      <input type="text" name="q" id="quicksearch-query" class="js-articles-quicksearch"
+      placeholder="How can we help?" />
+      <div class="search-form-btn">
+        <button><span class="octicon octicon-search"></span></button>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="autocomplete-results" style="display: none;">
+  <table class="result-group" border="0" cellpadding="0" cellspacing="0">
+  </table>
+</div>
+
+        </div>
+      </div>
+
+      <div class="article js-hide-during-search">
+
+        <h2>GitHub Community Guidelines</h2>
+
+        <div id="article-platform-nav">
+  <ul>
+    <li class="platform-mac">
+      <a href="#platform-mac" data-platform="mac">
+        mac
+      </a>
+    </li>
+    <li class="platform-windows">
+      <a href="#platform-windows" data-platform="windows">
+        windows
+      </a>
+    </li>
+    <li class="platform-linux">
+      <a href="#platform-linux" data-platform="linux">
+        linux
+      </a>
+    </li>
+    <li class="platform-all">
+      <a href="#platform-all" data-platform="all">
+        all
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+        <div class="article-body content-body wikistyle markdown-format">
+          <div class='intro'>
+
+          
+
+          </div>
+
+          <p>Millions of developers host millions of projects on GitHub — both open and closed source — and we're honored to play a part in enabling collaboration across the community every day. Together, we all have an exciting opportunity and responsibility to make this a community we can be proud of.</p>
+
+<p>GitHub users worldwide bring wildly different perspectives, ideas, and experiences, and range from people who created their first "Hello World" project last week to the most well-known software developers in the world. We are committed to making GitHub a welcoming environment for all the different voices and perspectives in our community, while maintaining a space where people are free to express themselves.</p>
+
+<p>We rely on our community members to communicate expectations, <a href="#what-if-something-or-someone-offends-you">moderate</a> their projects, and <a href="https://github.com/contact/report-abuse">report</a> abusive behavior or content. We do not actively seek out content to moderate. By outlining what we expect to see within our community, we hope to help you understand how best to collaborate on GitHub, and what type of actions or content may violate our <a href="#legal-notices">Terms of Service</a>. We will investigate any abuse reports and may moderate public content on our site that we determine to be in violation of our Terms of Service.</p>
+
+<h3>
+<a id="building-a-strong-community" class="anchor" href="#building-a-strong-community" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Building a strong community</h3>
+
+<p>The primary purpose of the GitHub community is to collaborate on software projects.
+We want people to work better together. Although we maintain the site, this is a community we build <em>together</em>, and we need your help to make it the best it can be.</p>
+
+<ul>
+<li><p><strong>Be welcoming and open-minded</strong> - Other collaborators may not have the same experience level or background as you, but that doesn't mean they don't have good ideas to contribute. We encourage you to be welcoming to new collaborators on your projects and discussions.</p></li>
+<li><p><strong>Assume no malice</strong> - Humans make mistakes, and disagreements or differences of opinion are a fact of life. Try to approach conflict from the perspective that people generally mean well. This will promote a respectful and friendly atmosphere where people feel comfortable asking questions, participating in discussions, and making contributions.</p></li>
+<li><p><strong>Stay on topic</strong> - People use GitHub to get work done and to be more productive. Off topic comments are a distraction (sometimes welcome, but usually not) from getting work done and being productive. Staying on topic helps produce positive and productive discussions.</p></li>
+<li><p><strong>Be clear</strong> - Communicating with strangers on the Internet can be awkward. It's hard to convey or read tone, and sarcasm is frequently misunderstood. Try to use clear language, and think about how it will be received by the other person.</p></li>
+</ul>
+
+<h3>
+<a id="what-if-something-or-someone-offends-you" class="anchor" href="#what-if-something-or-someone-offends-you" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What if something or someone offends you?</h3>
+
+<p>We rely on the community to let us know when an issue needs to be addressed. We do not actively monitor the site for offensive content. If you run into something or someone on the site that you find objectionable, here are some tools GitHub provides to help you take action immediately:</p>
+
+<ul>
+<li><p><strong>Communicate expectations</strong> - If you participate in a community that has not set their own, community-specific guidelines, encourage them to do so either in the README or <a href="/articles/setting-guidelines-for-repository-contributors/">CONTRIBUTING file</a>, or in <a href="/articles/adding-a-code-of-conduct-to-your-project/">a dedicated code of conduct</a>, by submitting a pull request.</p></li>
+<li><p><strong>Moderate Comments</strong> - If you have <a href="/articles/repository-permission-levels-for-an-organization/">write-access privileges</a> for a repository, you can edit, delete, or hide anyone's comments on commits, pull requests, and issues. Anyone with read access to a repository can view a comment's edit history. Comment authors and people with write access to a repository can delete sensitive information from a comment's edit history. For more information, see "<a href="/articles/tracking-changes-in-a-comment">Tracking changes in a comment</a>" and "<a href="/articles/managing-disruptive-comments">Managing disruptive comments</a>."</p></li>
+<li><p><strong>Lock Conversations</strong>  - If a discussion in an issue or pull request gets out of control, you can <a href="/articles/locking-conversations/">lock the conversation</a>.</p></li>
+<li><p><strong>Block Users</strong>  - If you encounter a user who continues to demonstrate poor behavior, you can <a href="/articles/blocking-a-user-from-your-personal-account/">block the user from your personal account</a> or <a href="/articles/blocking-a-user-from-your-organization/">block the user from your organization</a>.</p></li>
+</ul>
+
+<p>Of course, you can always contact us to <a href="https://github.com/contact/report-abuse"><strong>Report Abuse</strong></a> if you need more help dealing with a situation.</p>
+
+<h3>
+<a id="what-is-not-allowed" class="anchor" href="#what-is-not-allowed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is not allowed?</h3>
+
+<p>We are committed to maintaining a community where users are free to express themselves and challenge one another's ideas, both technical and otherwise. Such discussions, however, are unlikely to foster fruitful dialog when ideas are silenced because community members are being shouted down or are afraid to speak up. That means you should be respectful and civil at all times, and refrain from attacking others on the basis of who they are. We do not tolerate behavior that crosses the line into the following:</p>
+
+<ul>
+<li><p><strong>Threats of violence</strong> - You may not threaten violence towards others or use the site to organize, promote, or incite acts of real-world violence or terrorism. Think carefully about the words you use, the images you post, and even the software you write, and how they may be interpreted by others. Even if you mean something as a joke, it might not be received that way. If you think that someone else <em>might</em> interpret the content you post as a threat, or as promoting violence or terrorism, stop. Don't post it on GitHub. In extraordinary cases, we may report threats of violence to law enforcement if we think there may be a genuine risk of physical harm or a threat to public safety.</p></li>
+<li><p><strong>Hate speech and discrimination</strong> - While it is not forbidden to broach topics such as age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation, we do not tolerate speech that attacks a person or group of people on the basis of who they are. Just realize that when approached in an aggressive or insulting manner, these (and other) sensitive topics can make others feel unwelcome, or perhaps even unsafe. While there's always the potential for misunderstandings, we expect our community members to remain respectful and civil when discussing sensitive topics.</p></li>
+<li><p><strong>Bullying and harassment</strong> - We do not tolerate bullying or harassment. This means any habitual badgering or intimidation targeted at a specific person or group of people. In general, if your actions are unwanted and you continue to engage in them, there's a good chance you are headed into bullying or harassment territory.</p></li>
+<li><p><strong>Impersonation</strong> - You may not seek to mislead others as to your identity by copying another person's avatar, posting content under their email address, using a similar username or otherwise posing as someone else. Impersonation is a form of harassment.</p></li>
+<li><p><strong>Doxxing and invasion of privacy</strong> - Don't post other people's personal information, such as phone numbers, private email addresses, physical addresses, credit card numbers, Social Security/National Identity numbers, or passwords. Depending on the context, such as in the case of intimidation or harassment, we may consider other information, such as photos or videos that were taken or distributed without the subject's consent, to be an invasion of privacy, especially when such material presents a safety risk to the subject.</p></li>
+<li><p><strong>Sexually obscene content</strong> - Basically, don't post pornography. This does not mean that all nudity or sexual content is prohibited. We recognize that sexuality is a part of life and non-pornographic sexual content may be a part of your project, or may be presented for educational or artistic purposes. If you have any questions or concerns about something you want to post, <a href="https://github.com/contact">feel free to reach out and ask</a> beforehand.</p></li>
+<li><p><strong>Active malware or exploits</strong> - Being part of a community includes not taking advantage of other members of the community. We do not allow anyone to use our platform for exploit delivery, such as using GitHub as a means to deliver malicious executables, or as attack infrastructure, for example by organizing denial of service attacks or managing command and control servers. Note, however, that we do not prohibit the posting of source code which could be used to develop malware or exploits, as the publication and distribution of such source code has educational value and provides a net benefit to the security community.</p></li>
+</ul>
+
+<h3>
+<a id="what-happens-if-someone-breaks-the-rules" class="anchor" href="#what-happens-if-someone-breaks-the-rules" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What happens if someone breaks the rules?</h3>
+
+<p>There are a variety of actions that we may take when a user reports inappropriate behavior or content. It usually depends on the exact circumstances of a particular case. We recognize that sometimes people may say or do inappropriate things for any number of reasons. Perhaps they did not realize how their words would be perceived. Or maybe they just let their emotions get the best of them. Of course, sometimes, there are folks who just want to spam or cause trouble.</p>
+
+<p>Each case requires a different approach, and we try to tailor our response to meet the needs of the situation that has been reported. We'll review each abuse report on a case-by-case basis. In each case, we will have a diverse team investigate the content and surrounding facts and respond as appropriate, using these guidelines to guide our decision.</p>
+
+<p>Actions we may take in response to an abuse report include but are not limited to:</p>
+
+<ul>
+<li>Content Removal</li>
+<li>Content Blocking</li>
+<li>Account Suspension</li>
+<li>Account Termination</li>
+</ul>
+
+<h3>
+<a id="legal-notices" class="anchor" href="#legal-notices" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Legal Notices</h3>
+
+<p>We dedicate these Community Guidelines to the public domain for anyone to use, reuse, adapt, or whatever, under the terms of <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-1.0</a>.</p>
+
+<p>These are only guidelines; they do not modify our <a href="/articles/github-terms-of-service/">Terms of Service</a> and are not intended to be a complete list. GitHub retains full discretion under the <a href="/articles/github-terms-of-service/#c-acceptable-use">Terms of Service</a> to remove any content or terminate any accounts for activity that violates our Terms on Acceptable Use. These guidelines describe when we will exercise that discretion.</p>
+        </div>
+
+        <div class="support-footer">
+  <ul class="article-footer button-nav">
+    
+      <li><a href="https://github.com/contact" class="minibutton" onClick="_gaq.push(['_trackEvent', 'Contact Support', 'GitHub Community Guidelines', window.location.href]);">
+          <span class="octicon octicon-comment-discussion"></span>
+          Contact a human
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+
+      <div class="sidebar">
+  <h3>Article versions</h3>
+  <ul>
+    <li><a href="#" skip-conversion data-proofer-ignore>GitHub.com</a></li>
+
+    
+      <li class="muted">
+        <a data-proofer-ignore>GitHub Enterprise 2.14</a>
+      </li>
+    
+      <li class="muted">
+        <a data-proofer-ignore>GitHub Enterprise 2.13</a>
+      </li>
+    
+      <li class="muted">
+        <a data-proofer-ignore>GitHub Enterprise 2.12</a>
+      </li>
+    
+
+  </ul>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <div class="inner">
+    <a href="https://github.com" class="invertocat">
+      <img alt="The GitHub Logo" src="/assets/images/site/invertocat.png" width="24" height="24" />
+    </a>
+    <p class="left">
+      &copy; <span id="year">2018</span> GitHub Inc. All rights reserved.
+    </p>
+      <ul class="links right">
+        <li><a href="/terms-of-service">Terms of Service</a></li>
+        <li><a href="/privacy-policy">Privacy</a></li>
+        
+          <li><a href="/security">Security</a></li>
+        
+        
+          <li><a href="https://github.com/contact" onClick="_gaq.push(['_trackEvent', 'Contact Support', 'GitHub Community Guidelines', window.location.href]);">
+              Support
+            </a>
+          </li>
+        
+      </ul>
+  </div>
+</div>
+
+
+<div class="fullscreen-overlay"></div>
+</body>
+</html>
