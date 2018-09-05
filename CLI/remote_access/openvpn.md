@@ -31,7 +31,8 @@ if you want use on client all in one config file add in you user.conf
 key-direction 1
 ```
 and  use this script
-```
+
+```bash
 #!/bin/bash
 echo -e "\n \033[0;32m please enter the path to files\n \033[0m"
 read thepath &&
