@@ -1,2 +1,2 @@
-# The Tactile theme (new homepage template)
+# The Tactile theme (basic homepage template)
 
