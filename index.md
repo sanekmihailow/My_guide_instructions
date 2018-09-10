@@ -13,9 +13,9 @@ layout: default
 
 #### Header 4
 1.  This is an ordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
+ *   This is an unordered list following a header.
+ *   This is an unordered list following a header.
+ *   This is an unordered list following a header.
 
 ##### Header 5
 
