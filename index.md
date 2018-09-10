@@ -27,12 +27,14 @@ LINUX & UNIX
 
 - samba [![alt text](/gh-images/samba.jpg)](https://github.com/sanekmihailow/My_guide_instructions/tree/master-origin/CLI/remote_share/)
 
-
-
-
-
-
-
+> |
+> |
+> |
+> |
+> |
+> |
+> |
+> |
 
 
 ## --------------- GUI ---------------
@@ -41,12 +43,14 @@ LINUX & UNIX
 
 - gnome [![alt text](/gh-images/Gnome.png)](https://github.com/sanekmihailow/My_guide_instructions/tree/master-origin/GUI/DE/Gnome/gnome_exetensions)
 
-
-
-
-
-
-
+> |
+> |
+> |
+> |
+> |
+> |
+> |
+> |
 
 
 ## --------------- WEB ---------------
@@ -57,7 +61,7 @@ LINUX & UNIX
 
 ### DLNA UPNP media server
 
-- serviio [![alt text](/gh-images/serviio.png)](https://github.com/sanekmihailow/My_guide_instructions/tree/master-origin/WEB/DLNA_UPNP/serviio/)
+- serviio [![alt text](/gh-images/serviio.jpg)](https://github.com/sanekmihailow/My_guide_instructions/tree/master-origin/WEB/DLNA_UPNP/serviio/)
 
 ### Issue tracker
 
@@ -67,21 +71,28 @@ LINUX & UNIX
 
 - nextcloud [![alt text](/gh-images/nextcloud.png)](https://github.com/sanekmihailow/My_guide_instructions/tree/master-origin/WEB/storage/nextcloud/install/ubuntu/)
 
-
-
-
-
-
+> |
+> |
+> |
+> |
+> |
+> |
+> |
+> |
 
 
 ## --------------- Install ---------------
 
 - archlinux [![alt text](/gh-images/archlinux.png)](https://github.com/sanekmihailow/My_guide_instructions/blob/master-origin/installations/distributions/arch.md)
 
-
-
-
-
+> |
+> |
+> |
+> |
+> |
+> |
+> |
+> |
 
 
 ## --------------- PostInstall ---------------
