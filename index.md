@@ -6,5 +6,5 @@ layout: default
 
 ### backup
 
-> * List
+- List
 
