@@ -31,25 +31,21 @@ LINUX & UNIX
 |
 |
 |
-|
-|
+
 ```
 
 ## --------------- GUI ---------------
 
 ### Desktop Enviroment
 
-- gnome [![alt text](/gh-images/Gnome.png)](https://github.com/sanekmihailow/My_guide_instructions/tree/master-origin/GUI/DE/Gnome/gnome_exetensions)
+- gnome  [![alt text](/gh-images/Gnome.png)](https://github.com/sanekmihailow/My_guide_instructions/tree/master-origin/GUI/DE/Gnome/gnome_exetensions)
 
-> |
-> |
-> |
-> |
-> |
-> |
-> |
-> |
+```
+|
+|
+|
 
+```
 
 ## --------------- WEB ---------------
 
@@ -69,29 +65,23 @@ LINUX & UNIX
 
 - nextcloud [![alt text](/gh-images/nextcloud.png)](https://github.com/sanekmihailow/My_guide_instructions/tree/master-origin/WEB/storage/nextcloud/install/ubuntu/)
 
-> |
-> |
-> |
-> |
-> |
-> |
-> |
-> |
+```
+|
+|
+|
 
+```
 
 ## --------------- Install ---------------
 
 - archlinux [![alt text](/gh-images/archlinux.png)](https://github.com/sanekmihailow/My_guide_instructions/blob/master-origin/installations/distributions/arch.md)
 
-> |
-> |
-> |
-> |
-> |
-> |
-> |
-> |
+```
+|
+|
+|
 
+```
 
 ## --------------- PostInstall ---------------
 
