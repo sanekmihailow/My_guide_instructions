@@ -27,15 +27,13 @@ LINUX & UNIX
 
 - samba [![alt text](/gh-images/samba.jpg)](https://github.com/sanekmihailow/My_guide_instructions/tree/master-origin/CLI/remote_share/)
 
-> |
-> |
-> |
-> |
-> |
-> |
-> |
-> |
-
+```
+|
+|
+|
+|
+|
+```
 
 ## --------------- GUI ---------------
 
