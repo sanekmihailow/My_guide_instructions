@@ -6,8 +6,10 @@
 apt install openvpn openssl easy-rsa iptables
 mkdir /etc/openvpn/easy-rsa
 cp  -r /usr/share/easy-rsa/* /etc/openvpn/easy-rsa/
-vim /etc/openvpn/easy-rsa/vars
-     -> "export KEY_country ....." change value
+```
+> vim /etc/openvpn/easy-rsa/vars | change value
+```
+"export KEY_country ....."
 ```
 ##### 2) create server and user key
 ```nginx
@@ -77,14 +79,21 @@ service openvpn restart
 #netstat -npl
 ```
 ##### 5) edit kernel sets for nat
+> vim /etc/sysctl.conf |
+> uncomment 
+```
+net_ipv4.ip_forward=1
+```
 ```nginx
-vim /etc/sysctl.conf
-       -> uncomment net_ipv4.ip_forward=1
 echo 1 >> /proc/sys/net/ipv4/conf/all/forwarding
 iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j MASQUERADE
 iptables-save > /etc/iptables-rules
-vim /etc/network/interfaces
-        |at the END add:
-                     -> pre-up iptables-restore < /etc/iptables-rules
+```
+> vim /etc/network/interfaces
+>        |at the END add:
+```
+                     pre-up iptables-restore < /etc/iptables-rules                     
+```
+```nginx
 reboot
 ```
