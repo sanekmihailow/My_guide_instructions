@@ -1,6 +1,6 @@
 # ubuntu / debian
 ```bash
-1 - recovery mode (если сразу звходит , значитт пароля нет у рута)
+1 - recovery mode (если сразу заходит , значит пароля нет у рута)
 2 - "shift+L" потом "e" и дописать в конце init=bin/sh
 ctrl+X
 #grep '\W/\W' /proc/mounts
