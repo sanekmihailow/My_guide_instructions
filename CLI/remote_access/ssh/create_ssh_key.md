@@ -11,7 +11,7 @@ cat <имя>.pub >> ~/.ssh/authorized_keys
 ```            
 AuthorizedKeysFile      %h/.ssh/authorized_keys
 ```          
- |-> uncomment
+ |-> uncomment and change "yes" on "no"
 ```
 PasswordAuthentication no
 ```
