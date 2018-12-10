@@ -1,7 +1,7 @@
 
 ```bash
 mkdir -p .ssh/keys
-cd ~/.ssh
+cd ~/.ssh/keys
 ssh-keygen -t rsa -b 4096 -f <имя> 
 cat <имя>.pub >> ~/.ssh/authorized_keys
 ``` 
