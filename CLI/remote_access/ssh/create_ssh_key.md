@@ -7,11 +7,11 @@ cat <имя>.pub >> ~/.ssh/authorized_keys
 ``` 
 > /etc/ssh/sshd_config
 
-  |-> uncomment
+ |-> uncomment
 ```            
 AuthorizedKeysFile      %h/.ssh/authorized_keys
 ```          
-  |-> uncomment
+ |-> uncomment
 ```
 PasswordAuthentication no
 ```
