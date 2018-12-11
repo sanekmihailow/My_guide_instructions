@@ -1,6 +1,9 @@
 verion (installed)
 ========
 
+<d>
+ <details>
+            
 1)php
 ```nginx
 $ dpkg -l |grep php
@@ -222,6 +225,8 @@ version-manifest         0.0.1
 xproto                   7.0.25                                       
 zlib                     1.2.11                                     
 ```
+ </details>
+</d>
 
 Links
 =====
