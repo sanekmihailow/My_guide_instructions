@@ -68,7 +68,8 @@ loadkeys ru
                                     --> keymap
                                     and add after block 
                                     --> lvm2
-                 like this HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck keymap)
+                                    and add to end shutdown #resolve problem systemd "/var"
+                 like this HOOKS=(base udev autodetect modconf block lvm2 filesystems keyboard fsck keymap shutdown)
                  )
 ```
 > /etc/modprobe.d/blacklist.conf 
