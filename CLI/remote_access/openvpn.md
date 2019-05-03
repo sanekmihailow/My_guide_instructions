@@ -13,7 +13,9 @@ cp  -r /usr/share/easy-rsa/* /etc/openvpn/easy-rsa/
 ```
 ##### 2) create server and user key
 ```nginx
+cd /etc/openvpn/easy-rsa
 source ./vars && ./clean-all            #clean-all cleaned all files in folder keys
+ln -s openssl-1.0.0.cnf openssl.cnf
 ./build-ca
 ./build-key-server Serv
 ./build-key user1
