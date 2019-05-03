@@ -1,6 +1,8 @@
 # Ubuntu 16
 
-
+<d>
+     <details>
+          
 ##### 1) easy rsa
 ```nginx
 apt install openvpn openssl easy-rsa iptables
@@ -99,3 +101,12 @@ iptables-save > /etc/iptables-rules
 ```nginx
 reboot
 ```
+
+</details>
+</d>
+
+# Ubuntu 18
+
+> if not listen and start openvpn
+> you need uncomment in **/etc/default/openvpn**
+`AUTOSTART="all"`
