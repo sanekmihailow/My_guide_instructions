@@ -9,9 +9,9 @@ apt install openvpn openssl easy-rsa iptables
 mkdir /etc/openvpn/easy-rsa
 cp  -r /usr/share/easy-rsa/* /etc/openvpn/easy-rsa/
 ```
-> vim /etc/openvpn/easy-rsa/vars | change value
+> **/etc/openvpn/easy-rsa/vars** | change value
 ```
-"export KEY_country ....."
+          "export KEY_country ....."
 ```
 ##### 2) create server and user key
 ```nginx
@@ -31,10 +31,10 @@ mkdir -p /etc/openvpn/ccd/user1
 cp Serv.crt Serv.key ca.crt dh2048.pem ta.key /etc/openvpn
 cp user1.crt user1.key ca.crt ta.key /etc/openvpn/ccd/user1/
 ```
-if you want use on client all in one config file add in you user.conf 
+if you want use on client all in one config file add in you **user.conf**
 
 ```
-key-direction 1
+          key-direction 1
 ```
 and  use this script
 <details>
@@ -83,20 +83,29 @@ service openvpn restart
 #netstat -npl
 ```
 ##### 5) edit kernel sets for nat
-> vim /etc/sysctl.conf |
-> uncomment 
+> **/etc/sysctl.conf** |uncomment 
 ```
-net_ipv4.ip_forward=1
+          net_ipv4.ip_forward=1
 ```
 ```nginx
 echo 1 >> /proc/sys/net/ipv4/conf/all/forwarding
+```
+##### 6) iptables sets
+```
+iptables -A INPUT  -p tcp  --dport 1194 -j ACCEPT
 iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j MASQUERADE
-iptables-save > /etc/iptables-rules
+iptables -A FORWARD -i tun0 -o eth0 -m stete --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i tun0 -j ACCEPT
+iptables-save > /etc/iptables.rules
 ```
-> vim /etc/network/interfaces
->        |at the END add:
+> **/etc/network/interfaces**|at the END add:
 ```
-                     pre-up iptables-restore < /etc/iptables-rules                     
+          pre-up iptables-restore < /etc/iptables-rules                     
+```
+OR
+```nginx
+apt install iptables-persistent
 ```
 ```nginx
 reboot
@@ -110,3 +119,6 @@ reboot
 > if not listen and start openvpn
 > you need uncomment in **/etc/default/openvpn**
 `AUTOSTART="all"`
+```
+sudo systemctl daemon-reload
+```
