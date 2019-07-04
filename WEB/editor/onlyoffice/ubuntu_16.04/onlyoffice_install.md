@@ -88,6 +88,7 @@ sudo docker network create --driver bridge onlyoffice-network
 #загружает последнюю версию из докера
 sudo docker pull onlyoffice/documentserver
 sudo docker pull onlyoffice/communityserver
+mkdir /var/Docker_Volumes/
 
 #запускает докер контейнер c DocumentServer на порте :9971 вне контейнера. и :80 внутри контейнера
 sudo docker run -itd -p 9971:80 -p 9944:443 --restart always --cap-add MKNOD \
