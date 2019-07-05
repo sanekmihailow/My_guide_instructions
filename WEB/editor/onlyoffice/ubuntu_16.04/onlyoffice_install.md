@@ -189,7 +189,7 @@ server {
 #       RewriteCond %{HTTPS} !=on
 #       RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-#/VirtualHost>
+#</VirtualHost>
 
 #<IfModule mod_ssl.c>
 #VirtualHost *:443>
@@ -199,7 +199,7 @@ server {
 
 #      SSLCertificateFile /etc/letsencrypt/live/onlyoffice-doc.example.com/fullchain.pem
 #      SSLCertificateKeyFile /etc/letsencrypt/live/onlyoffice-doc.example.com/privkey.pem
-#       Include /etc/letsencrypt/options-ssl-apache.conf
+#      Include /etc/letsencrypt/options-ssl-apache.conf
 
         ErrorLog /var/log/apache2/onlyoffice_error.log
         CustomLog /var/log/apache2/onlyoffice_access.log combined
@@ -217,9 +217,12 @@ server {
         RequestHeader setifempty X-Forwarded-Host %{THE_HOST}e
         ProxyAddHeaders Off
 
-    ProxyPassMatch (.*)(\/websocket)$ "ws://127.0.0.1/$1$2"
-    ProxyPass / http://127.0.0.1:9971/
-    ProxyPassReverse / http://127.0.0.1:9971/
+        ProxyPassMatch (.*)(\/websocket)$ "ws://127.0.0.1/$1$2"
+        ProxyPass / http://127.0.0.1:9971/
+        ProxyPassReverse / http://127.0.0.1:9971/
+
+</VirtualHost>
+#</IfModule>
 ```
 
 </details>
