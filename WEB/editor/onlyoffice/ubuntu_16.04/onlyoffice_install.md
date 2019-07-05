@@ -192,7 +192,7 @@ server {
 #</VirtualHost>
 
 #<IfModule mod_ssl.c>
-#VirtualHost *:443>
+#<VirtualHost *:443>
         ServerAdmin webmaster@localhost
         ServerName onlyoffice-doc.example.com
 
