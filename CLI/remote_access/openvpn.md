@@ -92,15 +92,15 @@ echo 1 >> /proc/sys/net/ipv4/conf/all/forwarding
 ```
 ##### 6) iptables sets
 ```nginx
-#C and/or -p tcp
+#C |and/or -p tcp
 iptables -I INPUT  -p udp  --dport 1194 -j ACCEPT
-#C ip local mask vpn-server not wan i.e. 192.168.99.0 - network openvpn
+#C |ip local mask vpn-server not wan i.e. 192.168.99.0 - network openvpn
 iptables -t nat -A POSTROUTING -s 192.168.99.0/24 -o eth0 -j MASQUERADE
 iptables -A FORWARD -i tun0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i tun0 -j ACCEPT
-#or 
-#iptables -A OUTPUT -o tun0 -j ACCEPT
+#C |or 
+#M |iptables -A OUTPUT -o tun0 -j ACCEPT
 iptables-save > /etc/iptables.rules
 ```
 > **/etc/network/interfaces**|at the END add:
