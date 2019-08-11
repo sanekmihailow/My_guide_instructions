@@ -100,7 +100,7 @@ iptables -A FORWARD -i tun0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCE
 iptables -A FORWARD -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i tun0 -j ACCEPT
 #C |or 
-#M |iptables -A OUTPUT -o tun0 -j ACCEPT
+#M iptables -A OUTPUT -o tun0 -j ACCEPT
 iptables-save > /etc/iptables.rules
 ```
 > **/etc/network/interfaces**|at the END add:
