@@ -97,6 +97,8 @@ iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j MASQUERADE # ip loca
 iptables -A FORWARD -i tun0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i tun0 -j ACCEPT
+#or 
+#iptables -A OUTPUT -o tun0 -j ACCEPT
 iptables-save > /etc/iptables.rules
 ```
 > **/etc/network/interfaces**|at the END add:
