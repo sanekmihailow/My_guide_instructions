@@ -92,7 +92,7 @@ echo 1 >> /proc/sys/net/ipv4/conf/all/forwarding
 ```
 ##### 6) iptables sets
 ```
-iptables -A INPUT  -p tcp  --dport 1194 -j ACCEPT
+iptables -I INPUT  -p udp  --dport 1194 -j ACCEPT #C and/or -p tcp
 iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j MASQUERADE # ip local mask vpn-server not wan
 iptables -A FORWARD -i tun0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
