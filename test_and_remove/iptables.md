@@ -9,6 +9,7 @@ iptables [-t таблица] команда [критерии] [действие
 iptables -t <TABLE> -<COMMAND> <CHAIN> <NUMBER RULE> -j <TARGET ACTION> -<OPTIONS>
 ```
 т.е.
+
 ```ruby
 iptables -t <ТАЮЛИЦА> -<КОМАНДА> <ЦЕПЬ> <ВСТАВИТЬ правило в определенное место в цепи> -j <Конечное действие> <ОПЦИИ>
 ```
