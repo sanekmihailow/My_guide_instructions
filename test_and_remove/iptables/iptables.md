@@ -34,6 +34,16 @@ iptables -t <TABLE> -<COMMAND> <CHAIN> <NUMBER RULE> -j <TARGET ACTION> -p <PROT
 ## КАК проходит маршрут
 
 
+применяются в одном и том же порядке: raw, mangle, nat, filter (за исключением теоретической возможности с таблицей nat, описанной выше)
+
+raw:	PREROUTING OUTPUT
+
+mangle:	PREROUTING INPUT FORWARD OUTPUT POSTROUTING
+
+nat:	PREROUTING INPUT OUTPUT POSTROUTING
+
+filter:	INPUT FORWARD OUTPUT
+
 
 
 ## -
