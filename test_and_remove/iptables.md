@@ -1,4 +1,4 @@
-## Вод команды
+## Ввод команды
 
 ``` 
 iptables -t таблица действие цепочка дополнительные_параметры (https://losst.ru/nastrojka-iptables-dlya-chajnikov)
