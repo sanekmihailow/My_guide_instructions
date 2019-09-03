@@ -22,3 +22,11 @@ iptables -t <ТАЮЛИЦА> -<КОМАНДА> <ЦЕПЬ> <ВСТАВИТЬ пр
 iptables -t <TABLE> -<COMMAND> <CHAIN> <NUMBER RULE> -j <TARGET ACTION> -p <PROTOCOL> -i <IN_INTERFACE> -o <OUT_INTERFACE> -s <SOURCE_IP-addr/nerwork> -d <DESTTINATION_IP-addr/network> -<ADDITIONAL MATCH>
 ```
 > !* NUMBER RULE - не указывается для комманды -A or --append
+
+если не указывать --protocol - по умолчанию "all"
+                  --Additional options - по умолчанию "--"
+                  --in - по умолчанию "*" т.е. все
+                  --out - по умолчанию "*"
+                  --source - по умолчанию 0.0.0.0/0
+                  --destination - по умолчанию 0.0.0.0/0
+
