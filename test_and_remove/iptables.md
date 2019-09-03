@@ -5,7 +5,7 @@ iptables -t таблица действие цепочка дополнител�
 
 iptables [-t таблица] команда [критерии] [действие] (http://www.k-max.name/linux/netfilter-iptables-v-linux/)
 ```
-```perl
+```ruby
 iptables -t <TABLE> -<COMMAND> <CHAIN> <NUMBER RULE> -j <TARGET ACTION> -<OPTIONS>
 ```
 т.е.
