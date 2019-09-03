@@ -7,6 +7,10 @@ iptables [-t таблица] команда [критерии] [действие
 ```
 ```ruby
 iptables -t <TABLE> -<COMMAND> <CHAIN> <NUMBER RULE> -j <TARGET ACTION> -<OPTIONS>
+
+или
+
+iptables -t <TABLE> -<COMMAND> <CHAIN> <NUMBER RULE> -<OPTIONS> -j <TARGET ACTION>
 ```
 т.е.
 
