@@ -30,3 +30,11 @@ iptables -t <TABLE> -<COMMAND> <CHAIN> <NUMBER RULE> -j <TARGET ACTION> -p <PROT
                   --source - по умолчанию 0.0.0.0/0
                   --destination - по умолчанию 0.0.0.0/0
 
+
+## КАК проходит маршрут
+
+
+
+
+## -
+Терминальные и нетерминальные действия TARGET
