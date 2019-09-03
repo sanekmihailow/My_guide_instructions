@@ -98,8 +98,7 @@ sudo docker run -itd -p 9971:80 -p 9944:443 --restart always --cap-add MKNOD \
 -v /var/Docker_Volumes/onlyoffice/DocumentServer/db:/var/lib/postgresql \
 --net onlyoffice-network --name Onlyoffice_Document-server onlyoffice/documentserver
 
-#запускает докер контейнер c DocumentServer на порте :9970 вне контейнера и :80 внутри контейнера
-
+#запускает докер контейнер c CommunityServer на порте :9970 вне контейнера и :80 внутри контейнера
 sudo docker run -itd -p 9970:80 -p 9943:443 --restart always --cap-add MKNOD \
 -v /var/Docker_Volumes/onlyoffice/CommunityServer/logs:/var/log/onlyoffice \
 -v /var/Docker_Volumes/onlyoffice/CommunityServer/data:/var/www/onlyoffice/Data \
