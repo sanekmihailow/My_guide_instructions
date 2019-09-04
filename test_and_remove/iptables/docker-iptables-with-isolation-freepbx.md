@@ -74,6 +74,7 @@ COMMIT
 -A DOCKER-ISOLATION-STAGE-2 -o docker0 -j DROP
 -A DOCKER-ISOLATION-STAGE-2 -o br-b01dd16e6e64 -j DROP
 -A DOCKER-ISOLATION-STAGE-2 -j RETURN
+# DOCKER-USER autocreated chain for other custom docker rules
 -A DOCKER-USER -j RETURN
 COMMIT
 # Completed on Wed Sep  4 16:14:07 2019
