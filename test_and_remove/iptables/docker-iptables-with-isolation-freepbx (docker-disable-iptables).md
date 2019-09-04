@@ -21,7 +21,7 @@
 :OUTPUT ACCEPT [231303:13884222]
 :POSTROUTING ACCEPT [231771:14021301]
 :DOCKER - [0:0]
-# docker autocreated this rules
+# docker  autocreated this rules
 -A PREROUTING -m addrtype --dst-type LOCAL -j DOCKER
 -A OUTPUT ! -d 127.0.0.0/8 -m addrtype --dst-type LOCAL -j DOCKER
 -A POSTROUTING -s 172.17.0.0/16 ! -o docker0 -j MASQUERADE
