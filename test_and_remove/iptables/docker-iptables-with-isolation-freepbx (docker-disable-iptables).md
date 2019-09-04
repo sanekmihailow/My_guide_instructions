@@ -1,6 +1,6 @@
 <details>
 
-```bash
+```ruby
 172.17.0.2 - collabora ===\
 172.17.0.3 - turtl ===    / :172.17.0.1 - docker0
 172.18.0.3 - DOC ===\ :172.18.0.1 - br-52d8a2ec9f30
