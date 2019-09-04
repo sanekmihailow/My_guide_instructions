@@ -112,7 +112,7 @@ https://unix.stackexchange.com/questions/503280/iptables-forward-inbound-traffic
 iptables -t nat -I PREROUTING -i eno1 -p tcp --dport 8443 -j DNAT --to-destination 172.17.0.2:8443
 iptables -t nat -I OUTPUT -o lo -p tcp --dport 8443 -j DNAT --to-destination 172.17.0.2:8443
 iptables -t nat -I POSTROUTING -s 127.0.0.1 -d 172.17.0.2 -j MASQUERADE
-# hairpin
+#  hairpin
 iptables -t nat -I POSTROUTING -s 172.17.0.0/16 -d 172.17.0.0/16 -j NETMAP --to 10.17.0.0/16
 ```
 https://blog.kalrong.net/en/2017/05/16/iptables-for-docker-in-an-internet-exposed-server/
