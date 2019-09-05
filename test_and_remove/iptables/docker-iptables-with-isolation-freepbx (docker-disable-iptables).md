@@ -79,7 +79,7 @@ COMMIT
 -A FORWARD -o br-b01dd16e6e64 -j DOCKER
 -A FORWARD -i br-b01dd16e6e64 ! -o br-b01dd16e6e64 -j ACCEPT
 -A FORWARD -i br-b01dd16e6e64 -o br-b01dd16e6e64 -j ACCEPT
-# docker forward chaon
+# docker forward chain
 -A DOCKER -d 172.18.0.2/32 ! -i br-b01dd16e6e64 -o br-b01dd16e6e64 -p tcp --match multiport --dports 80,443,2000,5038 -j ACCEPT
 -A DOCKER -d 172.18.0.2/32 ! -i br-b01dd16e6e64 -o br-b01dd16e6e64 -p udp --match multiport --dports 5000,5060 -j ACCEPT
 -A DOCKER -d 172.18.0.2/32 ! -i br-b01dd16e6e64 -o br-b01dd16e6e64 -p udp --match multiport --dports 10000:20000 -j ACCEPT
