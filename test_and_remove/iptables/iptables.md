@@ -49,12 +49,12 @@ nat:	PREROUTING INPUT OUTPUT POSTROUTING
 filter:	INPUT FORWARD OUTPUT
 
 
-Сначала действия в цепи **PREROUTING**, т.е. сначала выполняются
+Сначала действия в цепи **PREROUTING**, т.е. сначала выполняются в :
 
-1. в табице **raw** - - - - - PREROUTING (`iptables -L -t raw |grep -C2 -i prerouting`) -> затем
+1. в таблице **raw** --- - - PREROUTING (`iptables -L -t raw |grep -C2 -i prerouting`) -> затем
 2. в таблице **mangle** - PREROUTING (`iptables -L -t mangle |grep -C2 -i prerouting`) -> дальше
 3. в таблице **nat** -- - - - PREROUTING (`iptables -L -t nat |grep -C2 -i prerouting`) ->
-4. в таблице **filter** - - - PREROUTING (`iptables -L -t nat |grep -C2 -i prerouting`) -> дальше перемещаемся в другую цепь
+4. в таблице **filter** ----- PREROUTING (`iptables -L -t filter |grep -C2 -i prerouting`) -> дальше перемещаемся в другую цепь
 
 Узнаем сервис к которому мы прописываем правило наодится 
 
