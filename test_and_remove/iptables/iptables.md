@@ -23,14 +23,18 @@ iptables -t <TABLE> -<COMMAND> <CHAIN> <NUMBER RULE> -j <TARGET ACTION> -p <PROT
 ```
 > !* NUMBER RULE - не указывается для комманды -A or --append
 
+```
 если не указывать --protocol - по умолчанию "all"
                   --Additional options - по умолчанию "--"
                   --in - по умолчанию "*" т.е. все
                   --out - по умолчанию "*"
                   --source - по умолчанию 0.0.0.0/0
                   --destination - по умолчанию 0.0.0.0/0
-
-
+```
+```ruby
+ pkts bytes target     prot   opt    in     out     source               destination          <additional match>
+ 56   20098 ACCEPT      all   --     *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED
+```    
 ## КАК проходит маршрут
 
 
@@ -48,18 +52,47 @@ nat:	PREROUTING INPUT OUTPUT POSTROUTING
 
 filter:	INPUT FORWARD OUTPUT
 
+**--start--**
 
 Сначала действия в цепи **PREROUTING**, т.е. сначала выполняются в :
 
-1. в таблице **raw** --- - - PREROUTING (`iptables -L -t raw |grep -C2 -i prerouting`) -> затем
-2. в таблице **mangle** - PREROUTING (`iptables -L -t mangle |grep -C2 -i prerouting`) -> дальше
-3. в таблице **nat** -- - - - PREROUTING (`iptables -L -t nat |grep -C2 -i prerouting`) ->
-4. в таблице **filter** ----- PREROUTING (`iptables -L -t filter |grep -C2 -i prerouting`) -> дальше перемещаемся в другую цепь
+1. в таблице **raw** --- - - PREROUTING (`iptables -nvL -t raw |grep -C2 -i prerouting`) -> затем
+2. в таблице **mangle** - PREROUTING (`iptables -L -nvt mangle |grep -C2 -i prerouting`) -> 
+3. в таблице **nat** -- - - - PREROUTING (`iptables -nvL -t nat |grep -C2 -i prerouting`) -> 
 
-Узнаем сервис к которому мы прописываем правило наодится 
+> Если пакет предназнакен локальному процессу (клиенту или серверу), тогда перемещаемся в цепь **INPUT** (позволяет модифицировать пакет, предназначенный самому хосту)
 
+дальше перемещаемся в цепь **INPUT** 
 
+5. в таблице **mangle** -- INPUT (`iptables -nvL -t mangle |grep -C2 -i input`) -> 
+6. в таблице **nat** -- - - - INPUT (`iptables -nvL -t nat |grep -C2 -i input`) ->
+7. в таблице **filter** -- - - INPUT (`iptables -nvL -t filter |grep -C2 -i input`) -> 
 
+дальше перемещаемся в цепь **OUTPUT**
+
+8. в таблице **raw** -- - - OUTPUT (`iptables -nvL -t raw |grep -C2 -i output`) -> затем
+9. в таблице **mangle** - OUTPUT (`iptables -nvL -t mangle |grep -C2 -i output`) -> 
+10. в таблице **nat** ------ OUTPUT (`iptables -nvL -t nat |grep -C2 -i output`) ->
+11. в таблице **filter** - - - OUTPUT (`iptables -nvL -t filter |grep -C2 -i output`) -> 
+
+дальше перемещаемся в цепь **POSTROUTING**
+
+12. в таблице **mangle** - POSTROUTING (`iptables -nvL -t mangle |grep -C2 -i postrouting`) -> 
+13. в таблице **nat** ---- - POSTROUTING (`iptables -nvL -t nat |grep -C2 -i postrouting`) -> 
+
+> Иначе если пакет не предназначен локальному процессу, но предназначенные другому сетевому интерфейсу, тогда перемещаемся в цепь **FORWARD**  (позволяющая модифицировать транзитные пакеты, т.е. использовать компютер в качестве маршрутизатора)
+
+дальше перемещаемся в цепь **FORWARD**
+
+5. в таблице **mangle** - FORWARD (`iptables -nvL -t mangle |grep -C2 -i forward`) ->
+6. в таблице **filter** ---- FORWARD (`iptables -nvL -t filter |grep -C2 -i forward`) ->
+
+дальше перемещаемся в цепь **POSTROUTING**
+
+7. в таблице **mangle** - POSTROUTING (`iptables -nvL -t mangle |grep -C2 -i postrouting`) -> 
+8. в таблице **nat** ---- - POSTROUTING (`iptables -nvL -t nat |grep -C2 -i postrouting`) -> 
+
+**--END--**
 
 1## -
 Терминальные и нетерминальные действия TARGET
