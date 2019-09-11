@@ -75,7 +75,7 @@ filter:	INPUT -> FORWARD -> OUTPUT
 дальше перемещаемся в цепь **POSTROUTING**
 
 12. в таблице **mangle** - POSTROUTING (`iptables -nvL -t mangle |grep -C2 -i postrouting`) -> 
-13. в таблице **nat** -- - - - POSTROUTING (`iptables -nvL -t nat |grep -C2 -i postrouting`) -> 
+13. в таблице **nat** -- - - - POSTROUTING (`iptables -nvL -t nat |grep -C2 -i postrouting`) -> END
 
 > Иначе если пакет не предназначен локальному процессу, но предназначенные другому сетевому интерфейсу, тогда перемещаемся в цепь **FORWARD**  (позволяющая модифицировать транзитные пакеты, т.е. использовать компютер в качестве маршрутизатора)
 
@@ -87,7 +87,7 @@ filter:	INPUT -> FORWARD -> OUTPUT
 дальше перемещаемся в цепь **POSTROUTING**
 
 7. в таблице **mangle** - POSTROUTING (`iptables -nvL -t mangle |grep -C2 -i postrouting`) -> 
-8. в таблице **nat** ----- POSTROUTING (`iptables -nvL -t nat |grep -C2 -i postrouting`) -> 
+8. в таблице **nat** ----- POSTROUTING (`iptables -nvL -t nat |grep -C2 -i postrouting`) -> END
 
 **--END--**
 
