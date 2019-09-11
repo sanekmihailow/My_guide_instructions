@@ -61,7 +61,7 @@ filter:	INPUT -> FORWARD -> OUTPUT
 
 дальше перемещаемся в цепь **INPUT** 
 
-5. в таблице **mangle** -- INPUT (`iptables -nvL -t mangle |grep -C2 -i input`) -> 
+5. в таблице **mangle** - INPUT (`iptables -nvL -t mangle |grep -C2 -i input`) -> 
 6. в таблице **nat** -- - - - INPUT (`iptables -nvL -t nat |grep -C2 -i input`) ->
 7. в таблице **filter** -- - - INPUT (`iptables -nvL -t filter |grep -C2 -i input`) -> 
 
