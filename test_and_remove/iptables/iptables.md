@@ -39,18 +39,15 @@ iptables -t <TABLE> -<COMMAND> <CHAIN> <NUMBER RULE> -j <TARGET ACTION> -p <PROT
 
 
 Видимо, в цепочке INPUT заложена возможность изменить source пакета после применения фильтра.
+> Главное Помнить, что таблицы в цепочках всегда (!) применяются в одном и том же порядке: raw, mangle, nat, filter (за исключением теоретической возможности с таблицей nat, описанной выше)
 
-И немного по схеме фильтрации. С учетом всего вышеизложенного запомнить схему не так уж и сложно. Достаточно помнить 2 вещи:
-1. Порядок цепочек (есть в схеме).
-2. Помнить, что таблицы в цепочках всегда (!) применяются в одном и том же порядке: raw, mangle, nat, filter (за исключением теоретической возможности с таблицей nat, описанной выше)
+raw:	PREROUTING -> OUTPUT
 
-raw:	PREROUTING OUTPUT
+mangle:	PREROUTING -> INPUT -> FORWARD -> OUTPUT -> POSTROUTING
 
-mangle:	PREROUTING INPUT FORWARD OUTPUT POSTROUTING
+nat:	PREROUTING -> INPUT -> OUTPUT -> POSTROUTING
 
-nat:	PREROUTING INPUT OUTPUT POSTROUTING
-
-filter:	INPUT FORWARD OUTPUT
+filter:	INPUT -> FORWARD -> OUTPUT
 
 **--start--**
 
