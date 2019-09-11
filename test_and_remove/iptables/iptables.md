@@ -54,7 +54,7 @@ filter:	INPUT -> FORWARD -> OUTPUT
 Сначала действия в цепи **PREROUTING**, т.е. сначала выполняются в :
 
 1. в таблице **raw** --- - - PREROUTING (`iptables -nvL -t raw |grep -C2 -i prerouting`) -> затем
-2. в таблице **mangle** - PREROUTING (`iptables -L -nvt mangle |grep -C2 -i prerouting`) -> 
+2. в таблице **mangle** - PREROUTING (`iptables -nvL -t mangle |grep -C2 -i prerouting`) -> 
 3. в таблице **nat** -- - - - PREROUTING (`iptables -nvL -t nat |grep -C2 -i prerouting`) -> 
 
 > Если пакет предназнакен локальному процессу (клиенту или серверу), тогда перемещаемся в цепь **INPUT** (позволяет модифицировать пакет, предназначенный самому хосту)
