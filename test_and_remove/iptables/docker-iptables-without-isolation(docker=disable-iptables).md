@@ -1,3 +1,16 @@
+Without docker notice
+```elixir
+*nat
+#accept internet MASQUrade
+-A POSTROUTING -s 172.17.0.0/16 ! -o docker0 -j MASQUERADE
+
+*filter
+#accept internet Forward
+-A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i docker0 ! -o docker0 -j ACCEPT
+```
+
+
 https://fralef.me/docker-and-iptables.html , https://switch-case.ru/71592679
 ```haskell
 -A INPUT -i lo -j ACCEPT
