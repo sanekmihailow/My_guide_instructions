@@ -14,9 +14,9 @@ better way use ubuntu-grub from all OS
 [4](https://askubuntu.com/questions/932536/fixing-arch-ubuntu-multiboot/932606#932606)
 
 ### instructions arch + ubuntu
-```nginx
-            1) vim /usr/lib/linux-boot-probes/mounted/40grub2
-```
+
+> /usr/lib/linux-boot-probes/mounted/40grub2
+
 ```bash
             comment 
                     -> initrd="$(echo "$2" ...)"
@@ -24,9 +24,8 @@ better way use ubuntu-grub from all OS
                     -> shift 1
                        initrd="$(echo "$@" | sed 's/(.*)//')"
 ```
-```nginx
-            2) vim /etc/grub.d/30_os-prober
-```
+> 2) vim /etc/grub.d/30_os-prober
+
 ```bash
             add LINITRD=".... "
                     -> | tr '^' ' '
