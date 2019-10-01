@@ -5,7 +5,7 @@ sdasd
 
 ## FIREWALL SETUP
 
-```c#
+```bash
 / ip firewall filter
 add chain=input connection-state=established comment="Accept established connections"
 # Accept related connections
