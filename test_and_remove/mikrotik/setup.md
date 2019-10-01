@@ -82,8 +82,27 @@ add action=drop chain=input in-interface-list=Internet
 /ip firewall raw
 # Block netbios protocol
 add action=drop chain=prerouting dst-port=137,138,139 in-interface-list=Internet protocol=udp
-
 ``` 
+
+```bash
+/ip firewall filter
+add action=accept chain=forward comment="defconf: accept in ipsec policy" ipsec-policy=in,ipsec
+add action=accept chain=forward comment="defconf: accept out ipsec policy" ipsec-policy=out,ipsec
+add action=fasttrack-connection chain=forward comment="defconf: fasttrack" connection-state=established,related
+add action=accept chain=forward comment="defconf: accept established,related, untracked" connection-state=established,related,untracked
+add action=drop chain=forward comment="defconf: drop invalid" connection-state=invalid
+add action=drop chain=forward comment="defconf:  drop all from WAN not DSTNATed" connection-nat-state=!dstnat connection-state=new in-interface-list=WAN NAT config (just standard masquerade, nothing interesting)
+add action=masquerade chain=srcnat comment="defconf: masquerade" ipsec-policy=out,none out-interface-list=WAN
+
+add chain=input comment="Accept all connections from local network" in-interface=GUEST
+add action=drop chain=forward comment="Drop all packets from local network to internet which should not exist in public network" dst-address-list=NotPublic in-interface=LAN
+add action=drop chain=forward comment="Drop all packets in local network which does not have local network address" in-interface=LAN src-address=!192.168.88.0/24
+```
+
+
+
+
+
 # ОБЩЕЕ4
 ```bash
 add action=accept chain=input connection-state=established,related
