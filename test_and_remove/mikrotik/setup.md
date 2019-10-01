@@ -71,7 +71,7 @@ add action=add-src-to-address-list address-list="OpenVPN Stage 1" address-list-t
 add action=accept chain=input dst-port=1194 in-interface-list=Internet protocol=tcp
 
 # 1.7 Allow access VPN
-add action=accept chain=input " in-interface-list=VPN
+add action=accept chain=input in-interface-list=VPN
 
 # 1.8 Allow normal ping
 add action=accept chain=input in-interface-list=Internet limit=50/5s,2:packet protocol=icmp
@@ -82,7 +82,8 @@ add action=drop chain=input in-interface-list=Internet
 /ip firewall raw
 # Block netbios protocol
 add action=drop chain=prerouting dst-port=137,138,139 in-interface-list=Internet protocol=udp
-``` 
+```
+
 
 ```bash
 /ip firewall filter
@@ -101,7 +102,13 @@ add action=drop chain=forward comment="Drop all packets in local network which d
 
 
 
+https://asp24.ru/mikrotik/zaschita-wan-interfeysa-v-mikrotik/
 
+https://wiki.mikrotik.com/wiki/Basic_universal_firewall_script
+
+https://wiki.mikrotik.com/wiki/Tips_and_Tricks_for_Beginners_and_Experienced_Users_of_RouterOS
+
+https://wiki.mikrotik.com/wiki/Manual:Securing_Your_Router
 
 # ОБЩЕЕ4
 ```bash
