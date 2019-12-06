@@ -34,7 +34,7 @@ loadkeys ru
  ### 4) Prepare to download and dowload packages      
   ```nginx      
         vim /etc/pacman.d/mirrorlist       (-> RU) or (yandex)
-        pacstrap -i /mnt base base-devel sudo net-tools git
+        pacstrap -i /mnt base base-devel sudo net-tools git vim linux mkinitcpio lvm2 grub
         #gvim openssh 
         genfstab -U -p /mnt >> /mnt/etc/fstab
     #cp install.txt /mnt/root
@@ -63,7 +63,7 @@ loadkeys ru
                     ->    KEYMAP=ru
 ```
 ```nginx
-        pacman –Sy linux mkinitcpio lvm2 grub intel-ucode os-prober        (or "efibootmgr" if use efi instead bios)
+        pacman –Sy intel-ucode os-prober        (or "efibootmgr" if use efi instead bios)
         vim /etc/mkinitcpio.conf
                  (line HOOKS="..... add to END
                                     --> keymap
