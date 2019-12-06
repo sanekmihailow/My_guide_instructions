@@ -34,13 +34,15 @@ loadkeys ru
  ### 4) Prepare to download and dowload packages      
   ```nginx      
         vim /etc/pacman.d/mirrorlist       (-> RU) or (yandex)
-        pacstrap -i /mnt base base-devel sudo net-tools gvim openssh git
+        pacstrap -i /mnt base base-devel sudo net-tools git
+        #gvim openssh 
         genfstab -U -p /mnt >> /mnt/etc/fstab
     #cp install.txt /mnt/root
         arch-chroot /mnt
   ```      
 ### 5) arch-chroot settings
 ```nginx
+        pacman -S linux mkinitcpio
         echo archlinux > /etc/hostname
         ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
         vim /etc/locale.gen   
