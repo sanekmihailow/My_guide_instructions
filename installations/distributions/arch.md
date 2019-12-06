@@ -41,8 +41,7 @@ loadkeys ru
         arch-chroot /mnt
   ```      
 ### 5) arch-chroot settings
-```nginx
-        pacman -S linux mkinitcpio
+```nginx 
         echo archlinux > /etc/hostname
         ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
         vim /etc/locale.gen   
@@ -64,7 +63,7 @@ loadkeys ru
                     ->    KEYMAP=ru
 ```
 ```nginx
-        pacman –Sy lvm2 grub intel-ucode os-prober        (or "efibootmgr" if use efi instead bios)
+        pacman –Sy linux mkinitcpio lvm2 grub intel-ucode os-prober        (or "efibootmgr" if use efi instead bios)
         vim /etc/mkinitcpio.conf
                  (line HOOKS="..... add to END
                                     --> keymap
