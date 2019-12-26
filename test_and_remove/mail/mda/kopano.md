@@ -38,7 +38,7 @@ grant all privileges on kopanoDB.* to 'kopano'@'localhost';
 flush privileges;
 ```
  * /etc/kopano/webapp/config.php (change false on true)
- ```
+ ```php
  define("INSECURE_COOKIES", True);
  ```
  
