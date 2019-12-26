@@ -14,8 +14,18 @@ deb https://serial:ZG59G03R59L1AD8T7CHQ42V8B@download.kopano.io/supported/webapp
 ```
 sudo apt install mysql-server kopano-server-packages
 sudo apt install kopano-webapp
+sudo mysql_secure_installation
 
 #sudo apt install kopano-libs &&
 #sudo apt install kopano-utils &&
 #sudo apt install kopano-dagent kopano-gateway kopano-ical kopano-monitor kopano-search kopano-server kopano-spooler &&
 #sudo apt install kopano-core python3-kopano
+```
+
+#### MYSQL
+
+```mysql
+create database kopanoDB CHARACTER SET utf8_general_ci;
+create user 'kopano'@'localhost' identified by '123456';
+grant all privileges on kopanoDB.* to 'kopano'@'localhost';
+```
