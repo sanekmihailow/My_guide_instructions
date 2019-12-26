@@ -1,5 +1,8 @@
 [https://kb.kopano.io/display/WIKI](https://kb.kopano.io/display/WIKI)
 
+[https://documentation.kopano.io/](https://documentation.kopano.io/)
+
+[https://documentation.kopano.io/webapp_admin_manual/index.html](https://documentation.kopano.io/webapp_admin_manual/index.html)
 
 > ZG59G03R59L1AD8T7CHQ42V8B - ключ который высылают по почте (он всегда разный)
 ```nginx
@@ -42,4 +45,29 @@ flush privileges;
  ```php
  define("INSECURE_COOKIES", True);
  ```
- 
+ * /etc/kopano/server.cfg ---
+ (create)
+ ```
+ mysql_user = kopano
+mysql_password = 123456
+
+mysql_host = localhost
+mysql_port = 3306
+mysql_socket =
+mysql_database = kopanoDB
+user_plugin = db
+```
+* /etc/postfix/mysql-users.cf --- 
+(create)
+```
+user = kopano
+password = 123456
+hosts = 127.0.0.1
+dbname = kopanoDB
+query = select value from objectproperty where objectid=(select objectid from objectproperty where value='%s' limit 1) and propname='loginname';
+```
+```nginx
+sudo systemctl restart kopano-server
+se kopano-admin -d admin -p 123 -e admin@example.com -f 'Administrator' -a yes
+
+```
