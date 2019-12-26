@@ -1,3 +1,6 @@
+[https://kb.kopano.io/display/WIKI](https://kb.kopano.io/display/WIKI)
+
+
 > ZG59G03R59L1AD8T7CHQ42V8B - ключ который высылают по почте (он всегда разный)
 ```nginx
 sudo apt install apt-transport-https
@@ -34,3 +37,8 @@ create user 'kopano'@'localhost' identified by '123456';
 grant all privileges on kopanoDB.* to 'kopano'@'localhost';
 flush privileges;
 ```
+ * /etc/kopano/webapp/config.php (change false on true)
+ ```
+ define("INSECURE_COOKIES", True);
+ ```
+ 
