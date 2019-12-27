@@ -48,7 +48,7 @@ flush privileges;
  * /etc/kopano/server.cfg ---
  (create)
  ```bash
- mysql_user = kopano
+mysql_user = kopano
 mysql_password = 123456
 
 mysql_host = localhost
@@ -78,7 +78,10 @@ dbname = kopanoDB
 query = select value from objectproperty where objectid=(select objectid from objectproperty where value='%s' limit 1) and propname='loginname';
 ```
 * /etc/postfix/master.cf
-```
+```bash
+# service type  private unpriv  chroot  wakeup  maxproc command + args
+#               (yes)   (yes)   (no)    (never) (100)
+
 smtp      inet  n       -       n       -       -       smtpd
 pickup    unix  n       -       y       60      1       pickup
 cleanup   unix  n       -       y       -       0       cleanup
