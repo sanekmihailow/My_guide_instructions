@@ -47,7 +47,7 @@ flush privileges;
  ```
  * /etc/kopano/server.cfg ---
  (create)
- ```
+ ```bash
  mysql_user = kopano
 mysql_password = 123456
 
@@ -70,7 +70,7 @@ log_buffer_size = 0
 ```
 * /etc/postfix/mysql-users.cf --- 
 (create)
-```
+```bash
 user = kopano
 password = 123456
 hosts = 127.0.0.1
@@ -119,7 +119,7 @@ mailman   unix  -       n       n       -       -       pipe
   ${nexthop} ${user}
 ```
 * /etc/postfix/main.cf
-```
+```bash
 smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
 biff = no
 append_dot_mydomain = no
