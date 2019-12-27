@@ -19,13 +19,13 @@ deb https://serial:ZG59G03R59L1AD8T7CHQ42V8B@download.kopano.io/supported/webapp
 deb https://serial:ZG59G03R59L1AD8T7CHQ42V8B@download.kopano.io/supported/webmeetings:/final/Debian_8.0/ ./
 ```
 
-```
+```nginx
 sudo apt install mysql-server kopano-server-packages
 sudo mysql_secure_installation
 sudo apt install kopano-webapp
 sudo apt install kopano-webmeetings kopano-webapp-plugin-meetings
-
-
+```
+```bash
 #sudo apt install kopano-libs &&
 #sudo apt install kopano-utils &&
 #sudo apt install kopano-dagent kopano-gateway kopano-ical kopano-monitor kopano-search kopano-server kopano-spooler &&
