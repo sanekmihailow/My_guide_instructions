@@ -75,7 +75,9 @@ user = kopano
 password = 123456
 hosts = 127.0.0.1
 dbname = kopanoDB
-query = select value from objectproperty where objectid=(select objectid from objectproperty where value='%s' limit 1) and propname='loginname';
+#query = select value from objectproperty where objectid=(select objectid from objectproperty where value='%s' limit 1) and propname='loginname';
+query = select value from objectproperty where objectid=(select objectid from objectproperty where value='%s' limit 1) and propname='emailaddress';
+
 ```
 * /etc/postfix/master.cf
 ```bash
