@@ -158,8 +158,8 @@ inet_protocols = all
 
 ```nginx
 sudo systemctl restart kopano-server
-sudo kopano-admin -d admin -p 123 -e admin@example.com -f 'Administrator' -a yes #create administrator
-udo kopano-admin -d user -p 123 -e user@example.com -f 'User'                    #crete user
+sudo kopano-admin -c admin -p 123 -e admin@example.com -f 'Administrator' -a yes #create administrator
+udo kopano-admin -c user -p 123 -e user@example.com -f 'User'                    #crete user
 ```
 
 
