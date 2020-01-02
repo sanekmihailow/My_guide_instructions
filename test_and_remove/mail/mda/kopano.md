@@ -68,6 +68,20 @@ log_timestamp = yes
 log_buffer_size = 0
 #!include debian-db.cfg
 ```
+
+* /etc/kopano/admin.cfg ---
+(create)
+```bash
+default_store_locale = ru_RU.UTF-8
+```
+
+* /etc/default/kopano ---
+(create)
+```bash
+LANG=ru_RU.UTF-8
+KOPANO_USERSCRIPT_LOCALE="ru_RU.utf8"
+```
+
 * /etc/postfix/mysql-users.cf --- 
 (create)
 ```bash
