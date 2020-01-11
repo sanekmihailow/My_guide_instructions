@@ -105,7 +105,7 @@ sudo docker run -itd -p 9970:80 -p 9943:443 --restart always --cap-add MKNOD \
 -v /var/Docker_Volumes/onlyoffice/CommunityServer/db:/var/lib/mysql \
 --net onlyoffice-network --name Onlyoffice_Community-server onlyoffice/communityserver
 
-a2enmod proxy proxy_http
+a2enmod proxy proxy_http rewrite headers
 service apache2 restart
 ```
 
