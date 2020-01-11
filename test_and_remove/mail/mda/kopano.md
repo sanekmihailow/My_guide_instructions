@@ -19,6 +19,20 @@ deb https://serial:ZG59G03R59L1AD8T7CHQ42V8B@download.kopano.io/supported/webapp
 deb https://serial:ZG59G03R59L1AD8T7CHQ42V8B@download.kopano.io/supported/webmeetings:/final/Debian_8.0/ ./
 ```
 
+>or use
+* /etc/apt/auth.conf.d/kopano.conf
+```
+#machene <host> login <login> password <pass>
+machine download.kopano.io login serial password ZG59G03R59L1AD8T7CHQ42V8B
+```
+and source list
+* /etc/apt/source.list.d/kopano.list
+```
+deb https://download.kopano.io/supported/core:/final/Ubuntu_18.04/ ./
+deb https://download.kopano.io/supported/webapp:/final/Ubuntu_18.04/ ./
+deb https://download.kopano.io/supported/webmeetings:/final/Debian_8.0/ ./
+```
+
 ```nginx
 sudo apt install mysql-server kopano-server-packages
 sudo mysql_secure_installation
