@@ -1,6 +1,6 @@
 <d>
  <details>
-  <summary> Installed kopano packages </summaer>
+  <summary> Installed kopano packages </summary>
 
 ```bash
 ii  kopano-archiver                     8.7.9.0-0+16.1
