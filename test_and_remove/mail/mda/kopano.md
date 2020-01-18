@@ -1,3 +1,54 @@
+<d>
+ <details>
+  <summary> Installed kopano packages </summaer>
+
+```bash
+ii  kopano-archiver                     8.7.9.0-0+16.1
+ii  kopano-backup                       8.7.9.0-0+11.2
+ii  kopano-client                       8.7.9.0-0+16.1
+ii  kopano-common                       8.7.9.0-0+16.1
+ii  kopano-dagent                       8.7.9.0-0+16.1
+ii  kopano-dagent-pytils                8.7.9.0-0+11.2
+ii  kopano-gateway                      8.7.9.0-0+16.1
+ii  kopano-grapi                        8.7.9.0-0+11.2
+ii  kopano-ical                         8.7.9.0-0+16.1
+ii  kopano-kapid                        0.13.0-0+2.1
+ii  kopano-konnectd                     0.25.2-0+4.1
+ii  kopano-kwebd                        0.8.1-0+3.1
+ii  kopano-kwmserverd                   0.16.1-0+3.1
+ii  kopano-lang                         8.7.9.0-0+16.1
+ii  kopano-meet                         1.1.1-0+5.1
+ii  kopano-meet-packages                1.1.1-0+5.1
+ii  kopano-meet-webapp                  1.1.1-0+5.1
+ii  kopano-migration-imap               8.7.9.0-0+16.1
+ii  kopano-migration-pst                8.7.9.0-0+11.2
+ii  kopano-monitor                      8.7.9.0-0+16.1
+ii  kopano-python-utils                 8.7.9.0-0+11.2
+ii  kopano-python3-extras               0.1.2+0-0+53.1
+ii  kopano-search                       8.7.9.0-0+11.2
+ii  kopano-server                       8.7.9.0-0+16.1
+ii  kopano-server-packages              8.7.9.0-0+16.1
+ii  kopano-spooler                      8.7.9.0-0+16.1
+ii  kopano-webapp                       3.5.14.2539+111.1
+ii  kopano-webapp-plugin-filepreviewer  2.2.0.26+24.1
+ii  kopano-webapp-plugin-files          2.1.5.305+101.1
+ii  kopano-webapp-plugin-meetings       3.0.6.34
+ii  kopano-webapp-plugin-smime          2.2.2.240+23.1
+ii  kopano-webmeetings                  0.29.5-1
+ii  libgsoap-kopano-2.8.95              2.8.95-0+1.1
+ii  libvmime-kopano3                    0.9.2.96+3.1
+ii  php-kopano-smime                    1.0.00+4.1
+ii  python3-kopano                      8.7.9.0-0+11.2
+ii  python3-kopano-rest                 8.7.9.0-0+11.2
+ii  python3-kopano-search               8.7.9.0-0+11.2
+ii  python3-kopano-utils                8.7.9.0-0+11.2
+ii  z-push-backend-kopano               2.5.1+0-0
+ii  z-push-kopano                       2.5.1+0-0
+```
+
+</details>
+</d>
+
 [https://kb.kopano.io/display/WIKI](https://kb.kopano.io/display/WIKI)
 
 [https://documentation.kopano.io/](https://documentation.kopano.io/)
