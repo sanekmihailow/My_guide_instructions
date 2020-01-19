@@ -38,7 +38,9 @@ apt-get --no-install-recommends install rspamd
 * scores.d
 
 **/etc/rspamd/rspamd.conf** - основной файл
+
 **etc/rspamd/filename.map** - файл с запрещенными расширениями атачей в письме
+
 **etc/rspamd/rspamd.conf.local** - нужен для fann
 
 ```
