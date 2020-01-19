@@ -17,4 +17,32 @@ apt update
 apt-get --no-install-recommends install rspamd
 ```
 
+# DETAILS
+#### /etc/rspamd
+* local.d - для файлов пользовательских настроек, которые добавляют новые настройки к существующей конфигурации
+* maps.d
+* modules.d
+* override.d - заменяют стандартные настройки
+* scores.d
+
+**/etc/rspamd**
+
+
+```
+/etc/rspamd/local.d/dkim_signing.conf
+/etc/rspamd/dkim_selectors.map
+/etc/rspamd/dkim_paths.map
+/var/lib/rspamd/dkim/domain.eu.mail.key
+/etc/rspamd/rspamd.conf
+
+
+/etc/rspamd/local.d/multimap.conf
+/etc/rspamd/local.d/regex_block.map
+/etc/rspamd/local.d/ip_whitelist.map
+/etc/rspamd/local.d/whitelist.sender.domain.map
+
+
+
+
+
 
