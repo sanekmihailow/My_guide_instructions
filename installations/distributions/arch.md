@@ -34,7 +34,7 @@ loadkeys ru
  ### 4) Prepare to download and dowload packages      
   ```nginx      
         vim /etc/pacman.d/mirrorlist       (-> RU) or (yandex)
-        pacstrap -i /mnt base base-devel sudo net-tools git vim linux mkinitcpio lvm2 grub
+        pacstrap -i /mnt base base-devel sudo net-tools git vim linux mkinitcpio lvm2 grub dhcpcd
         #gvim openssh 
         genfstab -U -p /mnt >> /mnt/etc/fstab
     #cp install.txt /mnt/root
