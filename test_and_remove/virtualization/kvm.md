@@ -28,3 +28,7 @@ TriggeredBy: ● libvirtd.socket
 янв 26 20:48:20 WorkplaCe libvirtd[655627]: Не удалось проверить QEMU /usr/libexec/qemu-kvm: Нет такого файла или каталога
 
 ```
+
+```nginx
+sudo virt-manager -c 'qemu+ssh://root@24.24.24.24:22/system'
+```
