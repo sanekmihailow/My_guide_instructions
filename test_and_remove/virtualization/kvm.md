@@ -5,7 +5,7 @@ pacman -S openssh-askpass polkit virt-manager qemu vde2 ebtables dnsmasq bridge-
 systemctl enable libvirtd && systemctl start libvirtd
 ```
 ```python
- $ systemctl status libvirtd
+ $systemctl status libvirtd
 ● libvirtd.service - Virtualization daemon
      Loaded: loaded (/usr/lib/systemd/system/libvirtd.service; disabled; vendor preset: disabled)
      Active: active (running) since Sun 2020-01-26 20:48:19 MSK; 12h ago
