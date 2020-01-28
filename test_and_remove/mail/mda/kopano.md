@@ -132,12 +132,30 @@ log_level = 6
 log_timestamp = yes
 log_buffer_size = 0
 #!include debian-db.cfg
+
+disabled_features = pop3
+server_ssl_key_file = /etc/letsencrypt/live/sub.example.com/privkey.key
+server_ssl_ca_file = /etc/letsencrypt/live/sub.example.com/fullchain.pem
 ```
 
 * /etc/kopano/admin.cfg ---
 (create)
 ```bash
 default_store_locale = ru_RU.UTF-8
+```
+
+* /etc/kopano/gateway.cfg
+(create)
+```
+imap_expunge_on_delete = yes
+imap_ignore_command_idle = yes
+ssl_private_key_file = /etc/kopano/ssl/sub.example.com/privkey.pem
+ssl_certificate_file = /etc/kopano/ssl/sub.example.com/fullchain.pem
+log_method = file
+log_level = 5
+log_file = /var/log/kopano/gateway.log
+log_timestamp = yes
+imaps_listen = *:993
 ```
 
 * /etc/default/kopano ---
@@ -311,7 +329,21 @@ udo kopano-admin -c user -p 123 -e user@example.com -f 'User'                   
 ```
 
 
-```
+```nginx
 kopano-cli --create --group Administration  #cretae group
+```
+
+```
+cd /etc/postfix/
+umask 022
+openssl dhparam -out dh2048.pem 2048
+chmod 644 dh2048.pem
+
+mkdir /etc/kopano/ssl
+chown root:kopano /etc/kopano/ssl
+cp -r /etc/letsencrypt/archive/sub.example.com/* /etc/kopano/ssl/
+chgrp -R kopano /etc/kopano/ssl/
+chmod -R g+Xr /etc/kopano/ssl/
+```
 
 
