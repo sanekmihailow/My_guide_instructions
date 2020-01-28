@@ -162,8 +162,13 @@ query = select value from objectproperty where objectid=(select objectid from ob
 ```bash
 # service type  private unpriv  chroot  wakeup  maxproc command + args
 #               (yes)   (yes)   (no)    (never) (100)
-
-smtp      inet  n       -       n       -       -       smtpd
+smtp      inet  n       -       y       -       -       smtpd
+submission inet n       -       y       -       -       smtpd
+  -o smtpd_sasl_auth_enable=yes
+  -o smtpd_enforce_tls=yes
+smtps     inet  n       -       y       -       -       smtpd
+  -o smtpd_tls_wrappermode=yes
+  -o smtpd_sasl_auth_enable=yes
 pickup    unix  n       -       y       60      1       pickup
 cleanup   unix  n       -       y       -       0       cleanup
 qmgr      unix  n       -       n       300     1       qmgr
@@ -201,36 +206,100 @@ scalemail-backend unix	-	n	n	-	2	pipe
 mailman   unix  -       n       n       -       -       pipe
   flags=FR user=list argv=/usr/lib/mailman/bin/postfix-to-mailman.py
   ${nexthop} ${user}
+
 ```
 * /etc/postfix/main.cf
 ```bash
-smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
+smtpd_banner = $myhostname ESMTP Who are you gonna pretend to be today?
 biff = no
+# appending .domain is the MUA's job.
 append_dot_mydomain = no
 readme_directory = no
 compatibility_level = 2
-smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
-smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+
+###C- TLS SETTINGS ---start
+
 smtpd_use_tls=yes
+smtpd_tls_auth_only = yes
+smtpd_starttls_timeout = 300s
+smtpd_timeout = 300s
+smtpd_tls_mandatory_protocols = !SSLv2,!SSLv3
+smtpd_tls_protocols = 
+smtpd_tls_exclude_ciphers = RC4, aNULL
+    #C- SSL
+smtpd_tls_cert_file=/etc/letsencrypt/live/sub.example.com/fullchain.pem
+smtpd_tls_key_file =/etc/letsencrypt/live/sub.example.com/privkey.pem
 smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+smtpd_tls_received_header = no
+smtpd_tls_session_cache_timeout = 3600s
+tls_random_source = dev:/dev/urandom
+smtpd_sasl_local_domain =
+smtpd_sasl_security_options = noanonymous
+smtpd_sasl_auth_enable = yes
+smtp_sasl_tls_security_options = noanonymous
+    #C- EDH config
+smtpd_tls_dh1024_param_file = /etc/postfix/dh2048.pem
+    #C- use the Postfix SMTP server's cipher preference order instead of the remote client's cipher preference order.
+tls_preempt_cipherlist = yes
+    #C- # The Postfix SMTP server security grade for ephemeral elliptic-curve Diffie-Hellman (EECDH) key exchang
+smtpd_tls_eecdh_grade = strong    
+    #C- tls logging
+smtp_tls_loglevel = 0
+smtpd_tls_loglevel = 0
+
+     #C- SMTP client ---start
+smtp_tls_security_level = may
+smtp_tls_mandatory_protocols = !SSLv2,!SSLv3
+smtp_tls_protocols = !SSLv2,!SSLv3
+smtp_tls_exclude_ciphers = RC4, aNULL
+        #C- Support broken clients like Microsoft Outlook Express 4.x which expect AUTH=LOGIN instead of AUTH LOGIN
+broken_sasl_auth_clients = yes
+     #C- SMTP client ---end
+     
+###C- TLS Settings ---end
+
+
+
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-myhostname = ih1843494.vds.myihor.ru
+myhostname = sub.example.com
+smtp_helo_name = sub.example.com
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-#_add-start:
 virtual_alias_maps = mysql:/etc/postfix/mysql-users.cf
 virtual_transport = lmtp:127.0.0.1:2003
-#_add-end.
-myorigin = /etc/mailname
-mydestination = $myhostname, localhost
-virtual_mailbox_domains = example.com
+mydestination = localhost $myhostname
+virtual_mailbox_domains = example.com, new.example.com, example.ru
 relayhost = 
-mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128, 192.168.0.0/23
 mailbox_size_limit = 0
 recipient_delimiter = +
-inet_interfaces = loopback-only
+inet_interfaces = all
 inet_protocols = all
+# SIZE MAIL (30 mb)
+message_size_limit = 31457280
+
+###C- OPENDKIM ---start
+
+milter_default_action = accept
+milter_protocol = 2
+smtpd_milters = inet:localhost:8891
+non_smtpd_milters = inet:localhost:8891
+
+###C- OPENDKIM --end
+
+###C- SENDER ACCESS RESTRICT ---start
+
+smtpd_recipient_restrictions = 
+    permit_mynetworks,
+    permit_sasl_authenticated,
+    hash:/etc/postfix/sender_access,
+    reject_unauth_destination,
+    reject_unlisted_recipient
+message_size_limit = 31457280
+
+###C- SENDER ACCESS RESTRICT ---end
+
 ```
 
 
