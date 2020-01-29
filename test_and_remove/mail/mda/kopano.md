@@ -314,7 +314,6 @@ smtpd_recipient_restrictions =
     hash:/etc/postfix/sender_access,
     reject_unauth_destination,
     reject_unlisted_recipient
-message_size_limit = 31457280
 
 ###C- SENDER ACCESS RESTRICT ---end
 
