@@ -1,6 +1,5 @@
+### KOPANO-TRIAL VERSION
 ```php
-KOPANO-TRIAL VERSION
-
 |=>: kopano-server - 
 --|=>: kopano-client
 --------------------|=>: kopano-lang
@@ -58,7 +57,7 @@ KOPANO-TRIAL VERSION
 
 =>
 
-
+```
 
 
 
