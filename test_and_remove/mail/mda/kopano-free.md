@@ -41,7 +41,7 @@ apt install rspamd redis-server
 ```nginx
 apt install kopano-core kopano-common kopano-server kopano-spooler kopano-search kopano-presence kopano-monitor \
 kopano-gateway kopano-dagent kopano-utils \
-kopano-webapp-nginx kopano-webapp-common kopano-webapp-folderwidgets kopano-webapp-pimfolder kopano-webapp-quickitems 
+kopano-webapp-nginx kopano-webapp-common kopano-webapp-folderwidgets kopano-webapp-pimfolder kopano-webapp-quickitems \
 kopano-contacts kopano-backup kopano-archiver kopano-libs kopano-dev
 ```
 
