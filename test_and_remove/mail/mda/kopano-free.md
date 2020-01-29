@@ -16,6 +16,7 @@ apt install nginx-light nginx-common nginx-doc python-certbot-nginx
 > libsasl2-modules sasl2-bin нужно для нормального IMAP
 ```nginx
 apt install postfix libsasl2-modules sasl2-bin mysql-server mysql-server mysql-common mysql-utilities postfix-mysql
+sudo mysql_secure_installations
 ```
 ### Install php
 ```nginx
