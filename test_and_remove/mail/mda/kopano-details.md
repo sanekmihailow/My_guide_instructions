@@ -5,7 +5,6 @@ UTILS NOT DEPENDS KOPANO:
     |=>: kopano-archiver
     |=>: kopano-migration-imap
     |=>: kopano-migration-pst
-    |=>: kopano-monitor
 
 PACKAGES NOT DEPENDS KOPANO:
     |=>: python3-kopano-search
@@ -26,15 +25,15 @@ PLUGINS kopano-webapp:
     kopano-webapp-plugin-meetings
     kopano-webapp-plugin-smime
 
-|=>: kopano-server - 
-    --|=>: kopano-client
-    --------------------|=>: kopano-lang
-    --------------------|=>: libgsoap-kopano
-    --------------------------------------|=>: libvmime-kopano3
-    --|=>: kopano-common
-    --------------------|=>: libgsoap-kopano
+KOPANO-ОБЩЕЕ:
+|=>: kopano-client
+------------------|=>: kopano-lang 
+------------------|=>: libgsoap-kopano
+--------------------------------------|=>: libvmime-kopano3
+|=>: kopano-common
+-----------------|=>: libgsoap-kopano
 
-
+KOPANO-CORE
 |=> kopano-server-packages
     --|=>: kopano-backup
     -------------------|=>: kopano-common-uv
