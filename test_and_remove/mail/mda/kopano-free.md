@@ -10,7 +10,7 @@ apt install icewm icewm-themes icewm-gnome-support firefox xorg
 
 ### Install webserver
 ```nginx
-apt install nginx-light nginx-core nginx-common nginx-doc python-certbot-nginx
+apt install nginx-light nginx-common nginx-doc python-certbot-nginx
 ```
 ### Install php
 ```nginx
