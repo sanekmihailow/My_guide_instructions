@@ -1,5 +1,5 @@
 ### KOPANO-TRIAL VERSION
-```php
+```python
 |=>: kopano-server - 
 --|=>: kopano-client
 --------------------|=>: kopano-lang
