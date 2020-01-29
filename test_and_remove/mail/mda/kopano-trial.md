@@ -345,4 +345,7 @@ chgrp -R kopano /etc/kopano/ssl/
 chmod -R g+Xr /etc/kopano/ssl/
 ```
 
+```
+opendkim-genkey -D /etc/postfix/dkim/chemz.ru/ --domain chemz.ru --selector mail -b 1024
+```
 
