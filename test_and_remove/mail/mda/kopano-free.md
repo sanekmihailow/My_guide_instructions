@@ -12,18 +12,22 @@ apt install icewm icewm-themes icewm-gnome-support firefox xorg
 ```nginx
 apt install nginx-light nginx-common nginx-doc python-certbot-nginx
 ```
-### Install php
-```nginx
-apt install php7.2-fpm php-gettext php7.2-common php7.2-curl php7.2-cgi php7.2-cli php7.2-gd php7.2-imap php7.2-json \
-php7.2-mbstring php7.2-mysql php7.2-opcache php7.2-readline php7.2-xml php7.2-zip php php-common php-gettext php-mapi \
-php-pear php-php-gettext php-tcpdf phpmyadmin
-
-update-alternatives --set php /usr/bin/php7.2
-```
 ### Install postfix + mysql
 > libsasl2-modules sasl2-bin нужно для нормального IMAP
 ```nginx
 apt install postfix libsasl2-modules sasl2-bin mysql-server mysql-server mysql-common mysql-utilities postfix-mysql
+```
+### Install php
+```nginx
+apt install php7.2-fpm php-gettext php7.2-common php7.2-curl php7.2-cgi php7.2-cli php7.2-gd php7.2-imap php7.2-json \
+php7.2-mbstring php7.2-mysql php7.2-opcache php7.2-readline php7.2-xml php7.2-zip php php-common php-gettext php-mapi \
+php-pear php-php-gettext php-tcpdf
+
+update-alternatives --set php /usr/bin/php7.2
+```
+### Install phpmyadmin
+```nginx
+apt install phpmyadmin
 ```
 ### Install rspamd
 ```nginx
