@@ -20,7 +20,7 @@ SERVICES NOT DEPENDS KOPANO:
     |=>: kopano-meet
     |=>: kopano-search
 
-PLUGINX kopano-webapp:
+PLUGINS kopano-webapp:
     kopano-webapp-plugin-filepreviewer
     kopano-webapp-plugin-files
     kopano-webapp-plugin-meetings
