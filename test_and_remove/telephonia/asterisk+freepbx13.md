@@ -287,5 +287,17 @@ fwconsole ma upgrade framework
 fwconsole restart                                   
 ```
 
+### CRONTAB
+```
+* * * * * [ -x /var/www/html/admin/modules/dashboard/scheduler.php ] && /var/www/html/admin/modules/dashboard/scheduler.php > /dev/nul$
+33 * * * * /usr/sbin/fwconsole util cleanplaybackcache -q
+2 6 * * * [ -e /usr/sbin/fwconsole ] && /usr/sbin/fwconsole ma listonline --sendemail -q > /dev/null 2>&1
+2 8 * * * [ -e /usr/sbin/fwconsole ] && /usr/sbin/fwconsole ma installall --sendemail -q > /dev/null 2>&1
+@daily [ -x /var/lib/asterisk/bin/freepbx_sipstation_check ] && /var/lib/asterisk/bin/freepbx_sipstation_check 2>&1 > /dev/null
+@monthly ID=freepbx_backup_1 /var/lib/asterisk/bin/backup.php --id=1 >/dev/null 2>&1
+*/15 * * * * /usr/sbin/fwconsole userman --syncall -q
+6 1 * * * /usr/sbin/fwconsole certificates --updateall -q 2>&1 >/dev/null
+*/1 * * * * /usr/sbin/fwconsole calendar --sync 2>&1 > /dev/null
+```
 
 
