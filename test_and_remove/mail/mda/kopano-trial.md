@@ -235,7 +235,7 @@ append_dot_mydomain = no
 readme_directory = no
 compatibility_level = 2
 
-###C- TLS SETTINGS ---start
+### TLS SETTINGS ---start
 
 smtpd_use_tls=yes
 smtpd_tls_auth_only = yes
@@ -244,7 +244,7 @@ smtpd_timeout = 300s
 smtpd_tls_mandatory_protocols = !SSLv2,!SSLv3
 smtpd_tls_protocols = 
 smtpd_tls_exclude_ciphers = RC4, aNULL
-    #C- SSL
+#-- SSL
 smtpd_tls_cert_file=/etc/letsencrypt/live/sub.example.com/fullchain.pem
 smtpd_tls_key_file =/etc/letsencrypt/live/sub.example.com/privkey.pem
 smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
@@ -256,26 +256,25 @@ smtpd_sasl_local_domain =
 smtpd_sasl_security_options = noanonymous
 smtpd_sasl_auth_enable = yes
 smtp_sasl_tls_security_options = noanonymous
-    #C- EDH config
+#-- EDH config
 smtpd_tls_dh1024_param_file = /etc/postfix/dh2048.pem
-    #C- use the Postfix SMTP server's cipher preference order instead of the remote client's cipher preference order.
+# use the Postfix SMTP server's cipher preference order instead of the remote client's cipher preference order.
 tls_preempt_cipherlist = yes
-    #C- # The Postfix SMTP server security grade for ephemeral elliptic-curve Diffie-Hellman (EECDH) key exchang
+# The Postfix SMTP server security grade for ephemeral elliptic-curve Diffie-Hellman (EECDH) key exchang
 smtpd_tls_eecdh_grade = strong    
-    #C- tls logging
+#-- tls logging
 smtp_tls_loglevel = 0
 smtpd_tls_loglevel = 0
 
-     #C- SMTP client ---start
+#-- SMTP client
 smtp_tls_security_level = may
 smtp_tls_mandatory_protocols = !SSLv2,!SSLv3
 smtp_tls_protocols = !SSLv2,!SSLv3
 smtp_tls_exclude_ciphers = RC4, aNULL
-        #C- Support broken clients like Microsoft Outlook Express 4.x which expect AUTH=LOGIN instead of AUTH LOGIN
+# Support broken clients like Microsoft Outlook Express 4.x which expect AUTH=LOGIN instead of AUTH LOGIN
 broken_sasl_auth_clients = yes
-     #C- SMTP client ---end
      
-###C- TLS Settings ---end
+### TLS SETTINGS ---end
 
 
 
@@ -297,16 +296,16 @@ inet_protocols = all
 # SIZE MAIL (30 mb)
 message_size_limit = 31457280
 
-###C- OPENDKIM ---start
+### OPENDKIM ---start
 
 milter_default_action = accept
 milter_protocol = 2
 smtpd_milters = inet:localhost:8891
 non_smtpd_milters = inet:localhost:8891
 
-###C- OPENDKIM --end
+### OPENDKIM --end
 
-###C- SENDER ACCESS RESTRICT ---start
+### SENDER ACCESS RESTRICT ---start
 
 smtpd_recipient_restrictions = 
     permit_mynetworks,
@@ -315,7 +314,7 @@ smtpd_recipient_restrictions =
     reject_unauth_destination,
     reject_unlisted_recipient
 
-###C- SENDER ACCESS RESTRICT ---end
+### SENDER ACCESS RESTRICT ---end
 
 ```
 
