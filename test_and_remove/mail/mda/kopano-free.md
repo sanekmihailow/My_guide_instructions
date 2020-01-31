@@ -25,6 +25,7 @@ php7.2-mbstring php7.2-mysql php7.2-opcache php7.2-readline php7.2-xml php7.2-zi
 php php-common php-gettext php-mapi php-pear php-php-gettext php-tcpdf
 
 update-alternatives --set php /usr/bin/php7.2
+phpenmod mapi
 ```
 ### Install phpmyadmin
 ```nginx
@@ -44,4 +45,28 @@ kopano-gateway kopano-dagent kopano-utils \
 kopano-webapp-nginx kopano-webapp-common kopano-webapp-folderwidgets kopano-webapp-pimfolder kopano-webapp-quickitems \
 kopano-contacts kopano-backup kopano-archiver kopano-libs kopano-dev
 ```
+### Install z-push (if problem with php7-mapi
+> потом не сможешь обновляться
+```nginx
+#apt install --ignore-depends z-push-backend-kopano
+#apt-get install --nodeps z-push-backend-kopano
+#apt-get install --no-install-recommends z-push-backend-kopano
+#C- Download
+apt-get download z-push-backend-kopano
+apt-get download z-push-kopano
+apt-get download z-push-common
+apt-get download z-push-ipc-sharedmemory
+apt download z-push-backend-imap
+#C- Install
+#dpkg --ignore-depends -i z-push-kopano_2.5.1+0-0_all.deb
+dpkg --force-all -i z-push-backend-kopano_2.5.1+0-0_all.deb
+dpkg --force-all -i z-push-kopano_2.5.1+0-0_all.deb
+dpkg --force-all -i z-push-common_2.5.1+0-0_all.deb
+dpkg --force-all -i z-push-ipc-sharedmemory_2.5.1+0-0_all.deb
+dpkg --force-all -i z-push-backend-imap_2.5.1+0-0_all.deb
+dpkg --force-all -i z-push-config-nginx_2.5.1+0-0_all.deb
+#C- Hold
+apt-mark hold z-push*
+vim /etc/apt/preferences.d/z-push.pref
 
+```
