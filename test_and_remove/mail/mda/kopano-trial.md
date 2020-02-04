@@ -337,6 +337,8 @@ umask 022
 openssl dhparam -out dh2048.pem 2048
 chmod 644 dh2048.pem
 
+
+
 mkdir /etc/kopano/ssl
 chown root:kopano /etc/kopano/ssl
 cp -r /etc/letsencrypt/archive/sub.example.com/* /etc/kopano/ssl/
@@ -347,4 +349,37 @@ chmod -R g+Xr /etc/kopano/ssl/
 ```
 opendkim-genkey -D /etc/postfix/dkim/chemz.ru/ --domain chemz.ru --selector mail -b 1024
 ```
+
+```
+apt-get install libsasl2-modules sasl2-bin
+
+```
+* /etc/default/saslauthd
+```
+START=yes
+DESC="SASL Authentication Daemon"
+NAME="saslauthd"
+MECHANISMS="rimap"
+MECH_OPTIONS="127.0.0.1"
+THREADS=5
+OPTIONS="-r -c -m /var/spool/postfix/var/run/saslauthd"
+```
+```
+dpkg-statoverride --add root sasl 750 /var/spool/postfix/var/run/saslauthd
+adduser postfix sasl
+```
+* /etc/postfix/sasl/smtpd.conf
+```
+pwcheck_method: saslauthd
+mech_list: plain login
+```
+```
+postconf -e "smtpd_sasl_path = smtpd"
+/etc/init.d/saslauthd restart
+/etc/init.d/postfix restart
+```
+
+
+
+
 
