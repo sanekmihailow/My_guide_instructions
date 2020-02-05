@@ -5,7 +5,7 @@ apt install mdadm
 mdadm -E -s
 mdadm --zero-superblock --force /dev/sd{b,c}
 sfdisk -d /dev/sdb | sfdisk /dev/sdc
-mdadm --create -v /dev/md0 -e=1.2 -l 1 -n 2 /dev/sd{b,c}
+mdadm --create -v /dev/md0 -e1.2 -l1 -n2 -N <name> /dev/sd{b,c}
 cat /proc/mdstat
 
 mkdir /etc/mdadm
