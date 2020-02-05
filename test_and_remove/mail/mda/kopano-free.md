@@ -1,6 +1,7 @@
 ### first install
 ```nginx
 apt install git vim vim-gtk cifs-utils samba nfs-common curl apt-rdepends software-properties-common lsb-release
+#apt install nfs-kernel-server 
 ```
 
 ### Xorg + DE
