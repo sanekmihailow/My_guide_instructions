@@ -20,3 +20,10 @@ echo 'idle' > /sys/block/md0/md/sync_action
 mkfs.ext4 /dev/md0
 mount /dev/md0 /mnt
 ```
+
+```fdisk /dev/vd*
+n
+..
+..
+w
+```
