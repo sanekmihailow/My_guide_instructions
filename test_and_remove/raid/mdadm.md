@@ -27,4 +27,5 @@ n
 ..
 ..
 w
+mkfs.ext4 /dev/vdb1
 ```
