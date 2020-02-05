@@ -21,7 +21,8 @@ mkfs.ext4 /dev/md0
 mount /dev/md0 /mnt
 ```
 
-```fdisk /dev/vd*
+```
+fdisk /dev/vd*
 n
 ..
 ..
