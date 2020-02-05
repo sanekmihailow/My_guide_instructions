@@ -11,6 +11,7 @@ cat /proc/mdstat
 mkdir /etc/mdadm
 echo "DEVICE partitions" > /etc/mdadm/mdadm.conf
 mdadm -Dsv | awk '/ARRAY/ {print}' >> /etc/mdadm/mdadm.conf
+echo 'MAILADDR root' >> /etc/mdadm/mdadm.conf
 
 echo 'check' > /sys/block/md0/md/sync_action
 cat /sys/block/md0/md/mismatch_cnt
