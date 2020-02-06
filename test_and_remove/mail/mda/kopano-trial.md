@@ -277,8 +277,6 @@ broken_sasl_auth_clients = yes
      
 ### TLS SETTINGS ---end
 
-
-
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
 myhostname = sub.example.com
 smtp_helo_name = sub.example.com
@@ -297,14 +295,23 @@ inet_protocols = all
 # SIZE MAIL (30 mb)
 message_size_limit = 31457280
 
-### OPENDKIM ---start
+### MILTER CONFIGURATION ---start
 
+#-- OPENDKIM
 milter_default_action = accept
 milter_protocol = 2
 smtpd_milters = inet:localhost:8891
 non_smtpd_milters = inet:localhost:8891
 
-### OPENDKIM --end
+#-- RSPAMD
+#M- milter_default_action = accept
+milter_protocol = 6
+smtpd_milters = inet:localhost:11332
+#M- milter_default_action = tempfail
+non_smtpd_milters = inet:localhost:11332
+milter_mail_macros = i {mail_addr} {client_addr} {client_name} {auth_authen}
+
+### MILTER CONFIGURATION ---end
 
 ### SENDER ACCESS RESTRICT ---start
 
@@ -319,14 +326,11 @@ smtpd_recipient_restrictions =
 
 ```
 
-
-
 ```nginx
 sudo systemctl restart kopano-server
 sudo kopano-admin -c admin -p 123 -e admin@example.com -f 'Administrator' -a yes #create administrator
 udo kopano-admin -c user -p 123 -e user@example.com -f 'User'                    #crete user
 ```
-
 
 ```nginx
 kopano-cli --create --group Administration  #cretae group
@@ -337,8 +341,6 @@ cd /etc/postfix/
 umask 022
 openssl dhparam -out dh2048.pem 2048
 chmod 644 dh2048.pem
-
-
 
 mkdir /etc/kopano/ssl
 chown root:kopano /etc/kopano/ssl
