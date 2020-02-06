@@ -186,3 +186,12 @@ srw-rw-rw-  1 kopano kopano    0 фев  6 15:02 server.sock
 ```
   
 </details>
+
+### Create legal certs
+```nginx
+systemct stop nginx
+certbot certonly --standalone --preferred-challenges http -d examle.com --dry-run
+certbot certonly --standalone --preferred-challenges http -d example.com
+ln -s /etc/letsencrypt/live/example.com/fullchain.pem /etc/kopano/ssl/
+ln -s /etc/letsencrypt/live/example.com/privkey.pem /etc/kopano/ssl/
+```
