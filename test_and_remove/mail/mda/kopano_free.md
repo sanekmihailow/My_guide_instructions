@@ -167,4 +167,22 @@ certbot certonly --standalone --preferred-challenges http -d chemz.ru --dry-run
 ```nginx
 ls -la /var/run/kopano
 ```
-
+<details>
+  
+```
+drwxr-xr-x  2 kopano kopano  260 фев  6 15:02 .
+drwxr-xr-x 34 root   root   1140 фев  6 14:55 ..
+-rw-r--r--  1 kopano kopano    5 фев  5 22:46 dagent.pid
+-rw-r--r--  1 kopano kopano    5 фев  5 22:46 gateway.pid
+-rw-r--r--  1 kopano kopano    5 фев  5 22:46 ical.pid
+-rw-rw-rw-  2 kopano kopano    0 фев  5 22:46 kopano.fb09c740-1973
+-rw-r--r--  1 kopano kopano    5 фев  5 22:46 monitor.pid
+srw-rw----  1 kopano kopano    0 фев  6 15:02 prio.sock
+-rw-r--r--  1 kopano kopano    5 фев  5 22:46 search.pid
+-rw-rw-rw-  2 kopano kopano    0 фев  5 22:46 search.pid.lock
+-rw-r--r--  1 kopano kopano    6 фев  6 15:02 server.pid
+srw-rw-rw-  1 kopano kopano    0 фев  6 15:02 server.sock
+-rw-r--r--  1 kopano kopano    5 фев  5 22:46 spooler.pid
+```
+  
+</details>
