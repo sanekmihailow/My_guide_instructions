@@ -170,19 +170,23 @@ ls -la /var/run/kopano
 <details>
   
 ```
-drwxr-xr-x  2 kopano kopano  260 фев  6 15:02 .
-drwxr-xr-x 34 root   root   1140 фев  6 14:55 ..
--rw-r--r--  1 kopano kopano    5 фев  5 22:46 dagent.pid
--rw-r--r--  1 kopano kopano    5 фев  5 22:46 gateway.pid
--rw-r--r--  1 kopano kopano    5 фев  5 22:46 ical.pid
--rw-rw-rw-  2 kopano kopano    0 фев  5 22:46 kopano.fb09c740-1973
--rw-r--r--  1 kopano kopano    5 фев  5 22:46 monitor.pid
-srw-rw----  1 kopano kopano    0 фев  6 15:02 prio.sock
--rw-r--r--  1 kopano kopano    5 фев  5 22:46 search.pid
--rw-rw-rw-  2 kopano kopano    0 фев  5 22:46 search.pid.lock
--rw-r--r--  1 kopano kopano    6 фев  6 15:02 server.pid
-srw-rw-rw-  1 kopano kopano    0 фев  6 15:02 server.sock
--rw-r--r--  1 kopano kopano    5 фев  5 22:46 spooler.pid
+drwxr-xr-x  2 kopano kopano  340 фев  7 01:14 .
+drwxr-xr-x 34 root   root   1100 фев  7 01:21 ..
+-rw-r--r--  1 kopano kopano    5 фев  7 01:02 dagent.pid
+-rw-r--r--  1 kopano kopano    5 фев  7 01:02 gateway.pid
+-rw-r--r--  1 kopano kopano    5 фев  7 01:02 ical.pid
+-rw-rw-rw-  2 kopano kopano    0 фев  7 01:02 kopano.6708c740-2210
+-rw-rw-rw-  2 kopano kopano    0 фев  7 01:03 kopano.6e332740-2910
+-rw-r--r--  1 kopano kopano    5 фев  7 01:02 monitor.pid
+-rw-r--r--  1 kopano kopano    5 фев  7 01:03 presence.pid
+-rw-rw-rw-  2 kopano kopano    0 фев  7 01:03 presence.pid.lock
+srw-rw----  1 kopano kopano    0 фев  7 01:14 prio.sock
+-rw-r--r--  1 kopano kopano    5 фев  7 01:02 search.pid
+-rw-rw-rw-  2 kopano kopano    0 фев  7 01:02 search.pid.lock
+srwx------  1 kopano kopano    0 фев  7 01:14 search.sock
+-rw-r--r--  1 kopano kopano    5 фев  7 01:14 server.pid
+srw-rw-rw-  1 kopano kopano    0 фев  7 01:14 server.sock
+-rw-r--r--  1 kopano kopano    5 фев  7 01:02 spooler.pid
 ```
   
 </details>
