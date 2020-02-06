@@ -177,6 +177,7 @@ query = select value from objectproperty where objectid=(select objectid from ob
 
 ```
 * /etc/postfix/master.cf
+> обязатеьно табуляция или пробел перед "-o" и "flags"
 ```bash
 # service type  private unpriv  chroot  wakeup  maxproc command + args
 #               (yes)   (yes)   (no)    (never) (100)
