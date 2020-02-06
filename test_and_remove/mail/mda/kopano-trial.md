@@ -167,6 +167,8 @@ KOPANO_USERSCRIPT_LOCALE="ru_RU.utf8"
 
 * /etc/postfix/mysql-users.cf --- 
 (create)
+<details>
+
 ```bash
 user = kopano
 password = 123456
@@ -174,10 +176,13 @@ hosts = 127.0.0.1
 dbname = kopanoDB
 #query = select value from objectproperty where objectid=(select objectid from objectproperty where value='%s' limit 1) and propname='loginname';
 query = select value from objectproperty where objectid=(select objectid from objectproperty where value='%s' limit 1) and propname='emailaddress';
-
 ```
+
+</details>
 * /etc/postfix/master.cf
 > обязатеьно табуляция или пробел перед "-o" и "flags"
+<details>
+
 ```bash
 # service type  private unpriv  chroot  wakeup  maxproc command + args
 #               (yes)   (yes)   (no)    (never) (100)
@@ -227,7 +232,11 @@ mailman   unix  -       n       n       -       -       pipe
   ${nexthop} ${user}
 
 ```
+
+</details>
 * /etc/postfix/main.cf
+<details>
+
 ```bash
 smtpd_banner = $myhostname ESMTP Who are you gonna pretend to be today?
 biff = no
@@ -358,7 +367,11 @@ opendkim-genkey -D /etc/postfix/dkim/chemz.ru/ --domain chemz.ru --selector mail
 apt-get install libsasl2-modules sasl2-bin
 
 ```
+
+</details>
 * /etc/default/saslauthd
+<details>
+
 ```
 START=yes
 DESC="SASL Authentication Daemon"
@@ -368,6 +381,8 @@ MECH_OPTIONS="127.0.0.1"
 THREADS=5
 OPTIONS="-r -c -m /var/spool/postfix/var/run/saslauthd"
 ```
+
+</details>
 ```
 dpkg-statoverride --add root sasl 750 /var/spool/postfix/var/run/saslauthd
 adduser postfix sasl
