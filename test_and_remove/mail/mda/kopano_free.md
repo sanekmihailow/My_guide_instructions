@@ -194,4 +194,5 @@ certbot certonly --standalone --preferred-challenges http -d examle.com --dry-ru
 certbot certonly --standalone --preferred-challenges http -d example.com
 ln -s /etc/letsencrypt/live/example.com/fullchain.pem /etc/kopano/ssl/
 ln -s /etc/letsencrypt/live/example.com/privkey.pem /etc/kopano/ssl/
+systemctl start nginx
 ```
