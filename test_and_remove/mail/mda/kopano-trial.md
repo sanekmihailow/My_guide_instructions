@@ -112,6 +112,9 @@ flush privileges;
  ```
  * /etc/kopano/server.cfg ---
  (create)
+ 
+ <detals>
+ 
  ```bash
 mysql_user = kopano
 mysql_password = 123456
@@ -138,6 +141,8 @@ server_ssl_key_file = /etc/letsencrypt/live/sub.example.com/privkey.key
 server_ssl_ca_file = /etc/letsencrypt/live/sub.example.com/fullchain.pem
 ```
 
+</details>
+
 * /etc/kopano/admin.cfg ---
 (create)
 ```bash
@@ -146,6 +151,9 @@ default_store_locale = ru_RU.UTF-8
 
 * /etc/kopano/gateway.cfg
 (create)
+
+<details>
+ 
 ```
 imap_expunge_on_delete = yes
 imap_ignore_command_idle = yes
@@ -158,6 +166,8 @@ log_timestamp = yes
 imaps_listen = *:993
 ```
 
+</details>
+
 * /etc/default/kopano ---
 (create)
 ```bash
@@ -167,6 +177,7 @@ KOPANO_USERSCRIPT_LOCALE="ru_RU.utf8"
 
 * /etc/postfix/mysql-users.cf --- 
 (create)
+
 <details>
 
 ```bash
@@ -179,8 +190,10 @@ query = select value from objectproperty where objectid=(select objectid from ob
 ```
 
 </details>
+
 * /etc/postfix/master.cf
 > обязатеьно табуляция или пробел перед "-o" и "flags"
+
 <details>
 
 ```bash
@@ -234,7 +247,9 @@ mailman   unix  -       n       n       -       -       pipe
 ```
 
 </details>
+
 * /etc/postfix/main.cf
+
 <details>
 
 ```bash
@@ -369,7 +384,9 @@ apt-get install libsasl2-modules sasl2-bin
 ```
 
 </details>
+
 * /etc/default/saslauthd
+
 <details>
 
 ```
@@ -383,6 +400,7 @@ OPTIONS="-r -c -m /var/spool/postfix/var/run/saslauthd"
 ```
 
 </details>
+
 ```
 dpkg-statoverride --add root sasl 750 /var/spool/postfix/var/run/saslauthd
 adduser postfix sasl
