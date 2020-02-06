@@ -296,6 +296,7 @@ inet_protocols = all
 message_size_limit = 31457280
 
 ### MILTER CONFIGURATION ---start
+# либо OPENDKIM либо RSPAMD либо OPENDKIM. но RSPAMD без dkim
 
 #-- OPENDKIM
 milter_default_action = accept
@@ -305,11 +306,11 @@ non_smtpd_milters = inet:localhost:8891
 
 #-- RSPAMD
 #M- milter_default_action = accept
-milter_protocol = 6
-smtpd_milters = inet:localhost:11332
+#milter_protocol = 6
+#smtpd_milters = inet:localhost:11332
 #M- milter_default_action = tempfail
-non_smtpd_milters = inet:localhost:11332
-milter_mail_macros = i {mail_addr} {client_addr} {client_name} {auth_authen}
+#non_smtpd_milters = inet:localhost:11332
+#milter_mail_macros = i {mail_addr} {client_addr} {client_name} {auth_authen}
 
 ### MILTER CONFIGURATION ---end
 
