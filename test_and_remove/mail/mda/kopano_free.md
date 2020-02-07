@@ -202,6 +202,7 @@ systemctl start nginx
 ```
 
 ### Change Rlimit
+> [error  ] WARNING: setrlimit(RLIMIT_NOFILE, 8192) failed, you will only be able to connect up to 1024 sockets. Either start the process as root, or increase user limits for open file descriptors (Operation not permitted)
 ```nginx
 mkdir -p /etc/systemd/system/kopano-{server,spooler,dagent}.service.d
 ```
@@ -209,4 +210,15 @@ mkdir -p /etc/systemd/system/kopano-{server,spooler,dagent}.service.d
 ```
 [Service]
 LimitNOFILE=8192:16384
+```
+
+#### kopani-migration-imap
+> wants perl packager
+```
+apt install libfile-copy-recursive-perl libio-socket-ssl-perl libio-tee-perl libunicode-string-perl libarchive-cpio-perl \
+libarchive-zip-perl libauthen-sasl-perl libbytes-random-secure-perl libcrypt-passwdmd5-perl libcrypt-random-seed-perl \
+libdata-dump-perl libdigest-hmac-perl libfile-listing-perl libfile-stripnondeterminism-perl libfont-afm-perl libhtml-format-perl \ libhtml-form-perl libhtml-tree-perl libhttp-cookies-perl libhttp-daemon-perl libhttp-negotiate-perl liblwp-protocol-https-perl \
+libmail-imapclient-perl libmail-sendmail-perl libmailtools-perl libmath-random-isaac-perl libmath-random-isaac-xs-perl \
+libnet-http-perl libnet-smtp-ssl-perl libnginx-mod-http-perl libparse-recdescent-perl libreadonly-perl libsys-hostname-long-perl \
+libtry-tiny-perl libwww-perl libwww-robotrules-perl
 ```
