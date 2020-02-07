@@ -42,7 +42,7 @@ pip install mapi
 $PYTHONPATH
 
 ```
-* script
+* script "kopano-localized-folders_custom"
 <details>
   
 ```python
@@ -157,6 +157,24 @@ if __name__ == "__main__":
 ```
 
 </details>
+
+* script "kopano-create-user"
+
+```sh
+#!/bin/bash
+
+user="$1"
+pass="$2"
+fname="$3"
+email="${user}@chemz.ru"
+
+    echo "$(kopano-admin -c ${user} -p ${pass} -e ${email} -f "${fname}")" 1> /dev/null  &&
+    echo "$(kopano-localized-folders_custom -u ${user} --lang ru_RU.UTF-8)" 1> /dev/null &&
+    echo -e "login - ${user}; password - ${pass}; email - ${email}; ФИО - ${fname} \nwas created"
+    
+exit 0
+```
+
 
 ### ADD legal ssl cert
 ```nginx
