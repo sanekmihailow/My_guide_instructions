@@ -200,3 +200,13 @@ ln -s /etc/letsencrypt/live/example.com/fullchain.pem /etc/kopano/ssl/
 ln -s /etc/letsencrypt/live/example.com/privkey.pem /etc/kopano/ssl/
 systemctl start nginx
 ```
+
+### Change Rlimit
+```nginx
+mkdir -p /etc/systemd/system/kopano-{server,spooler,dagent}.service.d
+```
+* /etc/systemd/system/kopano-[server,spooler,dagent].service.d/override.conf
+```
+[Service]
+LimitNOFILE=8192:16384
+```
