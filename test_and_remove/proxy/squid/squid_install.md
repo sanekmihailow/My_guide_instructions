@@ -10,7 +10,7 @@ sudo systemctl start squid && sudo systemctl enable squid
 ```
 * /etc/squid.conf
 
-```java
+```sh
 # Авторизация по логину и паролю
 #auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/internet_users
 #auth_param basic children 5
