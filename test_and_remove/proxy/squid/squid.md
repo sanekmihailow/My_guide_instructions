@@ -18,6 +18,9 @@ sudo systemctl start squid && sudo systemctl enable squid
 #auth_param basic credentialsttl 2 hours
 #auth_param basic blankpassword off
 
+### DECLARE VALUES ---start
+
+#-- Declare ports:
 #С- объявляем список разрешенных портов через прокси-сервер по протоколу HTTP
 #acl worktime time 08:00-15:00  #;рабочее время для правила
 acl SSL_ports port 443
@@ -31,10 +34,11 @@ acl Safe_ports port 280		      # http-mgmt
 acl Safe_ports port 488		      # gss-http
 acl Safe_ports port 591		      # filemaker
 acl Safe_ports port 777		      # multiling http
-#acl Safe_ports port 631         # cups
-#acl Safe_ports port 873         # rsync
-#acl Safe_ports port 901         # SWAT
+#M- acl Safe_ports port 631         # cups
+#M- acl Safe_ports port 873         # rsync
+#M- acl Safe_ports port 901         # SWAT
 
+#-- declare methods:
 #С- объявляем список методов
 acl CONNECT method CONNECT
 acl GET method GET
@@ -45,9 +49,25 @@ acl PURGE method PURGE
 acl DELETE method DELETE
 acl OPTIONS method OPTIONS
 acl PATCH method PATCH
+
 #С- Правило указывающее доступ в интернет только через авторизацию
 acl internet_users proxy_auth REQUIRED
+#-- declare lists allowed deny...:
+#C- черные, белые и расширенные списки для:
+# HTTP
+acl black_list url_regex -i "/etc/squid/black_urls"
+acl white_list url_regex "/etc/squid/white_urls"
+acl access_group src "/etc/squid/extended_access_group"
+# HTTPS
+acl white_ssl ssl::server_name_regex "/etc/squid/allowed_urls_ssl"
+acl black_ssl ssl::server_name_regex -i "/etc/squid/denied_urls_ssl"
+acl step1 at_step SslBump1
+### ---end
 
+### Allow deny rules ---start
+
+#-- allowed methods:
+#C- разрешенные методы
 http_access allow internet_users
 http_access allow GET
 http_access allow HEAD 
@@ -56,7 +76,9 @@ http_access allow PUT
 http_access allow PURGE 
 http_access allow DELETE 
 http_access allow OPTIONS 
-http_access allow PATCH 
+http_access allow PATCH
+
+#-- allow deny:
 #С- Запретить доступ к портам, отсутствующим в списке открытых
 http_access deny !Safe_ports
 #С- Запретить метод CONNECT не на SSL-порты
@@ -65,14 +87,53 @@ http_access deny CONNECT !SSL_ports
 http_access allow localhost manager
 #C- Не ограничивать локальный доступ с сервера
 http_access deny manager
+http_access allow CONNECT
+http_access deny black_list
+#C- разрешаем всем кто не в группе расширенного доступа ходить только на разрешенные сайты
+#M- http_access allow white_list
+http_access deny !access_group !white_list
+#M- http_access deny all worktime
 #C- Блокирует все, что не было разрешено выше
 http_access deny all
-#C- Подключения через прозрачный порт
-http_port 3128 #accel defaultsite=22.22.22.22 vhost
-access_log daemon:/var/log/squid/access.log squid
+### ---end
+
+### DECLARE PORTS ---start
+#C- необходим, чтобы в логах бесконечно не появлялась ошибка «ERROR: No forward-proxy ports configured»
+http_port 3130
+#C- http transparent
+http_port 3128 intercept
+#C- https transarent
+https_port 3129 intercept ssl-bump options=ALL:NO_SSLv3:NO_SSLv2 connection-auth=off cert=/etc/squid/squidCA.pem
+### ---end
+
+### SSL SETTINGS
+#C- направлять весь трафик сразу в интернет, без использования кешей даже с ошибками проверки сертификата
+always_direct allow all
+sslproxy_cert_error allow all
+sslproxy_flags DONT_VERIFY_PEER
+#-- ssl bump:
+ssl_bump peek step1
+ssl_bump terminate black_ssl
+ssl_bump splice access_group
+ssl_bump terminate !white_ssl
+#M- ssl_bump splice white_ssl
+#M- ssl_bump terminate all worktime
+ssl_bump splice all
+sslcrtd_program /usr/lib/squid/ssl_crtd -s /var/lib/ssl_db -M 4MB
+### ---end
+
+### CACHE SETTINGS ---start
+cache_mem 2048 MB
+maximum_object_size_in_memory 512 KB
+memory_replacement_policy heap GDSF
+cache_replacement_policy heap LFUDA
+cache_dir aufs /var/spool/squid 4096 16 256
+### ---end
+
 #C- log file
+access_log daemon:/var/log/squid/access.log squid
 coredump_dir /var/spool/squid
-#C- Время жизни объектов для протоколов FTP и GOPHE
+#C- Время жизни объектов в кэше
 refresh_pattern ^ftp:		1440	20%	10080
 refresh_pattern ^gopher:	1440	0%	1440
 refresh_pattern -i (/cgi-bin/|\?) 0	0%	0
