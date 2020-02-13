@@ -17,6 +17,14 @@ sudo systemctl start squid && sudo systemctl enable squid
 acl localnet src 192.168.0.0/23
 #acl users src 192.168.0.200-192.168.0.246
 #acl trusted src 192.168.0.248 192.168.0.247
+#acl localnet src 10.0.0.0/8		# RFC 1918 local private network (LAN)
+#acl localnet src 100.64.0.0/10		# RFC 6598 shared address space (CGN)
+#acl localnet src 169.254.0.0/16 	# RFC 3927 link-local (directly plugged) machines
+#acl localnet src 172.16.0.0/12		# RFC 1918 local private network (LAN)
+#acl localnet src 192.168.0.0/16		# RFC 1918 local private network (LAN)
+#acl localnet src fc00::/7       	# RFC 4193 local private network range
+#acl localnet src fe80::/10      	# RFC 4291 link-local (directly plugged) machines
+
 ### ---end
 
 ### AUTH PARAMS ---start
