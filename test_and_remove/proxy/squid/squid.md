@@ -11,12 +11,23 @@ sudo systemctl start squid && sudo systemctl enable squid
 * /etc/squid.conf
 
 ```sh
+
+### DETERMINE LOCAL NETWORKS
+
+acl localnet src 192.168.0.0/23
+#acl users src 192.168.0.200-192.168.0.246
+#acl trusted src 192.168.0.248 192.168.0.247
+### ---end
+
+### AUTH PARAMS ---start
+
 # Авторизация по логину и паролю
 #auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/internet_users
 #auth_param basic children 5
 #auth_param basic realm =serveR=
 #auth_param basic credentialsttl 2 hours
 #auth_param basic blankpassword off
+### --end
 
 ### DECLARE VALUES ---start
 
@@ -132,6 +143,8 @@ cache_dir aufs /var/spool/squid 4096 16 256
 
 #C- log file
 access_log daemon:/var/log/squid/access.log squid
+#C- обновлять записи в логе раз в 7 дней
+logfile_rotate 7
 coredump_dir /var/spool/squid
 #C- Время жизни объектов в кэше
 refresh_pattern ^ftp:		1440	20%	10080
