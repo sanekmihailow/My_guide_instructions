@@ -7,6 +7,12 @@ apt update
 apt-cache showpkg squid |grep 4.10
 apt install squid-common squid squidclient
 sudo systemctl start squid && sudo systemctl enable squid
+vim /etc/squid/squid.conf
+sqid -k parse &> parse.log && grep -iRn 'error' parse.log
+openssl req -new -newkey rsa:1024 -days 36500 -nodes -x509 -keyout squidCA.pem -out squidCA.pem
+/usr/lib/squid/security_file_certgen -c -s /var/lib/ssl_db -M 4MB
+chown -R proxy. /var/lib/ssl_db
+ifconfig enp1s0 192.168.5.2 netmask 255.255.255.0 nameserver 8.8.8.8 up
 ```
 * /etc/squid.conf
 
