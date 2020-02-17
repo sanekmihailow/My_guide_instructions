@@ -229,6 +229,34 @@ mkdir -p /etc/systemd/system/kopano-{server,spooler,dagent}.service.d
 [Service]
 LimitNOFILE=8192:16384
 ```
+* /etc/systemd/system.conf
+```
+DefaultLimitNOFILE=65536
+```
+* /etc/systemd/user.conf
+```
+DefaultLimitNOFILE=65536
+```
+* etc/security/limits.conf
+```
+* hard nofile 94000
+* soft nofile 94000
+* hard nproc 64000
+* soft nproc 64000
+root hard nofile 65000
+root soft nofile 65000
+root hard nproc 64000
+root soft nproc 64000
+```
+* /etc/pam.d/common-session (add)
+```
+session required pam_limits.so
+```
+* /etc/pam.d/common-session-noninteractive (add)
+```
+session required pam_limits.so
+```
+
 
 #### kopani-migration-imap
 > wants perl packager
