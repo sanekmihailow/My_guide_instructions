@@ -300,6 +300,9 @@ Traceback (most recent call last):
 AttributeError: /usr/bin/python: undefined symbol: magic_open
 ```
 > solution: add magic in 8 str and edit 23 str and comment 101-103 str
+```nginx
+pip install python-magic
+```
 * /usr/lib/python2.7/dist-packages/magic/compat.py
 ```python
 ...
