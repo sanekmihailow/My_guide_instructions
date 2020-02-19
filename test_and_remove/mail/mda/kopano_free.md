@@ -277,7 +277,7 @@ libtry-tiny-perl libwww-perl libwww-robotrules-perl
   <details>
     <summary> AttributeError: /usr/bin/python: undefined symbol: magic_open </summary>
     
-```
+```python
 kopano-search --reindex -u Daniel
 
 Traceback (most recent call last):
