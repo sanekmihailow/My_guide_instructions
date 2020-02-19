@@ -326,6 +326,7 @@ AttributeError: /usr/bin/python: undefined symbol: magic_open
  103 #_list.restype = c_int
  104 #_list.argtypes = [magic_t, c_char_p]
 ...
+```
 
 </details>
 </d>
