@@ -1,3 +1,4 @@
+# kopano version database 8.5.5
 ### first install
 ```nginx
 apt install openssh-server openssh-client
@@ -269,3 +270,62 @@ libmail-imapclient-perl libmail-sendmail-perl libmailtools-perl libmath-random-i
 libnet-http-perl libnet-smtp-ssl-perl libnginx-mod-http-perl libparse-recdescent-perl libreadonly-perl libsys-hostname-long-perl \
 libtry-tiny-perl libwww-perl libwww-robotrules-perl
 ```
+
+### Trouble shootings
+
+<d>
+  <details>
+    <summary> AttributeError: /usr/bin/python: undefined symbol: magic_open </summary>
+    
+```
+kopano-search --reindex -u Daniel
+
+Traceback (most recent call last):
+  File "/usr/sbin/kopano-search", line 3, in <module>
+    import kopano_search
+  File "/usr/lib/python2.7/dist-packages/kopano_search/__init__.py", line 21, in <module>
+    from kopano_search import plaintext
+  File "/usr/lib/python2.7/dist-packages/kopano_search/plaintext.py", line 2, in <module>
+    import magic
+  File "/usr/lib/python2.7/dist-packages/magic/__init__.py", line 361, in <module>
+    add_compat(globals())
+  File "/usr/lib/python2.7/dist-packages/magic/__init__.py", line 325, in add_compat
+    from magic import compat
+  File "/usr/lib/python2.7/dist-packages/magic/compat.py", line 61, in <module>
+    _open = _libraries['magic'].magic_open
+  File "/usr/lib/python2.7/ctypes/__init__.py", line 379, in getattr
+    func = self.getitem(name)
+  File "/usr/lib/python2.7/ctypes/__init__.py", line 384, in getitem
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: /usr/bin/python: undefined symbol: magic_open
+```
+> solution: add magic in 8 str and edit 23 str and comment 101-103 str
+* /usr/lib/python2.7/dist-packages/magic/compat.py
+```python
+...
+  7 import ctypes
+  8 import magic
+  9 from collections import namedtuple
+...
+15 def _init():
+ 16     """
+ 17     Loads the shared library through ctypes and returns a library
+ 18     L{ctypes.CDLL} instance
+ 19     """
+ 20     return ctypes.cdll.LoadLibrary(find_library('magic'))
+ 21 
+ 22 _libraries = {}
+ 23 _libraries['magic'] = magic
+ 24 #_libraries['magic'] = _init()
+...
+ 98 _check = _libraries['magic'].magic_check
+ 99 _check.restype = c_int
+ 100 _check.argtypes = [magic_t, c_char_p]
+ 101 
+ 102 #_list = _libraries['magic'].magic_list
+ 103 #_list.restype = c_int
+ 104 #_list.argtypes = [magic_t, c_char_p]
+...
+
+</details>
+</d>
