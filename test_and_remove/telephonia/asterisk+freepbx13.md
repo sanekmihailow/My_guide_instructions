@@ -126,7 +126,7 @@ menuselect/menuselect --enable CORE-SOUNDS-EN-GSM \
 --enable func_dialgroup \
 --enable app_dial \
 --enable format_mp3 \
---enable res_config_mysql
+--enable res_config_mysql \
 menuselect.makeopts
 
 make
