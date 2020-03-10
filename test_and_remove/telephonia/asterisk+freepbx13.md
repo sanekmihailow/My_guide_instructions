@@ -195,6 +195,9 @@ chown -R asterisk:asterisk /usr/local/var/run/asterisk/ &&
 chown -R asterisk:asterisk /usr/local/var/log/asterisk/ &&
 chown  asterisk:asterisk /usr/local/sbin/asterisk
 ```
+```
+ln -s /usr/local/lib/asterisk /usr/lib
+```
 
 ###### test calls (рабочий вариант т.е. звук в два направления)
 > extensions.conf
