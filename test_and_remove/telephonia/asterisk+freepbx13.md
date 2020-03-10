@@ -199,6 +199,34 @@ chown  asterisk:asterisk /usr/local/sbin/asterisk
 ln -s /usr/local/lib/asterisk /usr/lib
 ```
 
+<d>
+       <details>
+              <summary> link_create_script.sh </summary>
+
+```bash
+#!/bin/bash
+
+cur_path='/usr/LOCAL/asterisk'
+loc_path='/usr/local'
+
+ln -s ${cur_path}/etc/* ${loc_path}/etc/                             || echo 'local/etc failed'
+ln -s ${cur_path}/include/* ${loc_path}/include/                     || echo 'local/include failed'
+ln -s ${cur_path}/lib/* ${loc_path}/lib/                             || echo 'local/lib failed'
+ln -s ${cur_path}/sbin/* ${loc_path}/sbin/                           || echo 'local/sbin failed'
+ln -s ${cur_path}/share/man/man8/* ${loc_path}/share/man/man8        || echo 'local/share failed'
+ln -s ${cur_path}/var/lib/* /var/lib/                                || echo 'var/lib failed'
+ln -s ${cur_path}/var/log/* /var/log/                                || echo 'var/log failed'
+ln -s ${cur_path}/var/run/* /var/run/                                || echo 'var/run failed'
+ln -s ${cur_path}/var/spool/* /var/spool/                            || echo 'var/spool failed'
+
+echo 'links created'
+exit 0
+
+```              
+
+</details>
+</d>
+
 ###### test calls (рабочий вариант т.е. звук в два направления)
 > extensions.conf
 <details>
