@@ -188,7 +188,7 @@ groupadd asterisk
 useradd -d /var/lib/asterisk -g asterisk asterisk
 
 chown -R asterisk:asterisk /usr/local/etc/asterisk/ &&
-chown -R asterisk:asterisk /usr/local/lib/asterisk/ &&
+#chown -R asterisk:asterisk /usr/local/lib/asterisk/ &&
 chown -R asterisk:asterisk /usr/local/var/lib/asterisk/ &&
 chown -R asterisk:asterisk /usr/local/var/spool/asterisk/ &&
 chown -R asterisk:asterisk /usr/local/var/run/asterisk/ &&
