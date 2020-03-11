@@ -99,6 +99,12 @@ autoreconf -i
 ./configure --prefix=$pathtoloc/jansson-git
 make
 make install
+
+ mkdir /usr/LOCAL/janson
+ cd /usr/local/MY_LOCAL/InstalleD/forAsterisk
+ xstow janson/ -t ../../LOCAL/janson/
+ ln -s /usr/LOCAL/janson/include/* /usr/local/include/
+ ln -s /usr/LOCAL/janson/lib/* /usr/local/lib/
 ```
 
 ##### asterisk13.27
