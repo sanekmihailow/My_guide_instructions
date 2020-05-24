@@ -8,3 +8,7 @@ in /etc/fstab
  or
  mount -t cifs //192.168.1.50/data /mnt/data uid=1000,username=user,password=123456,iocharset=utf8 defaults 0 0
 ```                
+### create password smb user
+```nginx
+smbpasswd -a <user>
+```
