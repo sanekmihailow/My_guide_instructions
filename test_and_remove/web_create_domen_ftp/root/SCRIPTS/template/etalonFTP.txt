@@ -1,0 +1,6 @@
+local_root=/home/vtigers/servweb
+download_enable=YES
+
+#---- if use cmds_allowed - chmod write permission denied
+#cmds_allowed=CWD,PASV,EPSV,LIST,MKD,MODE,NLST,NOOP,PASS,PWD,SIZE,TYPE,USER,STOR,REST,FEAT,RETR,SYST,QUIT,PORT,CDUP,RNFR,RMD,DELE,SITE CHMOD,
+#chmod_enable=YES
