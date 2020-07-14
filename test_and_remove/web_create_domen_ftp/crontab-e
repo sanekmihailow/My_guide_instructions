@@ -1,0 +1,2 @@
+*/5 * * * *  /bin/bash /root/SCRIPTS/check-exist.sh
+15 3 * * * /usr/bin/certbot renew --quiet
