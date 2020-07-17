@@ -42,7 +42,7 @@ RenameDir(){
     chown -R "$vtname":"$vtname" "$path_cur"/"$vtname"
     ${mysqlroot} -e "CREATE USER '${vtname}'@'localhost' IDENTIFIED by '${vtpass}';"
     ${mysqlroot} -e "CREATE DATABASE ${vtname};"
-    ${mysqlroot} -e "GRANT ALL ON ${vtname}.* to '${vtname}'@'localhost' IDENTIFIED by '${vtpass}';"
+    ${mysqlroot} -e "GRANT ALL ON ${vtname}.* to '${vtname}'@'%' IDENTIFIED by '${vtpass}';"
 
     for tbname in ${params}; do
         ${mysqlroot} -e "RENAME TABLE ${per_dir}.$tbname to ${vtname}.$tbname"
