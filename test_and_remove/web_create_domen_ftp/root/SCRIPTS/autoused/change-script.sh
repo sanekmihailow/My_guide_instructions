@@ -33,8 +33,8 @@ ChangeConfigInc(){
 
 #---- Rename dir and database
 RenameDir(){
-    #M mysqlroot="mysql --login-path=localRoot"
-    mysqlroot="mysql -u root -pdadadadaeqea"
+    mysqlroot="mysql --login-path=localRoot"
+#M-    mysqlroot="mysql -u root -pdadadadaeqea"
     per_dir="$(echo $(ls ${path_cur} |grep vt |sort |head -n1))"
     params=$(${mysqlroot} -N -e "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE table_schema='${per_dir}'")
     useradd -d "$path_cur"/"$vtname" -s /sbin/nologin "$vtname"
