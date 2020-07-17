@@ -23,7 +23,7 @@ if [[ "$check_ht" ]]; then
         cp "$path_home"/htaccessOld "$path_home"/.htaccess
         chown "$enuser":"$enuser" "$path_home"/.htaccess
     fi
-    ${mysqlroot} -e "GRANT ALL ON ${enuser}.* to '${enuser}'@'%' IDENTIFIED by '${enpass}';" && echo 'enabled'
+    ${mysqlroot} -e "GRANT ALL ON ${enuser}.* to '${enuser}'@'%' IDENTIFIED by '${enpass}';"
     ${mysqlroot} -e "flush privileges;"   
 fi
 exit 0
