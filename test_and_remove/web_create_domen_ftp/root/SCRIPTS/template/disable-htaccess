@@ -3,3 +3,7 @@
     RewriteEngine On
     RewriteRule (.*) https://domain.com/pay?name=servweb [R=301,L]
 </IfModule>
+
+<IfModule mod_headers.c>
+        Header append Cache-Control "no-store, no-cache, must-revalidate"
+</IfModule>
