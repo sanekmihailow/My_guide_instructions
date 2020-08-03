@@ -1,0 +1,13 @@
+#!/bin/bash
+
+user="$1"
+fname="$2 $3 $4"
+email="${user}@chemz.ru"
+pass="$(makepasswd --char 10)"
+
+    echo "$(kopano-admin -c ${user} -p ${pass} -e ${email} -f "${fname}")" 1> /dev/null  &&
+    echo "$(kopano-localized-folders_custom -u ${user} --lang ru_RU.UTF-8)" 1> /dev/null &&
+    echo -e "login - ${user}; password - ${pass}; email - ${email}; ФИО - ${fname} \nwas created" 
+    echo -e "login - ${user}; password - ${pass}; email - ${email}; ФИО - ${fname};" >> /home/administrator/Download/current_passwords
+    
+exit 0
