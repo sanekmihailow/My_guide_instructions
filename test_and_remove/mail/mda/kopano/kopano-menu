@@ -1,0 +1,102 @@
+#!/bin/bash
+
+echo -e 'Введите значение (цифру) которую хотите выполнить:\n
+1) Создать пользователя только для локальных сообщений\n
+2) Создать пользователя для локальных и внешних сообщений\n
+3) Удалить пользователя\n
+4) Переименовать пользователю ФИО и/или login и/или email\n
+5) Выпустите меня, я так устал, я хочу отсюда с*ебаться :('
+read select_menu &&
+restrictions_path='/etc/postfix/restrictions'
+pass_path='/home/administrator/Download/current_passwords'
+
+    if [[ $select_menu = 1 ]]; then
+    #C- create local
+          echo -e "\033[1;33m введите login и ФИО \033[0m \n \033[35m Прмер: hohlov Хохлов Михаил Дмитриевич \033[0m"
+          read k_create_local
+          echo "$(kopano-create-user ${k_create_local})"
+          echo "$(rsync ${pass_path} /SHARE)"
+          sleep 12
+        elif [[ $select_menu = 2 ]]; then
+    #C- create extrernal      
+          echo -e "\033[1;33m введите login и ФИО \033[0m \n \033[35m Прмер: hohlov Хохлов Михаил Дмитриевич \033[0m"
+          read k_create_internal
+          echo "$(kopano-create-user ${k_create_internal})"
+          internal="$(echo ${k_create_internal} |cut -d ' ' -f 1  |sed -e 's/$/@chemz.ru OK/')"
+          echo "${internal} >> ${restrictions_path}/recipient_access"&> /dev/null; echo "${internal} >> ${restrictions_path}/restricted_senders" &> /dev/null
+          echo "$(postmap ${restrictions_path}/recipient_access)"&> /dev/null; echo "$(postmap ${restrictions_path}/restricted_senders)"&> /dev/null
+          echo "$(systemctl restart postfix)"&> /dev/null
+          echo "$(rsync ${pass_path} /SHARE)"
+          sleep 12
+        elif [[ $select_menu = 3 ]]; then
+    #C- delete user      
+          echo -e "введите login\n \033[35m Прмер: hohlov \033[0m"
+          read k_delete_login
+          k_delete_email="$(kopano-admin --details ${k_delete_login} |grep 'Emailaddress' |cut -d: -f2 |sed 's/^\s*//')"
+          K_delete_login_num="$(grep -Rn "${k_delete_email}" ${pass_path} |cut -d: -f1)"
+          k_del_rec="$(grep -Rn "${k_delete_email}" ${restrictions_path}/recipient_access |cut -d: -f1)"
+          k_del_send="$(grep -Rn "${k_delete_email}" ${restrictions_path}/restricted_senders |cut -d: -f1)"
+          echo "$(kopano-admin -d $k_delete_login)"&> /dev/null &&
+          echo "$(sed -i "${k_del_rec}d" ${restrictions_path}/recipient_access)"&> /dev/null
+          echo "$(sed -i "${k_del_send}d" ${restrictions_path}/restricted_senders)"&> /dev/null
+          echo "$(sed -i "${k_delete_login_num}d" ${pass_path})"&> /dev/null
+          echo "$(postmap ${restrictions_path}/recipient_access)"&> /dev/null; echo "$(postmap ${restrictions_path}/restricted_senders)"&> /dev/null
+          echo "$(rsync ${pass_path} /SHARE)"
+        elif [[ $select_menu = 4 ]]; then
+    #C- RENAME      
+          echo -e "\033[1;33m Выберите что вы хотите изменить: \033[0m \n1. ФИО\n2. login\n3. email\n4. все сразу т.е. login, email, ФИО"
+          read select_change
+            if [[ $select_change = 1 ]]; then
+        #C- rename FIO     
+                echo -e "\033[1;33m введите сначала login, затем желаемое ФИО \033[0m \n \033[35m Пример:\n hohlov\n Хохлов Михаил Дмитриевич \033[0m"
+                read k_change_login; read k_change_FIO 
+                k_change_login_num="$(grep -Rn "${k_change_login}" ${pass_path} |cut -d: -f1)"
+                echo "$(kopano-admin -u "$k_change_login" -f "$k_change_FIO")"&> /dev/null &&
+                echo "$(sed -i "${k_change_login_num}s/ФИО.*;/ФИО - ${k_change_FIO};/" ${pass_path})"&> /dev/null
+                echo "$(rsync ${pass_path} /SHARE)"
+              elif [[ $select_change = 2 ]]; then
+        #C- rename login      
+                echo -e "\033[1;33m введите сначала login, затем желаемый login \033[0m \n \033[35m Пример:\n hohlov\n i_am_hohlov \033[0m"
+                read k_change_login; read k_changed_login
+                k_change_login_num="$(grep -Rn "${k_change_login}" ${pass_path} |cut -d: -f1)"
+                echo "$(kopano-admin -u "$k_change_login" -U "$k_changed_login")"&> /dev/null &&
+                echo "$(sed -i "${k_change_login_num}s/login - [a-Z]*\;/login - ${k_changed_login};/" ${pass_path})"&> /dev/null
+                echo "$(rsync ${pass_path} /SHARE)"
+              elif [[ $select_change = 3 ]]; then
+        #C- rename email
+                echo -e "\033[1;33m введите сначала login, затем желаемый email \033[0m \n \033[35m Пример:\n hohlov\n i_am_hohlov \033[0m"
+                read k_change_login; read k_change_email
+                k_change_login_num="$(grep -Rn "${k_change_login}" ${pass_path} |cut -d: -f1)"
+                k_old_email="$(kopano-admin --details ${k_change_login} |grep 'Emailaddress' |cut -d: -f2 |sed 's/^\s*//')"
+                k_chan_rec="$(grep -Rn "${k_old_email}" ${restrictions_path}/recipient_access |cut -d: -f1)"
+                k_chan_send="$(grep -Rn "${k_old_email}" ${restrictions_path}/restricted_senders |cut -d: -f1)"
+                echo "$(kopano-admin -u "$k_change_login" -e "$k_change_email"@chemz.ru)"&> /dev/null &&
+                echo "$(sed -i "${k_change_login_num}s/email - [a-Z]*@chemz.ru\;/email - ${k_change_email}@chemz.ru;/" ${pass_path})"&> /dev/null
+                echo "$(sed -i "${k_chan_rec}s/${k_old_email}/${k_change_email}" ${restrictions_path}/recipient_access)"&> /dev/null
+                echo "$(sed -i "${k_chan_send}s/${k_old_email}/${k_change_email}" ${restrictions_path}/restricted_senders)"&> /dev/null
+                echo "$(postmap ${restrictions_path}/recipient_access)"&> /dev/null; echo "$(postmap ${restrictions_path}/restricted_senders)"&> /dev/null
+                echo "$(systemctl restart postfix.service)"
+                echo "$(rsync ${pass_path} /SHARE)"
+        #C- rename all     
+              elif [[ $select_menu = 4 ]]; then
+                echo -e "i\033[1;33m введите сначала login, затем желаемый login, email, ФИО \033[0m \n
+                   \033[35m Пример:\n hohlov\n i_am_hohlov\n a_ya_hohlov\n Хохлов Михаил Дмитриевич \033[0m"
+                read k_change_login; read k_changed_login; read k_change_email; read k_change_FIO
+                k_change_login_num="$(grep -Rn "${k_change_login}" ${pass_path} |cut -d: -f1)"
+                k_old_email="$(kopano-admin --details ${k_change_login} |grep 'Emailaddress' |cut -d: -f2 |sed 's/^\s*//')"
+                k_chan_rec="$(grep -Rn "${k_old_email}" ${restrictions_path}/recipient_access |cut -d: -f1)"
+                k_chan_send="$(grep -Rn "${k_old_email}" ${restrictions_path}/restricted_senders |cut -d: -f1)"
+                echo "$(kopano-admin -u "$k_change_login" -U "$k_changed_login" -e "$k_change_email"@chemz.ru -f "$k_change_FIO")"&> /dev/null &&
+                echo "$(sed -i "${k_change_login_num}s/login - [a-Z]*\;/login - ${k_changed_login};/" ${pass_path})"&> /dev/null
+                echo "$(sed -i "${k_change_login_num}s/email - [a-Z]*@chemz.ru\;/email - ${k_change_email}@chemz.ru;/" ${pass_path})"&> /dev/null
+                echo "$(sed -i "${k_change_login_num}s/ФИО - .*;/ФИО - ${k_change_FIO};/" ${pass_path})"&> /dev/null
+                echo "$(sed -i "${k_chan_rec}s/${k_old_email}/${k_change_email}@chemz.ru/" ${restrictions_path}/recipient_access)"&> /dev/null
+                echo "$(sed -i "${k_chan_send}s/${k_old_email}/${k_change_email}@chemz.ru/" ${restrictions_path}/restricted_senders)"&> /dev/null
+                echo "$(postmap ${restrictions_path}/recipient_access)"&> /dev/null; echo "$(postmap ${restrictions_path}/restricted_senders)"&> /dev/null
+                echo "$(systemctl restart postfix.service)"
+                echo "$(rsync ${pass_path} /SHARE)"
+            fi    
+        else echo -e "\033[1;34m Ну нах*й, Ну ты видел, видел?? \033[0m "; exit 1
+    fi
+    
+exit 0
