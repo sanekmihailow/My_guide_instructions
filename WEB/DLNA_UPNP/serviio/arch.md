@@ -1,3 +1,6 @@
+# Links
+[raspberry serviio](https://linuxconfig.org/how-to-install-serviio-media-server-on-raspberry-pi)
+
 ### Version
 ```python
  $ yaourt -Q serviio
@@ -13,6 +16,9 @@ yaourt -S serviio
 sudo systemctl enable serviio.service
 /usr/bin/serviio-console
 ```
+
+`localhost:23423/console/#/app/welcome`
+
 
 ### Acestream + Serviio
 ![](https://github.com/sanekmihailow/My_guide_instructions/blob/master/images/serviio.png)
