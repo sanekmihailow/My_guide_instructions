@@ -26,8 +26,8 @@ ls -la /etc/vsftpd/users/"$vtuser"
 echo -e "\n"
 
 echo "---DATABASE---"
-echo $(mysql --login-path=localRoot -e "SHOW DATABASES;" |grep "$vtuser")
-echo $(mysql --login-path=localRoot -e "select user,host from mysql.user;" |grep "$vtuser")
+echo database = $(mysql --login-path=localRoot -e "SHOW DATABASES;" |grep "$vtuser")
+echo user = $(mysql --login-path=localRoot -e "select user,host from mysql.user;" |grep "$vtuser")
 echo -e "\n"
 
 echo "---HOSTS---"
