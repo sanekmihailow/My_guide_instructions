@@ -1,0 +1,2 @@
+add
+www-data ALL= NOPASSWD: /var/www/html/ftp-disable.sh, /var/www/html/ftp-enable.sh, /var/www/html/change.sh
