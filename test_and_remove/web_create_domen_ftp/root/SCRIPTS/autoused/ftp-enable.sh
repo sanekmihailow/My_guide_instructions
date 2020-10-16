@@ -4,6 +4,7 @@ user_path="/etc/vsftpd/user_list"
 path_home="/home/vtigers/${enuser}/domain"
 enpass="$(awk '(NR==26)' ${path_home}/config.inc.php |awk '{print $3}' |sed "s/^'//" |sed "s/';$//")"
 check_ht="$(echo $(grep "    RewriteRule.*domain.com/pay.*$" ${path_home}/.htaccess))"
+check_htold="$(echo $(grep "    RewriteRule.*crm4team.com/pay.*$" ${path_home}/htaccessOld))"
 check_user="$(echo $(grep "${enuser}" ${user_path}))"
 mysqlroot="mysql --login-path=localRoot"
 
@@ -18,8 +19,11 @@ if [[ "$check_user" ]];then
 fi
 
 if [[ "$check_ht" ]]; then
-    echo '1' > /dev/null
+    rm "$path_home"/.htacces
     if [ -f "$path_home"/htaccessOld ]; then
+        if [[ "$check_htold" ]]; then
+            echo 'Options -Indexes' > ${path_home}/htaccessOld
+        fi
         cp "$path_home"/htaccessOld "$path_home"/.htaccess
         chown "$enuser":"$enuser" "$path_home"/.htaccess
     fi
