@@ -10,6 +10,7 @@ tar -cf 7.4.tar 7.4
 a2dismod php7.4 && a2enmod php7.2
 sudo update-alternatives --set php /usr/bin/php7.2
 systemctl restart apache2
+sudo -u www-data php /var/www/owncloud/occ -V #проверим версию или в Docroot/config/config.php
 
 mysqldump -u root -p owncloud > owncloud_10.1.0.4_backup.sql
 sudo -u www-data php /var/www/owncloud/occ maintenance:mode --on
