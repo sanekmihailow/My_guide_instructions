@@ -41,8 +41,12 @@ chown -R www-data. /var/www/owncloud
 ```bash
 2020-11-24T21:03:06+00:00 Repair warning: You have incompatible or missing apps enabled that could not be found or updated via the marketplace.
 2020-11-24T21:03:06+00:00 Repair warning: Please install or update the following apps manually or disable them with:
+```
+```nginx
 occ app:disable files_videoplayer
 occ app:disable ownbackup
+```
+```
 2020-11-24T21:03:06+00:00 Repair warning: For manually updating, see https://doc.owncloud.org/server/10.5/go.php?to=admin-marketplace-apps
 2020-11-24T21:03:06+00:00 OC\RepairException: Upgrade is not possible
 2020-11-24T21:03:06+00:00 Update failed
