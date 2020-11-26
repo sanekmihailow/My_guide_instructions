@@ -50,7 +50,7 @@ occ app:disable ownbackup
 > делаем, то что он просит (выше)
 
 > Исправляем ошибки после обновления
-
+![](https://raw.githubusercontent.com/sanekmihailow/My_guide_instructions/master-origin/images/owncloud_10.5.0._warn_after_upgrade.jpg)
 ```nginx
 apt install php-apcu redis php-redis
 systemctl enable redis-server
