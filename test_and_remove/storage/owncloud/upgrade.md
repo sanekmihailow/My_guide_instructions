@@ -49,6 +49,8 @@ occ app:disable ownbackup
 ```
 > делаем, то что он просит (выше)
 
+> Исправляем ошибки после обновления
+
 ```nginx
 apt install php-apcu redis php-redis
 systemctl enable redis-server
@@ -78,7 +80,7 @@ $CONFIG = array (
   'dbpassword' => '123456',
   'logtimezone' => 'UTC',
   'installed' => true,
-  'mail_domain' => 'sergeyem.ru',
+  'mail_domain' => 'user.ru',
   'mail_from_address' => 'admin',
   'mail_smtpmode' => 'smtp',
   'mail_smtpsecure' => 'ssl',
