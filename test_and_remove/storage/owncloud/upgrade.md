@@ -33,7 +33,6 @@ sudo -u www-data php /var/www/owncloud/occ maintenance:mode --off
 
 a2dismod php7.2 && a2enmod php7.4
 sudo update-alternatives --set php /usr/bin/php7.4
-cp /var/www/owncloud_bak/.htaccess /var/www/owncloud/
 chown -R www-data. /var/www/owncloud
 ```
 
