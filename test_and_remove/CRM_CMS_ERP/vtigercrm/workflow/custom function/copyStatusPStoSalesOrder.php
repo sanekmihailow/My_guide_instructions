@@ -31,7 +31,6 @@ function copyStatusPStoSo($ws_entity)
     //#C- получение значения поля
     $getSoStatusPS = $soInstance->get('cf_2092');
     $getStatusPS = $PSInstance->get('status_side');
-    //$getStatusPS = '11';
     if ($getStatusPS !== $getSoStatusPS) {
         $soInstance->set('mode', 'edit');
         if ($getStatusPS == 'В работе') {
