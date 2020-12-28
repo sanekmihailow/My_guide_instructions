@@ -45,7 +45,7 @@ function <имя_фуункции>($ws_entity){
     }
     //in code start
         //#C - получение списка объектов модуля по странично
-        $pagingModel = new Vtiger_Paging_Model();
+        <$pagingModel> = new Vtiger_Paging_Model();
         $pagingModel->set('page', 1);
         $pagingModel->set('limit', 40);
         <$RelatedModuleList> = Vtiger_RelationListView_Model::getInstance($soInstance, '<relatedModule>', '<tab_label>');
