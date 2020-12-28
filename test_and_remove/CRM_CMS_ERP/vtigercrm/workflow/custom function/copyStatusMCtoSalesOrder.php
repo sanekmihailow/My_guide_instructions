@@ -1,4 +1,3 @@
-```php
 <?php
 
 function copyStatusMCtoSo($ws_entity)
