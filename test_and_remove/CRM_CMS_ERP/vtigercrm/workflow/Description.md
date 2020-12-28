@@ -42,9 +42,21 @@ function <имя_фуункции>($ws_entity){
     if (!$soInstance) {
         return;
     }
+    //in code start
+        //#C - получение списка объектов модуля по странично
+        $pagingModel = new Vtiger_Paging_Model();
+        $pagingModel->set('page', 1);
+        $pagingModel->set('limit', 40);
+        <$RelatedModuleList> = Vtiger_RelationListView_Model::getInstance($soInstance, '<relatedModule>', '<tab_label>');
+        $entries = $RelatedModuleList->getEntries($pagingModel);
+        foreach ($entries as $entry) {
+            //code
+        }
+    // in code end
     //#C - режим едактирования
     $soInstance->set('mode', 'edit');
     // code ...
+
     //#C- сохранить результат редактирования
     $soInstance->save();
     return true;
@@ -77,6 +89,7 @@ function copyField($ws_entity){
     if (!$soInstance) {
         return;
     }
+    
     $soInstance->set('mode', 'edit');
     $soInstance->set('assigned_master', $soInstance->get('assigned_user_id'));
     $products = $soInstance->getProducts();
