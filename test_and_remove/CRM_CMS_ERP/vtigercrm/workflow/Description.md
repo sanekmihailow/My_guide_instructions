@@ -15,7 +15,7 @@ global $current_user;
 global $adb;
 ```
 
-<example.com>/vtigercrm/index.php?**module=<SalesOrder>**&**relatedModule=<MC>**&view=Detail&**record=<170004>**&**mode=<showRelatedList>**&relationId=310&**tab_label=<MC>**&app=INVENTORY
+
 
 ## Example how to work
 ```php
@@ -65,6 +65,8 @@ function <имя_фуункции>($ws_entity){
 ```
 
 ### Простой пример
+<example.com>/vtigercrm/index.php?**module=SalesOrder**&**relatedModule=MC**&view=Detail&**record=<170004>**&**mode=showRelatedList**&relationId=310&**tab_label=MC**&app=INVENTORY
+
 ```php
 <?php
 
