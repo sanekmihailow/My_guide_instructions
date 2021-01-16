@@ -21,3 +21,8 @@ Errors occurred, no packages were upgraded.
 4) `pacman -S  archlinux-keyring`
 5) `pacman-key --refresh-keys --keyserver hkp://pool.sks-keyservers.net`
 6) `pacman -Syu`
+
+Проверка пакета:
+1) Try selecting one of those files, downloading the corresponding *.sig file from your mirror or from https://archive.archlinux.org/packages/, and using
+2) `pacman-key --verify /var/cache/pacman/pkg/${package_file}.sig /var/cache/pacman/pkg/${package_file}`
+3) to check what the error is.
