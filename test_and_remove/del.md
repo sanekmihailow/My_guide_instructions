@@ -1047,7 +1047,161 @@ set accounting=yes default-group=read exclude-groups="" interim-update=0s use-ra
 ```
 
 </details>
+  
+<d>
+  <details>
+    <summary> rb11 with vlan + isolation + ovpn server + ovpn client </summary>
+    
+```bash
+# may/26/2021 00:11:52 by RouterOS 6.45.3
+# software id = 1HCG-KR2L
+#
+# model = 2011UiAS
+# serial number = 8C1709F7E8EC
+/interface bridge
+add fast-forward=no name=Bridge_vlan3
+add fast-forward=no name=Bridge_vlan4
+add admin-mac=B8:69:F4:2A:97:6C auto-mac=no comment=defconf fast-forward=no name=bridge
+/interface ovpn-server
+add name=bind_ovpn4 user=test-user2
+/interface vlan
+add interface=Bridge_vlan3 name=vlan3 vlan-id=3
+add interface=Bridge_vlan4 name=vlan4 vlan-id=4
+/interface ovpn-client
+add certificate=cert_export_ovpn_client1.crt_0 cipher=aes256 connect-to=192.168.188.1 mac-address=02:E9:33:0C:98:65 name=container-test password=1qaz2wsx3edc port=41194 user=ovpn_client1
+/interface list
+add comment=defconf name=WAN
+add comment=defconf name=LAN
+add name=VLAN
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/ip pool
+add name=dhcp_pool-OpenVPN ranges=10.10.10.11-10.10.10.250
+add name=OVPN_srv_pool ranges=192.168.101.2-192.168.101.254
+add name=dhcp_pool3 ranges=192.168.3.2-192.168.3.254
+add name=dhcp_pool4 ranges=192.168.4.2-192.168.4.254
+add name=ovpn1_101 ranges=192.168.100.101
+add name=ovpn1 ranges=192.168.100.1
+add name=ovpn1_102 ranges=192.168.100.102
+add name=ovpn1_103 ranges=192.168.100.103
+add name=DEF_186 ranges=192.168.186.100-192.168.186.252
+/ip dhcp-server
+add address-pool=DEF_186 disabled=no interface=bridge name=defconf_186
+add address-pool=dhcp_pool3 disabled=no interface=Bridge_vlan3 name=dhcp3
+add address-pool=dhcp_pool4 disabled=no interface=Bridge_vlan4 name=dhcp4
+/ppp profile
+add bridge=Bridge_vlan3 local-address=ovpn1 name=profile_ovpn3 remote-address=ovpn1_101
+add bridge=Bridge_vlan4 local-address=192.168.101.1 name=profile_ovpn4 remote-address=192.168.101.102
+/interface bridge port
+add bridge=bridge comment=defconf interface=ether2
+add bridge=Bridge_vlan3 comment=defconf interface=ether3
+add bridge=Bridge_vlan4 comment=defconf interface=ether4
+add bridge=bridge comment=defconf interface=ether5
+add bridge=bridge comment=defconf interface=ether6
+add bridge=bridge comment=defconf interface=ether7
+add bridge=bridge comment=defconf interface=ether8
+add bridge=bridge comment=defconf interface=ether9
+add bridge=bridge comment=defconf interface=ether10
+add bridge=bridge comment=defconf interface=sfp1
+/interface bridge settings
+set use-ip-firewall=yes use-ip-firewall-for-vlan=yes
+/ip neighbor discovery-settings
+set discover-interface-list=LAN
+/interface bridge vlan
+add bridge=Bridge_vlan3 tagged=Bridge_vlan3 untagged=ether3 vlan-ids=3
+add bridge=Bridge_vlan4 tagged=Bridge_vlan4 untagged=ether4 vlan-ids=4
+/interface list member
+add comment=defconf interface=bridge list=LAN
+add comment=defconf interface=ether1 list=WAN
+add interface=Bridge_vlan3 list=VLAN
+add interface=Bridge_vlan4 list=VLAN
+add list=VLAN
+/interface ovpn-server server
+set auth=sha1 certificate=srv-OVPN cipher=blowfish128,aes128,aes192,aes256 default-profile=profile_ovpn3 enabled=yes keepalive-timeout=disabled mode=ethernet require-client-certificate=yes
+/ip address
+add address=192.168.3.1/24 interface=Bridge_vlan3 network=192.168.3.0
+add address=192.168.4.1/24 interface=Bridge_vlan4 network=192.168.4.0
+add address=192.168.186.1/24 interface=bridge network=192.168.186.0
+add address=192.168.220.1/24 interface=ether10 network=192.168.220.0
+/ip dhcp-client
+add comment=defconf dhcp-options=hostname,clientid disabled=no interface=ether1
+/ip dhcp-server network
+add address=192.168.3.0/24 dns-server=192.168.188.1,8.8.8.8 gateway=192.168.3.1
+add address=192.168.4.0/24 dns-server=192.168.188.1,8.8.8.8 gateway=192.168.4.1
+add address=192.168.186.0/24 dns-server=192.168.188.1,8.8.8.8 gateway=192.168.186.1
+/ip dns
+set allow-remote-requests=yes servers=8.8.8.8
+/ip dns static
+add address=192.168.186.1 comment=defconf name=router.lan
+/ip firewall address-list
+add address=192.168.186.0/24 list=router_bridge
+add address=192.168.3.0/24 list=isolated
+add address=192.168.4.0/24 list=isolated
+add address=192.168.4.0/24 list=ISOLATE_VLAN3
+add address=192.168.101.0/24 list=ISOLATE_VLAN3
+add address=192.168.100.0/24 list=ovpn3
+add address=192.168.100.0/24 list=Internet_access
+add address=192.168.101.0/24 list=Internet_access
+add address=192.168.3.0/24 list=Internet_access
+add address=192.168.4.0/24 list=Internet_access
+add address=192.168.186.0/24 list=Internet_access
+add address=192.168.3.0/24 list=ISOLATE_VLAN4
+add address=192.168.100.0/24 list=ISOLATE_VLAN4
+add address=192.168.101.0/24 list=isolated
+add address=192.168.100.0/24 list=isolated
+add address=192.168.101.0/24 list=ovpn4
+add address=192.168.188.0/24 list=router_bridge
+/ip firewall filter
+add action=drop chain=forward dst-address-list=router_bridge dst-port=!53 in-interface-list=VLAN log-prefix="forward reject guest" protocol=tcp src-address-list=isolated
+add action=drop chain=forward dst-address-list=ISOLATE_VLAN3 in-interface-list=VLAN log-prefix="forward reject guest" src-address-list=ovpn3
+add action=drop chain=forward dst-address-list=ISOLATE_VLAN4 in-interface-list=VLAN log-prefix="forward reject guest" src-address-list=ovpn4
+add action=accept chain=input comment="defconf: accept to local loopback (for CAPsMAN)" dst-address=127.0.0.1
+add action=accept chain=input protocol=icmp
+add action=accept chain=input connection-state=established,related in-interface-list=WAN
+add action=accept chain=forward connection-state=established,related in-interface-list=WAN
+add action=accept chain=input comment=OVPN connection-state=new dst-port=1194 log=yes log-prefix=OVPN_pref protocol=tcp
+add action=accept chain=forward comment="defconf: accept in ipsec policy" ipsec-policy=in,ipsec
+add action=accept chain=forward comment="defconf: accept out ipsec policy" ipsec-policy=out,ipsec
+add action=drop chain=input connection-state=invalid in-interface-list=WAN
+add action=drop chain=forward connection-state=invalid in-interface-list=WAN
+add action=drop chain=input comment="Drop all other input connections" in-interface-list=WAN
+add action=accept chain=forward comment="Access Internet From LAN" src-address-list=Internet_access
+add action=fasttrack-connection chain=forward comment="defconf: fasttrack" connection-state=established,related
+add action=drop chain=forward comment="Drop all other forward connections"
+/ip firewall nat
+add action=masquerade chain=srcnat comment="defconf: masquerade" ipsec-policy=out,none out-interface-list=WAN
+/ip firewall service-port
+set sip disabled=yes
+/ip route rule
+add action=unreachable disabled=yes dst-address=192.168.186.1/32 src-address=192.168.100.0/24
+add action=unreachable disabled=yes dst-address=192.168.100.0/24 src-address=192.168.186.1/32
+/ip service
+set telnet address=192.168.188.0/24,192.168.186.0/24,192.168.220.0/24,192.168.230.0/24 port=223
+set ftp address=192.168.188.0/24,192.168.186.0/24,192.168.220.0/24,192.168.230.0/24 port=221
+set www address=192.168.188.0/24,192.168.186.0/24,192.168.220.0/24,192.168.230.0/24 port=26535
+set ssh address=192.168.188.0/24,192.168.186.0/24,192.168.220.0/24,192.168.230.0/24 port=222
+set api address=192.168.186.0/24,192.168.188.0/24,192.168.220.0/24,192.168.230.0/24
+set winbox address=192.168.186.0/24,192.168.186.0/24,192.168.220.0/24,192.168.230.0/24
+set api-ssl address=192.168.188.0/24 disabled=yes
+/ppp secret
+add name=oukitelk10000pro password=qwerty12345 service=ovpn
+add name=test-user-1 password=1qaz2wsx3edc profile=profile_ovpn3 service=ovpn
+add name=test-user2 password=1qaz2wsx profile=profile_ovpn4 service=ovpn
+/system clock
+set time-zone-name=Europe/Moscow
+/system logging
+add topics=ovpn,debug
+add topics=ovpn,debug
+/tool mac-server
+set allowed-interface-list=LAN
+/tool mac-server mac-winbox
+set allowed-interface-list=LAN    
+```
 
+  </details>
+ </d>  
+    
+    
 # ------------------------------------------ hap
 
 <d>
@@ -1555,11 +1709,112 @@ set file-limit=1000KiB file-name="" filter-cpu="" filter-direction=any filter-in
 set latency-distribution-max=100us measure-out-of-order=yes stats-samples-to-keep=100 test-id=0
 /user aaa
 set accounting=yes default-group=read exclude-groups="" interim-update=0s use-radius=no
-
 ```
 
   </details>
 </d> 
 
+  
+<d>
+  <details>
+    <summary> hap ac with ovpn server + lte </summary>
+    
+```bash
+# may/26/2021 00:10:53 by RouterOS 6.45.9
+# software id = EWEL-ZKSK
+#
+# model = RB952Ui-5ac2nD
+# serial number = CC460CA43AE1
+/interface lte
+set [ find ] mac-address=AC:50:43:7F:EA:C9 name=lte1
+/interface bridge
+add disabled=yes fast-forward=no name=Bridge_OVPN
+add admin-mac=48:8F:5A:E0:87:88 auto-mac=no comment=defconf name=bridge
+/interface wireless
+set [ find default-name=wlan1 ] band=2ghz-b/g/n channel-width=20/40mhz-XX disabled=no distance=indoors frequency=auto installation=indoor mode=ap-bridge ssid=MikroTik-E0878D \
+    wireless-protocol=802.11
+set [ find default-name=wlan2 ] band=5ghz-a/n/ac channel-width=20/40/80mhz-XXXX disabled=no distance=indoors frequency=auto installation=indoor mode=ap-bridge ssid=MikroTik-E0878C \
+    wireless-protocol=802.11
+/interface list
+add comment=defconf name=WAN
+add comment=defconf name=LAN
+/interface wireless security-profiles
+set [ find default=yes ] authentication-types=wpa2-psk eap-methods="" mode=dynamic-keys supplicant-identity=MikroTik wpa2-pre-shared-key=q1w2e3r4t5y6u7i8o9p0
+/ip hotspot profile
+set [ find default=yes ] html-directory=flash/hotspot
+/ip pool
+add name=pool_188 ranges=192.168.188.100-192.168.188.252
+add name=OVPN_pool ranges=172.16.21.2-176.16.21.252
+/ip dhcp-server
+add address-pool=pool_188 disabled=no interface=bridge name=dchp_188
+/ppp profile
+add local-address=172.16.21.1 name=OVPN_profile_switch remote-address=OVPN_pool
+/interface bridge port
+add bridge=bridge comment=defconf interface=ether2
+add bridge=bridge comment=defconf interface=ether3
+add bridge=bridge comment=defconf interface=ether4
+add bridge=bridge comment=defconf disabled=yes interface=ether5
+add bridge=bridge comment=defconf interface=wlan1
+add bridge=bridge comment=defconf interface=wlan2
+/ip neighbor discovery-settings
+set discover-interface-list=LAN
+/interface list member
+add comment=defconf interface=bridge list=LAN
+add comment=defconf interface=ether1 list=WAN
+add interface=lte1 list=WAN
+add interface=ether5 list=LAN
+/interface ovpn-server server
+set auth=sha1 certificate=OVPN_server_cross_switch cipher=blowfish128,aes128,aes192,aes256 enabled=yes keepalive-timeout=disabled port=41194 require-client-certificate=yes
+/ip address
+add address=192.168.188.1/24 interface=bridge network=192.168.188.0
+add address=192.168.230.1/24 interface=ether5 network=192.168.230.0
+/ip dhcp-client
+add comment=defconf dhcp-options=hostname,clientid disabled=no interface=ether1
+/ip dhcp-server lease
+add address=192.168.188.5 client-id=1:b8:69:f4:2a:97:6b mac-address=B8:69:F4:2A:97:6B server=dchp_188
+/ip dhcp-server network
+add address=192.168.188.0/24 gateway=192.168.188.1
+/ip dns
+set allow-remote-requests=yes servers=8.8.8.8
+/ip dns static
+add address=192.168.188.1 comment=defconf name=router.lan
+/ip firewall filter
+add action=accept chain=input comment="defconf: accept established,related,untracked" connection-state=established,related,untracked
+add action=accept chain=input connection-state=new dst-port=41194 in-interface-list=WAN protocol=tcp
+add action=drop chain=input comment="defconf: drop invalid" connection-state=invalid
+add action=accept chain=input comment="defconf: accept ICMP" protocol=icmp
+add action=accept chain=input comment="defconf: accept to local loopback (for CAPsMAN)" dst-address=127.0.0.1
+add action=drop chain=input comment="defconf: drop all not coming from LAN" in-interface-list=!LAN
+add action=accept chain=forward comment="defconf: accept in ipsec policy" ipsec-policy=in,ipsec
+add action=accept chain=forward comment="defconf: accept out ipsec policy" ipsec-policy=out,ipsec
+add action=fasttrack-connection chain=forward comment="defconf: fasttrack" connection-state=established,related
+add action=accept chain=forward comment="defconf: accept established,related, untracked" connection-state=established,related,untracked
+add action=drop chain=forward comment="defconf: drop invalid" connection-state=invalid
+add action=drop chain=forward comment="defconf: drop all from WAN not DSTNATed" connection-nat-state=!dstnat connection-state=new in-interface-list=WAN
+/ip firewall nat
+add action=masquerade chain=srcnat comment="defconf: masquerade" ipsec-policy=out,none out-interface-list=WAN
+add action=dst-nat chain=dstnat dst-port=44500 protocol=tcp to-addresses=192.168.188.5 to-ports=1194
+/ip service
+set telnet address=192.168.188.0/24,192.168.186.0/24,192.168.230.0/24,192.168.220.0/24 port=223
+set ftp address=192.168.188.0/24,192.168.186.0/24,192.168.230.0/24,192.168.220.0/24 port=221
+set www address=192.168.188.0/24,192.168.186.0/24,192.168.230.0/24,192.168.220.0/24 port=26535
+set ssh address=192.168.188.0/24,192.168.186.0/24,192.168.230.0/24,192.168.220.0/24 port=222
+set api address=192.168.188.0/24,192.168.186.0/24,192.168.230.0/24,192.168.220.0/24
+set winbox address=192.168.188.0/24,192.168.186.0/24,192.168.230.0/24,192.168.220.0/24
+set api-ssl disabled=yes
+/ppp secret
+add name=ovpn_client1 password=1qaz2wsx3edc profile=OVPN_profile_switch service=ovpn
+/system clock
+set time-zone-autodetect=no time-zone-name=Europe/Moscow
+/system ntp client
+set enabled=yes primary-ntp=128.138.141.172 secondary-ntp=51.105.208.173
+/tool mac-server
+set allowed-interface-list=LAN
+/tool mac-server mac-winbox
+set allowed-interface-list=LAN
+```
+    
+  </details>
+</d>  
 
       
