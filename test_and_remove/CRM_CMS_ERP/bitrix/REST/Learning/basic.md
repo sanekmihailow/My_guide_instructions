@@ -1,3 +1,8 @@
+
+  <details>
+    <summary> CRM </summary>
+
+### Константы CRM
 |Тип сущности|    Числовой идентификатор (entityTypeId)|  Символьный код (entityTypeName)| Краткий символьный код|  Тип сущности пользовательского поля|
 |---|---|---|---|---|
 |Лид |1|LEAD|L|CRM_LEAD|
@@ -8,3 +13,6 @@
 |Счет (новый)|31|SMART_INVOICE|SI|CRM_SMART_INVOICE|
 |Предложение| 7|QUOTE|Q|CRM_QUOTE|
 |Реквизит|8|REQUISITE|RQ|CRM_REQUISITE|
+
+</details>
+     
