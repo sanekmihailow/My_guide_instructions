@@ -65,3 +65,8 @@
 |userconsent | Работа с соглашениями|
  
 </details>
+
+#### События REST
+
+[Все события Rest](https://dev.1c-bitrix.ru/rest_help/rest_sum/events/events.php)
+
