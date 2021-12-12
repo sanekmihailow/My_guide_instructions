@@ -7,8 +7,21 @@
 Для вебхуков синтаксис вызова отличается, однако все равно содержит имя метода, параметры метода и транспорт.
  https://bitrix24.ru/rest/имя_метода.транспорт?параметры_метода&auth=ключ_авторизации
  
- Пример:
+ Пример: Получим поля сделки с id 10
  
+ ```php
+ BX24.callMethod(
+  "crm.deal.get",
+  { id: 10 },
+  function(result)
+  {
+    if(result.error())
+      console.error(result.error());
+    else
+      console.dir(result.data());
+  }
+);
+```
 
 
 #### 2) Права на методы REST
