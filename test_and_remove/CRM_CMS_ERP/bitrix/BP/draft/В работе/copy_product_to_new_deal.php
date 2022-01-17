@@ -1,4 +1,4 @@
-
+<?
 // -- продажи - копировать товар в сделку лаборатории по типу товара
 $rootActivity = $this->GetRootActivity();
 use \Bitrix\Crm;
