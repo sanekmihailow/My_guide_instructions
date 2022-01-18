@@ -14,7 +14,7 @@ loadkeys ru
         swap = 82
         
 ```        
-fdissk /dev/sd*
+fdisk /dev/sd*
 cfdisk /dev/sd*
 ```
         
