@@ -15,6 +15,7 @@ loadkeys ru
         
         
 fdissk /dev/sd*
+cfdisk /dev/sd*
 
         
  ##### create logical partitions like LVM
