@@ -9,7 +9,13 @@ loadkeys ru
         n - create
         p - view
         t - type
+        o - MBR format
+        g - GPT format
         swap = 82
+        
+        
+fdissk /dev/sd*
+
         
  ##### create logical partitions like LVM
  ```nginx
