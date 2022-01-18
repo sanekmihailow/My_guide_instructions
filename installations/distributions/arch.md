@@ -13,10 +13,10 @@ loadkeys ru
         g - GPT format
         swap = 82
         
-        
+```        
 fdissk /dev/sd*
 cfdisk /dev/sd*
-
+```
         
  ##### create logical partitions like LVM
  ```nginx
