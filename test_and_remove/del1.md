@@ -25,6 +25,8 @@ Current LE             55578
 
 `lvreduce -L-2G /dev/lv/home`
 
+`e2fsck /dev/lv/home`
+
 `lvdisplay /dev/lv/home`
 
 `vgdisplay`
@@ -54,3 +56,21 @@ Current LE             55578
 
 И наконец, расширяем файловую систему до полного размера раздела
 `resize2fs /dev/pve/data`
+
+`e2fsck /dev/lv/home`
+
+`lvdisplay /dev/vg_ss/lv_home`
+
+`vgdisplay`
+#### Alternatives
+```
+umount /dev/mapper/vg_d620-lv_example
+e2fsck -f /dev/mapper/vg_d620-lv_exampl
+resize2fs -p /dev/mapper/vg_d620-lv_example 30G
+lvreduce -L 30G /dev/mapper/vg_d620-lv_example
+e2fsck -f /dev/mapper/vg_d620-lv_example
+mount /dev/mapper/vg_d620-lv_example /mnt/example
+```
+
+
+
