@@ -17,7 +17,7 @@ PE Size               4,00 MiB
 Current LE             55578
 Это кол-во логических блоков Current LE 55578, каждый блок как мы помним 4M. Получается что общий объем /home 222312M мы хотим отрезать от него 2048M в конечном итоге /home должен стать размером 220264M.
 ```
-`umount /home`
+`umount /dev/vg/home`
 
 `e2fsck -f /dev/lv/home`
 
@@ -29,6 +29,8 @@ Current LE             55578
 
 `vgdisplay`
 #### Alternatives
+`umount /dev/vg/home`
+
 `e2fsck -f /dev/vg_ss/lv_home`
 
 `lvreduce -r -L -500G /dev/vg_ss/lv_home`
@@ -40,6 +42,8 @@ Current LE             55578
 
 `vgdisplay`
 #### Alternatives
+`umount /dev/vg/home`
+
 `e2fsck -f /dev/pve/data`
 
 Затем уменьшаем файловую систему на размер, меньший, чем будет раздел в итоге.
