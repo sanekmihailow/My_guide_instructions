@@ -32,7 +32,7 @@ else {
         $pishem = 'YES';
         $catalogid = $arraysAll['Catalogs'][$i];
         $product_basket_id = $arraysAll['IDs'][$i];
-        AddMessage2Log("for: ".print_r($catalogid,true),"catalogid");
+	    
         if ($catalogid == "$NumCatalog" || $catalogid == "$NumCatalog1"){
         } else {
             $pishem = 'NO';
@@ -41,7 +41,6 @@ else {
         if ($pishem == 'YES'){
             $change_products[] = $product_basket_id;
         }
-        AddMessage2Log("for: ".print_r($pishem,true),"pishem");
     }
 
     $count_products = count($change_products);
