@@ -1,4 +1,4 @@
-```php
+<?
 $rootActivity = $this->GetRootActivity();
 
 $up = $rootActivity->GetVariable("rabmest_up");
