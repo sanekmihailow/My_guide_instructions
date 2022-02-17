@@ -1,4 +1,4 @@
-```php
+<?
 $rootActivity = $this->GetRootActivity();
 
 //#C- 25,26 - ID нумератора в "Нумераторы для документов"
