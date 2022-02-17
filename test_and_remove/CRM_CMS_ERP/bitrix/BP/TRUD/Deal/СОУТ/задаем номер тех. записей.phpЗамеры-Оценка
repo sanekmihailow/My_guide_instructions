@@ -1,4 +1,4 @@
-```php
+<?
 $rootActivity = $this->GetRootActivity();
 
 $numerator_tz = \Bitrix\Main\Numerator\Numerator::load(26);
