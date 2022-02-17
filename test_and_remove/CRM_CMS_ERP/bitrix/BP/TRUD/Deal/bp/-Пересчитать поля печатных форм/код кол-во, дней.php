@@ -1,4 +1,4 @@
-```php
+<?
 $rootActivity = $this->GetRootActivity();
 $kolvo=$rootActivity->GetVariable("kolvo_mest");
 $srok=$rootActivity->GetVariable("srok_uslug");
