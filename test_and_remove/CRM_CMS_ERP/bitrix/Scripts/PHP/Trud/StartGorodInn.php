@@ -25,8 +25,8 @@ $dbRes = $dbRes->Fetch();
 $dbRes = $dbRes['ID'];
 $range_end = $dbRes;
 
-$filename = __DIR__ . '/D.log';
-file_put_contents($filename, "$range_end\n");
+//$filename = __DIR__ . '/D.log';
+//file_put_contents($filename, "$range_end\n");
 
 for ($i = $range_start; $i <= $range_end; $i++) {
 //for ($i = 2; $i < 1000; $i++) {
