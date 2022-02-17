@@ -1,4 +1,4 @@
-```php
+<?
 $rootActivity = $this->GetRootActivity();
 use \Bitrix\Crm;
 global $USER_FIELD_MANAGER;
