@@ -28,3 +28,12 @@ if ($count_otchet = 5) {
 } else {
     $set_company_otchet = $USER_FIELD_MANAGER->Update('CRM_COMPANY', $company_id, array("UF_CRM_1584804508" => array(CFile::MakeFileArray($otchet_deal[0]))));
 }
+
+//C - вариант лучше
+/*
+foreach ($otchet_deal as $id) {
+	$doc = CFile::MakeFileArray($id);
+	$arrayDoc[] = $doc;
+}
+$USER_FIELD_MANAGER->Update('CRM_COMPANY', $company_id, array("$docfield" => $arrayDoc));
+*/
