@@ -1,4 +1,4 @@
-```php
+<?
 $rootActivity = $this->GetRootActivity();
 
 $isp_uslugi = "{{Исполнение услуги (кол-во дней)!}}";
