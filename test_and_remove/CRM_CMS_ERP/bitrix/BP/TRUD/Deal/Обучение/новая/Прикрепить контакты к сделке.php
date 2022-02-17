@@ -8,5 +8,8 @@ $deal_id = {{ID}};
 $ContactIds = "{=Variable:Contacts_id}";
 //#-----
 
-$arContactIds = explode(" ", $ContactIds);
-$rs = \Bitrix\Crm\Binding\DealContactTable::bindContactIDs($deal_id,$arContactIds);
+if (empty($ContactIds)) {
+} else {
+    $arContactIds = explode(" ", $ContactIds);
+    $rs = \Bitrix\Crm\Binding\DealContactTable::bindContactIDs($deal_id,$arContactIds); 
+}   
