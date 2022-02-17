@@ -1,4 +1,4 @@
-```php
+<?
 //в начале объявляем текущий бизнес-процесс
 $rootActivity = $this->GetRootActivity(); 
 
