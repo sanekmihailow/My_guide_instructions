@@ -36,7 +36,9 @@ Current LE             55578
 `e2fsck -f /dev/vg_ss/lv_home`
 
 `lvreduce -r -L -500G /dev/vg_ss/lv_home`
-на всякий `resize2fs /dev/vg_ss/lv_home 500G`
+> если resize2gf не сработал, на всякий `resize2fs /dev/vg_ss/lv_home 500G`
+> 
+> 500 - это размер, который мы хотим задать для файловой системы, а не на который мы хотим уменьшить файловую систему.
 
 `e2fsck /dev/lv/home`
 
