@@ -36,7 +36,7 @@ Current LE             55578
 `e2fsck -f /dev/vg_ss/lv_home`
 
 `lvreduce -r -L -500G /dev/vg_ss/lv_home`
-на всякий `resize2fs /dev/vg_ss/lv_home`
+на всякий `resize2fs /dev/vg_ss/lv_home 500G`
 
 `e2fsck /dev/lv/home`
 
