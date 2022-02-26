@@ -4,7 +4,10 @@
 # Lv increase
 Run `pvresize /dev/sd*` to have LVM pick up the new space.
 `lvextend -r -L+20G`
-на всякий `resize2fs /dev/myserver/mylogicalvolume`
+
+> если resize2fs не сработал, на всякий `resize2fs /dev/myserver/mylogicalvolume`
+
+
 #### Alternatives
 `lvresize --size +40G /dev/vg0/foo`
 
@@ -36,8 +39,7 @@ Current LE             55578
 `e2fsck -f /dev/vg_ss/lv_home`
 
 `lvreduce -r -L -500G /dev/vg_ss/lv_home`
-> если resize2gf не сработал, на всякий `resize2fs /dev/vg_ss/lv_home 500G`
-> 
+>  на всякий `resize2fs /dev/vg_ss/lv_home 500G`
 > 500 - это размер, который мы откусим от основной, т.е. 2Tb - 500gb = 1.5 Tb.
 
 `e2fsck /dev/lv/home`
