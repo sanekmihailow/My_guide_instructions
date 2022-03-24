@@ -10,8 +10,8 @@
 /certificate sign template-client-to-issue ca="OVPN-CA" name="rbk_client-1"  //# ovpn-client
 
 
-/ip pool add name=OVPN_srv_pool ranges=192.168.100.2-192.168.100.254
-/ppp profile add name=OVPN_server local-address=192.168.100.1 remote-address=OVPN_srv_pool
+/ip pool add name=OVPN_srv_pool ranges=192.168.120.2-192.168.120.254
+/ppp profile add name=OVPN_server local-address=192.168.120.1 remote-address=OVPN_srv_pool
 /ppp aaa set accounting=yes
 /ppp secret add name=test-user-1 password=P@ssword1 service=ovpn profile=OVPN_server
 /interface ovpn-server server set auth=sha1 cipher=blowfish128 default-profile=OVPN_server mode=ip netmask=24 require-client-certificate=yes certificate=srv-OVPN enabled=yes
