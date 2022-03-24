@@ -7,4 +7,4 @@
 
 /certificate add name=template-client country="" state="" locality="" organization="" unit="" common-name="client-ovpn-template" key-size=4096 days-valid=36500 key-usage=tls-client
 /certificate add name=template-client-to-issue copy-from="template-client" common-name="rbk_client-1" //# ovpn-client
-/certificate sign template-CL-to-issue ca="OVPN-CA" name="rbk_client-1"  //# ovpn-client
+/certificate sign template-client-to-issue ca="OVPN-CA" name="rbk_client-1"  //# ovpn-client
