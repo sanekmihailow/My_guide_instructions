@@ -4,6 +4,7 @@ $ownerID - id $ownerType, т.е. id сделки,лида... в самой су�
 $arRows - массив с данными, например:
 ```
 ```php
+            $product_detail = CCrmProductRow::GetByID($id);
             $Product_id = $product_detail['PRODUCT_ID'];
             $Quanity = $product_detail['QUANTITY'];
             $Price = $product_detail['PRICE'];
