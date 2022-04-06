@@ -1,6 +1,6 @@
 ```nginx
-$ownerType - тип сделки (D,L,Q..)
-$ownerID - id $ownerType, т.е. id сделки в самой сущности
+$ownerType - тип сущности (D,L,Q..)
+$ownerID - id $ownerType, т.е. id сделки,лида... в самой сущности
 $arRows - массив с данными, например:
 ```
 ```php
