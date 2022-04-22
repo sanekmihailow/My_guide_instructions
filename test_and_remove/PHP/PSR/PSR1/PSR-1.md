@@ -48,7 +48,7 @@ class ExampleClass //Имена классов
 }
 
 Myclass = new ExampleClass();
-echo $Myclass -> getVersion; // getVersion - имя метода и вернет "1.0"
+echo $Myclass -> getVersion(); // getVersion - имя метода и вернет "1.0"
 ```
 > Метод - это функция или процедура, которая принадлежит классу или экземпляру класса.
  
