@@ -1,6 +1,6 @@
 <?
-require_once("/var/www/bitrix/local/Functions/Bitrix_RestFunctions.php");
-require_once("/var/www/bitrix/local/Functions/MyComfort_functions.php");
+require_once("/var/www/bitrix/local/MyFunctions/Bitrix_RestFunctions.php");
+require_once("/var/www/bitrix/local/MyFunctions/MyComfort_functions.php");
 $request = $_REQUEST;
 //writeToLog($request, 'Invoice_incomming');
 
