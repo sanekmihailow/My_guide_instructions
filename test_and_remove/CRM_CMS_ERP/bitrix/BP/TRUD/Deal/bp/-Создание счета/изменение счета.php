@@ -3,6 +3,7 @@ $rootActivity = $this->GetRootActivity();
 use \Bitrix\Crm;
 global $USER_FIELD_MANAGER;
 
+$deal_id = {{ID}};
 $invoice_id = {=Variable:id_invoice};
 $from = $rootActivity->GetVariable("why_are_you_from");
 
@@ -23,34 +24,41 @@ $pay_saratov1 = '22';
 $pay_saratov2 = '33';
 $pay_smolensk = '23';
 $pay_ulyanovsk = '24';
+$pay_simferopol = '34';
 
-//#C- CHECK mycompany and pay system
-if ($from == 'Cheb'){
-    $cur_mycompany = $mycompany_cheb;
-    $cur_pay = $pay_cheb ;
-} elseif ($from == 'Alm'){
-    $cur_mycompany = $mycompany_alm;
-    $cur_pay = $pay_alm;
-} elseif ($from == 'Krim'){
-    $cur_mycompany = $mycompany_cheb;
-    $cur_pay = $pay_krim;
-} elseif ($from == 'Saransk'){
-    $cur_mycompany = $mycompany_cheb;
-    $cur_pay = $pay_saransk;
-} elseif ($from == 'Saratov1'){
-    $cur_mycompany = $mycompany_cheb;
-    $cur_pay = $pay_saratov1;
-} elseif ($from == 'Saratov2'){
-    $cur_mycompany = $mycompany_cheb;
-    $cur_pay = $pay_saratov2;
-} elseif ($from == 'Smolensk'){
-    $cur_mycompany = $mycompany_cheb;
-    $cur_pay = $pay_smolensk;
-} elseif ($from == 'Ulyanovsk'){
-    $cur_mycompany = $mycompany_cheb;
-    $cur_pay = $pay_ulyanovsk;
-} else {}
-
+$arProducts = CAllCrmProductRow::LoadRows(D, $deal_id);
+$count_products = count($arProducts);
+if (empty($count_products)) {
+	//#C- CHECK mycompany and pay system
+	if ($from == 'Cheb'){
+		$cur_mycompany = $mycompany_cheb;
+		$cur_pay = $pay_cheb ;
+	} elseif ($from == 'Alm'){
+		$cur_mycompany = $mycompany_alm;
+		$cur_pay = $pay_alm;
+	} elseif ($from == 'Krim'){
+		$cur_mycompany = $mycompany_cheb;
+		$cur_pay = $pay_krim;
+	} elseif ($from == 'Saransk'){
+		$cur_mycompany = $mycompany_cheb;
+		$cur_pay = $pay_saransk;
+	} elseif ($from == 'Saratov1'){
+		$cur_mycompany = $mycompany_cheb;
+		$cur_pay = $pay_saratov1;
+	} elseif ($from == 'Saratov2'){
+		$cur_mycompany = $mycompany_cheb;
+		$cur_pay = $pay_saratov2;
+	} elseif ($from == 'Smolensk'){
+		$cur_mycompany = $mycompany_cheb;
+		$cur_pay = $pay_smolensk;
+	} elseif ($from == 'Ulyanovsk'){
+		$cur_mycompany = $mycompany_cheb;
+		$cur_pay = $pay_ulyanovsk;
+	} elseif ($from == 'Simferopol'){
+		$cur_mycompany = $mycompany_cheb;
+		$cur_pay = $pay_simferopol;
+	} else {}
+}
 //#C- SET mycompany and pay ------
 //#C- Update pay
 $invoice = new \CCrmInvoice( false );
