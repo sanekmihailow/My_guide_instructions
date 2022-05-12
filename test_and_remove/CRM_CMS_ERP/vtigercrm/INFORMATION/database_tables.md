@@ -13,3 +13,9 @@ DELETE FROM `<database>`.`vtiger_modtracker_detail` WHERE `id`='<number>';
 
 **`vtiger_crmentity`**
 > привязка модулей к label
+
+**vtiger_cvcolumnlist**
+> инфа о полях в созданных фильтрах во &view=list
+
+**vtiger_cvadvfilter**
+> инфа о датах в созданных фильтрах во &view=list
