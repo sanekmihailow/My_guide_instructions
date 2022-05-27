@@ -31,12 +31,12 @@ console.log(/*IGNORED!*/ 5);  // Still just prints 5
 
 ##### Арифметические операции
 ###### ----------
-| ***eng** | ***пример*** |
-|:---|:---:|
-|Add|+|
-|Subtract|-|
-|Multiply|*|
-|Divide|/|
+| ***eng** | ***пример*** | ***пример c переменной*** |
+|:---|:---:|:---|
+|Add|+| w += 1 &#124; w++ |
+|Subtract|-| w -= 1 &#124; w-- |
+|Multiply|*| w *= 1 |
+|Divide|/| w /= 1 |
 |Remainder|%|
 `console.log(3 + 4);`
 
@@ -47,6 +47,14 @@ console.log(/*IGNORED!*/ 5);  // Still just prints 5
 console.log('hi' + 'ya'); // Prints 'hiya'
 console.log('no' + 'space'); // Prints 'nospace'
 console.log('middle' + ' ' + 'space'); // Prints 'middle space'
+```
+
+##### Интерполяция строк
+###### ----------
+```js
+let myName = 'A'
+let myCity = 'Cheb'
+console.log(`My name is ${myName}. My favorite city is ${myCity}.`) // My name is A. My favorite city is Cheb.
 ```
 
 ##### Характеристики (Properties instance)
@@ -147,7 +155,6 @@ const person = {
 person.name = 'Kim Kardashian West' // ✅
 person = {} // ❌ Assignment to constant variable.
 ```
-
 ```
  var VS let VS const
  var: 
@@ -156,8 +163,31 @@ person = {} // ❌ Assignment to constant variable.
  let: 
    1.block scoped
    2.ReferenceError when accessing a variable before it's declared
- const:
+const:
   1.block scoped
   2.ReferenceError when accessing a variable before it's declared
   3.can't be reassigned
 ```
+
+
+
+<table>
+<tr>
+    <td> тип </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> typeof </td>
+ <td> typeof variable </td>
+ <td>
+  
+```js
+const unknown1 = 'foo';
+console.log(typeof unknown1); // Output: string
+```
+ 
+</td>
+</tr>
+</table>
+
