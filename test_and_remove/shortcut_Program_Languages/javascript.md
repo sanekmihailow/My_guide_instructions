@@ -169,7 +169,8 @@ const:
   3.can't be reassigned
 ```
 
-
+##### Операторы
+###### ----------
 
 <table>
 <tr>
