@@ -192,3 +192,64 @@ console.log(typeof unknown1); // Output: string
 </tr>
 </table>
 
+##### Условные Операторы
+###### ----------
+
+<table>
+<tr>
+    <td> тип </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> if </td>
+ <td> typeof variable </td>
+ <td>
+  
+```js
+let sale = true;
+
+if (sale) {
+  console.log('Time to buy!')
+}
+```
+ 
+</td>
+</tr>
+ <tr>
+ <td> if else </td>
+ <td> typeof variable </td>
+ <td>
+  
+```js
+const unknown1 = 'foo';
+console.log(typeof unknown1); // Output: string
+```
+ 
+</td>
+</tr>
+ <tr>
+ <td> else if </td>
+ <td> typeof variable </td>
+ <td>
+  
+```js
+const unknown1 = 'foo';
+console.log(typeof unknown1); // Output: string
+```
+ 
+</td>
+</tr>
+ <tr>
+ <td> switch </td>
+ <td> typeof variable </td>
+ <td>
+  
+```js
+const unknown1 = 'foo';
+console.log(typeof unknown1); // Output: string
+```
+ 
+</td>
+</tr>
+</table>
