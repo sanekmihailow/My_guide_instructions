@@ -53,6 +53,8 @@ or
 cinnamon &
 or
 openbox &
+or
+icewm
 ```
 cat
 ```bash
