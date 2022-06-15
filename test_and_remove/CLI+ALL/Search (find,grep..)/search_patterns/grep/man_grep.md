@@ -96,6 +96,30 @@ grep -Pzo '(?<=\n\n\n).*' ~/file
   ```
 </td>
 </tr>
+
+<tr>
+    <td> -e PATTERNS, --regexp=PATTERNS </td> 
+    <td> позволяет объединить нeсколько шаблонов для поиска </td> 
+    <td>
   
+```nginx
+#найти слово содержащее e и l    
+echo "hello" | grep -e 'h' -e 'l'
+```
+`hello`   
+  
+или
+  
+```nginx
+#вывести буквы построчно  e и l в слове  
+echo "hello" | grep -o -e 'h' -e 'l'
+```
+`    
+h
+l
+l    
+`    
+  </td>
+</tr>
   
 </table>
