@@ -342,5 +342,54 @@ favoritePhrase === 'Love That!' ? console.log('I love that!')
 : console.log("I don't love that!") // I love that!
 ```
 
+#### Функции
+###### ----------
 
+```js
+function <functionName>() {
+    console.log('hello')
+}
+<functionName>() //hello
+```
+```js
+greetWorld(); // Output: Hello, World!
+ 
+function greetWorld() {
+  console.log('Hello, World!');
+}
+```
+
+```js
+function greeting (name = 'stranger') {
+  console.log(`Hello, ${name}!`)
+}
+ 
+greeting('Nick') // Output: Hello, Nick!
+greeting() // Output: Hello, stranger!
+```
+`return`нужен для захвата вызова или результата функции
+```js
+function rectangleArea(width, height) {
+  if (width < 0 || height < 0) {
+    return 'You need positive integers to calculate area!';
+  }
+  return width * height;
+}
+rectangleArea() //You need positive integers to calculate area!
+```
+
+#### Вспомогательные функции (Helper Functions)
+###### ----------
+Функции вызываемые внутри другой функции - вспомогательные
+```js
+function multiplyByNineFifths(number) {
+  return number * (9/5);
+};
+ 
+function getFahrenheit(celsius) {
+  return multiplyByNineFifths(celsius) + 32;
+};
+ 
+getFahrenheit(15); // Returns 59
+```
 
