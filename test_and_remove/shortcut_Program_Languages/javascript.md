@@ -16,7 +16,7 @@ This is all commented
 console.log(/*IGNORED!*/ 5);  // Still just prints 5 
 ```
 
-##### Типы данных
+#### Типы данных
 ###### ----------
 
 | ***тип*** | ***описание*** | ***примеры*** |
@@ -29,7 +29,7 @@ console.log(/*IGNORED!*/ 5);  // Still just prints 5
 | **Symbol** | symbols are unique identifiers ||
 | **Object**| Collections of related data ||
 
-##### Арифметические операции
+#### Арифметические операции
 ###### ----------
 | ***eng** | ***пример*** | ***пример c переменной*** |
 |:---|:---:|:---|
@@ -40,7 +40,7 @@ console.log(/*IGNORED!*/ 5);  // Still just prints 5
 |Remainder|%|
 `console.log(3 + 4);`
 
-##### Конкатенация строк
+#### Конкатенация строк
 ###### ----------
 
 ```js
@@ -49,7 +49,7 @@ console.log('no' + 'space'); // Prints 'nospace'
 console.log('middle' + ' ' + 'space'); // Prints 'middle space'
 ```
 
-##### Интерполяция строк
+#### Интерполяция строк
 ###### ----------
 ```js
 let myName = 'A'
@@ -57,14 +57,14 @@ let myCity = 'Cheb'
 console.log(`My name is ${myName}. My favorite city is ${myCity}.`) // My name is A. My favorite city is Cheb.
 ```
 
-##### Характеристики (Properties instance)
+#### Характеристики (Properties instance)
 ###### ----------
 
 ```js
 console.log('Hello'.length); // Prints 5
 ```
 
-##### Методы
+#### Методы
 ###### ----------
 
 > пример вызова метода
@@ -90,7 +90,7 @@ console.log(Math.ceil(43.8)); //44
 console.log(Number.isInteger(2017)); // true
 ```
 
-##### Переменные (Variables)
+#### Переменные (Variables)
 ###### ----------
 
 ```js
@@ -169,7 +169,7 @@ const:
   3.can't be reassigned
 ```
 
-##### Операторы
+#### Операторы
 ###### ----------
 
 <table>
@@ -192,7 +192,7 @@ console.log(typeof unknown1); // Output: string
 </tr>
 </table>
 
-##### Условные Операторы
+#### Условные Операторы
 ###### ----------
 
 <table>
@@ -203,7 +203,7 @@ console.log(typeof unknown1); // Output: string
 </tr>
 <tr>
  <td> if </td>
- <td> typeof variable </td>
+ <td> проверка если равно or etc то сделать то-то </td>
  <td>
   
 ```js
@@ -218,38 +218,129 @@ if (sale) {
 </tr>
  <tr>
  <td> if else </td>
- <td> typeof variable </td>
+ <td> если равно сделать то, иначе сдделато то-то </td>
  <td>
   
 ```js
-const unknown1 = 'foo';
-console.log(typeof unknown1); // Output: string
+let username = '';
+let defaultName;
+ 
+if (username) {
+  defaultName = username;
+} else {
+  defaultName = 'Stranger';
+} // Output: Stranger
 ```
+or
+```js
+let username = '';
+let defaultName = username || 'Stranger'; // Output: Stranger
+```
+
  
 </td>
 </tr>
  <tr>
  <td> else if </td>
- <td> typeof variable </td>
+ <td> если равно сделать то, иначе сдделато то, иначе сделато то... </td>
  <td>
   
 ```js
-const unknown1 = 'foo';
-console.log(typeof unknown1); // Output: string
+let stopLight = 'yellow';
+ 
+if (stopLight === 'red') {
+  console.log('Stop!');
+} else if (stopLight === 'yellow') {
+  console.log('Slow down.');
+} else if (stopLight === 'green') {
+  console.log('Go!');
+} else {
+  console.log('Caution, unknown!');
+} // Output: Slow down.
 ```
  
 </td>
 </tr>
  <tr>
  <td> switch </td>
- <td> typeof variable </td>
+ <td> если нужно проверить много условий. Обязательно ставить break </td>
  <td>
   
 ```js
-const unknown1 = 'foo';
-console.log(typeof unknown1); // Output: string
+let groceryItem = 'papaya';
+ 
+switch (groceryItem) {
+  case 'tomato':
+    console.log('Tomatoes are $0.49');
+    break;
+  case 'lime':
+    console.log('Limes are $1.49');
+    break;
+  case 'papaya':
+    console.log('Papayas are $1.29');
+    break;
+  default:
+    console.log('Invalid item');
+    break;
+}// Prints 'Papayas are $1.29'
 ```
  
 </td>
 </tr>
 </table>
+
+Переменная принимает значение "false", если переменная равна
+<table>
+<tr>
+    <td> равна нулю </td> 
+    <td> 0 </td>
+</tr> 
+<tr>
+    <td> равна пустой строке </td> 
+    <td> '' &#124; "" </td>
+</tr>
+<tr>
+    <td> равна пустому значению </td> 
+    <td> null </td>
+</tr> 
+<tr>
+    <td> неопреелена </td> 
+    <td> underfined </td>
+</tr>
+<tr>
+    <td> не число </td> 
+    <td> NaN </td>
+</tr>
+</table>
+
+#### Тернарные Операторы
+###### ----------
+
+> если используется if else, то можно использовать тернарные операторы, похожи на gotoif в asterisk
+
+```bash
+<expression> ? true : false
+```
+
+такое выражение if else
+```js
+let isNightTime = true;
+ 
+if (isNightTime) {
+  console.log('Turn on the lights!');
+} else {
+  console.log('Turn off the lights!');
+}
+```
+кратко можно записать как
+```js
+isNightTime ? console.log('Turn on the lights!') : console.log('Turn off the lights!'); // Turn on the lights!
+
+let favoritePhrase = 'Love That!';
+
+favoritePhrase === 'Love That!' ? console.log('I love that!')
+: console.log("I don't love that!") // I love that!
+```
+
+
+
