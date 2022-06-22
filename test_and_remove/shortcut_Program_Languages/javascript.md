@@ -344,7 +344,11 @@ favoritePhrase === 'Love That!' ? console.log('I love that!')
 
 #### Функции
 ###### ----------
-
+```nginx
+function <functionName>($arg1,$arg2....){
+...code...
+}
+```
 ```js
 function <functionName>() {
     console.log('hello')
@@ -391,5 +395,110 @@ function getFahrenheit(celsius) {
 };
  
 getFahrenheit(15); // Returns 59
+```
+#### Функциональные выражения (Function Expressions)
+###### ----------
+
+```js
+const plantNeedsWater = function(day) {
+  if(day === 'Wednesday'){
+    return true;
+  } else {
+    return false;
+  }
+};
+
+plantNeedsWater('Tuesday'); // false
+```
+
+#### Стрелочная функция (Arrow Functions)
+###### ----------
+> несли не нужно вызывать функцию вне переменной (меняем function на)
+```js
+const example= ($arg1) => {
+  ..code...
+};
+```
+> объявление переменной в таком случае и является названием функции: example()
+```js
+const rectangleArea = (width, height) => {
+  let area = width * height;
+  return area;
+};
+```
+
+Можно упростить выражение в единичном выводе (без return):
+```js
+const squareNum = (num) => {
+  return num * num;
+};
+```
+на
+```js
+const squareNum = num => num * num;
+```
+```js
+const logCitySkyline = () => {
+  return 'The stars over the '
+};
+console.log(logCitySkyline()) //The stars over the
+```
+
+#### глобальная область видимости (Global Scope)
+###### ----------
+
+```js
+const color = 'blue';
+ 
+const returnSkyColor = () => {
+  return color; // blue 
+};
+console.log(returnSkyColor()); // blue
+```
+> Глобальную переменню можно изменить внутри обычной функции
+
+#### Массивы
+###### ----------
+```js
+let concepts = ['1', '2', '3'];
+concept[0] // 1
+```
+```js
+const hello = 'Hello World';
+console.log(hello[6]); // Output: W
+```
+> .push() - добавляет элементы в конец массива
+```js
+const itemTracker = ['item 0', 'item 1', 'item 2'];
+itemTracker.push('item 3', 'item 4');
+console.log(itemTracker);  // Output: ['item 0', 'item 1', 'item 2', 'item 3', 'item 4'];
+```
+> .pop() - удаляет последний элемент массива
+```js
+const newItemTracker = ['item 0', 'item 1', 'item 2'];
+ 
+const removed = newItemTracker.pop();
+console.log(newItemTracker); // Output: [ 'item 0', 'item 1' ]
+console.log(removed);// Output: item 2
+```
+> .shift() удаляем первый элемент массива
+> .unshift()
+
+```js
+const flowers = ['peony', 'daffodil', 'marigold'];
+ 
+function addFlower(arr) {
+  arr.push('lily');
+}
+addFlower(flowers);
+console.log(flowers); // Output: ['peony', 'daffodil', 'marigold', 'lily']
+```
+#### Вложенные Массивы (Nested Arrays)
+###### ----------
+
+```js
+const nestedArr = [[1], [2, 3]];
+console.log(nestedArr[1]); // Output: [2, 3]
+console.log(nestedArr[1][0]); // Output: 2
 ```
 
