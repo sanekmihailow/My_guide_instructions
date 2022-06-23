@@ -502,3 +502,197 @@ console.log(nestedArr[1]); // Output: [2, 3]
 console.log(nestedArr[1][0]); // Output: 2
 ```
 
+#### Циклы (Loops)
+###### ----------
+<table>
+<tr>
+    <td> тип </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> for </td>
+ <td> выполнить множество выражений в цикле </td>
+ <td>
+  
+```js
+for (let counter = 0; counter < 4; counter++) {
+  console.log(counter);
+} // 0
+//1
+//2
+//3
+```
+```js
+const animals = ['Grizzly Bear', 'Sloth', 'Sea Lion'];
+for (let i = 0; i < animals.length; i++){
+  console.log(animals[i]);
+} // Grizzly Bear
+//Sloth
+//Sea Lion
+```
+ 
+</td>
+</tr>
+<tr>
+ <td> while </td>
+ <td> Инструкция, которая исполняется каждый раз, пока истинно условие </td>
+ <td>
+  
+```js
+// A for loop that prints 1, 2, and 3
+for (let counterOne = 1; counterOne < 4; counterOne++){
+  console.log(counterOne);
+}
+ 
+// A while loop that prints 1, 2, and 3
+let counterTwo = 1;
+while (counterTwo < 4) {
+  console.log(counterTwo);
+  counterTwo++;
+}
+```
+ 
+</td>
+</tr>
+<tr>
+ <td> Do...While </td>
+ <td> Инструкция, которая исполняется до тех пор, пока условие не станет ложным </td>
+ <td>
+  
+```js
+let countString = '';
+let i = 0;
+ do {
+  countString = countString + i;
+  i++;
+} while (i < 5);
+ console.log(countString); //Output:01234
+```
+```js
+let cupsOfSugarNeeded = 3;
+let cupsAdded = 0;
+
+do {
+ cupsAdded++
+ console.log(cupsAdded + ' cup was added') 
+} while (cupsAdded < cupsOfSugarNeeded);
+/*
+
+Output:
+1 cup was added
+2 cup was added
+3 cup was added
+*/
+```
+ 
+</td>
+</tr>
+</table>
+
+
+#### Вложенные Циклы (Nested Loops)
+###### ----------
+```js
+const myArray = [6, 19, 20];
+const yourArray = [19, 81, 2];
+for (let i = 0; i < myArray.length; i++) {
+  for (let j = 0; j < yourArray.length; j++) {
+    if (myArray[i] === yourArray[j]) {
+      console.log('Both arrays have the number: ' + yourArray[j]);
+    }
+  }
+} // Both arrays have the number: 19
+```
+```js
+let bobsFollowers = ['Joe', 'Marta', 'Sam', 'Erin'];
+let tinasFollowers = ['Sam', 'Marta', 'Elle'];
+let mutualFollowers = [];
+
+for (let i = 0; i < bobsFollowers.length; i++) {
+  for (let j = 0; j < tinasFollowers.length; j++) {
+    console.log(bobsFollowers[i] + ' and ' + tinasFollowers[j])
+    if (bobsFollowers[i] === tinasFollowers[j]) {
+      console.log(' and ----------')
+      console.log(mutualFollowers)
+      mutualFollowers.push(bobsFollowers[i]);
+    }
+  }
+};
+console.log(mutualFollowers)
+/*
+Joe and Sam
+Joe and Marta
+Joe and Elle
+Marta and Sam
+Marta and Marta
+ and ----------
+[ 'Marta' ]
+Marta and Elle
+Sam and Sam
+ and ----------
+[ 'Marta', 'Sam' ]
+Sam and Marta
+Sam and Elle
+Erin and Sam
+Erin and Marta
+Erin and Elle
+[ 'Marta', 'Sam' ]
+*/
+```
+
+#### (Functions as Data)
+###### ----------
+```js
+const announceThatIAmDoingImportantWork = () => {
+    console.log("I’m doing very important work!");
+};
+const busy = announceThatIAmDoingImportantWork;
+busy(); // I’m doing very important work!
+```
+
+#### (Functions as Parameters)
+###### ----------
+```js
+const higherOrderFunc = param => {
+  param();
+  return console.log(`I just invoked ${param.name} as a callback function!`)
+}
+ 
+const anotherFunc = () => {
+  return console.log('I\'m being invoked by the higher-order function!');
+}
+ 
+higherOrderFunc(anotherFunc);
+
+higherOrderFunc(() => {
+  for (let i = 0; i <= 3; i++){
+    console.log(i);
+  }
+});
+/*
+I'm being invoked by the higher-order function!
+I just invoked anotherFunc as a callback function!
+0
+1
+2
+3
+I just invoked  as a callback function!
+*/
+```
+```js
+const addTwo = num => {
+  return num + 2;
+}
+
+const checkConsistentOutput = (func, val) => {
+  let checkA = val + 2; //15
+  let checkB = func(val); //15
+  return checkA === checkB ? func(val) : 'inconsistent results';  
+}
+
+console.log(checkConsistentOutput(addTwo, 13)); //15
+```
+
+#### (ITERATORS)
+###### ----------
