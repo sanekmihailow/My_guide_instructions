@@ -694,5 +694,371 @@ const checkConsistentOutput = (func, val) => {
 console.log(checkConsistentOutput(addTwo, 13)); //15
 ```
 
-#### (ITERATORS)
+#### (ITERATORS) (https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array#iteration_methods)
 ###### ----------
+<table>
+<tr>
+    <td> метод(итератор) </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> .forEach() </td>
+ <td> выполнить множество выражений для каждого элемента в массиве </td>
+ <td>
+  
+```js
+const fruits = ['mango', 'papaya', 'pineapple', 'apple'];
+```
+```js
+fruits.forEach(fruitsItem => { 
+  console.log(fruitsItem)
+}); // mango papaya pineapple apple
+```
+```js
+fruits.forEach(fruitsItem =>
+  console.log(fruitsItem)
+);
+```
+```js
+function printFruits(element){
+  console.log(element);
+}
+fruits.forEach(printFruits);
+```
+</td>
+</tr>
+<tr>
+ <td> .map() </td>
+ <td> создает новый общий массив для каждого элемента в текущем массиве </td>
+ <td>
+  
+```js
+const numbers = [1, 2, 3, 4, 5]; 
+const bigNumbers = numbers.map(number => {
+  return number * 10;
+});
+console.log(bigNumbers) // [ 10, 20, 30, 40, 50 ]
+```
+```js
+const animals = ['Hen', 'elephant', 'llama'];
+const secretMessage = animals.map(animal => {
+  return animal[0]
+})
+console.log(secretMessage) // [ 'H', 'e', 'l' ]
+```
+</td>
+</tr>
+<tr>
+ <td> .filter() </td>
+ <td> возращает новый общий масссив для каждого элемента текущего массив со значение 'true' или 'false' </td>
+ <td>
+  
+```js
+const words = ['chair', 'music', 'pillow', 'brick', 'pen', 'door']; 
+const shortWords = words.filter(word => {
+  return word.length < 6;
+});
+console.log(shortWords); // ['chair', 'music', 'brick', 'pen', 'door']
+```
+</td>
+</tr>
+<tr>
+ <td> .findIndex() </td>
+ <td> ищет по массиву первый индекс, который совпал по условию 'true'. если в массиве нет ни одного элемента подходящего под условие, метод вернет '-1' </td>
+ <td>
+  
+```js
+const jumbledNums = [123, 25, 78, 5, 9]; 
+const lessThanTen = jumbledNums.findIndex(num => {
+  return num < 10;
+});
+console.log(lessThanTen); // Output: 3
+console.log(jumbledNums[3]); // Output: 5
+```
+</td>
+</tr>
+<tr>
+ <td> .reduce() </td>
+ <td> применяет функцию reducer к каждому элементу массива (слева-направо), возвращая одно результирующее значение. </td>
+ <td>
+  
+```js
+const numbers = [1, 2, 4, 10];
+// aaccumulator не объявлен, значит равен '0', после итерации уже '1' and etc.
+const summedNums = numbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue
+})
+console.log(summedNums) // Output: 17
+```
+```js
+const numbers = [1, 2, 4, 10];
+// aaccumulator = '100' .. '101'...,'103' ....
+const summedNums = numbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue
+}, 100)  // <- Second argument for .reduce()
+console.log(summedNums); // Output: 117
+```
+</td>
+</tr>
+<tr>
+ <td> .some() </td>
+ <td> проверяет, удовлетворяет ли какой-либо элемент массива условию, заданному в передаваемой функции 'true'. Возвращает false при любом условии для пустого массива или не выполнению условия.  </td>
+ <td>
+  
+```js
+for (let counter = 0; counter < 4; counter++) {
+  console.log(counter);
+} // 0
+```
+</td>
+</tr>
+<tr>
+ <td> .every() </td>
+ <td> роверяет, удовлетворяют ли все элементы массива условию, заданному в передаваемой функции 'true'. Mетод возвращает true при любом условии для пустого массива </td>
+ <td>
+  
+```js
+for (let counter = 0; counter < 4; counter++) {
+  console.log(counter);
+} // 0
+```
+</td>
+</tr>
+</table>
+
+
+<tr>
+ <td> for </td>
+ <td> выполнить множество выражений в цикле </td>
+ <td>
+  
+```js
+for (let counter = 0; counter < 4; counter++) {
+  console.log(counter);
+} // 0
+```
+</td>
+</tr>
+
+
+## Objects
+###### ----------
+```js
+let spaceship = {}; // create empty object
+```
+```js
+let spaceship = {
+  'Fuel Type': 'diesel',
+  color: 'silver'
+  'Active Duty': true,
+  numCrew: 5
+  flightPath: ['Venus', 'Mars', 'Saturn']
+  homePlanet: 'Earth',
+};
+```
+##### Доступ к свойствам объекта
+###### ----------
+
+<table>
+<tr>
+    <td> № </td> 
+    <td> описание </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> 1 </td>
+ <td> через точку object.property. </td>
+ <td>
+  
+```js
+spaceship.color; //silver
+```
+```js
+//если попробовать обратиться к несуществующему свойству объекта вернет Underfined
+spaceship.favoriteIcecream; // Returns undefined
+```
+```js
+// Еслибы бы мы попытались обратиться через точку objectName.propName
+// тогда компьютер стал бы искать ключ "propName" в нашем объекте, //не значении параметра propName 
+let returnAnyProp = (objectName, propName) => objectName.propName;
+let result = returnAnyProp(spaceship, 'homePlanet');
+console.log(result) // Returns 'underfined'
+```
+</td>
+</tr>
+<tr>
+ <td> 2 </td>
+ <td> через квадратные скобки , как в массиве - object[$element] </td>
+ <td>
+  
+```js
+['A', 'B', 'C'][0]; // Returns 'A'
+```
+```js
+spaceship['Active Duty'];   // Returns true
+```
+```js
+let returnAnyProp = (objectName, propName) => objectName[propName];
+let result = returnAnyProp(spaceship, 'homePlanet');
+console.log(result) // Returns 'Earth'
+```
+</td>
+</tr>
+</table>
+
+##### операции со свойствами объекта
+###### ----------
+> Мы можем как менять объекты, так и создавать новые свойства для них
+`object.porepry = dada` or `object[property] = lala`
+
+
+<table>
+<tr>
+    <td> № </td> 
+    <td> описание </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> обновление, добавление </td>
+ <td> Мы можем как менять объекты, так и создавать новые свойства для них
+
+`object.porepryKey = dada`
+ or 
+`object[propertyKey] = lala` </td>
+ <td>
+  
+```js
+spaceship.color = gold //update
+spaceship[numCrew] = 7 //update
+spaceship.speed = 'Mach 5'; // Creates a new key of 'speed'
+```
+</td>
+</tr>
+<tr>
+ <td> удаление </td>
+ <td> удаление свойства объекта </td>
+ <td>
+  
+```js
+delete spaceship.speed;  // Removes the speed property
+delete spaceship['Active Duty'] //Removes true
+```
+</td>
+</tr>
+<tr>
+ <td> for </td>
+ <td> выполнить множество выражений в цикле </td>
+ <td>
+  
+```js
+for (let counter = 0; counter < 4; counter++) {
+  console.log(counter);
+} // 0
+```
+</td>
+</tr>
+</table>
+
+```js
+let retreatMessage = 'We no longer wish to conquer your planet. It is full of dogs, which we do not care for.';
+let alienShip = {
+  retreat() {
+    console.log(retreatMessage)
+  },
+  takeOff() {
+    console.log('Spim... Borp... Glix... Blastoff!')
+  }
+}
+alienShip.retreat()
+alienShip.takeOff()
+```
+##### Nested Objects (Вложенные объекты)
+###### ----------
+
+```js
+const spaceship = {
+     telescope: {
+        yearBuilt: 2018,
+        model: '91031-XLT',
+        focalLength: 2032 
+     },
+    crew: {
+        captain: { 
+            name: 'Sandra', 
+            degree: 'Computer Engineering', 
+            encourageTeam() { console.log('We got this!') } 
+         }
+    },
+    engine: {
+        model: 'Nimbus2000'
+     },
+     nanoelectronics: {
+         computer: {
+            terabytes: 100,
+            monitors: 'HD'
+         },
+        'back-up': {
+           battery: 'Lithium',
+           terabytes: 50
+         }
+    }
+}; 
+```
+```js
+spaceship.nanoelectronics['back-up'].battery; // Returns 'Lithium'
+```
+
+##### Reference
+###### ----------
+
+```js
+let spaceship = {
+  'Fuel Type' : 'Turbo Fuel',
+  homePlanet : 'Earth'
+};
+let greenEnergy = obj => {
+  obj['Fuel Type'] = 'avocado oil';
+}
+let remotelyDisable = obj => {
+  obj.disabled = true;
+}
+greenEnergy(spaceship);
+remotelyDisable(spaceship);
+console.log(spaceship) // { 'Fuel Type': 'avocado oil',
+//  homePlanet: 'Earth',
+//  disabled: true }
+```
+
+##### Looping Through Objects (Перебор объектов)
+###### ----------
+
+```js
+let spaceship = {
+  crew: {
+    captain: { 
+      name: 'Lily', 
+      degree: 'Computer Engineering', 
+      cheerTeam() { console.log('You got this!') } 
+    },
+    'chief officer': { 
+      name: 'Dan', 
+      degree: 'Aerospace Engineering', 
+      agree() { console.log('I agree, captain!') } 
+    },
+    medic: { 
+      name: 'Clementine', 
+      degree: 'Physics', 
+      announce() { console.log(`Jets on!`) } },
+    translator: {
+      name: 'Shauna', 
+      degree: 'Conservation Science', 
+      powerFuel() { console.log('The tank is full!') } 
+    }
+  }
+}; 
+// for...in
+for (let crewMember in spaceship.crew) {
+  console.log(`${crewMember}: ${spaceship.crew[crewMember].name}`);
+}
+```
