@@ -946,18 +946,6 @@ delete spaceship['Active Duty'] //Removes true
 ```
 </td>
 </tr>
-<tr>
- <td> for </td>
- <td> выполнить множество выражений в цикле </td>
- <td>
-  
-```js
-for (let counter = 0; counter < 4; counter++) {
-  console.log(counter);
-} // 0
-```
-</td>
-</tr>
 </table>
 
 ```js
@@ -1062,3 +1050,289 @@ for (let crewMember in spaceship.crew) {
   console.log(`${crewMember}: ${spaceship.crew[crewMember].name}`);
 }
 ```
+## Advanced Objects Introduction
+###### ----------
+
+#### "this" Keyword
+###### ----------
+
+> Свойство контекста выполнения кода (global, function или eval), которое в нестрогом режиме всегда является ссылкой на объект, а в строгом режиме может иметь любое значение.
+
+> Global контекст
+
+> this ссылается на глобальный объект вне зависимости от режима (строгий или нестрогий)
+
+> Function контекст. Нестрогий
+```js
+function f1(){
+  return this;
+}
+
+// В браузере:
+f1() === window; // window - глобальный объект в браузере
+// В Node:
+f1() === global; // global - глобальный объект в Node
+```
+
+> Function контекст. Cтрогий
+```js
+function f2(){
+  "use strict"; // см. strict mode *строгий режим
+  return this;
+}
+
+f2() === undefined; // true
+```
+> Для того, чтобы при вызове функции установить this в определённое значение, используйте **call()** или **apply()**, как в следующих примерах.
+
+```js 
+// В качестве первого аргумента методов call или apply может быть передан объект,
+// на который будет указывать this.
+var obj = {a: 'Custom'};
+// Это свойство принадлежит глобальному объекту
+var a = 'Global'
+function whatsThis() {
+  return this.a;  //значение this зависит от контекста вызова функции
+}
+
+whatsThis();          // 'Global'
+whatsThis.call(obj);  // 'Custom'
+whatsThis.apply(obj); // 'Custom'
+```
+
+##### Arrow Functions and this
+###### ----------
+> Example:
+```js
+const goat = {
+  dietType: 'herbivore',
+  makeSound() {
+    console.log('baaa');
+  },
+  diet() {
+    console.log(this.dietType);
+  },
+  newdiet() {
+    console.log(dietType);
+  }
+  arrowdiet: () => {
+    console.log(`I'am ${this.dietType}%.`)
+  }
+};
+goat.makeSound(); // Prints baaa
+goat.diet(); // herbivore
+got.newdiet(); // dietType is not defined
+got.arrowdiet() // I'am undefined% (не вызывать стрелочные функции внутри объекта)
+```
+
+### Privacy object
+###### ----------
+
+```js
+const bankAccount = {
+  _amount: 1000
+}
+
+bankAccount.amount = 1;
+console.log(bankAccount) // { _amount: 1000, amount: 1 }
+bankAccount._amount = 1000000;
+console.log(bankAccount) // { _amount: 1000000, amount: 1 }
+```
+
+#### Getters (Геттеры)
+###### ----------
+
+> Геттеры — это методы, которые получают и возвращают внутренние свойства объекта. Синтаксис **get** связывает свойство объекта с функцией, которая будет вызываться при обращении к этому свойству.
+
+```js
+const person = {
+  _firstName: 'John',
+  _lastName: 'Doe',
+  get fullName() {
+    if (this._firstName && this._lastName){
+      return `${this._firstName} ${this._lastName}`;
+    } else {
+      return 'Missing a first name or a last name.';
+    }
+  }
+}
+ 
+person.fullName; // 'John Doe'
+```
+
+#### Setters (Сеттеры)
+###### ----------
+
+> Сеттеры — это методы, которые изменяют внутренние свойства объекта. Оператор **set** связывает свойство объекта с функцией, которая будет вызвана при попытке установить это свойство.
+
+```js
+const person = {
+  _age: 37,
+  set age(newAge){
+    if (typeof newAge === 'number'){
+      this._age = newAge;
+    } else {
+      console.log('You must assign a number to age');
+    }
+  }
+};
+
+console.log(person._age); // Logs: 37
+person.age = 40;
+console.log(person._age); // Logs: 40
+```
+
+### Factory Functions
+###### ----------
+
+> Фабричная функция — это функция, которая возвращает объект и может быть повторно использована для создания нескольких экземпляров объекта. Фабричные функции также могут иметь параметры, позволяющие нам настраивать возвращаемый объект.
+
+```js
+//Factory function
+const robotFactory = (model, mobile) => {
+  return {
+    model : model,
+		mobile: mobile,
+		beep () { 
+      console.log('Beep Boop'); 
+    }
+	};
+};
+
+const tinCan = robotFactory('P-500', true)
+tinCan.beep() //Beep Boop
+console.log(tinCan) // { model: 'P-500', mobile: true, beep: [Function: beep] }
+```
+
+###### Property Value Shorthand
+###### ----------
+
+```js
+const monsterFactory = (name, age) => {
+  return { 
+    name,
+    age 
+  }
+};
+
+const ghost = monsterFactory('Ghouly', 251);
+console.log(ghost) // { name: 'Ghouly', age: 251 }
+```
+
+###### Destructured Assignment
+###### ----------
+
+> Чтобы присвоить переменной свойство объекта, вне объекта.
+
+>Example:
+```js
+const vampire = {
+  name: 'Dracula',
+  residence: 'Transylvania',
+  preferences: {
+    day: 'stay inside',
+    night: 'satisfy appetite'
+  }
+};
+```
+```js
+const residence = vampire.residence; 
+console.log(residence); // Prints 'Transylvania' 
+```
+```js
+//Destructured Assignment
+const { residence } = vampire; 
+console.log(residence); // Prints 'Transylvania'
+```
+
+### Built-in Object Methods (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods)
+###### ()
+###### ----------
+
+<table>
+<tr>
+    <td> метод </td> 
+    <td> описание </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> Object.keys() </td>
+ <td> возвращает массив из собственных перечисляемых свойств переданного объекта </td>
+ <td>
+  
+```js
+// Object.keys(obj)
+var arr = ['a', 'b', 'c'];
+console.log(Object.keys(arr)); // ['0', '1', '2']
+
+var obj = { 0: 'a', 1: 'b', 2: 'c' };
+console.log(Object.keys(obj)); // ['0', '1', '2']
+
+var an_obj = { 100: 'a', 2: 'b', 7: 'c' };
+console.log(Object.keys(an_obj)); // ['2', '7', '100']
+```
+</td>
+</tr>
+<tr>
+ <td> Object.entries() </td>
+ <td> возвращает массив собственных перечисляемых свойств указанного объекта в формате [key, value] </td>
+ <td>
+  
+```js
+// Object.entries(obj)
+var obj = { foo: "bar", baz: 42 };
+console.log(Object.entries(obj)); // [ ['foo', 'bar'], ['baz', 42] ]
+```
+</td>
+</tr>
+<tr>
+ <td> Object.assign() </td>
+ <td> спользуется для копирования значений всех собственных перечисляемых свойств из одного или более исходных объектов в целевой объект </td>
+ <td>
+  
+```js
+// Object.assign(target, ...sources)
+var o1 = { a: 1 };
+var o2 = { b: 2 };
+var o3 = { c: 3 };
+
+// Слияние объекта
+var obj = Object.assign(o1, o2, o3);
+console.log(obj); // { a: 1, b: 2, c: 3 }
+console.log(o1);  // { a: 1, b: 2, c: 3 }, изменился и сам целевой объек
+console.log(o2); // { b: 2 }
+
+// Клонирование объекта
+var obj1 = Object.assign({}, o2, o3);
+console.log(obj1); // { b: 2, c: 3 }
+console.log(o2);  // { b: 2 }
+```
+```js
+// Создание нового объекта со свойствами клонируемого
+const robot = {
+	model: 'SAL-1000',
+  mobile: true,
+  sentient: false,
+  armor: 'Steel-plated',
+  energyLevel: 75
+};
+
+const newRobot = Object.assign({laserBlaster: true, voiceRecognition: true}, robot);
+console.log(newRobot); // { laserBlaster: true, voiceRecognition: true,model: 'SAL-1000',mobile: true,sentient: false,armor: 'Steel-plated',energyLevel: 75 }
+```
+</td>
+</tr>
+<tr>
+ <td> for </td>
+ <td> выполнить множество выражений в цикле </td>
+ <td>
+  
+```js
+for (let counter = 0; counter < 4; counter++) {
+  console.log(counter);
+} // 0
+```
+</td>
+</tr>
+
+</table>
