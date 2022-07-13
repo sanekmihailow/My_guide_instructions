@@ -456,6 +456,42 @@ const returnSkyColor = () => {
 console.log(returnSkyColor()); // blue
 ```
 > Глобальную переменню можно изменить внутри обычной функции
+```js 
+var x = "declared outside function";
+exampleFunction();
+
+function exampleFunction() {
+  console.log(x);
+  var x1 = 1;
+}
+
+{ // Block scope start
+    xx = 123 // var xx = 123. Implicit global variable
+    // https://stackoverflow.com/questions/15985875/effect-of-declared-and-undeclared-variables/16007360#16007360
+    let yy = 345
+    const zz = 678
+} // Block scope end
+
+console.log("Outside function"); // Outside function
+console.log(x); // declared outside function
+console.log(xx); // 123
+console.log(x1);   // x1  is not defined
+console.log(yy);  // yy is not defined
+console.log(zz);  // z is not defined
+```
+
+
+#### локальная область видимости (Functional Scope)
+###### ----------
+
+```js
+function exampleFunction() {
+  var x = "declared inside function";  // x can only be used in exampleFunction;
+  console.log(x);
+}
+exampleFunction() // declared inside function
+console.log(x);  // Causes error x is not defined
+```
 
 #### Массивы
 ###### ----------
