@@ -1,6 +1,6 @@
  Javascript
 ====
-### БАЗОВЫЕ
+# БАЗОВЫЕ
 ###### ----------
 > залогировать вывод в консоль
 ```js
@@ -16,7 +16,7 @@ This is all commented
 console.log(/*IGNORED!*/ 5);  // Still just prints 5 
 ```
 
-#### Типы данных
+### Типы данных
 ###### ----------
 
 | ***тип*** | ***описание*** | ***примеры*** |
@@ -29,7 +29,10 @@ console.log(/*IGNORED!*/ 5);  // Still just prints 5
 | **Symbol** | symbols are unique identifiers ||
 | **Object**| Collections of related data ||
 
-#### Арифметические операции
+
+
+
+### Арифметические операции
 ###### ----------
 | ***eng** | ***пример*** | ***пример c переменной*** |
 |:---|:---:|:---|
@@ -40,7 +43,10 @@ console.log(/*IGNORED!*/ 5);  // Still just prints 5
 |Remainder|%|
 `console.log(3 + 4);`
 
-#### Конкатенация строк
+
+
+
+### Конкатенация строк
 ###### ----------
 
 ```js
@@ -49,7 +55,10 @@ console.log('no' + 'space'); // Prints 'nospace'
 console.log('middle' + ' ' + 'space'); // Prints 'middle space'
 ```
 
-#### Интерполяция строк
+
+
+
+### Интерполяция строк
 ###### ----------
 ```js
 let myName = 'A'
@@ -57,14 +66,18 @@ let myCity = 'Cheb'
 console.log(`My name is ${myName}. My favorite city is ${myCity}.`) // My name is A. My favorite city is Cheb.
 ```
 
-#### Характеристики (Properties instance)
+
+
+### Характеристики (Properties instance)
 ###### ----------
 
 ```js
 console.log('Hello'.length); // Prints 5
 ```
 
-#### Методы
+
+
+### Методы
 ###### ----------
 
 > пример вызова метода
@@ -76,7 +89,9 @@ console.log('Hey'.startsWith('H')); // Prints true
 console.log('    Remove whitespace   '.trim()); // Prints 'Remove whitespace'
 ```
 
-##### Встроенные объекты (глобальные объекты)
+
+
+#### Встроенные объекты (глобальные объекты)
 ###### ----------
 >Объект — это набор свойств, и каждое свойство состоит из имени и значения, ассоциированного с этим именем. Значением свойства может быть функция, которую можно назвать методом объекта. Сравним, например, с чашкой. У чашки есть цвет, форма, вес, материал, из которого она сделана, и т.д. Точно так же, объекты JavaScript имеют свойства, которые определяют их характеристики.
 
@@ -90,7 +105,9 @@ console.log(Math.ceil(43.8)); //44
 console.log(Number.isInteger(2017)); // true
 ```
 
-#### Переменные (Variables)
+
+
+### Переменные (Variables)
 ###### ----------
 
 ```js
@@ -169,7 +186,62 @@ const:
   3.can't be reassigned
 ```
 
-#### Операторы
+
+
+#### Глобальная область видимости (Global Scope)
+###### ----------
+
+```js
+const color = 'blue';
+ 
+const returnSkyColor = () => {
+  return color; // blue 
+};
+console.log(returnSkyColor()); // blue
+```
+> Глобальную переменню можно изменить внутри обычной функции
+```js 
+var x = "declared outside function";
+exampleFunction();
+
+function exampleFunction() {
+  console.log(x);
+  var x1 = 1;
+}
+
+{ // Block scope start
+    xx = 123 // var xx = 123. Implicit global variable
+    // https://stackoverflow.com/questions/15985875/effect-of-declared-and-undeclared-variables/16007360#16007360
+    let yy = 345
+    const zz = 678
+} // Block scope end
+
+console.log("Outside function"); // Outside function
+console.log(x); // declared outside function
+console.log(xx); // 123
+console.log(x1);   // x1  is not defined
+console.log(yy);  // yy is not defined
+console.log(zz);  // z is not defined
+```
+
+
+
+#### локальная область видимости (Functional Scope)
+###### ----------
+
+```js
+function exampleFunction() {
+  var x = "declared inside function";  // x can only be used in exampleFunction;
+  console.log(x);
+}
+exampleFunction() // declared inside function
+console.log(x);  // Causes error x is not defined
+```
+
+
+
+
+# Операторы
 ###### ----------
 
 <table>
@@ -192,7 +264,10 @@ console.log(typeof unknown1); // Output: string
 </tr>
 </table>
 
-#### Условные Операторы
+
+
+
+### Условные Операторы
 ###### ----------
 
 <table>
@@ -313,7 +388,9 @@ switch (groceryItem) {
 </tr>
 </table>
 
-#### Тернарные Операторы
+
+
+### Тернарные Операторы
 ###### ----------
 
 > если используется if else, то можно использовать тернарные операторы, похожи на gotoif в asterisk
@@ -342,203 +419,9 @@ favoritePhrase === 'Love That!' ? console.log('I love that!')
 : console.log("I don't love that!") // I love that!
 ```
 
-#### Функции
-###### ----------
-```nginx
-function <functionName>($arg1,$arg2....){
-...code...
-}
-```
-```js
-function <functionName>() {
-    console.log('hello')
-}
-<functionName>() //hello
-```
-```js
-greetWorld(); // Output: Hello, World!
- 
-function greetWorld() {
-  console.log('Hello, World!');
-}
-```
-
-```js
-function greeting (name = 'stranger') {
-  console.log(`Hello, ${name}!`)
-}
- 
-greeting('Nick') // Output: Hello, Nick!
-greeting() // Output: Hello, stranger!
-```
-`return`нужен для захвата вызова или результата функции
-```js
-function rectangleArea(width, height) {
-  if (width < 0 || height < 0) {
-    return 'You need positive integers to calculate area!';
-  }
-  return width * height;
-}
-rectangleArea() //You need positive integers to calculate area!
-```
-
-#### Вспомогательные функции (Helper Functions)
-###### ----------
-Функции вызываемые внутри другой функции - вспомогательные
-```js
-function multiplyByNineFifths(number) {
-  return number * (9/5);
-};
- 
-function getFahrenheit(celsius) {
-  return multiplyByNineFifths(celsius) + 32;
-};
- 
-getFahrenheit(15); // Returns 59
-```
-#### Функциональные выражения (Function Expressions)
-###### ----------
-
-```js
-const plantNeedsWater = function(day) {
-  if(day === 'Wednesday'){
-    return true;
-  } else {
-    return false;
-  }
-};
-
-plantNeedsWater('Tuesday'); // false
-```
-
-#### Стрелочная функция (Arrow Functions)
-###### ----------
-> несли не нужно вызывать функцию вне переменной (меняем function на)
-```js
-const example= ($arg1) => {
-  ..code...
-};
-```
-> объявление переменной в таком случае и является названием функции: example()
-```js
-const rectangleArea = (width, height) => {
-  let area = width * height;
-  return area;
-};
-```
-
-Можно упростить выражение в единичном выводе (без return):
-```js
-const squareNum = (num) => {
-  return num * num;
-};
-```
-на
-```js
-const squareNum = num => num * num;
-```
-```js
-const logCitySkyline = () => {
-  return 'The stars over the '
-};
-console.log(logCitySkyline()) //The stars over the
-```
-
-#### глобальная область видимости (Global Scope)
-###### ----------
-
-```js
-const color = 'blue';
- 
-const returnSkyColor = () => {
-  return color; // blue 
-};
-console.log(returnSkyColor()); // blue
-```
-> Глобальную переменню можно изменить внутри обычной функции
-```js 
-var x = "declared outside function";
-exampleFunction();
-
-function exampleFunction() {
-  console.log(x);
-  var x1 = 1;
-}
-
-{ // Block scope start
-    xx = 123 // var xx = 123. Implicit global variable
-    // https://stackoverflow.com/questions/15985875/effect-of-declared-and-undeclared-variables/16007360#16007360
-    let yy = 345
-    const zz = 678
-} // Block scope end
-
-console.log("Outside function"); // Outside function
-console.log(x); // declared outside function
-console.log(xx); // 123
-console.log(x1);   // x1  is not defined
-console.log(yy);  // yy is not defined
-console.log(zz);  // z is not defined
-```
 
 
-#### локальная область видимости (Functional Scope)
-###### ----------
-
-```js
-function exampleFunction() {
-  var x = "declared inside function";  // x can only be used in exampleFunction;
-  console.log(x);
-}
-exampleFunction() // declared inside function
-console.log(x);  // Causes error x is not defined
-```
-
-#### Массивы
-###### ----------
-```js
-let concepts = ['1', '2', '3'];
-concept[0] // 1
-```
-```js
-const hello = 'Hello World';
-console.log(hello[6]); // Output: W
-```
-> .push() - добавляет элементы в конец массива
-```js
-const itemTracker = ['item 0', 'item 1', 'item 2'];
-itemTracker.push('item 3', 'item 4');
-console.log(itemTracker);  // Output: ['item 0', 'item 1', 'item 2', 'item 3', 'item 4'];
-```
-> .pop() - удаляет последний элемент массива
-```js
-const newItemTracker = ['item 0', 'item 1', 'item 2'];
- 
-const removed = newItemTracker.pop();
-console.log(newItemTracker); // Output: [ 'item 0', 'item 1' ]
-console.log(removed);// Output: item 2
-```
-> .shift() удаляем первый элемент массива
-> .unshift()
-
-```js
-const flowers = ['peony', 'daffodil', 'marigold'];
- 
-function addFlower(arr) {
-  arr.push('lily');
-}
-addFlower(flowers);
-console.log(flowers); // Output: ['peony', 'daffodil', 'marigold', 'lily']
-```
-#### Вложенные Массивы (Nested Arrays)
-###### ----------
-
-```js
-const nestedArr = [[1], [2, 3]];
-console.log(nestedArr[1]); // Output: [2, 3]
-console.log(nestedArr[1][0]); // Output: 2
-```
-
-#### Циклы (Loops)
+# Циклы (Loops)
 ###### ----------
 <table>
 <tr>
@@ -627,7 +510,8 @@ Output:
 </table>
 
 
-#### Вложенные Циклы (Nested Loops)
+
+### Вложенные Циклы (Nested Loops)
 ###### ----------
 ```js
 const myArray = [6, 19, 20];
@@ -677,6 +561,120 @@ Erin and Elle
 */
 ```
 
+
+
+# Функции
+###### ----------
+```nginx
+function <functionName>($arg1,$arg2....){
+...code...
+}
+```
+```js
+function <functionName>() {
+    console.log('hello')
+}
+<functionName>() //hello
+```
+```js
+greetWorld(); // Output: Hello, World!
+ 
+function greetWorld() {
+  console.log('Hello, World!');
+}
+```
+
+```js
+function greeting (name = 'stranger') {
+  console.log(`Hello, ${name}!`)
+}
+ 
+greeting('Nick') // Output: Hello, Nick!
+greeting() // Output: Hello, stranger!
+```
+`return`нужен для захвата вызова или результата функции
+```js
+function rectangleArea(width, height) {
+  if (width < 0 || height < 0) {
+    return 'You need positive integers to calculate area!';
+  }
+  return width * height;
+}
+rectangleArea() //You need positive integers to calculate area!
+```
+
+
+
+### Вспомогательные функции (Helper Functions)
+###### ----------
+Функции вызываемые внутри другой функции - вспомогательные
+```js
+function multiplyByNineFifths(number) {
+  return number * (9/5);
+};
+ 
+function getFahrenheit(celsius) {
+  return multiplyByNineFifths(celsius) + 32;
+};
+ 
+getFahrenheit(15); // Returns 59
+```
+
+
+
+
+### Функциональные выражения (Function Expressions)
+###### ----------
+
+```js
+const plantNeedsWater = function(day) {
+  if(day === 'Wednesday'){
+    return true;
+  } else {
+    return false;
+  }
+};
+
+plantNeedsWater('Tuesday'); // false
+```
+
+
+
+### Стрелочная функция (Arrow Functions)
+###### ----------
+> несли не нужно вызывать функцию вне переменной (меняем function на)
+```js
+const example= ($arg1) => {
+  ..code...
+};
+```
+> объявление переменной в таком случае и является названием функции: example()
+```js
+const rectangleArea = (width, height) => {
+  let area = width * height;
+  return area;
+};
+```
+
+>Можно упростить выражение в единичном выводе (без return):
+```js
+const squareNum = (num) => {
+  return num * num;
+};
+```
+на
+```js
+const squareNum = num => num * num;
+```
+```js
+const logCitySkyline = () => {
+  return 'The stars over the '
+};
+console.log(logCitySkyline()) //The stars over the
+```
+
+
+
 #### (Functions as Data)
 ###### ----------
 ```js
@@ -686,6 +684,8 @@ const announceThatIAmDoingImportantWork = () => {
 const busy = announceThatIAmDoingImportantWork;
 busy(); // I’m doing very important work!
 ```
+
+
 
 #### (Functions as Parameters)
 ###### ----------
@@ -730,7 +730,58 @@ const checkConsistentOutput = (func, val) => {
 console.log(checkConsistentOutput(addTwo, 13)); //15
 ```
 
-#### (ITERATORS) (https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array#iteration_methods)
+
+
+# Массивы
+###### ----------
+```js
+let concepts = ['1', '2', '3'];
+concept[0] // 1
+```
+```js
+const hello = 'Hello World';
+console.log(hello[6]); // Output: W
+```
+> .push() - добавляет элементы в конец массива
+```js
+const itemTracker = ['item 0', 'item 1', 'item 2'];
+itemTracker.push('item 3', 'item 4');
+console.log(itemTracker);  // Output: ['item 0', 'item 1', 'item 2', 'item 3', 'item 4'];
+```
+> .pop() - удаляет последний элемент массива
+```js
+const newItemTracker = ['item 0', 'item 1', 'item 2'];
+ 
+const removed = newItemTracker.pop();
+console.log(newItemTracker); // Output: [ 'item 0', 'item 1' ]
+console.log(removed);// Output: item 2
+```
+> .shift() удаляем первый элемент массива
+> .unshift()
+
+```js
+const flowers = ['peony', 'daffodil', 'marigold'];
+ 
+function addFlower(arr) {
+  arr.push('lily');
+}
+addFlower(flowers);
+console.log(flowers); // Output: ['peony', 'daffodil', 'marigold', 'lily']
+```
+
+
+
+### Вложенные Массивы (Nested Arrays)
+###### ----------
+
+```js
+const nestedArr = [[1], [2, 3]];
+console.log(nestedArr[1]); // Output: [2, 3]
+console.log(nestedArr[1][0]); // Output: 2
+```
+
+
+### (ITERATORS) [link](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array#iteration_methods)
 ###### ----------
 <table>
 <tr>
@@ -878,7 +929,7 @@ for (let counter = 0; counter < 4; counter++) {
 </tr>
 
 
-## Objects
+# Objects
 ###### ----------
 ```js
 let spaceship = {}; // create empty object
@@ -893,7 +944,10 @@ let spaceship = {
   homePlanet: 'Earth',
 };
 ```
-##### Доступ к свойствам объекта
+
+
+### Cвойства объекта
+#### Доступ к свойствам объекта
 ###### ----------
 
 <table>
@@ -943,7 +997,9 @@ console.log(result) // Returns 'Earth'
 </tr>
 </table>
 
-##### операции со свойствами объекта
+
+
+#### операции со свойствами объекта
 ###### ----------
 > Мы можем как менять объекты, так и создавать новые свойства для них
 `object.porepry = dada` or `object[property] = lala`
@@ -997,7 +1053,31 @@ let alienShip = {
 alienShip.retreat()
 alienShip.takeOff()
 ```
-##### Nested Objects (Вложенные объекты)
+
+
+#### Reference
+###### ----------
+
+```js
+let spaceship = {
+  'Fuel Type' : 'Turbo Fuel',
+  homePlanet : 'Earth'
+};
+let greenEnergy = obj => {
+  obj['Fuel Type'] = 'avocado oil';
+}
+let remotelyDisable = obj => {
+  obj.disabled = true;
+}
+greenEnergy(spaceship);
+remotelyDisable(spaceship);
+console.log(spaceship) // { 'Fuel Type': 'avocado oil',
+//  homePlanet: 'Earth',
+//  disabled: true }
+```
+
+
+### Nested Objects (Вложенные объекты)
 ###### ----------
 
 ```js
@@ -1033,26 +1113,7 @@ const spaceship = {
 spaceship.nanoelectronics['back-up'].battery; // Returns 'Lithium'
 ```
 
-##### Reference
-###### ----------
 
-```js
-let spaceship = {
-  'Fuel Type' : 'Turbo Fuel',
-  homePlanet : 'Earth'
-};
-let greenEnergy = obj => {
-  obj['Fuel Type'] = 'avocado oil';
-}
-let remotelyDisable = obj => {
-  obj.disabled = true;
-}
-greenEnergy(spaceship);
-remotelyDisable(spaceship);
-console.log(spaceship) // { 'Fuel Type': 'avocado oil',
-//  homePlanet: 'Earth',
-//  disabled: true }
-```
 
 ##### Looping Through Objects (Перебор объектов)
 ###### ----------
@@ -1086,9 +1147,9 @@ for (let crewMember in spaceship.crew) {
   console.log(`${crewMember}: ${spaceship.crew[crewMember].name}`);
 }
 ```
-## Advanced Objects Introduction
-###### ----------
 
+
+## Advanced Objects Introduction
 #### "this" Keyword
 ###### ----------
 
@@ -1136,6 +1197,7 @@ whatsThis.call(obj);  // 'Custom'
 whatsThis.apply(obj); // 'Custom'
 ```
 
+
 ##### Arrow Functions and this
 ###### ----------
 > Example:
@@ -1161,7 +1223,9 @@ got.newdiet(); // dietType is not defined
 got.arrowdiet() // I'am undefined% (не вызывать стрелочные функции внутри объекта)
 ```
 
-### Privacy object
+
+
+#### Privacy object
 ###### ----------
 
 ```js
@@ -1174,6 +1238,8 @@ console.log(bankAccount) // { _amount: 1000, amount: 1 }
 bankAccount._amount = 1000000;
 console.log(bankAccount) // { _amount: 1000000, amount: 1 }
 ```
+
+
 
 #### Getters (Геттеры)
 ###### ----------
@@ -1195,6 +1261,8 @@ const person = {
  
 person.fullName; // 'John Doe'
 ```
+
+
 
 #### Setters (Сеттеры)
 ###### ----------
@@ -1218,6 +1286,8 @@ person.age = 40;
 console.log(person._age); // Logs: 40
 ```
 
+
+
 ### Factory Functions
 ###### ----------
 
@@ -1240,7 +1310,9 @@ tinCan.beep() //Beep Boop
 console.log(tinCan) // { model: 'P-500', mobile: true, beep: [Function: beep] }
 ```
 
-###### Property Value Shorthand
+
+
+#### Property Value Shorthand
 ###### ----------
 
 ```js
@@ -1255,7 +1327,7 @@ const ghost = monsterFactory('Ghouly', 251);
 console.log(ghost) // { name: 'Ghouly', age: 251 }
 ```
 
-###### Destructured Assignment
+#### Destructured Assignment
 ###### ----------
 
 > Чтобы присвоить переменной свойство объекта, вне объекта.
@@ -1281,7 +1353,11 @@ const { residence } = vampire;
 console.log(residence); // Prints 'Transylvania'
 ```
 
-### Built-in Object Methods (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods)
+
+
+
+
+## Built-in Object Methods [link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods)
 ###### ()
 ###### ----------
 
