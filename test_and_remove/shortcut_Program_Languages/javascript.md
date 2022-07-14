@@ -1,6 +1,6 @@
  Javascript
 ====
-# БАЗОВЫЕ
+# 1) БАЗОВЫЕ
 ###### ----------
 > залогировать вывод в консоль
 ```js
@@ -241,7 +241,7 @@ console.log(x);  // Causes error x is not defined
 
 
 
-# Операторы
+# 2) Операторы
 ###### ----------
 
 <table>
@@ -421,7 +421,7 @@ favoritePhrase === 'Love That!' ? console.log('I love that!')
 
 
 
-# Циклы (Loops)
+# 3) Циклы (Loops)
 ###### ----------
 <table>
 <tr>
@@ -563,7 +563,7 @@ Erin and Elle
 
 
 
-# Функции
+# 4) Функции
 ###### ----------
 ```nginx
 function <functionName>($arg1,$arg2....){
@@ -732,7 +732,7 @@ console.log(checkConsistentOutput(addTwo, 13)); //15
 
 
 
-# Массивы
+# 5) Массивы
 ###### ----------
 ```js
 let concepts = ['1', '2', '3'];
@@ -929,7 +929,7 @@ for (let counter = 0; counter < 4; counter++) {
 </tr>
 
 
-# Objects
+# 6) Objects
 ###### ----------
 ```js
 let spaceship = {}; // create empty object
