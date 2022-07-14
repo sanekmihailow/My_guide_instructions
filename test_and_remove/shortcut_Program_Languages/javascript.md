@@ -1,7 +1,9 @@
  Javascript
 ====
-[1) БАЗОВЫЕ_Basic](#БАЗОВЫЕ)
-- [Типы данных](#Типы-данных)
+
+<d>
+ <details>
+	 <summary> JavaScript Map </summary>
 <ul>
     <li>1) БАЗОВЫЕ_Basic</li>
     <ul>
@@ -77,6 +79,13 @@
       <li> Built-in Object Methods</li>
     </ul>    
 </ul>
+
+ </details>
+</d>
+
+[1) БАЗОВЫЕ_Basic](#БАЗОВЫЕ)
+- [Типы данных](#Типы-данных)
+
 
 
 # БАЗОВЫЕ
