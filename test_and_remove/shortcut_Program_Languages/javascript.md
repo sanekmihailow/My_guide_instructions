@@ -22,18 +22,18 @@
         <li>Локальная область видимости (Functional Scope)</li>
       </ul>
     </ul>
-    <li>Операторы</li>
+    <li>2) Операторы</li>
     <ul>
         <li>Условные Операторы</li>
         <ul>
           <li>Тернарные Операторы</li>
         </ul>
     </ul>
-     <li>Циклы (Loops)</li>
+     <li>3) Циклы (Loops)</li>
     <ul>
       <li>Вложенные Циклы (Nested Loops)</li>
     </ul>
-    <li>Функции (Functions)</li>
+    <li>4) Функции (Functions)</li>
     <ul>
       <li>Вспомогательные функции (Helper Functions)</li>
       <li>Функциональные выражения (Function Expressions)</li>
@@ -43,12 +43,12 @@
         <li>(Functions as Parameters)</li>
       </ul>
     </ul>
-    <li>Массивы (Arrays)</li>
+    <li>5) Массивы (Arrays)</li>
     <ul>
       <li>Вложенные Массивы (Nested Arrays)</li>
       <li>(ITERATORS) [link]()</li>
     </ul>
-    <li>Объекты (Objects)</li>
+    <li>6) Объекты (Objects)</li>
     <ul>
       <li>Cвойства объекта</li>
       <ul>
@@ -83,12 +83,12 @@
  </details>
 </d>
 
-[1) БАЗОВЫЕ_Basic](#БАЗОВЫЕ)
+[1) БАЗОВЫЕ_Basic](#1)БАЗОВЫЕ)
 - [Типы данных](#Типы-данных)
 
 
 
-# БАЗОВЫЕ
+# 1)БАЗОВЫЕ
 ###### ----------
 > залогировать вывод в консоль
 ```js
