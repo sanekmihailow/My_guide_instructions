@@ -92,6 +92,11 @@
 - [1.1 Методы](#Методы)
 - [Встроенные объекты (глобальные объекты)](#Встроенные-объекты_глобальные-объекты)
 - [1.2  Переменные_(Variables)](#Переменные_Variables)
+- [Global Scope](#Глобальная-область-видимости_Global-Scope)
+- [Functional Scope](#Локальная-область-видимости_Functional-Scope)
+
+[2) Операторы](#2-Операторы)
+- - [Типы данных](#Типы-данных)
 
 
 
@@ -283,7 +288,7 @@ const:
 
 
 
-#### Глобальная область видимости (Global Scope)
+#### Глобальная область видимости_Global Scope
 ###### ----------
 
 ```js
@@ -321,7 +326,7 @@ console.log(zz);  // z is not defined
 
 
 
-#### локальная область видимости (Functional Scope)
+#### локальная область видимости_Functional Scope
 ###### ----------
 
 ```js
@@ -516,7 +521,7 @@ favoritePhrase === 'Love That!' ? console.log('I love that!')
 
 
 
-# 3 Циклы (Loops)
+# 3 Циклы_Loops
 ###### ----------
 <table>
 <tr>
@@ -606,7 +611,7 @@ Output:
 
 
 
-### Вложенные Циклы (Nested Loops)
+### Вложенные Циклы_Nested Loops
 ###### ----------
 ```js
 const myArray = [6, 19, 20];
@@ -700,7 +705,7 @@ rectangleArea() //You need positive integers to calculate area!
 
 
 
-### Вспомогательные функции (Helper Functions)
+### Вспомогательные функции_Helper Functions
 ###### ----------
 Функции вызываемые внутри другой функции - вспомогательные
 ```js
@@ -718,7 +723,7 @@ getFahrenheit(15); // Returns 59
 
 
 
-### Функциональные выражения (Function Expressions)
+### Функциональные выражения_Function Expressions
 ###### ----------
 
 ```js
@@ -735,7 +740,7 @@ plantNeedsWater('Tuesday'); // false
 
 
 
-### Стрелочная функция (Arrow Functions)
+### Стрелочная функция_Arrow Functions
 ###### ----------
 > несли не нужно вызывать функцию вне переменной (меняем function на)
 ```js
@@ -770,7 +775,7 @@ console.log(logCitySkyline()) //The stars over the
 
 
 
-#### (Functions as Data)
+#### Functions as Data
 ###### ----------
 ```js
 const announceThatIAmDoingImportantWork = () => {
@@ -782,7 +787,7 @@ busy(); // I’m doing very important work!
 
 
 
-#### (Functions as Parameters)
+#### Functions as Parameters
 ###### ----------
 ```js
 const higherOrderFunc = param => {
@@ -866,7 +871,7 @@ console.log(flowers); // Output: ['peony', 'daffodil', 'marigold', 'lily']
 
 
 
-### Вложенные Массивы (Nested Arrays)
+### Вложенные Массивы_Nested Arrays
 ###### ----------
 
 ```js
@@ -876,7 +881,8 @@ console.log(nestedArr[1][0]); // Output: 2
 ```
 
 
-### (ITERATORS) [link](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array#iteration_methods)
+### ITERATORS
+[link](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array#iteration_methods)
 ###### ----------
 <table>
 <tr>
@@ -1172,7 +1178,7 @@ console.log(spaceship) // { 'Fuel Type': 'avocado oil',
 ```
 
 
-### 6_2 Nested Objects (Вложенные объекты)
+### 6_2 Nested Objects_Вложенные объекты
 ###### ----------
 
 ```js
@@ -1210,7 +1216,7 @@ spaceship.nanoelectronics['back-up'].battery; // Returns 'Lithium'
 
 
 
-##### Looping Through Objects (Перебор объектов)
+##### Looping Through Objects_Перебор объектов
 ###### ----------
 
 ```js
@@ -1336,7 +1342,7 @@ console.log(bankAccount) // { _amount: 1000000, amount: 1 }
 
 
 
-##### Getters (Геттеры)
+##### Getters_Геттеры
 ###### ----------
 
 > Геттеры — это методы, которые получают и возвращают внутренние свойства объекта. Синтаксис **get** связывает свойство объекта с функцией, которая будет вызываться при обращении к этому свойству.
@@ -1359,7 +1365,7 @@ person.fullName; // 'John Doe'
 
 
 
-##### Setters (Сеттеры)
+##### Setters_Сеттеры
 ###### ----------
 
 > Сеттеры — это методы, которые изменяют внутренние свойства объекта. Оператор **set** связывает свойство объекта с функцией, которая будет вызвана при попытке установить это свойство.
