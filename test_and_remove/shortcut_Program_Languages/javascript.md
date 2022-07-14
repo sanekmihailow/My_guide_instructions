@@ -3,7 +3,7 @@
 
 <d>
  <details>
-	 <summary> JavaScript Map </summary>
+	 <summary> Structure Map </summary>
 <ul>
     <li>1) БАЗОВЫЕ_Basic</li>
     <ul>
@@ -83,6 +83,10 @@
  </details>
 </d>
 
+<d>
+ <details>
+	 <summary> JavaScript Map </summary>
+
 [1) БАЗОВЫЕ](#1-БАЗОВЫЕ)
 - [Типы данных](#Типы-данных)
 - [Арифметические операции](#Арифметические-операции)
@@ -120,10 +124,19 @@
 - [Вложенные объекты](#Nested-Objects_Вложенные-объекты)
 - - [Перебор объектов](#Looping-Through-Objects_Перебор-объектов)
 - [Advanced Objects Introduction](#Advanced-Objects-Introduction)
-- - ["this" Keyword](#"this"-Keyword)
+- - ["this" Keyword](#this-Keyword)
+- - - [Arrow Functions and this](#Arrow-Functions-and-this)
+- - [Privacy object](#Privacy-object)
+- - - [Getters (Геттеры)](#Getters_Геттеры)
+- - - [Setters (Сеттеры)](#Setters_Сеттеры)
+- - [Factory Functions](Factory-Functions)
+- - - [Property Value Shorthand](#Property-Value-Shorthand)
+- - - [Destructured Assignment](#Destructured-Assignment)
+- [Built-in Object Methods](#Built-in-Object-Methods)
 
+ </details>
+</d>
 
- 
 
 
 
@@ -1074,7 +1087,7 @@ let spaceship = {
 ```
 
 
-### 6_1 Cвойства объекта
+### Cвойства объекта
 #### Доступ к свойствам объекта
 ###### ----------
 
@@ -1205,7 +1218,7 @@ console.log(spaceship) // { 'Fuel Type': 'avocado oil',
 ```
 
 
-### 6_2 Nested Objects_Вложенные объекты
+### Nested Objects_Вложенные объекты
 ###### ----------
 
 ```js
@@ -1277,8 +1290,8 @@ for (let crewMember in spaceship.crew) {
 ```
 
 
-## 6_3 Advanced Objects Introduction
-#### "this" Keyword
+## Advanced Objects Introduction
+#### this Keyword
 ###### ----------
 
 > Свойство контекста выполнения кода (global, function или eval), которое в нестрогом режиме всегда является ссылкой на объект, а в строгом режиме может иметь любое значение.
@@ -1485,7 +1498,7 @@ console.log(residence); // Prints 'Transylvania'
 
 
 
-## 6_4 Built-in Object Methods 
+## Built-in Object Methods 
 
 [link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods)
 ###### ()
