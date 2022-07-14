@@ -1,6 +1,84 @@
  Javascript
 ====
-# 1) БАЗОВЫЕ
+[1) БАЗОВЫЕ_Basic]( #БАЗОВЫЕ)
+<ul>
+    <li>1) БАЗОВЫЕ_Basic</li>
+    <ul>
+      <li>Типы данных</li>
+      <li>Арифметические операции</li>
+      <li>Конкатенация строк</li>
+      <li>Интерполяция строк</li>
+      <li>Характеристики</li>
+      <li>Методы</li>
+      <ul>
+        <li>Встроенные объекты (глобальные объекты)</li>
+      </ul>
+      <li>Переменные (Variables)</li>
+      <ul>
+        <li>Глобальная область видимости (Global Scope)</li>
+        <li>Локальная область видимости (Functional Scope)</li>
+      </ul>
+    </ul>
+    <li>Операторы</li>
+    <ul>
+        <li>Условные Операторы</li>
+        <ul>
+          <li>Тернарные Операторы</li>
+        </ul>
+    </ul>
+     <li>Циклы (Loops)</li>
+    <ul>
+      <li>Вложенные Циклы (Nested Loops)</li>
+    </ul>
+    <li>Функции (Functions)</li>
+    <ul>
+      <li>Вспомогательные функции (Helper Functions)</li>
+      <li>Функциональные выражения (Function Expressions)</li>
+      <li>Стрелочная функция (Arrow Functions)</li>
+      <ul>
+        <li>(Functions as Data)</li>
+        <li>(Functions as Parameters)</li>
+      </ul>
+    </ul>
+    <li>Массивы (Arrays)</li>
+    <ul>
+      <li>Вложенные Массивы (Nested Arrays)</li>
+      <li>(ITERATORS) [link]()</li>
+    </ul>
+    <li>Объекты (Objects)</li>
+    <ul>
+      <li>Cвойства объекта</li>
+      <ul>
+        <li>операции со свойствами объекта</li>
+        <li>Reference</li>
+      </ul>
+      <li>Nested Objects (Вложенные объекты)</li>
+      <ul>
+        <li>Looping Through Objects (Перебор объектов)</li>
+      </ul>
+      <li>Advanced Objects Introduction</li>
+      <ul>
+        <li>"this" Keyword</li>
+        <ul>
+          <li>Arrow Functions and this</li>
+        </ul>
+        <li>Privacy object</li>
+        <ul>
+          <li>Getters (Геттеры)</li>
+          <li>Setters (Сеттеры)</li>
+        </ul>
+        <li>Factory Functions</li>
+        <ul>
+          <li>Property Value Shorthand</li>
+          <li>Destructured Assignment</li>
+        </ul>
+      </ul>
+      <li> Built-in Object Methods</li>
+    </ul>    
+</ul>
+
+
+# БАЗОВЫЕ
 ###### ----------
 > залогировать вывод в консоль
 ```js
@@ -1241,7 +1319,7 @@ console.log(bankAccount) // { _amount: 1000000, amount: 1 }
 
 
 
-#### Getters (Геттеры)
+##### Getters (Геттеры)
 ###### ----------
 
 > Геттеры — это методы, которые получают и возвращают внутренние свойства объекта. Синтаксис **get** связывает свойство объекта с функцией, которая будет вызываться при обращении к этому свойству.
@@ -1264,7 +1342,7 @@ person.fullName; // 'John Doe'
 
 
 
-#### Setters (Сеттеры)
+##### Setters (Сеттеры)
 ###### ----------
 
 > Сеттеры — это методы, которые изменяют внутренние свойства объекта. Оператор **set** связывает свойство объекта с функцией, которая будет вызвана при попытке установить это свойство.
