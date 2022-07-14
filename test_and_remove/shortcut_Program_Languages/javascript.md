@@ -84,7 +84,7 @@
 </d>
 
 [1) БАЗОВЫЕ_Basic](#1-БАЗОВЫЕ)
-- [Типы данных](#2-Типы-данных)
+- [Типы данных](#Типы-данных)
 
 
 
@@ -104,7 +104,7 @@ This is all commented
 console.log(/*IGNORED!*/ 5);  // Still just prints 5 
 ```
 
-### 2 Типы данных
+### Типы данных
 ###### ----------
 
 | ***тип*** | ***описание*** | ***примеры*** |
@@ -329,7 +329,7 @@ console.log(x);  // Causes error x is not defined
 
 
 
-# 2) Операторы
+# 2 Операторы
 ###### ----------
 
 <table>
@@ -509,7 +509,7 @@ favoritePhrase === 'Love That!' ? console.log('I love that!')
 
 
 
-# 3) Циклы (Loops)
+# 3 Циклы (Loops)
 ###### ----------
 <table>
 <tr>
@@ -651,7 +651,7 @@ Erin and Elle
 
 
 
-# 4) Функции
+# 4 Функции
 ###### ----------
 ```nginx
 function <functionName>($arg1,$arg2....){
@@ -820,7 +820,7 @@ console.log(checkConsistentOutput(addTwo, 13)); //15
 
 
 
-# 5) Массивы
+# 5 Массивы
 ###### ----------
 ```js
 let concepts = ['1', '2', '3'];
@@ -1017,7 +1017,7 @@ for (let counter = 0; counter < 4; counter++) {
 </tr>
 
 
-# 6) Objects
+# 6 Objects
 ###### ----------
 ```js
 let spaceship = {}; // create empty object
@@ -1034,7 +1034,7 @@ let spaceship = {
 ```
 
 
-### Cвойства объекта
+### 6_1 Cвойства объекта
 #### Доступ к свойствам объекта
 ###### ----------
 
@@ -1165,7 +1165,7 @@ console.log(spaceship) // { 'Fuel Type': 'avocado oil',
 ```
 
 
-### Nested Objects (Вложенные объекты)
+### 6_2 Nested Objects (Вложенные объекты)
 ###### ----------
 
 ```js
@@ -1237,7 +1237,7 @@ for (let crewMember in spaceship.crew) {
 ```
 
 
-## Advanced Objects Introduction
+## 6_3 Advanced Objects Introduction
 #### "this" Keyword
 ###### ----------
 
@@ -1445,7 +1445,9 @@ console.log(residence); // Prints 'Transylvania'
 
 
 
-## Built-in Object Methods [link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods)
+## 6_4 Built-in Object Methods 
+
+[link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods)
 ###### ()
 ###### ----------
 
