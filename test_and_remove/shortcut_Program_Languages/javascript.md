@@ -1591,3 +1591,289 @@ for (let counter = 0; counter < 4; counter++) {
 </tr>
 
 </table>
+
+# 7 Class
+###### ----------
+
+> Класс JavaScript — это вид функции. Это расширяемый шаблон кода для создания объектов, который устанавливает в них начальные значения (свойства) и реализацию поведения (методы). По сути классы нужны для замены factory functions, и нследования между конструктором и классом.
+
+Базовый синтаксис выглядит так:
+
+```js
+class MyClass {
+  // методы класса
+  constructor() { ... }
+  method1() { ... }
+  method2() { ... }
+  method3() { ... }
+  ...
+}
+```
+```js
+class User {
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayHi() {
+    alert(this.name);
+  }
+
+}
+
+// Использование:
+let user = new User("Иван");
+user.sayHi();
+```
+Отличие от функции
+```js
+// Initializing a constructor function
+function Hero(name, level) {
+	this.name = name;
+	this.level = level;
+}
+```
+```js
+// Initializing a class definition
+class Hero {
+	constructor(name, level) {
+		this.name = name;
+		this.level = level;
+	}
+}
+```
+> class Dog Для factory functions
+```js
+class Dog {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+
+  get name() {
+    return this._name;
+  }
+  get behavior() {
+    return this._behavior;
+  }   
+
+  incrementBehavior() {
+    this._behavior ++;
+  }
+}
+
+const halley = new Dog('Halley');
+console.log(halley.name); // Halley
+console.log(halley.behavior); // 0
+halley.incrementBehavior(); // Add one to behavior
+console.log(halley.name); // Halley
+console.log(halley.behavior); // 1
+```
+
+
+
+
+
+### Наследство_Inheritance
+###### ----------
+> **extends** - делает доступным родительсктй класс внутри дочернего
+
+> **super** - вызывает конструктор родительского класса. Супер вызывается перед **this**
+
+
+>Example 1
+```js
+class Animal {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+ 
+  get name() {
+    return this._name;
+  }
+ 
+  get behavior() {
+    return this._behavior;
+  }
+
+  incrementBehavior() {
+    this._behavior++;
+  }
+} 
+```
+```js
+class Cat extends Animal {
+  constructor(name, usesLitter) {
+    super(name);
+    this._usesLitter = usesLitter;
+  }
+}
+```
+> Example 2
+```js
+// Initializing a class
+class Hero {
+	constructor(name, level) {
+		this.name = name;
+		this.level = level;
+	}
+
+	// Adding a method to the constructor
+	greet() {
+		return `${this.name} says hello.`;
+    }
+}
+
+// Creating a new class from the parent
+class Mage extends Hero {
+	constructor(name, level, spell) {
+		// Chain constructor with super
+		super(name, level);
+
+		// Add a new property
+		this.spell = spell;
+	}
+}
+```
+
+
+
+
+### Static Methods
+###### ----------
+> Статические поля хранят состояния класса в целом, а не отдельного объекта. В отличие от обычных полей/свойств и методов они относятся ко всему классу, а не к отдельному объекту. Иногда вам может понадобиться, чтобы у класса были методы, недоступные в отдельных экземплярах, но которые вы можете вызывать непосредственно из класса.
+
+> Example 1
+```js
+class Person{
+    static retirementAge = 65;
+    constructor(name, age){
+        this.name = name;
+        this.age = age;
+    }
+    print(){ 
+        console.log(`Имя: ${this.name}  Возраст: ${this.age}`); 
+    }
+}
+ 
+console.log(Person.retirementAge); // 65
+Person.retirementAge = 62;
+console.log(Person.retirementAge); // 62
+
+PersonJack = new Person('Jack', 65)
+```
+> static retirementAge = 65;
+
+> Это поле относится ко всему классу Person в целом и описывает состояние всего класса в целом.  И поэтому для обращения к статическому полю применяется имя класса, а не имя какого-либо объекта. Используя имя класса, мы можем получить или установить его значение.
+
+> Example 2
+```js
+class Animal {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+ 
+  static generateName() {
+    const names = ['Angel', 'Spike', 'Buffy', 'Willow', 'Tara'];
+    const randomNumber = Math.floor(Math.random()*5);
+    return names[randomNumber];
+  }
+} 
+
+console.log(Animal.generateName()); // returns a name an example Spike
+const tyson = new Animal('Tyson'); 
+tyson.generateName(); // TypeError
+```
+
+
+
+
+
+# 8 Модули_Implementing Modules
+###### ----------
+
+> Модули — это повторно используемые фрагменты кода в файле, которые можно экспортировать, а затем импортировать для использования в другом файле. Модульная программа — это программа, компоненты которой могут быть разделены, использованы по отдельности и объединены для создания сложной системы.
+
+The Node runtime environment and the module.exports and require() syntax.
+
+The browser’s runtime environment and the ES6 import/export syntax.
+
+> Example
+<ul>
+<li>water-limits.js</li>
+<li>celsius-to-fahrenheit.js</li>
+<li>converters.js</li>
+<li>water-limits.js</li>
+</ul>
+
+```js
+/* water-limits.js */
+function celsiusToFahrenheit(celsius) {
+  return celsius * (9/5) + 32;
+}
+ 
+const freezingPointC = 0;
+const boilingPointC = 100;
+ 
+const freezingPointF = celsiusToFahrenheit(freezingPointC);
+const boilingPointF = celsiusToFahrenheit(boilingPointC);
+ 
+console.log(`The freezing point of water in Fahrenheit is ${freezingPointF}`);
+console.log(`The boiling point of water in Fahrenheit is ${boilingPointF}`);
+```
+```js
+/* celsius-to-fahrenheit.js */
+function celsiusToFahrenheit(celsius) {
+    return celsius * (9/5) + 32;
+}
+ 
+const celsiusInput = process.argv[2]; // Get the 3rd input from the argument list
+const fahrenheitValue = celsiusToFahrenheit(celsiusInput);
+ 
+console.log(`${celsiusInput} degrees Celsius = ${fahrenheitValue} degrees Fahrenheit`);
+```
+```js
+/* converters.js */
+function celsiusToFahrenheit(celsius) {
+  return celsius * (9/5) + 32;
+}
+ 
+module.exports.celsiusToFahrenheit = celsiusToFahrenheit;
+ 
+module.exports.fahrenheitToCelsius = function(fahrenheit) {
+  return (fahrenheit - 32) * (5/9);
+};
+```
+```js
+/* water-limits.js */
+const converters = require('./converters.js');
+ 
+const freezingPointC = 0;
+const boilingPointC = 100;
+ 
+const freezingPointF = converters.celsiusToFahrenheit(freezingPointC);
+const boilingPointF = converters.celsiusToFahrenheit(boilingPointC);
+ 
+console.log(`The freezing point of water in Fahrenheit is ${freezingPointF}`);
+console.log(`The boiling point of water in Fahrenheit is ${boilingPointF}`);
+```
+```js
+/* celsius-to-fahrenheit.js */
+const { celsiusToFahrenheit } = require('./converters.js');
+ 
+const celsiusInput = process.argv[2]; 
+const fahrenheitValue = celsiusToFahrenheit(celsiusInput);
+ 
+console.log(`${celsiusInput} degrees Celsius = ${fahrenheitValue} degrees Fahrenheit`);
+```
+
+
+
+
+# 9 JAVASCRIPT PROMISES
+###### ----------
+
+Используется для ассинхронных вызовов
