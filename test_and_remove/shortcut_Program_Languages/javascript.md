@@ -1940,33 +1940,7 @@ console.log(
 )
 ```
 
-# 9 JAVASCRIPT PROMISES
-
-###### ----------
-
-Используется для ассинхронных вызовов.
-Promise – это специальный объект, который содержит своё состояние. Вначале pending («ожидание»), затем – одно из: fulfilled («выполнено успешно») или rejected («выполнено с ошибкой»).
-
-На promise можно навешивать колбэки двух типов:
-onFulfilled – срабатывают, когда promise в состоянии «выполнен успешно».
-onRejected – срабатывают, когда promise в состоянии «выполнен с ошибкой».
-
-> Синтаксис
-
-```js
-const executorFunction = (resolve, reject) => {
-	if (someCondition) {
-		resolve('I resolved!')
-	} else {
-		reject('I rejected!')
-	}
-}
-const myFirstPromise = new Promise(executorFunction)
-```
-
-> resolve — это функция с одним аргументом. resolve() изменит статус промиса с **penfing** на **fulfilled** и выполнит то что установленно в resolve()
-
-> reject — это функция, которая принимает причину или ошибку в качестве аргумента. reject() изменит статус промиса с **penfing** на **rejected** и выполнит то что установленно в reject()
+# 9 ASYNCTHING JAVASCRIPT
 
 ### Функция setTimeout
 
@@ -1997,6 +1971,34 @@ const returnPromiseFunction = () => {
 
 const prom = returnPromiseFunction()
 ```
+
+## 9_1 JAVASCRIPT PROMISES
+
+###### ----------
+
+Используется для ассинхронных вызовов.
+Promise – это специальный объект, который содержит своё состояние. Вначале pending («ожидание»), затем – одно из: fulfilled («выполнено успешно») или rejected («выполнено с ошибкой»).
+
+На promise можно навешивать колбэки двух типов:
+onFulfilled – срабатывают, когда promise в состоянии «выполнен успешно».
+onRejected – срабатывают, когда promise в состоянии «выполнен с ошибкой».
+
+> Синтаксис
+
+```js
+const executorFunction = (resolve, reject) => {
+	if (someCondition) {
+		resolve('I resolved!')
+	} else {
+		reject('I rejected!')
+	}
+}
+const myFirstPromise = new Promise(executorFunction)
+```
+
+> resolve — это функция с одним аргументом. resolve() изменит статус промиса с **penfing** на **fulfilled** и выполнит то что установленно в resolve()
+
+> reject — это функция, которая принимает причину или ошибку в качестве аргумента. reject() изменит статус промиса с **penfing** на **rejected** и выполнит то что установленно в reject()
 
 ### Promise методы
 
@@ -2181,4 +2183,260 @@ myFirstPromise
 		alert(result) // 4
 		return result * 2
 	})
+```
+
+## 9_2 ASYNC AWAIT
+
+###### ----------
+
+> **async** functions - возвращает promise
+
+> **await** - работает только внутри **async**, заставляет интерпретатор ждать до тех пор, пока промис справа от **await** не выполнится
+
+```js
+async function fivePromise() {
+	return 5
+}
+
+fivePromise().then(resolvedValue => {
+	console.log(resolvedValue)
+}) // Prints 5
+```
+
+> Например можно переписать промис c
+
+```js
+function withConstructor(num) {
+	return new Promise((resolve, reject) => {
+		if (num === 0) {
+			resolve('zero')
+		} else {
+			resolve('not zero')
+		}
+	})
+}
+
+withConstructor(0).then(resolveValue => {
+	console.log(
+		` withConstructor(0) returned a promise which resolved to: ${resolveValue}.`
+	)
+})
+```
+
+> на
+
+```js
+async function withAsync(num) {
+	if (num === 0) {
+		return 'zero'
+	} else {
+		return 'not zero'
+	}
+}
+
+withAsync(0).then(alert) // alert zero
+withAsync(12).then(resolveValue => {
+	console.log(
+		` withAsync(12) returned a promise which resolved to: ${resolveValue}.`
+	)
+}) //withAsync(12) returned a promise which resolved to: not zero.
+```
+
+> '+await'
+
+```js
+async function fn() {
+	let promise = new Promise((resolve, reject) => {
+		setTimeout(() => resolve('Done!'), 2000)
+	})
+	let res = await promise // wait until the promise resolves (*)
+	console.log(res) // result:  "Done!"
+}
+fn() // "Done!" through 2 sec
+```
+
+> Example
+
+```js
+let myPromise = () => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve('Yay, I resolved!')
+		}, 1000)
+	})
+}
+
+async function noAwait() {
+	let value = myPromise()
+	console.log(value)
+}
+
+async function yesAwait() {
+	let value = await myPromise()
+	console.log(value)
+}
+
+noAwait() // Prints: Promise { <pending> }
+yesAwait() // Prints: Yay, I resolved!
+```
+
+### Async await chaining
+
+###### ----------
+
+> Example
+
+- library.js
+
+```js
+const shopForBeans = () => {
+	return new Promise((resolve, reject) => {
+		const beanTypes = ['kidney', 'fava', 'pinto', 'black', 'garbanzo']
+		setTimeout(() => {
+			let randomIndex = Math.floor(Math.random() * 5)
+			let beanType = beanTypes[randomIndex]
+			console.log(`I bought ${beanType} beans because they were on sale.`)
+			resolve(beanType)
+		}, 1000)
+	})
+}
+
+let soakTheBeans = beanType => {
+	return new Promise((resolve, reject) => {
+		console.log('Time to soak the beans.')
+		setTimeout(() => {
+			console.log(`... The ${beanType} beans are softened.`)
+			resolve(true)
+		}, 1000)
+	})
+}
+
+let cookTheBeans = isSoftened => {
+	return new Promise((resolve, reject) => {
+		console.log('Time to cook the beans.')
+		setTimeout(() => {
+			if (isSoftened) {
+				console.log('... The beans are cooked!')
+				resolve('\n\nDinner is served!')
+			}
+		}, 1000)
+	})
+}
+
+module.exports = { shopForBeans, soakTheBeans, cookTheBeans }
+```
+
+- app.js
+
+```js
+const { shopForBeans, soakTheBeans, cookTheBeans } = require('./library.js')
+
+// Write your code below:
+async function makeBeans() {
+	let type = await shopForBeans()
+	let isSoft = await soakTheBeans(type)
+	let dinner = await cookTheBeans(isSoft)
+	console.log(dinner)
+}
+
+makeBeans()
+```
+
+### Async await Handling Errors
+
+###### ----------
+
+> Такой код:
+
+```js
+async function f() {
+	await Promise.reject(new Error('Упс!'))
+}
+```
+
+> Делает то же самое, что и такой:
+
+```js
+async function f() {
+	throw new Error('Упс!')
+}
+```
+
+> Но есть отличие: на практике промис может завершиться с ошибкой не сразу, а через некоторое время. В этом случае будет задержка, а затем await выбросит исключение.
+
+```js
+async function f() {
+	try {
+		let response = await fetch('http://no-such-url')
+	} catch (err) {
+		console.log(err) // Catches any errors in the try block
+	}
+}
+
+f()
+```
+
+> Если у нас нет try..catch, асинхронная функция будет возвращать завершившийся с ошибкой промис (в состоянии rejected)
+
+```js
+async function f() {
+	let response = await fetch('http://no-such-url')
+}
+
+// f() вернёт промис в состоянии rejected
+f().catch(alert) // TypeError: failed to fetch // (*)
+```
+
+### Handling Independent Promises
+
+###### ----------
+
+##### Variable 1 add end await
+
+```js
+async function concurrent() {
+	const firstPromise = firstAsyncThing()
+	const secondPromise = secondAsyncThing()
+	console.log(await firstPromise, await secondPromise)
+}
+```
+
+```js
+let {
+	cookBeans,
+	steamBroccoli,
+	cookRice,
+	bakeChicken,
+} = require('./library.js')
+
+// Write your code below:
+async function serveDinner() {
+	const vegetablePromise = steamBroccoli()
+	const starchPromise = cookRice()
+	const proteinPromise = bakeChicken()
+	const sidePromise = cookBeans()
+	console.log(
+		`Dinner is served. We're having ${await vegetablePromise}, ${await starchPromise}, ${await proteinPromise}, and ${await sidePromise}.`
+	)
+}
+
+serveDinner()
+```
+
+##### Variable 2 await promise_all
+
+> await Promise.all() в данном случае вернет массив завершенных промисов по порядку. Так же он не будет ждать reject всех промисов, вернет ошибку.
+
+```js
+async function asyncPromAll() {
+	const resultArray = await Promise.all([
+		asyncTask1(),
+		asyncTask2(),
+		asyncTask3(),
+		asyncTask4(),
+	])
+	for (let i = 0; i < resultArray.length; i++) {
+		console.log(resultArray[i])
+	}
+}
 ```
