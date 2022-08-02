@@ -7,10 +7,45 @@
  > use in HTML
 
 ```php
+<!DOCTYPE html>
+<html>
+<head>
+<title>How to put PHP in HTML - Simple Example</title>
+</head>
 <body>
-<p>Something</p>
-<?php echo "<p>B....</p>";?>
+<h1><?php echo "This message is from server side." ?></h1>
 </body>
+</html>
+```
+> Example
+```php
+<?php 
+$about_me = [
+  "name" => "Aisle Nevertell",
+  "birth_year" => 1902,
+  "favorite_food" => "pizza"
+];
+
+function calculateAge ($person_arr){
+  $current_year = date("Y");
+  $age = $current_year - $person_arr["birth_year"];
+  return $age;
+}
+?>
+<h1>Welcome!</h1>
+<h2>About me:</h2>
+<?php   
+  echo "<h3>Hello! I'm {$about_me["name"]}!</h3>";
+  echo "<p> I'm " . calculateAge($about_me). " years old! That's pretty cool, right?</p>";
+  echo "<div>What more is there to say? I love {$about_me["favorite_food"]}, and that's pretty much it!</div>";
+?>
+
+<h2>Now tell me a little about you.</h2>
+<?php echo "<p>PHP interprets this and turns it into HTML</p>";?>
+тоже самое что и, т.е. сокращенные вариант php echo
+<?="<p>PHP interprets this and turns it into HTML</p>";?>
+
+
 ```
 
 > Every statement in PHP must be terminated with a semicolon **;**
@@ -460,6 +495,72 @@ echo rand(5, 15);    // 11
 
 
 
+### Filesystem Functions
+###### ----------
+
+
+[link Filesystem Functions](https://www.php.net/manual/ru/ref.filesystem.php)
+
+
+<table>
+<tr>
+    <td> функция </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+    <td> move_uploaded_file </td> 
+    <td> Перемещает загруженный файл в новое место </td> 
+    <td> 
+
+```php
+$uploads_dir = '/uploads';
+$current_path = $_FILES['avatar']['tmp_name'];
+$filename = $_FILES['avatar']['name'];
+move_uploaded_file($current_path, $uploads_dir);
+```
+  </td> 
+</tr>
+<tr>
+    <td> file_put_contents  </td> 
+    <td> Пишет данные в файл </td> 
+    <td>
+
+```php
+$file = 'people.txt';
+$new = $_REQUEST;
+// перезаписывает файл
+file_put_contents($file, $new);
+// добавляет в файл
+file_put_contents($file, $new, FILE_APPEND | LOCK_EX);
+``` 
+ </td> 
+</tr>
+<tr>
+    <td>   </td> 
+    <td>  </td> 
+    <td>
+
+```php
+echo round(1.2); // Prints: 1
+echo round(1.5); // Prints: 2
+``` 
+ </td> 
+</tr>
+<tr>
+    <td>   </td> 
+    <td>  </td> 
+    <td>
+
+```php
+
+``` 
+ </td> 
+</tr>
+</table>
+
+
+
 # Массивы
 ###### ----------
 
@@ -703,4 +804,210 @@ echo $array["color"]; // Prints: red
 ```
 
 
+
+
+# HTML FORM HANDLING IN PHP
+###### ----------
+
+
+### Request  Superglobals
+
+The list of superglobals in PHP includes the following:
+
+- $GLOBALS
+- $_SERVER
+- $_GET
+- $_POST
+- $_FILES
+- $_COOKIE
+- $_SESSION
+- $_REQUEST
+- $_ENV
+
+> Формы — это часть языка HTML. Формы нужны для передачи данных от клиента на сервер.
+
+[HTML FORM TAG](https://www.w3schools.com/tags/tag_form.asp)
+
+>Example 
+```php
+// index.php
+<html>
+<body>
+<form name="feedback" method="POST" action="form.php" enctype="multipart/form-data">
+  <label>Ваше имя: <input type="text" name="name"></label>
+  <label>Ваш email: <input type="text" name="email"></label>
+  <label>Сообщение: <textarea name="message"></textarea></label>
+  <label>Ваш аватар: <input type="file" name="avatar"></label>
+
+
+  <input type="submit" name="send" value="Отправить">
+</form>
+</body>
+</html>
+```
+> **method** -  атрибут используется для определения метода HTTP, который будет использован для передачи данных на сервер
+
+> **action** - содержит адрес PHP-скрипта, который должен обработать эту форму(на который переадресует послу submit)
+
+```php
+// form.php
+<html>
+<body>
+<?php
+if (isset($_POST)) {
+    print("Имя: " . $_POST['name']);
+    print("<br>Email: " . $_POST['email']);
+    print("<br>Сообщение: " . $_POST['message']);
+}
+if (isset($_FILES['avatar'])) {
+    $file = $_FILES['avatar'];
+
+    print("Загружен файл с именем " . $file['name'] . " и размером " . $file['size'] . " байт");
+// перемещаем загруженный файл, т.к PHP автоматически сохраняет все загруженные файлы во временную папку на сервере   
+    $current_path = $_FILES['avatar']['tmp_name'];
+    $filename = $_FILES['avatar']['name'];
+    $uploads_dir = dirname(__FILE__) . '/' . $filename;
+    //$uploads_dir = '/uploads';
+
+    move_uploaded_file($current_path, $uploads_dir);
+}
+</body>
+</html>
+```
+> **isset** - служит для определения, существует ли переданная ей переменная
+
+> **move_uploaded_file()** - Проверяет, что файл действительно загружен через форму. Перемещает загруженный файл по новому адресу
+
+
+
+
+
+
+# Операторы
+###### ----------
+
+[link to Control Structures](https://www.php.net/manual/ru/language.control-structures.php)
+
+
+### Общие Операторы
+###### ----------
+
+ **\*eng**       | **_пример_** | **_пример c переменной_** |
+| :--------      | :----------: | :------------------------ |
+| compare        |     ==       | x == y; &#124; x === y;   |
+| Subtract       |      -       | w -= 1; &#124;w--;        |
+| Multiply       |      \*      | w \*= 1;                  |
+| Divide         |      /       | w /= 1;                   |
+| Modulo         |      %       | 7 % 3; //1 &#124; X %= Y  |
+| Exponentiation |      \*\*    | 4**2; // Prints: 16       |
+
+> **===** return TRUE or FALSE
+
+
+### Условные Операторы
+###### ----------
+
+<table>
+<tr>
+    <td> тип </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> if </td>
+ <td> проверка если равно or etc то сделать то-то </td>
+ <td>
+  
+```php
+$is_clicked = TRUE;
+if ($is_clicked) {
+  $link_color = "purple";
+  echo $link_color;
+} else {
+  $link_color = "red";
+}
+```
+ </td>
+</tr>
+<tr>
+ <td> else if <br/> elseif </td>
+ <td> если равно сделать то, иначе сдделато то, иначе сделато то </td>
+ <td>
+  
+```php
+$one_two = '12';
+if ($one_two == '2') {
+  $link_color = "purple";
+  echo $link_color;
+} else if (one_two == '12') {
+  $link_color = "blue";
+  echo $link_color;
+} else {
+  echo 'not correct color';
+}
+```
+> через двоеточие
+```php
+/* Некорректный способ: */
+if($a > $b):
+    echo $a." больше, чем ".$b;
+else if($a == $b): // Не скомпилируется.
+    echo "Строка выше вызывает фатальную ошибку.";
+endif;
+```
+```php
+if($a > $b):
+    echo $a." больше, чем ".$b;
+elseif($a == $b): // Заметьте, тут одно слово.
+    echo $a." равно ".$b;
+else:
+    echo $a." не больше и не равно ".$b;
+endif;
+
+```
+ </td>
+</tr>
+<tr>
+ <td> Switch  </td>
+ <td> если нужно проверить много условий. Обязательно ставить break или continue </td>
+ <td>
+  
+```php
+switch ($letter_grade){
+  case "A":
+    echo "Terrific";
+    break;
+  case "B":
+    echo "Good";
+    break;
+  default:
+    echo "Invalid grade"; 
+```
+> default - если не один не совпал
+```php
+function returnSeason($month){
+  switch ($month) {
+    case "December":
+    case "January":
+    case "February":  
+      return "winter";
+    case "March":
+    case "April":
+    case "May":  
+      return "spring";
+    case "June":
+    case "July":
+    case "August":  
+      return "summer";
+    case "September":
+    case "October":
+    case "November":  
+      return "fall";   
+	} 
+}
+
+echo returnSeason("February"); //winter
+```
+ </td>
+</tr>
 
