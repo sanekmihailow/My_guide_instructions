@@ -69,6 +69,26 @@ round(int|float $num, int $precision = 0, int $mode = PHP_ROUND_HALF_UP): float
 
 ###### ----------
 
+### include
+
+```php
+// one.php
+echo "How are";
+```
+
+```php
+// two.php
+echo " you?";
+```
+
+```php
+// index.php
+echo "Hello! ";
+include "one.php";
+include "two.php";
+// Prints: Hello! How are you?
+```
+
 > комменты
 
 ```js
@@ -102,6 +122,25 @@ echo "\n2. Cook dinner";
 ```php
 echo "one " . "two"; // Prints: one two
 ```
+
+### Truthy and Falsy
+
+###### ----------
+
+> we’ll focus on expressions that are falsy:
+
+- the boolean FALSE itself
+- Empty strings - ''
+- string zero - '0'
+- the integer zero - 0
+- the float zero - 0.0
+- NULL (including unset variables)
+- empty array (zero elements) - $arr = [];
+- empty object (zero memebers variables)
+- SimpleXML objects created from empty tags
+- an undefined or undeclared variable
+
+**Every other value is considered TRUE**
 
 ### Переменные_Variables
 
@@ -168,18 +207,26 @@ echo -22.8; // Prints: -22.8
 echo $my_int; // Prints: 78
 ```
 
+## Операции с перменными_Операторы
+
+[link to Operators](https://www.php.net/manual/ru/language.operators.php)
+
 ### Арифметические операции
 
 ###### ----------
 
-| **\*eng**      | **_пример_** | **_пример c переменной_** |
-| :------------- | :----------: | :------------------------ |
-| Add            |      +       | w += 1; &#124; w++;       |
-| Subtract       |      -       | w -= 1; &#124;w--;        |
-| Multiply       |      \*      | w \*= 1;                  |
-| Divide         |      /       | w /= 1;                   |
-| Modulo         |      %       | 7 % 3; //1 &#124; X %= Y  |
-| Exponentiation |     \*\*     | 4\*\*2; // Prints: 16     |
+| **\*eng**      | **_пример_** | **_пример c переменной_**          |
+| :------------- | :----------: | :--------------------------------- |
+| compare        |      ==      | x == y; &#124; x === y;            |
+| Subtract       |      -       | w -= 1; &#124;w--;                 |
+| Multiply       |      \*      | w \*= 1;                           |
+| Divide         |      /       | w /= 1;                            |
+| Modulo         |      %       | 7 %= 3; //1 &#124; X %= Y          |
+| Exponentiation |     \*\*     | 4\*\*=2; // Prints: 16             |
+| Pre-increment  |     ++$a     | $a = 5; echo ++$a; //6; echo $a//6 |
+| Post-increment |     $a++     | echo $a++; //5; echo $a //6        |
+| Pre-decrement  |     --$a     | echo --$a; //4; echo $a //4        |
+| Post-decrement |     $a--     | echo $a--; //5; echo $a //4        |
 
 Operations will be evaluated in the following order:
 
@@ -189,6 +236,166 @@ Operations will be evaluated in the following order:
 3. Multiplication (*) and division (/)
 4. Addition (+) and subtraction (-).
 ```
+
+### Логические операции
+
+###### ----------
+
+| **\*eng** | **_пример_** | **_пример c переменной_**    |
+| :-------- | :----------: | :--------------------------- |
+| And       |     and      | $a and $b                    |
+| ---       |      &&      | $a && $b                     |
+| Or        |      or      | $a or $b                     |
+| --        |     \|\|     | $a \|\| $b                   |
+| Not       |      !       | !$a                          |
+| Xor       |     xor      | $a xor $b //любой, но не оба |
+
+```php
+// The or Operator:
+TRUE or TRUE;   // Evaluates to: TRUE
+FALSE or TRUE;  // Evaluates to: TRUE
+TRUE or FALSE;  // Evaluates to: TRUE
+FALSE or FALSE; // Evaluates to: FALSE
+
+// The and Operator:
+TRUE and TRUE;   // Evaluates to: TRUE
+FALSE and TRUE;  // Evaluates to: FALSE
+TRUE and FALSE;  // Evaluates to: FALSE
+FALSE and FALSE; // Evaluates to: FALSE
+```
+
+```php
+TRUE xor TRUE;   // Evaluates to: FALSE
+
+FALSE xor TRUE;  // Evaluates to: TRUE
+
+TRUE xor FALSE;  // Evaluates to: TRUE
+
+FALSE xor FALSE; // Evaluates to: FALSE
+```
+
+### Операции cравнения
+
+###### ----------
+
+| **\*eng**     | **_пример_** | **_пример c переменной_**             |
+| :------------ | :----------: | :------------------------------------ |
+| Equal         |      ==      | x == y; //после преобразования типов  |
+| Identical     |     ===      | x === y; //и имеет тот же тип         |
+| Not equal     |      !=      | x != y; //после преобразования типов  |
+| ---           |      <>      | x <> y;                               |
+| Not identical |     !==      | x !== y; // или они разных типов      |
+| Less than     |      <       | x < y;                                |
+| ---           |      <=      | x <= y; // меньше или равно y         |
+| Greater than  |      >       | x > y;                                |
+| ---           |      >=      | x >= y; // больше или равно y         |
+| Spaceship     |     <=>      | x <=> y;//x меньше,больше или равно 0 |
+
+### Операции присваивания
+
+###### ----------
+
+| **\*eng**      | **_пример_** | **_пример c переменной_**    |
+| :------------- | :----------: | :--------------------------- |
+| set            |      =       | x = y;                       |
+| Concat         |      .       | $a = 'y' . 'z'; // a = yz    |
+| --             |      .=      | $b='1'; $b .= $a // b=1yz    |
+| Null Coalesce  |      ??      | $a = $a ?? $b //exist a or b |
+| --             |     ??=      | a ??= $b; // $a = $a ?? $b   |
+| Exponentiation |     \*\*     | 4\*\*=2; // Prints: 16       |
+
+> Null Coalesce example
+
+```php
+$name = $fullname ?? $first ?? $last ?? 'John';
+echo $name; // 'John';
+
+// Если $full, $first, $last последовательно не существуют или равны NULL то он объединит NULL c 'John' и в итоге выведет 'John'.
+// Иначе следуя последовательности выведет значение $full,$first или $last
+```
+
+### Операция исполнения
+
+###### ----------
+
+> ЕСли включена функция shell_exec()
+
+```php
+$output = `ls -al`;
+echo "<pre>$output</pre>";
+// Запуск функции через backticks `` (ёё)
+```
+
+```php
+  $host = 'google.com';
+    echo `ping -n 3 {$host}`;
+```
+
+### Побитовые операции
+
+###### ----------
+
+<table>
+<tr>
+    <td> Пример </td> 
+    <td> Название </td> 
+    <td> Результат </td> 
+</tr>
+<tr>
+ <td> $a & $b </td>
+ <td> And </td>
+ <td>
+
+> Устанавливаются только те биты, которые установлены и в **$a**, и в **$b**.
+
+ </td>
+</tr>
+<tr>
+ <td> $a | $b </td>
+ <td> And </td>
+ <td>
+
+> Устанавливаются только те биты, которые установлены и в **$a**, и в **$b**.
+
+ </td>
+</tr>
+<tr>
+ <td> $a ^ $b </td>
+ <td> Xor </td>
+ <td>
+
+> Устанавливаются только те биты, которые установлены либо только в **$a**, либо только в **$b**, но не в обоих одновременно.
+
+ </td>
+</tr>
+<tr>
+ <td> ~ $a </td>
+ <td> Not </td>
+ <td>
+
+> Устанавливаются те биты, которые не установлены в **$a**, и наоборот..
+
+ </td>
+</tr>
+<tr>
+ <td> $a<<$b </td>
+ <td> Shift Left </td>
+ <td>
+
+> Все биты переменной **$a** сдвигаются на **$b** позиций влево (каждая позиция подразумевает "умножение на 2")
+
+ </td>
+</tr>
+<tr>
+ <td> $a>>$b </td>
+ <td> Shift Right </td>
+ <td>
+
+> Все биты переменной **$a** сдвигаются на **$b** позиций вправо (каждая позиция подразумевает "деление на 2")
+
+ </td>
+</tr>
+</table>
 
 # Функции
 
@@ -841,9 +1048,60 @@ reallyChangeColor ($array);
 echo $array["color"]; // Prints: red
 ```
 
-# HTML FORM HANDLING IN PHP
+# HTML in PHP
 
 ###### ----------
+
+## HTML FORM HANDLING IN PHP
+
+###### ----------
+
+### Example form html
+
+```php
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <body>
+    <h1>Welcome To This Form</h1>
+    <form action="" method="POST">
+          <label for="text">You can enter text here:</label>
+    			<input type="text" name="text">
+        <hr>
+          <label for="num">You can enter a number here:</label>
+          <input type="number" name="num">
+        <hr>
+          <label for="slider">You can slide this:</label>
+          <br>
+          <span>Left</span>
+          <input type="range" name="slider" value="3" min="1" max="5">
+          <span>Right</span>
+        <hr>
+       <label for="boxes">You can check these:</label>
+          <input type="checkbox" name="boxes" value="first">
+          <label for="first">First</label>
+          <input type="checkbox" name="boxes"  value="second">
+          <label for="second">Second</label>
+          <input type="checkbox" name="boxes" value="third">
+          <label for="third">Third</label>
+        <hr>
+      <label for="radio">You can select one of these:</label>
+          <input type="radio" name="radio" value="true">
+          <label for="true">TRUE</label>
+          <input type="radio" name="radio" value="false">
+          <label for="false">FALSE</label>
+        <hr>
+          <label for="dropdown">You can select one of these</label>
+          <select name="dropdown">
+            <option value="first">First</option>
+            <option value="second">Second</option>
+            <option value="third">Third</option>
+          </select>
+        <hr>
+          <input type="submit" value="Submit to Reset">
+      </form>
+  </body>
+</html>
+```
 
 ### Request Superglobals
 
@@ -916,7 +1174,148 @@ if (isset($_FILES['avatar'])) {
 
 > **move_uploaded_file()** - Проверяет, что файл действительно загружен через форму. Перемещает загруженный файл по новому адресу
 
-# Операторы
+### Ways FORM VALIDATION
+
+###### ----------
+
+> for validation data form we must use it safely, uses
+> `Clien-side validation` and `Server-side validation`
+> .
+
+> Клиентскую часть проверки мы вставляем непосредственно в html, используя **html-validation** or/and **js-validation**
+
+> Серверная часть никогда не должна доверять клиентской части, т.к. данные мог подменить злоумышленник.
+
+> To match the first four expressions, we could use a pattern like `[hH]ello[^]*`. The pattern `[^]*\d{3}[^]*\d{3}-\d{4}` will match the two example phone numbers
+
+#### Client-side FORM VALIDATION
+
+> Client-side Validation: HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<body>
+		<h1>Basic HTML Validation</h1>
+		<form action="" method="POST">
+			<label for="text">Enter your name here:</label>
+			<input
+				id="nam  e"
+				name="name"
+				type="text"
+				required
+				minlength="3"
+				maxlength="100"
+			/>
+			<br /><br />
+			<label for="number">Enter your age here:</label>
+			<input type="number" name="age" id="age" required min="1" max="123" />
+			<br /><br />
+			<label for="code"
+				>Best place to learn to code: (hint: starts with a "C")</label
+			>
+			<input
+				id="code"
+				name="code"
+				type="text"
+				required
+				pattern="[cC]odecademy"
+			/>
+			<br /><br />
+			<input type="submit" value="Submit" />
+		</form>
+	</body>
+</html>
+```
+
+> Client-side FORM VALIDATION: JavaScript
+
+> worked library js
+
+- [just-validate](https://www.npmjs.com/package/just-validate)
+- [formik](https://www.npmjs.com/package/formik)
+- [Parsley.js](https://parsleyjs.org/)
+
+#### Server-side FORM VALIDATION
+
+> Может быть два пути реализации
+
+> 1. Async request. Когда пользователь еще вводит данные в форму. Мы можем делать асинхронные запросы к серверу с фрагментами их данных и отправлять отзывы непосредственно пользователю до того, как он отправит запрос. Это медленнее чем проверка на Front-end (client-side) и вызовет много проблем
+
+> 2. Form submitted. Back-end form validation - это последняя защита нашего приложения от проблемных данных. Т.е. мы проверяем результат после того как к нам пришел запрос
+
+## LOOPS IN HTML
+
+###### ----------
+
+> Unreadable foe example
+
+```php
+<ul>
+<?php
+// for start
+for ($i = 0; $i < 2; $i++) {
+?>
+<li>Duck</li>
+<?php
+}
+// for end
+?>
+<li>Goose</li>
+</ul>
+```
+
+> Readable for example
+
+> Лучше использовать двоеточие вместо фигурной скобки
+
+```php
+<ul>
+<?php
+// for start
+for ($i = 0; $i < 2; $i++):
+?>
+<li>Duck</li>
+<?php
+endfor;
+// for end
+?>
+<li>Goose</li>
+</ul>
+```
+
+> Readable foreach example
+
+```php
+<?php
+$array = ["Alice", "Bob", "Charlie"];
+// start foreach
+foreach($array as $name): ?>
+<p><?=$name?></p>
+<?php endforeach; ?>
+// end foreach
+```
+
+```php
+<h1>Shoe Shop</h1>
+<?php
+$footwear = [
+  "sandals" => 4,
+  "sneakers" => 7,
+	"boots" => 3
+];
+?>
+<p>Our footwear:</p>
+<?php
+foreach ($footwear as $type => $brands):
+?>
+<p>We sell <?=$brands?> brands of <?=$type?></p>
+<?php
+endforeach;
+?>
+```
+
+# Управляющие конструкции
 
 ###### ----------
 
@@ -924,22 +1323,7 @@ if (isset($_FILES['avatar'])) {
 
 [link to Operators](https://www.php.net/manual/ru/language.operators.php)
 
-### Общие Операторы
-
-###### ----------
-
-| **\*eng**      | **_пример_** | **_пример c переменной_** |
-| :------------- | :----------: | :------------------------ |
-| compare        |      ==      | x == y; &#124; x === y;   |
-| Subtract       |      -       | w -= 1; &#124;w--;        |
-| Multiply       |      \*      | w \*= 1;                  |
-| Divide         |      /       | w /= 1;                   |
-| Modulo         |      %       | 7 %= 3; //1 &#124; X %= Y |
-| Exponentiation |     \*\*     | 4\*\*=2; // Prints: 16    |
-
-> **===** return TRUE or FALSE
-
-### Условные Операторы
+## Условные
 
 ###### ----------
 
@@ -1102,3 +1486,229 @@ if($price > 10000) {
     $shipping = 200;
 }
 ```
+
+## Циклы
+
+###### ----------
+
+<table>
+<tr>
+    <td> тип </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> while </td>
+ <td> до тех пор, пока выражение TRUE </td>
+ <td>
+  
+```php
+while (compare statement){
+....;
+}
+```
+```php
+$count = 1;
+while ($count <= 100){
+  if ($count % 33 === 0) {
+    echo $count . " is divisible by 33\n";
+  }
+  $count += 1;
+}
+```
+> old variant
+```php
+$i = 1;
+while ($i <= 10):
+    echo $i;
+    $i++;
+endwhile;
+```
+
+ </td>
+</tr>
+<tr>
+ <td> do…while </td>
+ <td> Выполнить до условия, то же что и while, только условие проверяется в конце тела цикла, т.е. тело цикла выполнится хотя бы один раз  </td>
+ <td>
+
+```php
+<?php
+do {
+  ...;
+} while (compare statement);
+?>
+```
+
+```php
+do {
+$random = rand (0, 30);
+} while ($random > 10 && $random < 20);
+echo " Наше случайное число: $random";
+?>
+// Используя php цикл do-while, можно получить значение выражения без инициализации переменной $random. Тело цикла выполняется перед тем, как проверяется условие.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> for </td>
+ <td> выполняет блок кода определенное количество раз(количество итераций) пока условие выражение будет TRUE </td>
+ <td>
+  
+```php
+for (expr1; expr2; expr3){
+  ...;
+  // expr1 - выполняется в начале
+  // expr2 - compare statement
+  // expr3 -  выполняется в конце каждой итерации
+}
+```
+```php
+for ($i = 1; $i <= 10; $i++) {
+    echo $i;
+}
+```
+```php
+  for ($i = 10; $i >= 0; $i--) {
+    if ($i === 2) {
+      echo "Ready!\n";
+    } elseif ($i === 1) {
+      echo "Study!\n";
+    } elseif ($i === 0) {
+      echo "Go!\n";
+    } else {
+      echo $i . "\n";
+    }
+  }
+```
+ </td>
+</tr>
+<tr>
+ <td> foreach  </td>
+ <td> простой способ перебора массивов, работает только с массивами и объектами </td>
+ <td>
+
+```php
+foreach (iterable_expr as $value){
+  ...;
+}
+foreach (iterable_expr as $key => $value){
+  ...;
+}
+```
+
+```php
+$arr = [1, 2, 3, 4];
+foreach ($arr as &$value) {
+    $value = $value * 2; // $arr = array(2, 4, 6, 8)
+}
+```
+
+```php
+$a = array(
+    "one" => 1,
+    "two" => 2,
+    "three" => 3,
+    "seventeen" => 17
+);
+
+foreach ($a as $k => $v) {
+    echo "\$a[$k] => $v.\n";
+}
+/* $a[one] => 1.
+$a[two] => 2.
+$a[three] => 3.
+$a[seventeen] => 17.*/
+```
+
+ </td>
+</tr>
+</table>
+
+## Прерывания
+
+###### ----------
+
+<table>
+<tr>
+    <td> тип </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> break  </td>
+ <td> рерывает выполнение текущей структуры for, foreach, while, do-while или switch. </td>
+ <td>
+  
+```php
+// break принимает необязательный числовой аргумент, который сообщает ему выполнение какого количества вложенных структур необходимо прервать Значение по умолчанию 1
+$i = 0;
+while (++$i) {
+    switch ($i) {
+        case 5:
+            echo "Итерация 5<br />\n";
+            break;  /* Выйти только из конструкции switch. */
+        case 10:
+            echo "Итерация 10; выходим<br />\n";
+            break 2;  /* Выходим из конструкции switch и из цикла while. */
+        default:
+            break;
+    }
+}
+```
+
+ </td>
+</tr>
+<tr>
+ <td> continue  </td>
+ <td> используется (внутри циклических структур, приведенных выше) для пропуска одной или нескольких итераций цикла  </td>
+ <td>
+
+```php
+for ($i = 0; $i <= 10; $i++) {
+if ($i % 2 == 0) {
+  continue;
+}
+if ($i == 7) {
+  continue;
+}
+echo $i . ','; //1,3,5,9,
+}
+```
+
+ </td>
+</tr>
+</table>
+
+# Модули
+
+###### ----------
+
+[link to Extension List/Categorization ](https://www.php.net/manual/ru/extensions.membership.php)
+
+### GNU Readline
+
+###### ----------
+
+#### Fuction readline()
+
+> readline — Читает строку [link](https://www.php.net/manual/ru/function.readline.php)
+
+```php
+echo "Hi, I'm Aisle Nevertell. What's your name?\n";
+$name = readline(">> ");
+echo "\nNice to meet you, $name";
+```
+
+> User entered >> 'Alex'. then echo output
+
+```php
+echo "\nNice to meet you, $name"; // Nice to meet you, Alex
+```
+
+# REGEX
+
+###### ----------
+
+[link cheatsheet regex](https://www.codecademy.com/learn/learn-php/modules/php-form-validation/cheatsheet)
