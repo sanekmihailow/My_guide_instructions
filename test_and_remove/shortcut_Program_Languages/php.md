@@ -207,136 +207,6 @@ echo -22.8; // Prints: -22.8
 echo $my_int; // Prints: 78
 ```
 
-### Basic Sanitization
-
-> Для предотвращения вредных запросов в формах или приходящих данных, нужно эти данные фильтровать
-
-<table>
-<tr>
-    <td> метод </td> 
-    <td> описание </td> 
-    <td> пример </td> 
-</tr>
-<tr>
- <td> htmlspecialchars() </td>
- <td> Преобразует специальные символы в HTML-сущности </td>
- <td>
-
-```php
-$new = htmlspecialchars("<a href='test'>Test</a>", ENT_QUOTES);
-echo $new; // &lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;
-```
-
-```php
-$data = "<a href=\"https://www.evil-spam.biz/html/\">Your account has been compromised! Click here to get technical support!!</a>";
-echo htmlspecialchars($data);
-
-// Prints: &lt;a href=&quot;https://www.evil-spam.biz/html/&quot;&gt;Your account has been compromised! Click here to get technical support!&lt;/a&gt;
-// Мы предотвратили html инъекцию
-```
-
- </td>
-</tr>
-<tr>
- <td> filter_var() </td>
- <td> 
- 
- > [link](https://www.php.net/manual/ru/function.filter-var.php)
- Фильтрует переменную с помощью определённого фильтра </td>
- <td>
-
-> [sanitize](https://www.php.net/manual/ru/filter.filters.sanitize.php)
-
-> [validate](https://www.php.net/manual/ru/filter.filters.validate.php)
-
-```php
-$bad_email = '<a href="www.evil-spam.biz">@gmail.com';
-echo filter_var($bad_email, FILTER_SANITIZE_EMAIL);
-// Prints: ahref=www.evil-spam.biz@gmail.com
-```
-
-```php
-$bad_email = 'fake - at - prank dot com';
-if (filter_var($bad_email, FILTER_VALIDATE_EMAIL)){
-  echo "Valid email!";
-} else {
-  echo "Invalid email!";
-}
-// Prints: Invalid email!
-```
-
-> Options - чтобы конкретнее задать условие замены или отбора, нужно использовать опции(параметры)
-
-```php
-function validateAdult ($age){
-  $options = ["options" => ["min_range" => 18, "max_range" => 124]];
-  if (filter_var($age, FILTER_VALIDATE_INT, $options)) {
-    echo("You are ${age} years old.");
-  } else {
-    echo("That is not a valid age.");
-  }
-}
-
-validateAdult(18); // Prints: You are 18 years old.
-validateAdult(124); // Prints: You are 124 years old.
-validateAdult(8); // Prints: That is not a valid age.
-validateAdult(200); // Prints: That is not a valid age.
-```
-
- </td>
-</tr>
-<tr>
- <td> preg_match() </td>
- <td> Выполняет проверку на соответствие регулярному выражению </td>
- <td>
-
-```php
-$pattern = '/^[(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4}$/';
-preg_match($pattern, "(999)-555-2222"); // Returns: 1
-preg_match($pattern, "555-2222"); // Returns: 0
-```
-
- </td>
-</tr>
-<tr>
- <td> strlen () </td>
- <td> Возвращает длину строки </td>
- <td>
-
-```php
-$name = "Aisle Nevertell";
-$length = strlen($name);
-if ($length > 2 && $length < 100){
-  echo "That seems like a reasonable name to me...";
-}
-```
-
- </td>
-</tr>
-<tr>
- <td> preg_replace() </td>
- <td> Выполняет поиск и замену по регулярному выражению </td>
- <td>
-
-```php
-$one = "codeacademy";
-$two = "CodeAcademy";
-$three = "code academy";
-$four = "Code Academy";
-
-$pattern = "/[cC]ode\s*[aA]cademy/";
-$codecademy = "Codecademy";
-
-echo preg_replace($pattern, $codecademy, $one);// Prints: Codecademy
-echo preg_replace($pattern, $codecademy, $two);// Prints: Codecademy
-echo preg_replace($pattern, $codecademy, $three);// Prints: Codecademy
-echo preg_replace($pattern, $codecademy, $four);// Prints: Codecademy
-```
-
- </td>
-</tr>
-</table>
-
 ### Magic constant
 
 [link magic constant](https://www.php.net/manual/ru/language.constants.magic.php)
@@ -543,7 +413,7 @@ echo "<pre>$output</pre>";
 </tr>
 </table>
 
-# Функции
+# 2 Функции
 
 ###### ----------
 
@@ -803,6 +673,136 @@ echo substr_count($text, 'is'); // 2
 </tr>
 </table>
 
+#### Basic Sanitization
+
+> Для предотвращения вредных запросов в формах или приходящих данных, нужно эти данные фильтровать
+
+<table>
+<tr>
+    <td> метод </td> 
+    <td> описание </td> 
+    <td> пример </td> 
+</tr>
+<tr>
+ <td> htmlspecialchars() </td>
+ <td> Преобразует специальные символы в HTML-сущности </td>
+ <td>
+
+```php
+$new = htmlspecialchars("<a href='test'>Test</a>", ENT_QUOTES);
+echo $new; // &lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;
+```
+
+```php
+$data = "<a href=\"https://www.evil-spam.biz/html/\">Your account has been compromised! Click here to get technical support!!</a>";
+echo htmlspecialchars($data);
+
+// Prints: &lt;a href=&quot;https://www.evil-spam.biz/html/&quot;&gt;Your account has been compromised! Click here to get technical support!&lt;/a&gt;
+// Мы предотвратили html инъекцию
+```
+
+ </td>
+</tr>
+<tr>
+ <td> filter_var() </td>
+ <td> 
+ 
+ > [link](https://www.php.net/manual/ru/function.filter-var.php)
+ Фильтрует переменную с помощью определённого фильтра </td>
+ <td>
+
+> [sanitize](https://www.php.net/manual/ru/filter.filters.sanitize.php)
+
+> [validate](https://www.php.net/manual/ru/filter.filters.validate.php)
+
+```php
+$bad_email = '<a href="www.evil-spam.biz">@gmail.com';
+echo filter_var($bad_email, FILTER_SANITIZE_EMAIL);
+// Prints: ahref=www.evil-spam.biz@gmail.com
+```
+
+```php
+$bad_email = 'fake - at - prank dot com';
+if (filter_var($bad_email, FILTER_VALIDATE_EMAIL)){
+  echo "Valid email!";
+} else {
+  echo "Invalid email!";
+}
+// Prints: Invalid email!
+```
+
+> Options - чтобы конкретнее задать условие замены или отбора, нужно использовать опции(параметры)
+
+```php
+function validateAdult ($age){
+  $options = ["options" => ["min_range" => 18, "max_range" => 124]];
+  if (filter_var($age, FILTER_VALIDATE_INT, $options)) {
+    echo("You are ${age} years old.");
+  } else {
+    echo("That is not a valid age.");
+  }
+}
+
+validateAdult(18); // Prints: You are 18 years old.
+validateAdult(124); // Prints: You are 124 years old.
+validateAdult(8); // Prints: That is not a valid age.
+validateAdult(200); // Prints: That is not a valid age.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> preg_match() </td>
+ <td> Выполняет проверку на соответствие регулярному выражению </td>
+ <td>
+
+```php
+$pattern = '/^[(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4}$/';
+preg_match($pattern, "(999)-555-2222"); // Returns: 1
+preg_match($pattern, "555-2222"); // Returns: 0
+```
+
+ </td>
+</tr>
+<tr>
+ <td> strlen () </td>
+ <td> Возвращает длину строки </td>
+ <td>
+
+```php
+$name = "Aisle Nevertell";
+$length = strlen($name);
+if ($length > 2 && $length < 100){
+  echo "That seems like a reasonable name to me...";
+}
+```
+
+ </td>
+</tr>
+<tr>
+ <td> preg_replace() </td>
+ <td> Выполняет поиск и замену по регулярному выражению </td>
+ <td>
+
+```php
+$one = "codeacademy";
+$two = "CodeAcademy";
+$three = "code academy";
+$four = "Code Academy";
+
+$pattern = "/[cC]ode\s*[aA]cademy/";
+$codecademy = "Codecademy";
+
+echo preg_replace($pattern, $codecademy, $one);// Prints: Codecademy
+echo preg_replace($pattern, $codecademy, $two);// Prints: Codecademy
+echo preg_replace($pattern, $codecademy, $three);// Prints: Codecademy
+echo preg_replace($pattern, $codecademy, $four);// Prints: Codecademy
+```
+
+ </td>
+</tr>
+</table>
+
 ### Math Functions
 
 ###### ----------
@@ -934,7 +934,373 @@ echo round(1.5); // Prints: 2
 </tr>
 </table>
 
-# Массивы
+# 3 Управляющие конструкции
+
+###### ----------
+
+[link to Control Structures](https://www.php.net/manual/ru/language.control-structures.php)
+
+[link to Operators](https://www.php.net/manual/ru/language.operators.php)
+
+## 3_1 Условные
+
+###### ----------
+
+<table>
+<tr>
+    <td> тип </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> if </td>
+ <td> проверка если равно or etc то сделать то-то </td>
+ <td>
+  
+```php
+$is_clicked = TRUE;
+if ($is_clicked) {
+  $link_color = "purple";
+  echo $link_color;
+} else {
+  $link_color = "red";
+}
+```
+ </td>
+</tr>
+<tr>
+ <td> else if <br/> elseif </td>
+ <td> если равно сделать то, иначе сдделато то, иначе сделато то </td>
+ <td>
+  
+```php
+$one_two = '12';
+if ($one_two == '2') {
+  $link_color = "purple";
+  echo $link_color;
+} else if (one_two == '12') {
+  $link_color = "blue";
+  echo $link_color;
+} else {
+  echo 'not correct color';
+}
+```
+> через двоеточие
+```php
+/* Некорректный способ: */
+if($a > $b):
+    echo $a." больше, чем ".$b;
+else if($a == $b): // Не скомпилируется.
+    echo "Строка выше вызывает фатальную ошибку.";
+endif;
+```
+```php
+if($a > $b):
+    echo $a." больше, чем ".$b;
+elseif($a == $b): // Заметьте, тут одно слово.
+    echo $a." равно ".$b;
+else:
+    echo $a." не больше и не равно ".$b;
+endif;
+```
+ </td>
+</tr>
+<tr>
+ <td> Switch  </td>
+ <td> если нужно проверить много условий. Обязательно ставить break или continue </td>
+ <td>
+
+```php
+switch ($letter_grade){
+  case "A":
+    echo "Terrific";
+    break;
+  case "B":
+    echo "Good";
+    break;
+  default:
+    echo "Invalid grade";
+```
+
+> default - если не один не совпал
+
+```php
+function returnSeason($month){
+  switch ($month) {
+    case "December":
+    case "January":
+    case "February":
+      return "winter";
+    case "March":
+    case "April":
+    case "May":
+      return "spring";
+    case "June":
+    case "July":
+    case "August":
+      return "summer";
+    case "September":
+    case "October":
+    case "November":
+      return "fall";
+	}
+}
+
+echo returnSeason("February"); //winter
+```
+
+ </td>
+</tr>
+</table>
+
+### Тернарный оператор
+
+###### ----------
+
+```php
+$num = 1;
+$var = ($arg1 > 1) ? "true" : "false";
+```
+
+```php
+$isClicked = FALSE;
+$link_color = $isClicked ? "purple" : "blue"; // blue
+```
+
+> same as
+
+```php
+$isClicked = FALSE;
+if ( $isClicked ) {
+  $link_color = "purple";
+} else {
+  $link_color = "blue";
+}
+```
+
+> внутри функции
+
+```php
+function ternaryVote ($age) {
+  return $age >= 18 ? "yes" : "no";
+}
+
+echo ternaryVote(13); //no
+```
+
+> else if тернарный оператор
+
+```php
+$shipping = $price > 10000 ? 0 : ($price > 500 ? 100 : 200);
+```
+
+> same as
+
+```php
+if($price > 10000) {
+    $shipping = 0;
+} elseif($price > 500) {
+    $shipping = 100;
+} else {
+    $shipping = 200;
+}
+```
+
+## 3_2 Циклы
+
+###### ----------
+
+<table>
+<tr>
+    <td> тип </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> while </td>
+ <td> до тех пор, пока выражение TRUE </td>
+ <td>
+  
+```php
+while (compare statement){
+....;
+}
+```
+```php
+$count = 1;
+while ($count <= 100){
+  if ($count % 33 === 0) {
+    echo $count . " is divisible by 33\n";
+  }
+  $count += 1;
+}
+```
+> old variant
+```php
+$i = 1;
+while ($i <= 10):
+    echo $i;
+    $i++;
+endwhile;
+```
+
+ </td>
+</tr>
+<tr>
+ <td> do…while </td>
+ <td> Выполнить до условия, то же что и while, только условие проверяется в конце тела цикла, т.е. тело цикла выполнится хотя бы один раз  </td>
+ <td>
+
+```php
+<?php
+do {
+  ...;
+} while (compare statement);
+?>
+```
+
+```php
+do {
+$random = rand (0, 30);
+} while ($random > 10 && $random < 20);
+echo " Наше случайное число: $random";
+?>
+// Используя php цикл do-while, можно получить значение выражения без инициализации переменной $random. Тело цикла выполняется перед тем, как проверяется условие.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> for </td>
+ <td> выполняет блок кода определенное количество раз(количество итераций) пока условие выражение будет TRUE </td>
+ <td>
+  
+```php
+for (expr1; expr2; expr3){
+  ...;
+  // expr1 - выполняется в начале
+  // expr2 - compare statement
+  // expr3 -  выполняется в конце каждой итерации
+}
+```
+```php
+for ($i = 1; $i <= 10; $i++) {
+    echo $i;
+}
+```
+```php
+  for ($i = 10; $i >= 0; $i--) {
+    if ($i === 2) {
+      echo "Ready!\n";
+    } elseif ($i === 1) {
+      echo "Study!\n";
+    } elseif ($i === 0) {
+      echo "Go!\n";
+    } else {
+      echo $i . "\n";
+    }
+  }
+```
+ </td>
+</tr>
+<tr>
+ <td> foreach  </td>
+ <td> простой способ перебора массивов, работает только с массивами и объектами </td>
+ <td>
+
+```php
+foreach (iterable_expr as $value){
+  ...;
+}
+foreach (iterable_expr as $key => $value){
+  ...;
+}
+```
+
+```php
+$arr = [1, 2, 3, 4];
+foreach ($arr as &$value) {
+    $value = $value * 2; // $arr = array(2, 4, 6, 8)
+}
+```
+
+```php
+$a = array(
+    "one" => 1,
+    "two" => 2,
+    "three" => 3,
+    "seventeen" => 17
+);
+
+foreach ($a as $k => $v) {
+    echo "\$a[$k] => $v.\n";
+}
+/* $a[one] => 1.
+$a[two] => 2.
+$a[three] => 3.
+$a[seventeen] => 17.*/
+```
+
+ </td>
+</tr>
+</table>
+
+## 3_3 Прерывания
+
+###### ----------
+
+<table>
+<tr>
+    <td> тип </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> break  </td>
+ <td> рерывает выполнение текущей структуры for, foreach, while, do-while или switch. </td>
+ <td>
+  
+```php
+// break принимает необязательный числовой аргумент, который сообщает ему выполнение какого количества вложенных структур необходимо прервать Значение по умолчанию 1
+$i = 0;
+while (++$i) {
+    switch ($i) {
+        case 5:
+            echo "Итерация 5<br />\n";
+            break;  /* Выйти только из конструкции switch. */
+        case 10:
+            echo "Итерация 10; выходим<br />\n";
+            break 2;  /* Выходим из конструкции switch и из цикла while. */
+        default:
+            break;
+    }
+}
+```
+
+ </td>
+</tr>
+<tr>
+ <td> continue  </td>
+ <td> используется (внутри циклических структур, приведенных выше) для пропуска одной или нескольких итераций цикла  </td>
+ <td>
+
+```php
+for ($i = 0; $i <= 10; $i++) {
+if ($i % 2 == 0) {
+  continue;
+}
+if ($i == 7) {
+  continue;
+}
+echo $i . ','; //1,3,5,9,
+}
+```
+
+ </td>
+</tr>
+</table>
+
+# 4 Массивы
 
 ###### ----------
 
@@ -1194,15 +1560,632 @@ reallyChangeColor ($array);
 echo $array["color"]; // Prints: red
 ```
 
-# HTML in PHP
+# 5 Class and Object
 
 ###### ----------
 
-## HTML FORM HANDLING IN PHP
+[link to class](https://www.php.net/manual/ru/language.oop5.basic.php)
+
+> define class
+
+```php
+class Classname {
+....
+properties object;
+}
+```
+
+> > Example
+
+```php
+class Pet {
+  public $name, $color;
+}
+```
+
+> Instantiation - процесс создания нового объекта
+
+```php
+$very_good_dog = new Pet();
+```
+
+```php
+// взаимодействуем со свойствами объекта, используя оператор объекта (->),
+//за которым следует имя свойства (без знака доллара, $)
+// set property
+$very_good_dog->name = "Lassie";
+// get property
+echo $very_good_dog->name; # Prints "Lassie"
+```
+
+### Inheritance
+
+###### ----------
+
+[Late Static Bindings](https://www.php.net/manual/ru/language.oop5.late-static-bindings.php)
+
+> оператор **$this->** - используется внутри области ограниченной объявлением класса class some { }. Является ссылкой на вызываемый объект
+
+```php
+class A {
+    private $a = 1;
+
+    public function getA(){
+        return $this->a; // обращаемся к внутреннему свойсву через $this
+    }
+
+    public function someMethod(){
+        return $this->getA(); // обращаемся к внутреннему методу через $this
+    }
+}
+
+$obj = new A();
+echo $obj->someMethod(); //1
+```
+
+> оператор **parent::** - используется внутри области ограниченной объявлением класса class some { }. Является ссылкой на родительский объект.
+
+```php
+    class Model {
+       public static $table='table';
+       public static function foo() {
+          echo "1_test";
+          }
+        }
+    class User extends Model{
+           public static function foo() {
+          echo "2_test";
+          parent::foo();
+          }
+       }
+echo User::foo(); //выведет '2_test1_test'
+```
+
+> оператор **self::** - используется внутри области ограниченной объявлением класса class some { }. Вызываем метод именно этого класса, как и в том месте где она определена. Класс в котором написано.
+
+```php
+class Model {
+   public static $table='table';
+   public static function getTable() {
+      return self::$table;
+      }
+    }
+class User extends Model{
+      public static $table='users';
+   }
+   echo User::getTable(); //выведет 'table'
+```
+
+```php
+class Model {
+   public static $table='table';
+   public static function getTable() {
+      return self::$table;
+      }
+    }
+class User extends Model{
+      public static $table='users';
+      public static function getTable() {
+        return self::$table;
+      }
+   }
+   echo User::getTable(); //выведет 'users'
+```
+
+> оператор **static::** - используется внутри области ограниченной объявлением класса class some { }. Берет данные из вызывающего класса. Может ссылаться только на статические поля класса. Класс в котором выполнилось.
+
+```php
+class Model {
+   public static $table='table';
+   public static function getTable() {
+      return self::$table;
+      }
+    }
+class User extends Model{
+      public static $table='users';
+      public $new = 'new';
+      public static function getTable() {
+        return static::$table;
+      }
+   }
+   echo User::getTable(); //выведет 'users'
+   echo User::$table; // 'users'
+   echo User::$new; // Uncaught Error: Access to undeclared static property: User::$new
+```
+
+> Дочерний класс наследует свойства и параметры родительского
+
+> define
+
+```php
+class ChildClass extends ParentClass {
+ ...
+}
+```
+
+> > Example
+
+```php
+class Dog extends Pet {
+  function bark() {
+    return "woof";
+  }
+}
+```
+
+> > Example
+
+```php
+<?php
+class Beverage {
+  public $temperature;
+
+  function getInfo() {
+    return "This beverage is $this->temperature.";
+  }
+}
+
+class Milk extends Beverage {
+  function __construct() {
+    $this->temperature = "cold";
+  }
+
+}
+```
+
+### Область видимости
+
+[link to visiability php](https://www.php.net/manual/ru/language.oop5.visibility.php)
+
+- Public - Доступ можно получить как внутри класса, так и снаружи (является видимостью по умолчанию для функций, констант и свойств класса.)
+- Private - доступ только внутри класса.
+- Protected - разрешает доступ к свойствам родительского из дочерних классов
+
+> Внутри дочерних классов чтобы получать или изменять свойство нужно использовать методы
+
+> 1
+
+```php
+class Pet {
+  private $healthScore = 0;
+}
+
+class Horse extends Pet {
+  function brushTeeth() {
+    $this->healthScore++;
+  }
+}
+
+$my_pet = new Horse();
+$my_pet->brushTeeth(); // Error Undefined property: Horse::$healthScore
+```
+
+> 2
+
+```php
+class Pet {
+  protected $healthScore = 0;
+}
+
+class Horse extends Pet {
+  function brushTeeth() {
+    $this->healthScore++;
+  }
+}
+
+$my_pet = new Horse();
+$my_pet->brushTeeth(); // Successfully increments healthScore
+$my_pet->healthScore; // Error  Cannot access protected property Horse::$healthScore
+```
+
+## 5_1 Method
+
+###### ----------
+
+> Методы класса - по сути функции, которые будут содержаться в каждом объекте, их часто используют для взаимодействия со свойствами объекта
+
+> **$this** - относится к текущему объекту; когда мы вызываем этот метод, $this ссылается на конкретный объект, вызвавший метод.
+
+```php
+class Pet {
+  public $first, $last;
+  function getFullName() {
+    return $this->first . " " . $this->last;
+  }
+}
+```
+
+> Доступ к методам осуществляется так же, как и к свойствам, но для их вызова используйте круглые скобки в конце
+
+```php
+$my_object->classMethod();
+```
+
+> > Example
+
+```php
+$very_good_groundhog = new Pet();
+$very_good_groundhog->first = "Punxsutawney";
+$very_good_groundhog->last = "Phil";
+echo $very_good_groundhog->getFullName(); # Prints "Punxsutawney Phil"
+```
+
+### Magic methods
+
+###### ----------
+
+[links magic methods php](https://www.php.net/manual/ru/language.oop5.magic.php)
+
+<table>
+<tr>
+    <td> метод </td> 
+    <td> описание </td> 
+    <td> пример </td> 
+</tr>
+<tr>
+ <td> __construct </td>
+ <td> Этот метод вызывается автоматически при создании экземпляра объекта. Например задать условие по умолчанию, для каждого экземпляра объекта 
+ 
+ ```php
+// несколько способов объявления
+//1 - дефолтный
+...
+public $name, $age;
+function __construct($name, $age)
+...
+//2 - Параметры по умолчанию
+...
+function __construct($name="Том", $age=36)
+...
+//3 - Объявление свойств через конструктор
+...
+function __construct(public $name, public $age)
+...
+//4 - сочетание обоих
+...
+public $name;
+function __construct($name = "Sam", public $age = 33)
+...
+```
+</td>
+<td>
+
+```php
+class Pet {
+ public $deserves_love;
+ function __construct() {
+   $this->deserves_love = TRUE;
+ }
+}
+$my_dog = new Pet();
+if ($my_dog->deserves_love){
+ echo "I love you!";
+} // Prints: I love you!
+```
+
+```php
+class Pet {
+  public $name;
+  function __construct($name) {
+    $this->name = $name;
+  }
+}
+$dog = new Pet("Lassie");
+echo $dog->name; // Prints: Lassie
+```
+
+ </td>
+</tr>
+ <td> __destruct </td>
+ <td> Деструкторы служат для освобождения ресурсов. Этот метод полезен, когда вы хотите выполнить какие-либо действия в последнюю минуту (например, сохранить или распечатать некоторые данные после их удаления). Деструктор объекта вызывается самим интерпретатором PHP после потери последней ссылки на данный объект в программе. Объект будет уничтожен</td>
+ <td>
+
+```php
+class Fruit {
+  public $name;
+  public $color;
+
+  function __construct($name, $color) {
+    $this->name = $name;
+    $this->color = $color;
+    echo 'Hi , '. $this->name. '<br>';
+  }
+  function __destruct() {
+    echo "Название фрукта {$this->name} и его цвет {$this->color}.";
+  }
+}
+
+$apple = new Fruit("яблоко", "красный"); // hi яблоко
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __call() </td>
+ <td> запускается при вызове недоступных методов в объекте. Т.е. если вы обращаетесь к методу объекта, которого не существует, то запускается этот метод</td>
+ <td>
+
+```php
+  class MyClass  {
+    public function __call($name, $arguments) {
+      echo "Вызван метод '$name'  со следующими аргументами " . implode(', ', $arguments) . PHP_EOL;
+    }
+  }
+
+  $obj = new MyClass;
+  $obj -> objMethod("метод объекта");
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __callStatic </td>
+ <td> запускается при вызове недоступных методов у класса. Т.е. если вы обращаетесь к статическому методу класса, а его не существует, то вызывается это метод</td>
+ <td>
+
+```php
+  class MyClass  {
+    public static function __callStatic($name, $arguments) {
+      echo "Вызван статический метод '$name'  со следующими аргументами " . implode(', ', $arguments)  . PHP_EOL;
+    }
+  }
+
+MyClass::objMethod("метод класса");
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __get </td>
+ <td> запускается при попытке чтения несуществующих, приватных или защищенных свойств объекта</td>
+ <td>
+
+```php
+class Spindle_Model_User_get{
+    protected $_data = [
+        'username' => null,
+        'email'    => null,
+        'fullname' => '',
+        'role'     => 'guest',
+    ];
+
+    public function __get($name){
+        if (array_key_exists($name, $this->_data)) {
+            return $this->_data[$name];
+        }
+        return null;
+    }
+}
+
+$obj = new Spindle_Model_User_get();
+echo $obj->username; // alex
+var_dump($obj->variable); // NULL
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __set </td>
+ <td> запускается при попытке записи данных в несуществующие, приватные или защищенные свойства объекта</td>
+ <td>
+
+```php
+class Spindle_Model_User_set{
+    protected $_data = [
+        'username' => null,
+        'email'    => null,
+        'fullname' => '',
+        'role'     => 'guest',
+    ];
+
+    public function __set($name, $value){
+        if (!array_key_exists($name, $this->_data)) {
+            throw new Exception('Invalid property "' . $name . '"');
+        }
+        $this->_data[$name] = $value;
+    }
+}
+
+$obj = new Spindle_Model_User_set();
+$obj->username = 'alex'; // set username alex
+$obj->variable = '1'; // Error Uncaught Exception: Invalid property "variable"
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __isset </td>
+ <td> будет запущен, при попытке использовать метод isset()(проверяет существует ли переменная или свойство), на несуществующем, защищенном или приватном свойстве объекта</td>
+ <td>
+
+```php
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __unset </td>
+ <td> запускается при попытке использования unset(), на несуществующем, защищенном или приватном свойстве объекта</td>
+ <td>
+
+```php
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __sleep </td>
+ <td> запускается до любой операции сериализации. может использоваться, например для очистки объекта</td>
+ <td>
+
+```php
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __wakeup </td>
+ <td> этот магический метод запускается до выполнения функции unserialize(). Используется для восстановления различных ресурсов, которые может иметь объект</td>
+ <td>
+
+```php
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __toString </td>
+ <td> если объект попытаются использовать как строку, то запустится этот метод</td>
+ <td>
+
+```php
+class MyClass
+{
+    public $variable;
+    public function __construct($variable){
+        $this->variable= $variable;
+    }
+
+    public function __toString(){
+        return $this->variable;
+    }
+}
+
+$object = new MyClass('Hi from object');
+echo $object ; // пытаемся ECHO-м вывести на экран объект, в результате
+// запускается магический метод __toString, который возвращает строку
+// "Hi from object", и выводится на экран "Hi from object".
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __invoke </td>
+ <td> вызывается, если объект пытаются вызвать как функцию</td>
+ <td>
+
+```php
+class MyClass
+{
+    public function __invoke($var){
+        var_dump($var);
+    }
+}
+$object = new MyClass;
+$object(60); // т.к. объект пытаются использовать как функцию,
+// то запускается магический метод __invoke
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __set_state </td>
+ <td> запускается если Ваш объект пытаются передать в функцию VAR_EXPORT</td>
+ <td>
+
+```php
+var_export($itObject);
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __clone </td>
+ <td> срабатывает после завершения клонирования объекта</td>
+ <td>
+
+```php
+$clone_your_object = clone $your_object; //После такого клонирования,
+//если определен магический метод __clone, он будет запущен.
+```
+
+ </td>
+</tr>
+</tr>
+<tr>
+ <td> __debugInfo </td>
+ <td> запускается, если в функцию var_dump(), передать объект</td>
+ <td>
+
+```php
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+</table>
+
+### Overriding Methods
+
+###### ----------
+
+> Перегрузка в PHP означает возможность динамически создавать свойства и методы. Эти динамические сущности обрабатываются с помощью магических методов.
+
+> Когда мы хоти поменять функцию метода родительского класса в дочернем. родительский по прежнему можно будет вызвать через **parent::method()**
+
+> Example
+
+```php
+class Pet {
+  function type() {
+    return "pet";
+  }
+}
+
+class Dog extends Pet{
+  function type() {
+    return "dog";
+  }
+  function classify(){
+    echo "This " . parent::type() . " is of type " . $this->type();
+    // Prints: This pet is of type dog
+  }
+}
+```
+
+### Getters and Setters
+
+> example
+
+```php
+class Pet {
+  private $name;
+  function setName($name) {
+    if (gettype($name) === "string") {
+    $this->name = $name;
+    return true;
+    } else {
+    return false;
+    }
+  }
+  function getName() {
+    return $this->name;
+  }
+}
+```
+
+# 6 REGEX
+
+###### ----------
+
+[link cheatsheet regex](https://www.codecademy.com/learn/learn-php/modules/php-form-validation/cheatsheet)
+
+# 7 HTML in PHP
+
+###### ----------
+
+## 7_1 HTML FORM HANDLING IN PHP
 
 ###### ----------
 
 ### Example form html
+
+###### ----------
 
 > 1
 
@@ -1686,6 +2669,8 @@ Password:<input type="text" name="password" value="">
 
 ### Request Superglobals
 
+###### ----------
+
 The list of superglobals in PHP includes the following:
 
 - $GLOBALS
@@ -1817,13 +2802,15 @@ if (isset($_FILES['avatar'])) {
 
 #### Server-side FORM VALIDATION
 
+[link to sanitize](markdown)
+
 > Может быть два пути реализации
 
 > 1. Async request. Когда пользователь еще вводит данные в форму. Мы можем делать асинхронные запросы к серверу с фрагментами их данных и отправлять отзывы непосредственно пользователю до того, как он отправит запрос. Это медленнее чем проверка на Front-end (client-side) и вызовет много проблем
 
 > 2. Form submitted. Back-end form validation - это последняя защита нашего приложения от проблемных данных. Т.е. мы проверяем результат после того как к нам пришел запрос
 
-## LOOPS IN HTML
+## 7_2 LOOPS IN HTML
 
 ###### ----------
 
@@ -1896,375 +2883,9 @@ endforeach;
 
 ###### ----------
 
-# Управляющие конструкции
-
 ###### ----------
 
-[link to Control Structures](https://www.php.net/manual/ru/language.control-structures.php)
-
-[link to Operators](https://www.php.net/manual/ru/language.operators.php)
-
-## Условные
-
-###### ----------
-
-<table>
-<tr>
-    <td> тип </td> 
-    <td> применение </td> 
-    <td> примеры </td> 
-</tr>
-<tr>
- <td> if </td>
- <td> проверка если равно or etc то сделать то-то </td>
- <td>
-  
-```php
-$is_clicked = TRUE;
-if ($is_clicked) {
-  $link_color = "purple";
-  echo $link_color;
-} else {
-  $link_color = "red";
-}
-```
- </td>
-</tr>
-<tr>
- <td> else if <br/> elseif </td>
- <td> если равно сделать то, иначе сдделато то, иначе сделато то </td>
- <td>
-  
-```php
-$one_two = '12';
-if ($one_two == '2') {
-  $link_color = "purple";
-  echo $link_color;
-} else if (one_two == '12') {
-  $link_color = "blue";
-  echo $link_color;
-} else {
-  echo 'not correct color';
-}
-```
-> через двоеточие
-```php
-/* Некорректный способ: */
-if($a > $b):
-    echo $a." больше, чем ".$b;
-else if($a == $b): // Не скомпилируется.
-    echo "Строка выше вызывает фатальную ошибку.";
-endif;
-```
-```php
-if($a > $b):
-    echo $a." больше, чем ".$b;
-elseif($a == $b): // Заметьте, тут одно слово.
-    echo $a." равно ".$b;
-else:
-    echo $a." не больше и не равно ".$b;
-endif;
-```
- </td>
-</tr>
-<tr>
- <td> Switch  </td>
- <td> если нужно проверить много условий. Обязательно ставить break или continue </td>
- <td>
-
-```php
-switch ($letter_grade){
-  case "A":
-    echo "Terrific";
-    break;
-  case "B":
-    echo "Good";
-    break;
-  default:
-    echo "Invalid grade";
-```
-
-> default - если не один не совпал
-
-```php
-function returnSeason($month){
-  switch ($month) {
-    case "December":
-    case "January":
-    case "February":
-      return "winter";
-    case "March":
-    case "April":
-    case "May":
-      return "spring";
-    case "June":
-    case "July":
-    case "August":
-      return "summer";
-    case "September":
-    case "October":
-    case "November":
-      return "fall";
-	}
-}
-
-echo returnSeason("February"); //winter
-```
-
- </td>
-</tr>
-</table>
-
-### Тернарный оператор
-
-###### ----------
-
-```php
-$num = 1;
-$var = ($arg1 > 1) ? "true" : "false";
-```
-
-```php
-$isClicked = FALSE;
-$link_color = $isClicked ? "purple" : "blue"; // blue
-```
-
-> same as
-
-```php
-$isClicked = FALSE;
-if ( $isClicked ) {
-  $link_color = "purple";
-} else {
-  $link_color = "blue";
-}
-```
-
-> внутри функции
-
-```php
-function ternaryVote ($age) {
-  return $age >= 18 ? "yes" : "no";
-}
-
-echo ternaryVote(13); //no
-```
-
-> else if тернарный оператор
-
-```php
-$shipping = $price > 10000 ? 0 : ($price > 500 ? 100 : 200);
-```
-
-> same as
-
-```php
-if($price > 10000) {
-    $shipping = 0;
-} elseif($price > 500) {
-    $shipping = 100;
-} else {
-    $shipping = 200;
-}
-```
-
-## Циклы
-
-###### ----------
-
-<table>
-<tr>
-    <td> тип </td> 
-    <td> применение </td> 
-    <td> примеры </td> 
-</tr>
-<tr>
- <td> while </td>
- <td> до тех пор, пока выражение TRUE </td>
- <td>
-  
-```php
-while (compare statement){
-....;
-}
-```
-```php
-$count = 1;
-while ($count <= 100){
-  if ($count % 33 === 0) {
-    echo $count . " is divisible by 33\n";
-  }
-  $count += 1;
-}
-```
-> old variant
-```php
-$i = 1;
-while ($i <= 10):
-    echo $i;
-    $i++;
-endwhile;
-```
-
- </td>
-</tr>
-<tr>
- <td> do…while </td>
- <td> Выполнить до условия, то же что и while, только условие проверяется в конце тела цикла, т.е. тело цикла выполнится хотя бы один раз  </td>
- <td>
-
-```php
-<?php
-do {
-  ...;
-} while (compare statement);
-?>
-```
-
-```php
-do {
-$random = rand (0, 30);
-} while ($random > 10 && $random < 20);
-echo " Наше случайное число: $random";
-?>
-// Используя php цикл do-while, можно получить значение выражения без инициализации переменной $random. Тело цикла выполняется перед тем, как проверяется условие.
-```
-
- </td>
-</tr>
-<tr>
- <td> for </td>
- <td> выполняет блок кода определенное количество раз(количество итераций) пока условие выражение будет TRUE </td>
- <td>
-  
-```php
-for (expr1; expr2; expr3){
-  ...;
-  // expr1 - выполняется в начале
-  // expr2 - compare statement
-  // expr3 -  выполняется в конце каждой итерации
-}
-```
-```php
-for ($i = 1; $i <= 10; $i++) {
-    echo $i;
-}
-```
-```php
-  for ($i = 10; $i >= 0; $i--) {
-    if ($i === 2) {
-      echo "Ready!\n";
-    } elseif ($i === 1) {
-      echo "Study!\n";
-    } elseif ($i === 0) {
-      echo "Go!\n";
-    } else {
-      echo $i . "\n";
-    }
-  }
-```
- </td>
-</tr>
-<tr>
- <td> foreach  </td>
- <td> простой способ перебора массивов, работает только с массивами и объектами </td>
- <td>
-
-```php
-foreach (iterable_expr as $value){
-  ...;
-}
-foreach (iterable_expr as $key => $value){
-  ...;
-}
-```
-
-```php
-$arr = [1, 2, 3, 4];
-foreach ($arr as &$value) {
-    $value = $value * 2; // $arr = array(2, 4, 6, 8)
-}
-```
-
-```php
-$a = array(
-    "one" => 1,
-    "two" => 2,
-    "three" => 3,
-    "seventeen" => 17
-);
-
-foreach ($a as $k => $v) {
-    echo "\$a[$k] => $v.\n";
-}
-/* $a[one] => 1.
-$a[two] => 2.
-$a[three] => 3.
-$a[seventeen] => 17.*/
-```
-
- </td>
-</tr>
-</table>
-
-## Прерывания
-
-###### ----------
-
-<table>
-<tr>
-    <td> тип </td> 
-    <td> применение </td> 
-    <td> примеры </td> 
-</tr>
-<tr>
- <td> break  </td>
- <td> рерывает выполнение текущей структуры for, foreach, while, do-while или switch. </td>
- <td>
-  
-```php
-// break принимает необязательный числовой аргумент, который сообщает ему выполнение какого количества вложенных структур необходимо прервать Значение по умолчанию 1
-$i = 0;
-while (++$i) {
-    switch ($i) {
-        case 5:
-            echo "Итерация 5<br />\n";
-            break;  /* Выйти только из конструкции switch. */
-        case 10:
-            echo "Итерация 10; выходим<br />\n";
-            break 2;  /* Выходим из конструкции switch и из цикла while. */
-        default:
-            break;
-    }
-}
-```
-
- </td>
-</tr>
-<tr>
- <td> continue  </td>
- <td> используется (внутри циклических структур, приведенных выше) для пропуска одной или нескольких итераций цикла  </td>
- <td>
-
-```php
-for ($i = 0; $i <= 10; $i++) {
-if ($i % 2 == 0) {
-  continue;
-}
-if ($i == 7) {
-  continue;
-}
-echo $i . ','; //1,3,5,9,
-}
-```
-
- </td>
-</tr>
-</table>
-
-###### ----------
-
-# Модули
+# 8 Модули
 
 ###### ----------
 
@@ -2292,621 +2913,6 @@ echo "\nNice to meet you, $name"; // Nice to meet you, Alex
 
 ###### ----------
 
-# REGEX
-
-###### ----------
-
-[link cheatsheet regex](https://www.codecademy.com/learn/learn-php/modules/php-form-validation/cheatsheet)
-
 # Object
 
 ###### ----------
-
-# Class and Object
-
-###### ----------
-
-[link to class](https://www.php.net/manual/ru/language.oop5.basic.php)
-
-> define class
-
-```php
-class Classname {
-....
-properties object;
-}
-```
-
-> > Example
-
-```php
-class Pet {
-  public $name, $color;
-}
-```
-
-> Instantiation - процесс создания нового объекта
-
-```php
-$very_good_dog = new Pet();
-```
-
-```php
-// взаимодействуем со свойствами объекта, используя оператор объекта (->),
-//за которым следует имя свойства (без знака доллара, $)
-// set property
-$very_good_dog->name = "Lassie";
-// get property
-echo $very_good_dog->name; # Prints "Lassie"
-```
-
-### Inheritance
-
-###### ----------
-
-[Late Static Bindings](https://www.php.net/manual/ru/language.oop5.late-static-bindings.php)
-
-> оператор **$this->** - используется внутри области ограниченной объявлением класса class some { }. Является ссылкой на вызываемый объект
-
-```php
-class A {
-    private $a = 1;
-
-    public function getA(){
-        return $this->a; // обращаемся к внутреннему свойсву через $this
-    }
-
-    public function someMethod(){
-        return $this->getA(); // обращаемся к внутреннему методу через $this
-    }
-}
-
-$obj = new A();
-echo $obj->someMethod(); //1
-```
-
-> оператор **parent::** - используется внутри области ограниченной объявлением класса class some { }. Является ссылкой на родительский объект.
-
-```php
-    class Model {
-       public static $table='table';
-       public static function foo() {
-          echo "1_test";
-          }
-        }
-    class User extends Model{
-           public static function foo() {
-          echo "2_test";
-          parent::foo();
-          }
-       }
-echo User::foo(); //выведет '2_test1_test'
-```
-
-> оператор **self::** - используется внутри области ограниченной объявлением класса class some { }. Вызываем метод именно этого класса, как и в том месте где она определена. Класс в котором написано.
-
-```php
-class Model {
-   public static $table='table';
-   public static function getTable() {
-      return self::$table;
-      }
-    }
-class User extends Model{
-      public static $table='users';
-   }
-   echo User::getTable(); //выведет 'table'
-```
-
-```php
-class Model {
-   public static $table='table';
-   public static function getTable() {
-      return self::$table;
-      }
-    }
-class User extends Model{
-      public static $table='users';
-      public static function getTable() {
-        return self::$table;
-      }
-   }
-   echo User::getTable(); //выведет 'users'
-```
-
-> оператор **static::** - используется внутри области ограниченной объявлением класса class some { }. Берет данные из вызывающего класса. Может ссылаться только на статические поля класса. Класс в котором выполнилось.
-
-```php
-class Model {
-   public static $table='table';
-   public static function getTable() {
-      return self::$table;
-      }
-    }
-class User extends Model{
-      public static $table='users';
-      public $new = 'new';
-      public static function getTable() {
-        return static::$table;
-      }
-   }
-   echo User::getTable(); //выведет 'users'
-   echo User::$table; // 'users'
-   echo User::$new; // Uncaught Error: Access to undeclared static property: User::$new
-```
-
-> Дочерний класс наследует свойства и параметры родительского
-
-> define
-
-```php
-class ChildClass extends ParentClass {
- ...
-}
-```
-
-> > Example
-
-```php
-class Dog extends Pet {
-  function bark() {
-    return "woof";
-  }
-}
-```
-
-> > Example
-
-```php
-<?php
-class Beverage {
-  public $temperature;
-
-  function getInfo() {
-    return "This beverage is $this->temperature.";
-  }
-}
-
-class Milk extends Beverage {
-  function __construct() {
-    $this->temperature = "cold";
-  }
-
-}
-```
-
-## Method
-
-###### ----------
-
-> Методы класса - по сути функции, которые будут содержаться в каждом объекте, их часто используют для взаимодействия со свойствами объекта
-
-> **$this** - относится к текущему объекту; когда мы вызываем этот метод, $this ссылается на конкретный объект, вызвавший метод.
-
-```php
-class Pet {
-  public $first, $last;
-  function getFullName() {
-    return $this->first . " " . $this->last;
-  }
-}
-```
-
-> Доступ к методам осуществляется так же, как и к свойствам, но для их вызова используйте круглые скобки в конце
-
-```php
-$my_object->classMethod();
-```
-
-> > Example
-
-```php
-$very_good_groundhog = new Pet();
-$very_good_groundhog->first = "Punxsutawney";
-$very_good_groundhog->last = "Phil";
-echo $very_good_groundhog->getFullName(); # Prints "Punxsutawney Phil"
-```
-
-### Magic methods
-
-###### ----------
-
-[links magic methods php](https://www.php.net/manual/ru/language.oop5.magic.php)
-
-<table>
-<tr>
-    <td> метод </td> 
-    <td> описание </td> 
-    <td> пример </td> 
-</tr>
-<tr>
- <td> __construct </td>
- <td> Этот метод вызывается автоматически при создании экземпляра объекта. Например задать условие по умолчанию, для каждого экземпляра объекта 
- 
- ```php
-// несколько способов объявления
-//1 - дефолтный
-...
-public $name, $age;
-function __construct($name, $age)
-...
-//2 - Параметры по умолчанию
-...
-function __construct($name="Том", $age=36)
-...
-//3 - Объявление свойств через конструктор
-...
-function __construct(public $name, public $age)
-...
-//4 - сочетание обоих
-...
-public $name;
-function __construct($name = "Sam", public $age = 33)
-...
-```
-</td>
-<td>
-
-```php
-class Pet {
- public $deserves_love;
- function __construct() {
-   $this->deserves_love = TRUE;
- }
-}
-$my_dog = new Pet();
-if ($my_dog->deserves_love){
- echo "I love you!";
-} // Prints: I love you!
-```
-
-```php
-class Pet {
-  public $name;
-  function __construct($name) {
-    $this->name = $name;
-  }
-}
-$dog = new Pet("Lassie");
-echo $dog->name; // Prints: Lassie
-```
-
- </td>
-</tr>
- <td> __destruct </td>
- <td> Деструкторы служат для освобождения ресурсов. Этот метод полезен, когда вы хотите выполнить какие-либо действия в последнюю минуту (например, сохранить или распечатать некоторые данные после их удаления). Деструктор объекта вызывается самим интерпретатором PHP после потери последней ссылки на данный объект в программе. Объект будет уничтожен</td>
- <td>
-
-```php
-class Fruit {
-  public $name;
-  public $color;
-
-  function __construct($name, $color) {
-    $this->name = $name;
-    $this->color = $color;
-    echo 'Hi , '. $this->name. '<br>';
-  }
-  function __destruct() {
-    echo "Название фрукта {$this->name} и его цвет {$this->color}.";
-  }
-}
-
-$apple = new Fruit("яблоко", "красный"); // hi яблоко
-// Название фрукта яблоко и его цвет красный.
-```
-
- </td>
-</tr>
-<tr>
- <td> __call() </td>
- <td> запускается при вызове недоступных методов в объекте. Т.е. если вы обращаетесь к методу объекта, которого не существует, то запускается этот метод</td>
- <td>
-
-```php
-  class MyClass  {
-    public function __call($name, $arguments) {
-      echo "Вызван метод '$name'  со следующими аргументами " . implode(', ', $arguments) . PHP_EOL;
-    }
-  }
-
-  $obj = new MyClass;
-  $obj -> objMethod("метод объекта");
-```
-
- </td>
-</tr>
-<tr>
- <td> __callStatic </td>
- <td> запускается при вызове недоступных методов у класса. Т.е. если вы обращаетесь к статическому методу класса, а его не существует, то вызывается это метод</td>
- <td>
-
-```php
-  class MyClass  {
-    public static function __callStatic($name, $arguments) {
-      echo "Вызван статический метод '$name'  со следующими аргументами " . implode(', ', $arguments)  . PHP_EOL;
-    }
-  }
-
-MyClass::objMethod("метод класса");
-```
-
- </td>
-</tr>
-<tr>
- <td> __get </td>
- <td> запускается при попытке чтения несуществующих, приватных или защищенных свойств объекта</td>
- <td>
-
-```php
-class Spindle_Model_User_get{
-    protected $_data = [
-        'username' => null,
-        'email'    => null,
-        'fullname' => '',
-        'role'     => 'guest',
-    ];
-
-    public function __get($name){
-        if (array_key_exists($name, $this->_data)) {
-            return $this->_data[$name];
-        }
-        return null;
-    }
-}
-
-$obj = new Spindle_Model_User_get();
-echo $obj->username; // alex
-var_dump($obj->variable); // NULL
-```
-
- </td>
-</tr>
-<tr>
- <td> __set </td>
- <td> запускается при попытке записи данных в несуществующие, приватные или защищенные свойства объекта</td>
- <td>
-
-```php
-class Spindle_Model_User_set{
-    protected $_data = [
-        'username' => null,
-        'email'    => null,
-        'fullname' => '',
-        'role'     => 'guest',
-    ];
-
-    public function __set($name, $value){
-        if (!array_key_exists($name, $this->_data)) {
-            throw new Exception('Invalid property "' . $name . '"');
-        }
-        $this->_data[$name] = $value;
-    }
-}
-
-$obj = new Spindle_Model_User_set();
-$obj->username = 'alex'; // set username alex
-$obj->variable = '1'; // Error Uncaught Exception: Invalid property "variable"
-```
-
- </td>
-</tr>
-<tr>
- <td> __isset </td>
- <td> будет запущен, при попытке использовать метод isset()(проверяет существует ли переменная или свойство), на несуществующем, защищенном или приватном свойстве объекта</td>
- <td>
-
-```php
-// Название фрукта яблоко и его цвет красный.
-```
-
- </td>
-</tr>
-<tr>
- <td> __unset </td>
- <td> запускается при попытке использования unset(), на несуществующем, защищенном или приватном свойстве объекта</td>
- <td>
-
-```php
-// Название фрукта яблоко и его цвет красный.
-```
-
- </td>
-</tr>
-<tr>
- <td> __sleep </td>
- <td> запускается до любой операции сериализации. может использоваться, например для очистки объекта</td>
- <td>
-
-```php
-// Название фрукта яблоко и его цвет красный.
-```
-
- </td>
-</tr>
-<tr>
- <td> __wakeup </td>
- <td> этот магический метод запускается до выполнения функции unserialize(). Используется для восстановления различных ресурсов, которые может иметь объект</td>
- <td>
-
-```php
-// Название фрукта яблоко и его цвет красный.
-```
-
- </td>
-</tr>
-<tr>
- <td> __toString </td>
- <td> если объект попытаются использовать как строку, то запустится этот метод</td>
- <td>
-
-```php
-class MyClass
-{
-    public $variable;
-    public function __construct($variable){
-        $this->variable= $variable;
-    }
-
-    public function __toString(){
-        return $this->variable;
-    }
-}
-
-$object = new MyClass('Hi from object');
-echo $object ; // пытаемся ECHO-м вывести на экран объект, в результате
-// запускается магический метод __toString, который возвращает строку
-// "Hi from object", и выводится на экран "Hi from object".
-```
-
- </td>
-</tr>
-<tr>
- <td> __invoke </td>
- <td> вызывается, если объект пытаются вызвать как функцию</td>
- <td>
-
-```php
-class MyClass
-{
-    public function __invoke($var){
-        var_dump($var);
-    }
-}
-$object = new MyClass;
-$object(60); // т.к. объект пытаются использовать как функцию,
-// то запускается магический метод __invoke
-```
-
- </td>
-</tr>
-<tr>
- <td> __set_state </td>
- <td> запускается если Ваш объект пытаются передать в функцию VAR_EXPORT</td>
- <td>
-
-```php
-var_export($itObject);
-```
-
- </td>
-</tr>
-<tr>
- <td> __clone </td>
- <td> срабатывает после завершения клонирования объекта</td>
- <td>
-
-```php
-$clone_your_object = clone $your_object; //После такого клонирования,
-//если определен магический метод __clone, он будет запущен.
-```
-
- </td>
-</tr>
-</tr>
-<tr>
- <td> __debugInfo </td>
- <td> запускается, если в функцию var_dump(), передать объект</td>
- <td>
-
-```php
-// Название фрукта яблоко и его цвет красный.
-```
-
- </td>
-</tr>
-</table>
-
-### Overriding Methods
-
-###### ----------
-
-> Перегрузка в PHP означает возможность динамически создавать свойства и методы. Эти динамические сущности обрабатываются с помощью магических методов.
-
-> Когда мы хоти поменять функцию метода родительского класса в дочернем. родительский по прежнему можно будет вызвать через **parent::method()**
-
-> Example
-
-```php
-class Pet {
-  function type() {
-    return "pet";
-  }
-}
-
-class Dog extends Pet{
-  function type() {
-    return "dog";
-  }
-  function classify(){
-    echo "This " . parent::type() . " is of type " . $this->type();
-    // Prints: This pet is of type dog
-  }
-}
-```
-
-### Область видимости
-
-[link to visiability php](https://www.php.net/manual/ru/language.oop5.visibility.php)
-
-- Public - Доступ можно получить как внутри класса, так и снаружи (является видимостью по умолчанию для функций, констант и свойств класса.)
-- Private - доступ только внутри класса.
-- Protected - разрешает доступ к свойствам родительского из дочерних классов
-
-> Внутри дочерних классов чтобы получать или изменять свойство нужно использовать методы
-
-> 1
-
-```php
-class Pet {
-  private $healthScore = 0;
-}
-
-class Horse extends Pet {
-  function brushTeeth() {
-    $this->healthScore++;
-  }
-}
-
-$my_pet = new Horse();
-$my_pet->brushTeeth(); // Error Undefined property: Horse::$healthScore
-```
-
-> 2
-
-```php
-class Pet {
-  protected $healthScore = 0;
-}
-
-class Horse extends Pet {
-  function brushTeeth() {
-    $this->healthScore++;
-  }
-}
-
-$my_pet = new Horse();
-$my_pet->brushTeeth(); // Successfully increments healthScore
-$my_pet->healthScore; // Error  Cannot access protected property Horse::$healthScore
-```
-
-### Getters and Setters
-
-> example
-
-```php
-class Pet {
-  private $name;
-  function setName($name) {
-    if (gettype($name) === "string") {
-    $this->name = $name;
-    return true;
-    } else {
-    return false;
-    }
-  }
-  function getName() {
-    return $this->name;
-  }
-}
-```
