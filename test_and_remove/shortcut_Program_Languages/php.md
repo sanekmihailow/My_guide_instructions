@@ -1,3 +1,79 @@
+<d>
+  <details>
+    <summary> structure map </summary>
+
+```
+1. БАЗОВЫЕ
+- include
+- Конкатенация строк
+- Переменные
+- Magic Constant
+1.1 Операции с перменными
+- Арифметические операции
+- Логические операции
+- Операции cравнения
+- Операции присваивания
+- Операция исполнения
+- Побитовые операции
+
+2. ФУНКЦИИ
+- Переменная область видимости
+- Глобальная область видимости
+- Функции обработки переменных
+- String Functions
+- - Basic Sanitization
+- Math Functions
+- Filesystem Functions
+
+3. УПРАВЛЯЮЩИЕ КОНСТРУКЦИИ
+3.1 Условные
+- Тернарный оператор
+3.2 Циклы
+3.3 Прерывания
+
+4. МАССИВЫ
+- Array Functions
+- Nested Arrays
+- Associative Arrays
+- - Joining Arrays
+- - Assign by Value or by Reference
+
+5. Class and Object
+- Inheritance
+- Область видимости
+5.1 Методы
+- Magic methods
+- Overriding Methods
+- Getters and Setters
+
+6. REGEX
+
+7. HTML IN PHP
+7.1 HTML FORM handling in PHP
+- Examples
+- Request Superglobals
+- Ways FORM Validation
+- - Client-side FORM Validation
+- - Server-side FORM Validation [link basic sanitization]
+7.2 LOOPS IN HTML
+
+8. Модули
+- Fuction readline()
+```
+
+</details>
+</d>
+
+<d>
+ <details>
+	 <summary> PHP Map </summary>
+
+[1) БАЗОВЫЕ](#1-БАЗОВЫЕ)
+- [Импорт файлов](#Импорт-файлов)
+
+</details>
+</d>
+
 # PHP
 
 [link to PHP Reference](https://www.php.net/manual/ru/langref.php)
@@ -71,30 +147,6 @@ round(int|float $num, int $precision = 0, int $mode = PHP_ROUND_HALF_UP): float
 
 ###### ////////////////////////////////////
 
-###### ----------
-
-### include
-
-###### ----------
-
-```php
-// one.php
-echo "How are";
-```
-
-```php
-// two.php
-echo " you?";
-```
-
-```php
-// index.php
-echo "Hello! ";
-include "one.php";
-include "two.php";
-// Prints: Hello! How are you?
-```
-
 > комменты
 
 ```js
@@ -118,6 +170,83 @@ echo "She said \"hi\" to the dog."; // Prints: She said "hi" to the dog.
 echo "1. Go to gym";
 echo "\n2. Cook dinner";
 ```
+
+### Импорт файлов
+
+###### ----------
+
+<table>
+<tr>
+    <td> выражение </td> 
+    <td> применение </td> 
+    <td> примеры </td> 
+</tr>
+<tr>
+ <td> include </td>
+ <td> включает и выполняет указанный файл </td>
+ <td>
+  
+```php
+// one.php
+echo "How are";
+```
+
+```php
+// two.php
+echo " you?";
+```
+
+```php
+// index.php
+echo "Hello! ";
+include "one.php";
+include "two.php";
+// Prints: Hello! How are you?
+```
+
+ </td>
+</tr>
+<tr>
+ <td> include_once </td>
+ <td> включает и выполняет указанный файл </td>
+ <td>
+  
+```php
+// index.php
+echo "Hello! ";
+include_once "one.php";
+include_once "two.php";
+// Prints: Hello! How are you?
+```
+ </td>
+</tr>
+<tr>
+ <td> require </td>
+ <td> аналогично include, за исключением того, что в случае возникновения ошибки E_COMPILE_ERROR, он остановит выполнение скрипта, тогда как include только выдал бы предупреждение E_WARNING </td>
+ <td>
+  
+```php
+// index.php
+echo "Hello! ";
+require "one.php";
+require "two.php";
+// Prints: Hello! How are you?
+```
+ </td>
+</tr>
+<tr>
+ <td> require_once </td>
+ <td> аналогично require за исключением того, что PHP проверит, включался ли уже данный файл, и если да, не будет включать его ещё раз </td>
+ <td>
+  
+```php
+echo "Hello! ";
+require_once "one.php";
+require_once "two.php";
+```
+ </td>
+</tr>
+</table>
 
 ###### ----------------------------
 
@@ -154,7 +283,7 @@ echo "one " . "two"; // Prints: one two
 
 ###### ----------------------------
 
-### Переменные_Variables
+### Переменные
 
 ###### ----------
 
@@ -449,7 +578,7 @@ echo "<pre>$output</pre>";
 
 ###### ////////////////////////////////////
 
-# 2 Функции
+# 2 ФУНКЦИИ
 
 ###### ////////////////////////////////////
 
@@ -1362,7 +1491,7 @@ echo $i . ','; //1,3,5,9,
 
 ###### ////////////////////////////////////
 
-# 4 Массивы
+# 4 МАССИВЫ
 
 ###### ////////////////////////////////////
 
@@ -1626,7 +1755,7 @@ echo $array["color"]; // Prints: red
 
 ###### ////////////////////////////////////
 
-# 5 Class and Object
+# 5 КЛАССЫ И ОБЪЕКТЫ
 
 ###### ////////////////////////////////////
 
@@ -1652,7 +1781,7 @@ class Pet {
 > Instantiation - процесс создания нового объекта
 
 ```php
-$very_good_dog = new Pet();
+$very_good_dog = new Pet(); // создан объект $very_good_dog внутри класса Pet()
 ```
 
 ```php
@@ -1856,7 +1985,7 @@ $my_pet->healthScore; // Error  Cannot access protected property Horse::$healthS
 
 > Методы класса - по сути функции, которые будут содержаться в каждом объекте, их часто используют для взаимодействия со свойствами объекта
 
-> **$this** - относится к текущему объекту; когда мы вызываем этот метод, $this ссылается на конкретный объект, вызвавший метод.
+> **$this** - относится к текущему объекту / свойству класса; когда мы вызываем этот метод, $this ссылается на конкретный объект, вызвавший метод.
 
 ```php
 class Pet {
