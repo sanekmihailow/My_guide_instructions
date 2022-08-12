@@ -18,7 +18,7 @@
 </html>
 ```
 
-> Example
+> > Example
 
 ```php
 <?php
@@ -207,7 +207,153 @@ echo -22.8; // Prints: -22.8
 echo $my_int; // Prints: 78
 ```
 
-## Операции с перменными_Операторы
+### Basic Sanitization
+
+> Для предотвращения вредных запросов в формах или приходящих данных, нужно эти данные фильтровать
+
+<table>
+<tr>
+    <td> метод </td> 
+    <td> описание </td> 
+    <td> пример </td> 
+</tr>
+<tr>
+ <td> htmlspecialchars() </td>
+ <td> Преобразует специальные символы в HTML-сущности </td>
+ <td>
+
+```php
+$new = htmlspecialchars("<a href='test'>Test</a>", ENT_QUOTES);
+echo $new; // &lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;
+```
+
+```php
+$data = "<a href=\"https://www.evil-spam.biz/html/\">Your account has been compromised! Click here to get technical support!!</a>";
+echo htmlspecialchars($data);
+
+// Prints: &lt;a href=&quot;https://www.evil-spam.biz/html/&quot;&gt;Your account has been compromised! Click here to get technical support!&lt;/a&gt;
+// Мы предотвратили html инъекцию
+```
+
+ </td>
+</tr>
+<tr>
+ <td> filter_var() </td>
+ <td> 
+ 
+ > [link](https://www.php.net/manual/ru/function.filter-var.php)
+ Фильтрует переменную с помощью определённого фильтра </td>
+ <td>
+
+> [sanitize](https://www.php.net/manual/ru/filter.filters.sanitize.php)
+
+> [validate](https://www.php.net/manual/ru/filter.filters.validate.php)
+
+```php
+$bad_email = '<a href="www.evil-spam.biz">@gmail.com';
+echo filter_var($bad_email, FILTER_SANITIZE_EMAIL);
+// Prints: ahref=www.evil-spam.biz@gmail.com
+```
+
+```php
+$bad_email = 'fake - at - prank dot com';
+if (filter_var($bad_email, FILTER_VALIDATE_EMAIL)){
+  echo "Valid email!";
+} else {
+  echo "Invalid email!";
+}
+// Prints: Invalid email!
+```
+
+> Options - чтобы конкретнее задать условие замены или отбора, нужно использовать опции(параметры)
+
+```php
+function validateAdult ($age){
+  $options = ["options" => ["min_range" => 18, "max_range" => 124]];
+  if (filter_var($age, FILTER_VALIDATE_INT, $options)) {
+    echo("You are ${age} years old.");
+  } else {
+    echo("That is not a valid age.");
+  }
+}
+
+validateAdult(18); // Prints: You are 18 years old.
+validateAdult(124); // Prints: You are 124 years old.
+validateAdult(8); // Prints: That is not a valid age.
+validateAdult(200); // Prints: That is not a valid age.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> preg_match() </td>
+ <td> Выполняет проверку на соответствие регулярному выражению </td>
+ <td>
+
+```php
+$pattern = '/^[(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4}$/';
+preg_match($pattern, "(999)-555-2222"); // Returns: 1
+preg_match($pattern, "555-2222"); // Returns: 0
+```
+
+ </td>
+</tr>
+<tr>
+ <td> strlen () </td>
+ <td> Возвращает длину строки </td>
+ <td>
+
+```php
+$name = "Aisle Nevertell";
+$length = strlen($name);
+if ($length > 2 && $length < 100){
+  echo "That seems like a reasonable name to me...";
+}
+```
+
+ </td>
+</tr>
+<tr>
+ <td> preg_replace() </td>
+ <td> Выполняет поиск и замену по регулярному выражению </td>
+ <td>
+
+```php
+$one = "codeacademy";
+$two = "CodeAcademy";
+$three = "code academy";
+$four = "Code Academy";
+
+$pattern = "/[cC]ode\s*[aA]cademy/";
+$codecademy = "Codecademy";
+
+echo preg_replace($pattern, $codecademy, $one);// Prints: Codecademy
+echo preg_replace($pattern, $codecademy, $two);// Prints: Codecademy
+echo preg_replace($pattern, $codecademy, $three);// Prints: Codecademy
+echo preg_replace($pattern, $codecademy, $four);// Prints: Codecademy
+```
+
+ </td>
+</tr>
+</table>
+
+### Magic constant
+
+[link magic constant](https://www.php.net/manual/ru/language.constants.magic.php)
+
+| **константа**    |           **описание**            |
+| :--------------- | :-------------------------------: |
+| **LINE**         |   Текущий номер строки в файле    |
+| **FILE**         | Полный путь и имя текущего файла  |
+| **DIR**          |         Директория файла          |
+| **FUNCTION**     | Имя функции или {closure} функции |
+| **CLASS**        |            Имя класса             |
+| **TRAIT**        |            Имя трейта             |
+| **METHOD**       |         Имя метода класса         |
+| **NAMESPACE**    |  Имя текущего пространства имён   |
+| ClassName::class |        Полное имя класса.         |
+
+## Операции с перменными
 
 [link to Operators](https://www.php.net/manual/ru/language.operators.php)
 
@@ -1058,6 +1204,8 @@ echo $array["color"]; // Prints: red
 
 ### Example form html
 
+> 1
+
 ```php
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -1103,6 +1251,439 @@ echo $array["color"]; // Prints: red
 </html>
 ```
 
+> 2
+
+```html
+<html>
+	<body>
+		<form method="post" action="">
+			Your name:
+			<br />
+			<input type="text" name="name" />
+			<br /><br />
+			What is the best thing about learning to code:
+			<br />
+			<input type="text" name="best" />
+			<br /><br />
+			<input type="submit" value="Submit Answers" />
+		</form>
+		<a href="index.php">Reset</a>
+		<div id="form-output">
+			<p id="name">
+				Hello,
+				<?= $_POST["name"]?>!
+			</p>
+			<p id="best">
+				I am glad you enjoy
+				<?= $_POST["best"]?>.
+			</p>
+		</div>
+	</body>
+</html>
+```
+
+> 3
+
+```php
+<?php
+function checkWord($input, $letter){
+   if ($_SERVER["REQUEST_METHOD"] === "POST" && strtolower($input[0]) !== $letter) {
+    return "* This word must start with the letter ${letter}!";
+   } else {
+     return "";
+   }
+}
+?>
+
+<h1>Time to Practice our ABCs</h1>
+<form method="post" action="">
+    Enter a word that starts with the letter "a":
+    <br>
+    <input type="text" name="a-word" id="a-word" value=<?= $_POST["a-word"];?>>
+    <br>
+    <p class="error" id="a-error"><?= checkWord($_POST["a-word"], "a");?></p>
+    <br>
+
+    Enter a word that starts with the letter "b":
+    <br>
+    <input type="text" id="b-word" name="b-word" value=<?= $_POST["b-word"];?>>
+    <br>
+    <p class="error" id="b-error"><?= checkWord($_POST["b-word"], "b");?></p>
+    <br>
+    Enter a word that starts with the letter "c":
+    <br>
+    <input type="text" id="c-word" name="c-word" value=<?= $_POST["c-word"];?>>
+    <br>
+    <p class="error" id="c-error"><?= checkWord($_POST["c-word"], "c");?></p>
+    <br>
+    <input type="submit" value="Submit Words">
+</form>
+<div>
+    <h3>"a" is for: <?= $_POST["a-word"];?><h3>
+    <h3>"b" is for: <?= $_POST["b-word"];?><h3>
+    <h3>"c" is for: <?= $_POST["c-word"];?><h3>
+<div>
+```
+
+> 4
+
+```html
+<form method="post" action="">
+	Enter some HTML:
+	<br />
+	<input type="text" name="html" />
+	<br />
+	<input type="submit" value="Submit" />
+</form>
+<div>
+	You entered:
+	<?= htmlspecialchars($_POST["html"]) ?>
+</div>
+```
+
+> 5
+
+```php
+<?php
+$validation_error = "";
+$user_answer = "";
+$submission_response = "";
+
+	if ($_SERVER["REQUEST_METHOD"] === "POST") {
+		$user_answer = filter_var($_POST["answer"], FILTER_SANITIZE_NUMBER_INT);
+  	if ($user_answer != "-5"){
+    	$validation_error = "* Wrong answer. Try again.";
+  	} else {
+      $submission_response = "Correct!";
+    }
+	}
+
+?>
+<h2>Time for a math quiz!</h2>
+<form method="post" action="">
+<h4>Question 1:</h4>
+<p>What is 6 - 11?</p>
+<input type="text" name="answer" id="answer" value="<?= $user_answer;?>">
+<br>
+<span class="error" id="error"><?= $validation_error;?></span>
+<br>
+<input type="submit" value="Submit Your Answer">
+</form>
+<div>
+  <p id="answer-display">Your answer was: <?= $user_answer;?></p>
+  <p id="submission-response"><?= $submission_response;?></p>
+</div>
+```
+
+> 6
+
+```php
+<?php
+$validation_error = "";
+$user_answer = "";
+$submission_response = "";
+
+	if ($_SERVER["REQUEST_METHOD"] === "POST") {
+		$user_answer = filter_var($_POST["answer"], FILTER_SANITIZE_NUMBER_INT);
+  	if ($user_answer != "-5"){
+    	$validation_error = "* Wrong answer. Try again.";
+  	} else {
+      $submission_response = "Correct!";
+    }
+	}
+
+?>
+<h2>Time for a math quiz!</h2>
+<form method="post" action="">
+<h4>Question 1:</h4>
+<p>What is 6 - 11?</p>
+<input type="text" name="answer" id="answer" value="<?= $user_answer;?>">
+<br>
+<span class="error" id="error"><?= $validation_error;?></span>
+<br>
+<input type="submit" value="Submit Your Answer">
+</form>
+<div>
+  <p id="answer-display">Your answer was: <?= $user_answer;?></p>
+  <p id="submission-response"><?= $submission_response;?></p>
+</div>
+```
+
+> 7
+
+```php
+<?php
+$validation_error = "";
+$user_url = "";
+$form_message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+	$user_url = $_POST["url"];
+	if (!filter_var($user_url, FILTER_VALIDATE_URL)) {
+    $validation_error = "* This is an invalid URL.";
+    $form_message = "Please retry and submit your form again.";
+  } else {
+    $form_message = "Thank you for your submission.";
+  }
+}
+
+?>
+
+<form method="post" action="">
+Your Favorite Website:
+<br>
+<input type="text" name="url" value="<?php echo $user_url;?>">
+<span class="error"><?= $validation_error;?></span>
+<br>
+<input type="submit" value="Submit">
+</form>
+<p> <?= $form_message;?> </p>
+```
+
+> 8
+
+```php
+<?php
+$message = "";
+$month_error = "";
+$day_error = "";
+$year_error = "";
+
+// Create your variables here:
+$month_options = ["options" => ["min_range" => 1, "max_range" => 12]];
+$day_options = ["options" => ["min_range" => 1, "max_range" => 31]];
+$year_options = ["options" => ["min_range" => 1903, "max_range" => date("Y")]];
+
+// Define your function here:
+function validateInput($type, &$error, $options_arr){
+    if (!filter_var($_POST[$type], FILTER_VALIDATE_INT, $options_arr)) {
+      $error = "* Invalid ${type}";
+      return FALSE;
+  } else {
+      return TRUE;
+    }
+}
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Uncomment the code below:
+    $test_month = validateInput("month", $month_error, $month_options);
+    $test_day = validateInput("day", $day_error, $day_options);
+    $test_year = validateInput("year", $year_error, $year_options);
+    if ($test_month && $test_day && $test_year){
+      $message = "Your birthday is: {$_POST["month"]}/{$_POST["day"]}/{$_POST["year"]}";
+    }
+  }
+
+?>
+
+<form method="post" action="">
+	Enter your birthday:
+	<br>
+	Month: <input type="number" name="month" value="<?= $_POST["month"];?>">
+	<span class="error"><?= $month_error;?>		</span>
+  <br>
+	Day: <input type="number" name="day" value="<?= $_POST["day"];?>">
+  <span class="error"><?= $day_error;?>		</span>
+	<br>
+	Year: <input type="number" name="year" value="<?= $_POST["year"];?>">
+	<span class="error"><?= $year_error;?>		</span>
+	<br>
+	<input type="submit" value="Submit">
+</form>
+    <p><?= $message;?></p>
+```
+
+> 9
+
+```php
+<?php
+$feedback = "";
+$success_message = "Thank you for your donation!";
+$error_message = "* There was an error with your card. Please try again.";
+
+$card_type = "";
+$card_num = "";
+$donation_amount = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $card_type = $_POST["credit"];
+    $card_num = $_POST["card-num"];
+    $donation_amount = $_POST["amount"];
+
+    if (strlen($card_num)<100){
+      if ($card_type === "mastercard"){
+        if (preg_match("/5[1-5][0-9]{14}/", $card_num) === 1){
+          $feedback = $success_message;
+        } else {
+          $feedback = $error_message;
+        }
+  	  } else if ($card_type === "visa") {
+        if (preg_match("/4[0-9]{12}([0-9]{3})?([0-9]{3})?/", $card_num) === 1){
+          $feedback = $success_message;
+        } else {
+          $feedback = $error_message;
+       }
+    }
+  } else {
+      $feedback = $error_message;
+    }
+}
+?>
+<form action="" method="POST">
+  <h1>Make a donation</h1>
+    <label for="amount">Donation amount?</label>
+      <input type="number" name="amount" value="<?= $donation_amount;?>">
+      <br><br>
+    <label for="credit">Credit card type?</label>
+      <select name="credit" value="<?= $card_type;?>">
+        <option value="mastercard">Mastercard</option>
+        <option value="visa">Visa</option>
+      </select>
+      <br><br>
+      <label for="card-num">Card number?</label>
+      <input type="number" name="card-num" value="<?= $card_num;?>">
+      <br><br>
+      <input type="submit" value="Submit">
+</form>
+<span class="feedback"><?= $feedback;?></span>
+```
+
+> 10 backend data check
+
+```php
+$users = ["coolBro123" => "password123!", "coderKid" => "pa55w0rd*", "dogWalker" => "ais1eofdog$"];
+
+function isUsernameAvailable ($username){
+  global $users;
+  if (isset($users[$username])){
+    echo "That username is already taken.";
+  } else {
+    echo "${username} is available.";
+  }
+}
+
+isUsernameAvailable("coolBro123");// Prints: That username is already taken.
+isUsernameAvailable("aisleOfPHP");// Prints: aisleOfPHP is available.
+```
+
+> 11
+
+```php
+<?php
+$users = ["coolBro123" => "password123!", "coderKid" => "pa55w0rd*", "dogWalker" => "ais1eofdog$"];
+
+
+$feedback = "";
+$message = "You're logged in!";
+$validation_error = "* Incorrect username or password.";
+$username = "";
+
+// Write your code here:
+ if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   $username = $_POST["username"];
+   $password  = $_POST["password"];
+   if (isset($users[$username]) && $users[$username] === $password){
+     $feedback = $message;
+   } else {
+     $feedback = $validation_error;
+   }
+};
+
+?>
+
+<h3>Welcome back!</h3>
+<form method="post" action="">
+Username:<input type="text" name="username" value="<?php echo $username;?>">
+<br>
+Password:<input type="text" name="password" value="">
+<br>
+<input type="submit" value="Log in">
+</form>
+<span class="feedback"><?= $feedback;?></span>
+```
+
+> > 12
+
+```php
+<?php
+$contacts = ["Susan" => "5551236666", "Alex" => "7779991717", "Lily" => "8181117777"];
+$message = "";
+$validation_error = "* Please enter a 10-digit North American phone number.";
+$name = "";
+$number = "";
+
+ if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   $name = $_POST["name"];
+   $number  = $_POST["number"];
+   // Write your code here:
+   if (strlen($number)<30){
+     $formatted_number = preg_replace("/[^0-9]/", "", $number);
+     if (strlen($formatted_number)===10){
+       $contacts[$name] = $formatted_number;
+       $message = "Thanks ${name}, we'll be in touch.";
+     } else {
+       $message = $validation_error;
+     }
+   } else {
+     $message = $validation_error;
+   }
+};
+?>
+<html>
+	<body>
+  <h3>Contact Form:</h3>
+		<form method="post" action="">
+			Name:
+			<br>
+  		<input type="text" name="name" value="<?= $name;?>">
+ 			<br><br>
+  		Phone Number:
+  		<br>
+  		<input type="text" name="number" value="<?= $number;?>">
+  		<br><br>
+  		<input type="submit" value="Submit">
+		</form>
+		<div id="form-output">
+			<p id="response"><?= $message?></p>
+    </div>
+	</body>
+</html>
+```
+
+> > 13 [link header](https://www.php.net/manual/en/function.header.php)
+
+```php
+<?php
+// для правильной работы функция header() должна быть запущена до того, как сценарий что-либо выведет, включая HTML
+$validation_error = "";
+$username = "";
+$users = ["coolBro123" => "password123!", "coderKid" => "pa55w0rd*", "dogWalker" => "ais1eofdog$"];
+
+ if ($_SERVER["REQUEST_METHOD"] === "POST") {
+   $username = $_POST["username"];
+   $password  = $_POST["password"];
+   if (isset($users[$username]) && $users[$username] === $password){
+// Add your code here:
+    header("Location: success.html");
+    exit;
+   } else {
+     $validation_error = "* Incorrect username or password.";
+   }
+ }
+?>
+
+<h3>Welcome back!</h3>
+<form method="post" action="">
+Username:<input type="text" name="username" value="<?php echo $username;?>">
+<br>
+Password:<input type="text" name="password" value="">
+<br>
+<span class="error"><?= $validation_error;?></span>
+<br>
+<input type="submit" value="Log in">
+</form>
+```
+
 ### Request Superglobals
 
 The list of superglobals in PHP includes the following:
@@ -1121,7 +1702,7 @@ The list of superglobals in PHP includes the following:
 
 [HTML FORM TAG](https://www.w3schools.com/tags/tag_form.asp)
 
-> Example
+> > Example
 
 ```php
 // index.php
@@ -1175,8 +1756,6 @@ if (isset($_FILES['avatar'])) {
 > **move_uploaded_file()** - Проверяет, что файл действительно загружен через форму. Перемещает загруженный файл по новому адресу
 
 ### Ways FORM VALIDATION
-
-###### ----------
 
 > for validation data form we must use it safely, uses
 > `Clien-side validation` and `Server-side validation`
@@ -1314,6 +1893,8 @@ foreach ($footwear as $type => $brands):
 endforeach;
 ?>
 ```
+
+###### ----------
 
 # Управляющие конструкции
 
@@ -1681,6 +2262,8 @@ echo $i . ','; //1,3,5,9,
 </tr>
 </table>
 
+###### ----------
+
 # Модули
 
 ###### ----------
@@ -1707,8 +2290,623 @@ echo "\nNice to meet you, $name";
 echo "\nNice to meet you, $name"; // Nice to meet you, Alex
 ```
 
+###### ----------
+
 # REGEX
 
 ###### ----------
 
 [link cheatsheet regex](https://www.codecademy.com/learn/learn-php/modules/php-form-validation/cheatsheet)
+
+# Object
+
+###### ----------
+
+# Class and Object
+
+###### ----------
+
+[link to class](https://www.php.net/manual/ru/language.oop5.basic.php)
+
+> define class
+
+```php
+class Classname {
+....
+properties object;
+}
+```
+
+> > Example
+
+```php
+class Pet {
+  public $name, $color;
+}
+```
+
+> Instantiation - процесс создания нового объекта
+
+```php
+$very_good_dog = new Pet();
+```
+
+```php
+// взаимодействуем со свойствами объекта, используя оператор объекта (->),
+//за которым следует имя свойства (без знака доллара, $)
+// set property
+$very_good_dog->name = "Lassie";
+// get property
+echo $very_good_dog->name; # Prints "Lassie"
+```
+
+### Inheritance
+
+###### ----------
+
+[Late Static Bindings](https://www.php.net/manual/ru/language.oop5.late-static-bindings.php)
+
+> оператор **$this->** - используется внутри области ограниченной объявлением класса class some { }. Является ссылкой на вызываемый объект
+
+```php
+class A {
+    private $a = 1;
+
+    public function getA(){
+        return $this->a; // обращаемся к внутреннему свойсву через $this
+    }
+
+    public function someMethod(){
+        return $this->getA(); // обращаемся к внутреннему методу через $this
+    }
+}
+
+$obj = new A();
+echo $obj->someMethod(); //1
+```
+
+> оператор **parent::** - используется внутри области ограниченной объявлением класса class some { }. Является ссылкой на родительский объект.
+
+```php
+    class Model {
+       public static $table='table';
+       public static function foo() {
+          echo "1_test";
+          }
+        }
+    class User extends Model{
+           public static function foo() {
+          echo "2_test";
+          parent::foo();
+          }
+       }
+echo User::foo(); //выведет '2_test1_test'
+```
+
+> оператор **self::** - используется внутри области ограниченной объявлением класса class some { }. Вызываем метод именно этого класса, как и в том месте где она определена. Класс в котором написано.
+
+```php
+class Model {
+   public static $table='table';
+   public static function getTable() {
+      return self::$table;
+      }
+    }
+class User extends Model{
+      public static $table='users';
+   }
+   echo User::getTable(); //выведет 'table'
+```
+
+```php
+class Model {
+   public static $table='table';
+   public static function getTable() {
+      return self::$table;
+      }
+    }
+class User extends Model{
+      public static $table='users';
+      public static function getTable() {
+        return self::$table;
+      }
+   }
+   echo User::getTable(); //выведет 'users'
+```
+
+> оператор **static::** - используется внутри области ограниченной объявлением класса class some { }. Берет данные из вызывающего класса. Может ссылаться только на статические поля класса. Класс в котором выполнилось.
+
+```php
+class Model {
+   public static $table='table';
+   public static function getTable() {
+      return self::$table;
+      }
+    }
+class User extends Model{
+      public static $table='users';
+      public $new = 'new';
+      public static function getTable() {
+        return static::$table;
+      }
+   }
+   echo User::getTable(); //выведет 'users'
+   echo User::$table; // 'users'
+   echo User::$new; // Uncaught Error: Access to undeclared static property: User::$new
+```
+
+> Дочерний класс наследует свойства и параметры родительского
+
+> define
+
+```php
+class ChildClass extends ParentClass {
+ ...
+}
+```
+
+> > Example
+
+```php
+class Dog extends Pet {
+  function bark() {
+    return "woof";
+  }
+}
+```
+
+> > Example
+
+```php
+<?php
+class Beverage {
+  public $temperature;
+
+  function getInfo() {
+    return "This beverage is $this->temperature.";
+  }
+}
+
+class Milk extends Beverage {
+  function __construct() {
+    $this->temperature = "cold";
+  }
+
+}
+```
+
+## Method
+
+###### ----------
+
+> Методы класса - по сути функции, которые будут содержаться в каждом объекте, их часто используют для взаимодействия со свойствами объекта
+
+> **$this** - относится к текущему объекту; когда мы вызываем этот метод, $this ссылается на конкретный объект, вызвавший метод.
+
+```php
+class Pet {
+  public $first, $last;
+  function getFullName() {
+    return $this->first . " " . $this->last;
+  }
+}
+```
+
+> Доступ к методам осуществляется так же, как и к свойствам, но для их вызова используйте круглые скобки в конце
+
+```php
+$my_object->classMethod();
+```
+
+> > Example
+
+```php
+$very_good_groundhog = new Pet();
+$very_good_groundhog->first = "Punxsutawney";
+$very_good_groundhog->last = "Phil";
+echo $very_good_groundhog->getFullName(); # Prints "Punxsutawney Phil"
+```
+
+### Magic methods
+
+###### ----------
+
+[links magic methods php](https://www.php.net/manual/ru/language.oop5.magic.php)
+
+<table>
+<tr>
+    <td> метод </td> 
+    <td> описание </td> 
+    <td> пример </td> 
+</tr>
+<tr>
+ <td> __construct </td>
+ <td> Этот метод вызывается автоматически при создании экземпляра объекта. Например задать условие по умолчанию, для каждого экземпляра объекта 
+ 
+ ```php
+// несколько способов объявления
+//1 - дефолтный
+...
+public $name, $age;
+function __construct($name, $age)
+...
+//2 - Параметры по умолчанию
+...
+function __construct($name="Том", $age=36)
+...
+//3 - Объявление свойств через конструктор
+...
+function __construct(public $name, public $age)
+...
+//4 - сочетание обоих
+...
+public $name;
+function __construct($name = "Sam", public $age = 33)
+...
+```
+</td>
+<td>
+
+```php
+class Pet {
+ public $deserves_love;
+ function __construct() {
+   $this->deserves_love = TRUE;
+ }
+}
+$my_dog = new Pet();
+if ($my_dog->deserves_love){
+ echo "I love you!";
+} // Prints: I love you!
+```
+
+```php
+class Pet {
+  public $name;
+  function __construct($name) {
+    $this->name = $name;
+  }
+}
+$dog = new Pet("Lassie");
+echo $dog->name; // Prints: Lassie
+```
+
+ </td>
+</tr>
+ <td> __destruct </td>
+ <td> Деструкторы служат для освобождения ресурсов. Этот метод полезен, когда вы хотите выполнить какие-либо действия в последнюю минуту (например, сохранить или распечатать некоторые данные после их удаления). Деструктор объекта вызывается самим интерпретатором PHP после потери последней ссылки на данный объект в программе. Объект будет уничтожен</td>
+ <td>
+
+```php
+class Fruit {
+  public $name;
+  public $color;
+
+  function __construct($name, $color) {
+    $this->name = $name;
+    $this->color = $color;
+    echo 'Hi , '. $this->name. '<br>';
+  }
+  function __destruct() {
+    echo "Название фрукта {$this->name} и его цвет {$this->color}.";
+  }
+}
+
+$apple = new Fruit("яблоко", "красный"); // hi яблоко
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __call() </td>
+ <td> запускается при вызове недоступных методов в объекте. Т.е. если вы обращаетесь к методу объекта, которого не существует, то запускается этот метод</td>
+ <td>
+
+```php
+  class MyClass  {
+    public function __call($name, $arguments) {
+      echo "Вызван метод '$name'  со следующими аргументами " . implode(', ', $arguments) . PHP_EOL;
+    }
+  }
+
+  $obj = new MyClass;
+  $obj -> objMethod("метод объекта");
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __callStatic </td>
+ <td> запускается при вызове недоступных методов у класса. Т.е. если вы обращаетесь к статическому методу класса, а его не существует, то вызывается это метод</td>
+ <td>
+
+```php
+  class MyClass  {
+    public static function __callStatic($name, $arguments) {
+      echo "Вызван статический метод '$name'  со следующими аргументами " . implode(', ', $arguments)  . PHP_EOL;
+    }
+  }
+
+MyClass::objMethod("метод класса");
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __get </td>
+ <td> запускается при попытке чтения несуществующих, приватных или защищенных свойств объекта</td>
+ <td>
+
+```php
+class Spindle_Model_User_get{
+    protected $_data = [
+        'username' => null,
+        'email'    => null,
+        'fullname' => '',
+        'role'     => 'guest',
+    ];
+
+    public function __get($name){
+        if (array_key_exists($name, $this->_data)) {
+            return $this->_data[$name];
+        }
+        return null;
+    }
+}
+
+$obj = new Spindle_Model_User_get();
+echo $obj->username; // alex
+var_dump($obj->variable); // NULL
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __set </td>
+ <td> запускается при попытке записи данных в несуществующие, приватные или защищенные свойства объекта</td>
+ <td>
+
+```php
+class Spindle_Model_User_set{
+    protected $_data = [
+        'username' => null,
+        'email'    => null,
+        'fullname' => '',
+        'role'     => 'guest',
+    ];
+
+    public function __set($name, $value){
+        if (!array_key_exists($name, $this->_data)) {
+            throw new Exception('Invalid property "' . $name . '"');
+        }
+        $this->_data[$name] = $value;
+    }
+}
+
+$obj = new Spindle_Model_User_set();
+$obj->username = 'alex'; // set username alex
+$obj->variable = '1'; // Error Uncaught Exception: Invalid property "variable"
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __isset </td>
+ <td> будет запущен, при попытке использовать метод isset()(проверяет существует ли переменная или свойство), на несуществующем, защищенном или приватном свойстве объекта</td>
+ <td>
+
+```php
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __unset </td>
+ <td> запускается при попытке использования unset(), на несуществующем, защищенном или приватном свойстве объекта</td>
+ <td>
+
+```php
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __sleep </td>
+ <td> запускается до любой операции сериализации. может использоваться, например для очистки объекта</td>
+ <td>
+
+```php
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __wakeup </td>
+ <td> этот магический метод запускается до выполнения функции unserialize(). Используется для восстановления различных ресурсов, которые может иметь объект</td>
+ <td>
+
+```php
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __toString </td>
+ <td> если объект попытаются использовать как строку, то запустится этот метод</td>
+ <td>
+
+```php
+class MyClass
+{
+    public $variable;
+    public function __construct($variable){
+        $this->variable= $variable;
+    }
+
+    public function __toString(){
+        return $this->variable;
+    }
+}
+
+$object = new MyClass('Hi from object');
+echo $object ; // пытаемся ECHO-м вывести на экран объект, в результате
+// запускается магический метод __toString, который возвращает строку
+// "Hi from object", и выводится на экран "Hi from object".
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __invoke </td>
+ <td> вызывается, если объект пытаются вызвать как функцию</td>
+ <td>
+
+```php
+class MyClass
+{
+    public function __invoke($var){
+        var_dump($var);
+    }
+}
+$object = new MyClass;
+$object(60); // т.к. объект пытаются использовать как функцию,
+// то запускается магический метод __invoke
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __set_state </td>
+ <td> запускается если Ваш объект пытаются передать в функцию VAR_EXPORT</td>
+ <td>
+
+```php
+var_export($itObject);
+```
+
+ </td>
+</tr>
+<tr>
+ <td> __clone </td>
+ <td> срабатывает после завершения клонирования объекта</td>
+ <td>
+
+```php
+$clone_your_object = clone $your_object; //После такого клонирования,
+//если определен магический метод __clone, он будет запущен.
+```
+
+ </td>
+</tr>
+</tr>
+<tr>
+ <td> __debugInfo </td>
+ <td> запускается, если в функцию var_dump(), передать объект</td>
+ <td>
+
+```php
+// Название фрукта яблоко и его цвет красный.
+```
+
+ </td>
+</tr>
+</table>
+
+### Overriding Methods
+
+###### ----------
+
+> Перегрузка в PHP означает возможность динамически создавать свойства и методы. Эти динамические сущности обрабатываются с помощью магических методов.
+
+> Когда мы хоти поменять функцию метода родительского класса в дочернем. родительский по прежнему можно будет вызвать через **parent::method()**
+
+> Example
+
+```php
+class Pet {
+  function type() {
+    return "pet";
+  }
+}
+
+class Dog extends Pet{
+  function type() {
+    return "dog";
+  }
+  function classify(){
+    echo "This " . parent::type() . " is of type " . $this->type();
+    // Prints: This pet is of type dog
+  }
+}
+```
+
+### Область видимости
+
+[link to visiability php](https://www.php.net/manual/ru/language.oop5.visibility.php)
+
+- Public - Доступ можно получить как внутри класса, так и снаружи (является видимостью по умолчанию для функций, констант и свойств класса.)
+- Private - доступ только внутри класса.
+- Protected - разрешает доступ к свойствам родительского из дочерних классов
+
+> Внутри дочерних классов чтобы получать или изменять свойство нужно использовать методы
+
+> 1
+
+```php
+class Pet {
+  private $healthScore = 0;
+}
+
+class Horse extends Pet {
+  function brushTeeth() {
+    $this->healthScore++;
+  }
+}
+
+$my_pet = new Horse();
+$my_pet->brushTeeth(); // Error Undefined property: Horse::$healthScore
+```
+
+> 2
+
+```php
+class Pet {
+  protected $healthScore = 0;
+}
+
+class Horse extends Pet {
+  function brushTeeth() {
+    $this->healthScore++;
+  }
+}
+
+$my_pet = new Horse();
+$my_pet->brushTeeth(); // Successfully increments healthScore
+$my_pet->healthScore; // Error  Cannot access protected property Horse::$healthScore
+```
+
+### Getters and Setters
+
+> example
+
+```php
+class Pet {
+  private $name;
+  function setName($name) {
+    if (gettype($name) === "string") {
+    $this->name = $name;
+    return true;
+    } else {
+    return false;
+    }
+  }
+  function getName() {
+    return $this->name;
+  }
+}
+```
