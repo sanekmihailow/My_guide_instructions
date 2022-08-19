@@ -126,11 +126,11 @@
 
 [6) REGEX](#6-REGEX)
 
-[7) HTML IN PHP](#HTML-IN-PHP)
+[7) HTML IN PHP](#7-HTML-IN-PHP)
 
-[7.1 HTML FORM handling in PHP](#HTML-FORM-handling-in-PHP)
+[7.1 HTML FORM handling in PHP](#7_1-HTML-FORM-handling-in-PHP)
 
-- [Куча примеров форм (Examples)](#Examples)
+- [Куча примеров форм (Examples)](#Example-form-html)
 - [Запросы PHP форм (Request Superglobals)](#Request-Superglobals)
 - [Способы проверок (Ways FORM Validation)](#Ways-FORM-Validation)
 - - [Проверка на клиентской части (Client-side FORM Validation)](#Client-side-FORM-Validation)
