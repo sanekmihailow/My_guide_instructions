@@ -216,7 +216,7 @@ DAEMON_ARGS="-u"
 USER=nobody
 GROUP=nogroup
 # Number of maximum file descriptors
-MAXFD=32768:
+MAXFD=32768
 ```
 
 > create unit systemd file if not exist. To bind Shadowsocks to a privileged port (less than 1024), the server should be started as user root.
