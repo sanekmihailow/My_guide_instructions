@@ -107,7 +107,7 @@ Shadowsocks
 # Installations
 
 > Method 1 - Python
-```apache
+```nginx
 # --- Ubuntu ---
 apt install python-pip
 pip install shadowsocks
@@ -126,7 +126,7 @@ pip install shadowsocks
 ```
 
 > Method 2 - libev pkg
-```apache
+```nginx
 # --- Ubuntu ---
 apt install shadowsocks-libev
 
@@ -134,7 +134,7 @@ apt install shadowsocks-libev
 ```
 
 > Method 2 - libev src
-```apache
+```nginx
 # --- Ubuntu ---
 # install requiries
 apt update -y
@@ -196,7 +196,7 @@ make install
 
 > create environment file for systemd if not exist **/etc/default/shadowsocks** or **/etc/default/shadowsocks-libev** (use environment variables on systemd unit)
 
-```bash
+```perl
 #/etc/default/shadowsocks
 START=yes
 CONFFILE="/etc/shadowsocks/config.json"
