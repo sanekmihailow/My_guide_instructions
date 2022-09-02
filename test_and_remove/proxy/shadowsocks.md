@@ -196,7 +196,7 @@ make install
 
 > create environment file for systemd if not exist **/etc/default/shadowsocks** or **/etc/default/shadowsocks-libev** (use environment variables on systemd unit)
 
-```perl
+```haskell
 #/etc/default/shadowsocks
 START=yes
 CONFFILE="/etc/shadowsocks/config.json"
@@ -207,7 +207,7 @@ GROUP=nogroup
 MAXFD=32768
 ```
 ----------
-```bash
+```haskell
 #/etc/default/shadowsocks-libev
 START=yes
 CONFFILE="/etc/shadowsocks-libev/config.json"
@@ -220,7 +220,7 @@ MAXFD=32768:
 ```
 
 > create unit systemd file if not exist. To bind Shadowsocks to a privileged port (less than 1024), the server should be started as user root.
-```bash
+```js
 # python ver
 # /usr/lib/systemd/system/shadowsocks.service
 # /etc/systemd/system/shadowsocks.service
@@ -244,7 +244,7 @@ UMask=0027
 WantedBy=multi-user.target
 ```
 ---------
-```bash
+```js
 #libev ver
 # /etc/systemd/system/multi-user.target.wants/shadowsocks-libev.service
 [Unit]
@@ -264,7 +264,7 @@ ExecStart=/usr/bin/ss-server -c $CONFFILE $DAEMON_ARGS
 WantedBy=multi-user.target
 ```
 --------
-```bash
+```js
 # custom unit
 [Unit]
 Description=Shadowsocks proxy server
