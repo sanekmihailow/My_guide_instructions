@@ -53,8 +53,8 @@ if (empty($Ar_learnContact)) {
         } else {
             $username = $get_username;
         }
-            $chars = ["'", ',' , 'ʹ'];
-            $username = str_replace($chars, '', $username);
+        $chars = ["'", ',' , 'ʹ'];
+        $username = str_replace($chars, '', $username);
         $password = random_password(22);
 
     //#C - check on exist email,firstname,lastname
@@ -75,14 +75,16 @@ if (empty($Ar_learnContact)) {
     //#C-----
         $Ar_user = rest_get_user_moodle('username',"$username");
         $Ar_email = rest_get_user_moodle('email',"$email");
-		$create_user = sizeof($Ar_user['users']);
+	$create_user = sizeof($Ar_user['users']);
         $create_email = sizeof($Ar_email['users']);
         
 		if ($create_user == 0 && $create_email == 0) {
             if ($numerator != 0 && $numerator != 1) {
                 //$backnumerator = $numerator;
+                sleep(1);
                 $new_user_id = rest_create_user_moodle($username, $password, $name, $lastname, $email, $deal_id);
                 $new_exist = sizeof($new_user_id[0]['id']);
+                
                 if ($new_exist !== 0) {
                     $backnumerator = $numerator;
                     $id_num = $new_user_id[0]['id'];
@@ -95,7 +97,7 @@ if (empty($Ar_learnContact)) {
                     $ar_Contactids[] = $id;
                     $Ar_emails[] = $email;
                 } else {
-                    $error = $error .= "ошибка - пользователь - $username in contact_id:$id не был создан";
+                    $error = $error .= "ошибка - пользователь - $username in contact_id:$id не был создан, пароль - $password; ";
                 }  
             } else {
                 $check_created_user = rest_get_user_moodle('id',"$backnumerator");
@@ -106,7 +108,7 @@ if (empty($Ar_learnContact)) {
                 $error = $error .= "ошибка - пользователь - $username in contact_id:$id присвоен не тот id\n";
             }
 		} else {
-			$error = $error .= "пользователь - $username in contact_id:$id уже существует, либо пользователь с таким же email - \"$email\" в moodle существует; \n";
+			$error_user = $error .= "пользователь - $username in contact_id:$id уже существует, либо пользователь с таким же email - \"$email\" в moodle существует; \n";
 		}     
     }
 }
@@ -114,6 +116,8 @@ $count_users = count($ar_Contactids);
 $count_users = (int)$count_users;
 $rootActivity->SetVariable("Count_users",$count_users);
 $rootActivity->SetVariable("Error",$error);
+//$rootActivity->SetVariable("error_id",$error_id);
+$rootActivity->SetVariable("error_user",$error_user);
 $rootActivity->SetVariable("Numerator",$numerator);
 $rootActivity->SetVariable("Usersnames",$user_names);
 $rootActivity->SetVariable("Ids_contact",$ar_Contactids);
