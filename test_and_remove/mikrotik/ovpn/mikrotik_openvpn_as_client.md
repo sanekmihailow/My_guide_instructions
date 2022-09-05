@@ -19,7 +19,7 @@
     
 [forum.mikrotik.com -> fetch](https://forum.mikrotik.com/viewtopic.php?t=108237) 
     
-     
+[serveradmin.ru](https://serveradmin.ru/nastroyka-openvpn-client-na-mikrotik-s-zamenoy-shlyuza/)
     
 </details>
 </d>
