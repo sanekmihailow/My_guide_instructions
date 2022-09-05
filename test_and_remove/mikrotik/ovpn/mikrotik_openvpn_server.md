@@ -1,3 +1,14 @@
+<d>
+  <details>
+    <summary> links </summary>
+    
+[voxlink.ru](https://voxlink.ru/kb/voip-devices-configuration/ovpnclientmikrotik/)
+    
+[mikrotiklab.ru](https://mikrotiklab.ru/nastrojka/artga-openvpn.html) 
+    
+</details>
+</d>
+
 ```java
 /certificate add name=template-CA_root country="" state="" locality="" organization="" unit="" common-name="RBK_mikrot_OVPN-CA" key-size=4096 days-valid=36500 key-usage=crl-sign,key-cert-sign
 /certificate sign template-CA_root ca-crl-host=127.0.0.1 name="OVPN-CA"  //#ca
