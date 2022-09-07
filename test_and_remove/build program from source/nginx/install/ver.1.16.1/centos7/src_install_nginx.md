@@ -10,6 +10,7 @@ autoconf
 ./configure
 make
 make install
+
 mkdir nginx && cd nginx
 wget https://nginx.org/download/nginx-1.16.1.tar.gz
 git clone https://github.com/openresty/echo-nginx-module.git
