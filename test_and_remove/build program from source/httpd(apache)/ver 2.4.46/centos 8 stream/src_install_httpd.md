@@ -8,7 +8,7 @@ yum install autoconf expat-devel libtool libnghttp2-devel pcre-devel -y
 mkdir -p ~/DOWNLOAD/src/
 yumdownloader --source httpd
 rpm -ivh httpd-2.4.37-47.module_el8.6.0+1111+ce6f4ceb.1.src.rpm
-vim ~/rpmbuild/SPECS/httpd.spec
+vim ~/rpmbuild/SPECS/httpd.spec (
 ```
 
 ```bash
