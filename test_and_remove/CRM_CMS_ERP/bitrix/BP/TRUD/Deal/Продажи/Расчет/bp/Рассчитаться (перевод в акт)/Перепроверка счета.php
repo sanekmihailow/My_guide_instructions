@@ -2,22 +2,20 @@
 $rootActivity = $this->GetRootActivity();
 use \Bitrix\Crm;
 global $USER_FIELD_MANAGER;
-$deal_id = {{ID}};
+require_once($_SERVER["DOCUMENT_ROOT"].'/local/MyFunctions/Bitrix_RestFunctions.php');
 
+$deal_id = {{ID}};
 $change_user = '135';
-$deal = CCrmDeal::GetByID($deal_id);
-$modified = $deal['MODIFY_BY_ID'];
+
+$res = getEnity('crm.deal.get', $deal_id);
+AddMessage2Log("documentId: ".print_r($res,true),"crm_bp");
+$modified = $res['result']['MODIFY_BY_ID'];
 $change_stage = ($modified == $change_user) ? 'Yes' : 'No';
-//$change_stage = '';
-//if ($modified == $change_user) {
-//    $change_stage = 'Yes';
-//}
 
 $rus_invoice_status_N = 'Создан';
 $rus_invoice_status_1 = 'Постоплата';
 $rus_invoice_status_P = 'Закрыт успешно';
 $rus_invoice_status_D = 'Провалена оплата';
-$arOrder = ["ID" => "DESC"]; // сортировка
 $arFilter = ["UF_DEAL_ID" => $deal_id]; // фильтрация по ID сделки
 $arSelect = ["ID", "UF_DEAL_ID", "STATUS_ID"]; // какие поля выбрать
 $invoices = CCrmInvoice::GetList($arOrder, $arFilter, false, false, $arSelect);
@@ -54,3 +52,4 @@ for ($i = 0; $i < $count_invoice_status; $i++) {
 $USER_FIELD_MANAGER->Update('CRM_DEAL', $deal_id, array("UF_INDEAL_INVOICE_ID" => $arrInvoiceId)); // set_indeal_invoiceId
 $USER_FIELD_MANAGER->Update('CRM_DEAL', $deal_id, array("UF_INDEAL_INVOICE_STATUS" => $arrInvoiceStatusRus)); //set_indeal_invoiceStat
 $rootActivity->SetVariable("bitrix_change_stage",$change_stage);
+//$rootActivity->SetVariable("text",$modified);
