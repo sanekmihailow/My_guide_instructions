@@ -11,7 +11,7 @@
 
 [Обнаружение ошибок с помощью Git](https://git-scm.com/book/ru/v2/%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B-Git-%D0%9E%D0%B1%D0%BD%D0%B0%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BE%D1%88%D0%B8%D0%B1%D0%BE%D0%BA-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-Git)
 
-[]()
+[Интерактивное индексирование](https://git-scm.com/book/ru/v2/%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B-Git-%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D0%B5-%D0%B8%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)
 
 []()
 
@@ -47,7 +47,7 @@ git push -u origin main
 #git push origin master
 
 git pull --rebase
-git add .
+git add . #добавляет файлы из раб. директории в индекс
 git rm PEOPLE.md
 git restore hexlet.txt
 git diff #Для перемещения вниз по дифу нужно нажать f, для перемещения наверх — b или u. Для выхода из режима просмотра нажмите q.
@@ -60,8 +60,20 @@ git blame INFO.md
 git grep -i hexlet(line)
 git grep Hexlet 5120bea3
 git grep Hexlet $(git rev-list --all)
-
+git clean -fd #очистка Неотслеживаемые файлы
+git restore INFO.md #отмена изменений в файле на последний коммит
+git restore --staged INFO.md #изменения, сделанные в файле, из индекса в рабочую директорию
+    git restore hexlet.txt
+    git restore --staged index.md index.html
+    git restore index.html
+    git clean -fd
+git revert aa600a43cb1 #отмена изменений указанного коммита.Фактически она сводится к созданию еще одного коммита, который выполняет изменения
+git reset --hard HEAD~ #Важно, что этого мы не делали git push. Т.е. если локальный коммит то его можно удалить, иначе нет, все сломается. HEAD~ означает "один коммит от последнего коммита". Если бы мы хотели удалить два последних коммита, то могли бы написать HEAD~2. Если не указывать флаг --hard, то по умолчанию подразумевается флаг --mixed. В таком варианте reset отправляет изменения последнего коммита в рабочую директорию. Затем их можно исправить или отменить и выполнить новый коммит.
+git commit --amend --no-edit #добавить изменения в текущий коммит
+git commit -am 'do something' #Ну и совсем страшная, но полезная команда — это коммит с одновременным добавлением всего в индекс
+git add -i 
 
 ```
 
 
+```
