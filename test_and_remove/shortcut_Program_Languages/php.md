@@ -1916,7 +1916,7 @@ echo $very_good_dog->name; # Prints "Lassie"
 class A {
     private $a = 1;
 
-    public function getA(){
+    protected function getA(){
         return $this->a; // обращаемся к внутреннему свойсву через $this
     }
 
@@ -1927,6 +1927,7 @@ class A {
 
 $obj = new A();
 echo $obj->someMethod(); //1
+echo $obj->getA(); // error  protected method
 ```
 
 > оператор **parent::** - используется внутри области ограниченной объявлением класса class some { }. Является ссылкой на родительский объект.
