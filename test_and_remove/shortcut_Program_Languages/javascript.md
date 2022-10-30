@@ -357,6 +357,7 @@ exampleFunction()
 
 function exampleFunction() {
 	console.log(x)
+	x = 'changed inside function'
 	var x1 = 1
 }
 
@@ -369,7 +370,7 @@ function exampleFunction() {
 } // Block scope end
 
 console.log('Outside function') // Outside function
-console.log(x) // declared outside function
+console.log(x) // changed inside function
 console.log(xx) // 123
 console.log(x1) // x1  is not defined
 console.log(yy) // yy is not defined
