@@ -1801,7 +1801,7 @@ $impala_foods = [
   "side"=>"mashed potatoes"
 ];
 
-$rat_foods = [
+$giraffe_foods = [
   "dip"=>"mashed earth worms",
   "entree"=>"trash pizza",
   "dessert"=>"sugar cubes",
