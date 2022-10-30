@@ -1644,9 +1644,9 @@ var_dump($my_array); // string(5) "1,2,3"
 
 ```php
 $my_array = ["tic", "tac", "toe"];
-var_dump(array_pop($my_array)); // string(3) "tac"
-array_pop($my_array);
-var_dump($my_array); // array(2) { [0]=> string(3) "tic" [1]=> string(3) "tac" }
+var_dump(array_pop($my_array)); // string(3) "toe"
+array_pop($my_array); // tac
+var_dump($my_array); // array(1) { [0]=> string(3) "tic" }
 ```
 
  </td>  
