@@ -1725,6 +1725,46 @@ echo  $favorites[strtoupper("favorite_case")];// Prints: CAPS
 $key =  "favorite_place";
 echo  $favorites[$key];  // Prints: my dreams
 ```
+	
+```php
+$arr =array(
+        array(
+            'name' => 'Иванов', 
+            'specialty' => 'хирург'
+        ),
+        array(
+            'name' => 'Петров',
+            'specialty' => 'кардиолог'
+        ),
+         array(
+            'name' => 'Иванов',
+            'specialty' => 'арар'
+        ),
+);
+
+
+function delname($array, $del)
+{
+    foreach ($array as $k => $v) {
+        if ($v['name'] == $del){
+            unset($array[$k]);
+        }
+    }
+    return $array;
+
+}
+
+$arr = delname($arr, 'Иванов');
+print_r($arr);	
+/*
+Array (
+   [1] => Array (
+            [name] => Петров
+            [specialty] => кардиолог
+        )
+)
+*/	
+```	
 
 > add element
 
