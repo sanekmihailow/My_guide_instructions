@@ -2,7 +2,8 @@
 <tr>
     <td> ipserver hdd </td> 
     <td> ipserver ssd </td> 
-    <td> timeweb nvme </td> 
+    <td> timeweb nvme </td>
+    <td> 62yun nvme </td>
 </tr>
 <tr>
     <td>
@@ -38,6 +39,17 @@ RAID - no
 ```
 
  </td>
+ <td>
+    
+```
+CPU node - Intel Xeon E5-2667 v2
+CPU - 4
+RAM - 6
+nvme - 100 GB
+RAID - no
+```
+
+ </td>
 </tr>
 <tr>
 <td colspan=3> 1 поток(thread)<br/>
@@ -69,40 +81,68 @@ sysbench --test=cpu --cpu-max-prime=20000 --num-threads=1 run
 
 ### DISK
 
-> fio
+> fio -----------------
 
-```bash
 Starting 1 process
 Jobs: 1 (f=1): [m(1)][100.0%][r=217MiB/s,w=71.6MiB/s][r=55.7k,w=18.3k IOPS][eta 00m:00s]
 fiotest: (groupid=0, jobs=1): err= 0: pid=755: Thu Oct 13 20:32:24 2022
-   read: IOPS=1001, BW=4006KiB/s (4102kB/s)(6141MiB/1569853msec)
-   bw (  KiB/s): min=    7, max=46728, per=100.00%, avg=4193.77, stdev=4461.85, samples=2995
-   iops        : min=    1, max=11682, avg=1048.41, stdev=1115.46, samples=2995
-  write: IOPS=334, BW=1338KiB/s (1370kB/s)(2051MiB/1569853msec)
-   bw (  KiB/s): min=    7, max=15792, per=100.00%, avg=1446.70, stdev=1533.81, samples=2899
-   iops        : min=    1, max= 3948, avg=361.64, stdev=383.46, samples=2899
+
+ <table>
+    <tr>
+      <td>
+        <span style="color:#ff6961"> <strong> read: IOPS=1001  </strong> </span>, BW=4006KiB/s (4102kB/s)(6141MiB/1569853msec)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        bw (  KiB/s): min=    7, max=46728, per=100.00%, avg=4193.77, stdev=4461.85, samples=2995
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span style="color:#6495ed"> <strong> iops        : min=    1, max=11682, avg=1048.41, </strong> </span> stdev=1115.46, samples=2995
+      </td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>
+        <span style="color:#ff6961"> <strong> write: IOPS=334 </strong> </span>, BW=1338KiB/s (1370kB/s)(2051MiB/1569853msec)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        bw (  KiB/s): min=    7, max=15792, per=100.00%, avg=1446.70, stdev=1533.81, samples=2899
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span style="color:#6495ed"> <strong> iops        : min=    1, max= 3948, avg=361.64,</strong> </span> stdev=383.46, samples=2899
+      </td>
+    </tr>
+ </table>        
+
   cpu          : usr=0.77%, sys=2.77%, ctx=1142989, majf=0, minf=28
-  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=100.0%
-     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
-     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.1%, >=64=0.0%
-     issued rwts: total=1572145,525007,0,0 short=0,0,0,0 dropped=0,0,0,0
-     latency   : target=0, window=0, percentile=100.00%, depth=64
+ IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=100.0%
+submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+ complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.1%, >=64=0.0%
+issued rwts: total=1572145,525007,0,0 short=0,0,0,0 dropped=0,0,0,0
+latency   : target=0, window=0, percentile=100.00%, depth=64
 
 Run status group 0 (all jobs):
-   READ: bw=4006KiB/s (4102kB/s), 4006KiB/s-4006KiB/s (4102kB/s-4102kB/s), io=6141MiB (6440MB), run=1569853-1569853msec
-  WRITE: bw=1338KiB/s (1370kB/s), 1338KiB/s-1338KiB/s (1370kB/s-1370kB/s), io=2051MiB (2150MB), run=1569853-1569853msec
+
+  <span style="color:#ff6961"> <strong> READ: bw=4006KiB/s (4102kB/s)</strong> </span>, 4006KiB/s-4006KiB/s (4102kB/s-4102kB/s), io=6141MiB (6440MB), <span style="color:#6495ed"> <strong>run=1569853-1569853msec</strong> </span>
+
+  <span style="color:#ff6961"> <strong> WRITE: bw=1338KiB/s (1370kB/s)</strong> </span>, 1338KiB/s-1338KiB/s (1370kB/s-1370kB/s), io=2051MiB (2150MB), <span style="color:#6495ed"> <strong>run=1569853-1569853msec</strong> </span>
 
 Disk stats (read/write):
   vda: ios=1574712/545425, merge=24/16723, ticks=89091009/13649377, in_queue=102740386, util=98.37%
-```
 
-> sysbench
+> sysbench -----------------
 
-```bash
 Running the test with following options:
 Number of threads: 1
 Initializing random number generator from current time
-
 
 Extra file open flags: (none)
 128 files, 24MiB each
@@ -116,111 +156,318 @@ Using synchronous I/O mode
 Doing random r/w test
 Initializing worker threads...
 
-Threads started!
+Threads started!File operations:
+ <table>
+    <tr>
+      <td>
+        reads/s:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 1290.53 </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        writes/s:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 860.35 </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        fsyncs/s:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 2763.49 </strong> </span>
+      </td>
+    </tr>
+ </table>
 
-
-File operations:
-    reads/s:                      1290.53
-    writes/s:                     860.35
-    fsyncs/s:                     2763.49
 
 Throughput:
-    read, MiB/s:                  20.16
-    written, MiB/s:               13.44
+ <table>
+    <tr>
+      <td>
+        read:, MiB/s:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 20.16 </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        written, MiB/s:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 13.44 </strong> </span>
+      </td>
+    </tr>
+ </table>
 
 General statistics:
-    total time:                          10.0370s
-    total number of events:              49224
+ <table>
+    <tr>
+      <td>
+        total time: 
+      </td>
+      <td>
+        10.0370s
+      </td>
+    </tr>
+    <tr>
+      <td>
+        total number of events:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 49224 </strong> </span>
+      </td>
+    </tr>
+ </table>
 
 Latency (ms):
-         min:                                    0.00
-         avg:                                    0.20
-         max:                                  209.52
-         95th percentile:                        0.44
-         sum:                                 9968.86
 
+ <table>
+    <tr>
+      <td>
+        min: 
+      </td>
+      <td>
+        0.00
+      </td>
+    </tr>
+    <tr>
+      <td>
+        avg:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 0.20 </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        max:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 209.52 </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        95th percentile:
+      </td>
+      <td>
+         0.44
+      </td>
+    </tr>
+    <tr>
+      <td>
+        sum:
+      </td>
+      <td>
+        9968.86
+      </td>
+    </tr>
+ </table>
+                            
 Threads fairness:
-    events (avg/stddev):           49224.0000/0.00
+    events (avg/stddev):           49224.0000/0.00; &emsp;&emsp;
     execution time (avg/stddev):   9.9689/0.00
-```
+
 
 ### RAM
 
-> sysbench
+> sysbench -----------------
 
-```bash
 Running the test with following options:
 Number of threads: 1
 Initializing random number generator from current time
-
-
 Running memory speed test with the following options:
   block size: 8KiB
   total size: 102400MiB
   operation: write
   scope: global
-
-Initializing worker threads...
-
+Initializing worker threads..
 Threads started!
 
-Total operations: 10870710 (1086563.45 per second)
+<table>
+    <tr>
+      <td>
+        Total operations:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong>10870710</strong> </span> (<span style="color:#6495ed"> <strong>1086563.45 per second</strong> </span>)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        transferred:
+      </td>
+      <td>
+        <span style=<span style="color:#ff6961"> <strong>84927.42 MiB</strong> </span> transferred (<span style="color:#6495ed"> <strong>8488.78 MiB/sec</strong> </span>) </strong> </span>
+      </td>
+    </tr>
+ </table>
 
-84927.42 MiB transferred (8488.78 MiB/sec)
 
 
 General statistics:
-    total time:                          10.0003s
-    total number of events:              10870710
+ <table>
+    <tr>
+      <td>
+        total time: 
+      </td>
+      <td>
+        10.0003s
+      </td>
+    </tr>
+    <tr>
+      <td>
+        total number of events:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong>10870710</strong> </span>
+      </td>
+    </tr>
+ </table>
+
 
 Latency (ms):
-         min:                                    0.00
-         avg:                                    0.00
-         max:                                    5.94
-         95th percentile:                        0.00
-         sum:                                 8021.72
+ <table>
+    <tr>
+      <td>
+        min: 
+      </td>
+      <td>
+        0.00
+      </td>
+    </tr>
+    <tr>
+      <td>
+        avg:
+      </td>
+      <td>
+        0.00
+      </td>
+    </tr>
+    <tr>
+      <td>
+        max:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 5.94 </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        95th percentile:
+      </td>
+      <td>
+          0.00
+      </td>
+    </tr>
+    <tr>
+      <td>
+        sum:
+      </td>
+      <td>
+        8021.72
+      </td>
+    </tr>
+ </table>
 
 Threads fairness:
-    events (avg/stddev):           10870710.0000/0.00
-    execution time (avg/stddev):   8.0217/0.00
-```
+    events (avg/stddev):           10870710.0000/0.00; &emsp;&emsp;
+    execution time (avg/stddev):  <span style="color:#6495ed"> <strong> 8.0217/0.00 </strong> </span>
+
 
 ### CPU
 
-> sysbench
+> sysbench -----------------
 
-```bash
 Running the test with following options:
 Number of threads: 1
 Initializing random number generator from current time
 
-
 Prime numbers limit: 20000
-
 Initializing worker threads...
-
 Threads started!
 
 CPU speed:
-    events per second:   289.29
+
+<span style="color:#ff6961"> <strong> events per second: &emsp;&emsp;   289.29 </strong> </span>
 
 General statistics:
-    total time:                          10.0036s
-    total number of events:              2895
+<table>
+    <tr>
+      <td>
+        total time: 
+      </td>
+      <td>
+        10.0036s
+      </td>
+    </tr>
+    <tr>
+      <td>
+        total number of events:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 2895 </strong> </span>
+      </td>
+    </tr>
+ </table>
+
 
 Latency (ms):
-         min:                                    2.52
-         avg:                                    3.45
-         max:                                    6.60
-         95th percentile:                        4.18
-         sum:                                 9987.57
+ <table>
+    <tr>
+      <td>
+        min: 
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong>2.52 </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        avg:
+      </td>
+      <td>
+         <span style="color:#ff6961"> <strong>3.45 </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        max:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong>6.60 </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        95th percentile:
+      </td>
+      <td>
+          4.18
+      </td>
+    </tr>
+    <tr>
+      <td>
+        sum:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong>9987.57 </strong> </span>
+      </td>
+    </tr>
+ </table>
+
+
 
 Threads fairness:
-    events (avg/stddev):           2895.0000/0.00
+    events (avg/stddev):  <span style="color:#ff6961"> <strong> 2895.0000 / 0.00</strong> </span>; &emsp;&emsp;
     execution time (avg/stddev):   9.9876/0.00
-```
 
- </td>
  <td>
 
 ### DISK
@@ -379,7 +626,7 @@ Threads fairness:
  </td>
  <td>
 
-### CPU
+### mysql
 
 ### DISK
 
@@ -532,6 +779,162 @@ Latency (ms):
 Threads fairness:
     events (avg/stddev):           4039.0000/0.00
     execution time (avg/stddev):   9.9981/0.00
+```
+
+ </td>
+ <td>
+
+### DISK
+
+> fio
+
+```bash
+Starting 1 process
+Jobs: 1 (f=1): [m(1)][100.0%][r=10.6MiB/s,w=3540KiB/s][r=2721,w=885 IOPS][eta 00m:00s]
+fiotest: (groupid=0, jobs=1): err= 0: pid=31990: Mon Oct 31 13:23:30 2022
+   read: IOPS=2524, BW=9.86MiB/s (10.3MB/s)(6141MiB/622727msec)
+   bw (  KiB/s): min=   24, max=26610, per=100.00%, avg=10181.42, stdev=3377.05, samples=1234
+   iops        : min=    6, max= 6652, avg=2545.29, stdev=844.26, samples=1234
+  write: IOPS=843, BW=3372KiB/s (3453kB/s)(2051MiB/622727msec)
+   bw (  KiB/s): min=   16, max= 9077, per=100.00%, avg=3399.86, stdev=1144.97, samples=1234
+   iops        : min=    4, max= 2269, avg=849.91, stdev=286.24, samples=1234
+  cpu          : usr=4.52%, sys=15.94%, ctx=280323, majf=0, minf=28
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=100.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.1%, >=64=0.0%
+     issued rwts: total=1572145,525007,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=64
+
+Run status group 0 (all jobs):
+   READ: bw=9.86MiB/s (10.3MB/s), 9.86MiB/s-9.86MiB/s (10.3MB/s-10.3MB/s), io=6141MiB (6440MB), run=622727-622727msec
+  WRITE: bw=3372KiB/s (3453kB/s), 3372KiB/s-3372KiB/s (3453kB/s-3453kB/s), io=2051MiB (2150MB), run=622727-622727msec
+
+Disk stats (read/write):
+  sda: ios=1572341/536670, merge=11/4059, ticks=28816132/10004251, in_queue=38822950, util=100.00%
+```
+
+> sysbench
+
+```bash
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Extra file open flags: (none)
+128 files, 24MiB each
+3GiB total file size
+Block size 16KiB
+Number of IO requests: 0
+Read/Write ratio for combined random IO test: 1.50
+Periodic FSYNC enabled, calling fsync() each 100 requests.
+Calling fsync() at the end of test, Enabled.
+Using synchronous I/O mode
+Doing random r/w test
+Initializing worker threads...
+
+Threads started!
+
+
+File operations:
+    reads/s:                      502.66
+    writes/s:                     335.11
+    fsyncs/s:                     1080.22
+
+Throughput:
+    read, MiB/s:                  7.85
+    written, MiB/s:               5.24
+
+General statistics:
+    total time:                          10.0223s
+    total number of events:              19103
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.52
+         max:                                  158.57
+         95th percentile:                        1.86
+         sum:                                 9938.81
+
+Threads fairness:
+    events (avg/stddev):           19103.0000/0.00
+    execution time (avg/stddev):   9.9388/0.00
+```
+
+### RAM
+
+> sysbench
+
+```bash
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 8KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 13107200 (1651951.87 per second)
+
+102400.00 MiB transferred (12905.87 MiB/sec)
+
+
+General statistics:
+    total time:                          7.9326s
+    total number of events:              13107200
+
+Latency (ms):
+         min:                                    0.00
+         avg:                                    0.00
+         max:                                    0.39
+         95th percentile:                        0.00
+         sum:                                 6365.88
+
+Threads fairness:
+    events (avg/stddev):           13107200.0000/0.00
+    execution time (avg/stddev):   6.3659/0.00
+```
+
+### CPU
+
+> sysbench
+
+```bash
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   163.96
+
+General statistics:
+    total time:                          10.0074s
+    total number of events:              1642
+
+Latency (ms):
+         min:                                    4.50
+         avg:                                    6.08
+         max:                                   26.00
+         95th percentile:                        8.43
+         sum:                                 9989.74
+
+Threads fairness:
+    events (avg/stddev):           1642.0000/0.00
+    execution time (avg/stddev):   9.9897/0.00
 ```
 
  </td>
@@ -877,6 +1280,8 @@ Threads fairness:
  </td>
  <td>
  
+
+
  </td>
 </tr>
 <tr>
@@ -896,7 +1301,7 @@ ioping -c 20 /dev/vda
 
 ### DISK
 
-> nench
+> nench ------------------
 
 ```bash
 Processor:    Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz
@@ -908,25 +1313,114 @@ Kernel:       Linux 3.10.0-1160.42.2.el7.x86_64 x86_64
 
 Disks:
 vda    560G  HDD
+```
+ <table>
+    <tr>
+      <td>
+        CPU: SHA256-hashing 500 MB
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 2.356 seconds </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CPU: bzip2-compressing 500 MB
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 6.940 seconds </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CPU: AES-encrypting 500 MB
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 2.029 seconds </strong> </span>
+      </td>
+    </tr>
+ </table>
 
-CPU: SHA256-hashing 500 MB
-    2.356 seconds
-CPU: bzip2-compressing 500 MB
-    6.940 seconds
-CPU: AES-encrypting 500 MB
-    2.029 seconds
 
 ioping: seek rate
-    min/avg/max/mdev = 43.8 us / 85.1 us / 15.3 ms / 152.4 us
-ioping: sequential read speed
-    generated 20.7 k requests in 5.00 s, 5.06 GiB, 4.14 k iops, 1.01 GiB/s
+ <table>
+    <tr>
+      <td>
+        min
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 43.8 us </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        avg
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 85.1 us </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        max
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 15.3 ms </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        mdev
+      </td>
+      <td>
+        152.4 us
+      </td>
+    </tr>
+ </table>
+
+ioping: sequential read speed:
+    generated <span style="color:#ff6961"> <strong>20.7 k requests</strong> </span> in 5.00 s, 
+    <span style="color:#ff6961"> <strong>5.06 GiB</strong> </span>, 
+    <span style="color:#ff6961"> <strong>4.14 k iops</strong> </span>, 
+    <span style="color:#ff6961"> <strong>1.01 GiB/s</strong> </span>
 
 dd: sequential write speed
-    1st run:    105.86 MiB/s
-    2nd run:    161.17 MiB/s
-    3rd run:    157.36 MiB/s
-    average:    141.46 MiB/s
+ <table>
+    <tr>
+      <td>
+        1st run:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 105.86 MiB/s </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2nd run:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 161.17 MiB/s </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3rd run:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 157.36 MiB/s </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        average:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 141.46 MiB/s </strong> </span>
+      </td>
+    </tr>
+ </table>
 
+```
 IPv4 speedtests
     your IPv4:    185.xx.xx.xxxx
 
@@ -940,19 +1434,88 @@ No IPv6 connectivity detected
 -------------------------------------------------
 ```
 
-> ioping
+> ioping ------------------
 
-```bash
 --- /tmp/ (ext4 /dev/vda1) ioping statistics ---
-19 requests completed in 9.78 ms, 76 KiB read, 1.94 k iops, 7.59 MiB/s
+
+19 requests completed in <span style="color:#ff6961"> <strong>9.78 ms</strong> </span>, 76 KiB read, <span style="color:#ff6961"> <strong>1.94 k iops</strong> </span>, <span style="color:#ff6961"> <strong>7.59 MiB/s</strong> </span>
+
 generated 20 requests in 19.0 s, 80 KiB, 1 iops, 4.21 KiB/s
-min/avg/max/mdev = 303.7 us / 514.8 us / 1.46 ms / 232.2 us
+ <table>
+    <tr>
+      <td>
+        min:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 303.7 us </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        avg:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 514.8 us </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        max:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 1.46 ms </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        dev:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 232.2 us </strong> </span>
+      </td>
+    </tr>
+ </table>
+
 
 --- /dev/vda (block device 560 GiB) ioping statistics ---
-19 requests completed in 262.6 ms, 76 KiB read, 72 iops, 289.4 KiB/s
+
+19 requests completed in <span style="color:#ff6961"> <strong>262.6 ms</strong> </span>, 76 KiB read, <span style="color:#ff6961"> <strong>72 iops</strong> </span>, <span style="color:#ff6961"> <strong>289.4 KiB/s</strong> </span>
+
 generated 20 requests in 19.0 s, 80 KiB, 1 iops, 4.21 KiB/s
-min/avg/max/mdev = 3.16 ms / 13.8 ms / 50.1 ms / 10.3 ms
-```
+ <table>
+    <tr>
+      <td>
+        min:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 3.16 ms </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        avg:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 13.8 ms </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        max:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 50.1 ms </strong> </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        dev:
+      </td>
+      <td>
+        <span style="color:#ff6961"> <strong> 10.3 ms </strong> </span>
+      </td>
+    </tr>
+ </table>
 
  </td>
  <td>
@@ -1072,7 +1635,9 @@ No IPv6 connectivity detected
 -------------------------------------------------
 ```
 
-> ioping
+
+
+> ioping 
 
 ```bash
 --- /tmp/ (ext4 /dev/vda1 39.3 GiB) ioping statistics ---
@@ -1086,6 +1651,70 @@ generated 20 requests in 19.0 s, 80 KiB, 1 iops, 4.21 KiB/s
 min/avg/max/mdev = 210.4 us / 435.9 us / 1.40 ms / 326.0 us
 ```
 
+ </td>
+ <td>
+
+### DISK
+
+> nench
+
+```bash
+
+Processor:    Intel(R) Xeon(R) CPU E5-2667 v2 @ 3.30GHz
+CPU cores:    4
+Frequency:    3299.999 MHz
+RAM:          5.7G
+Swap:         499M
+Kernel:       Linux 3.10.0-1160.76.1.el7.x86_64 x86_64
+
+Disks:
+sda    100G  HDD
+
+CPU: SHA256-hashing 500 MB
+    4.237 seconds
+CPU: bzip2-compressing 500 MB
+    11.729 seconds
+CPU: AES-encrypting 500 MB
+    2.794 seconds
+
+ioping: seek rate
+    min/avg/max/mdev = 257.4 us / 925.4 us / 118.4 ms / 2.19 ms
+ioping: sequential read speed
+    generated 464 requests in 5.01 s, 116 MiB, 92 iops, 23.1 MiB/s
+
+dd: sequential write speed
+    1st run:    10.68 MiB/s
+    2nd run:    10.59 MiB/s
+    3rd run:    10.40 MiB/s
+    average:    10.55 MiB/s
+
+IPv4 speedtests
+    your IPv4:    87.x.x.xxxx
+
+    Cachefly CDN:         22.45 MiB/s
+    Leaseweb (NL):        1.10 MiB/s
+    Softlayer DAL (US):   0.46 MiB/s
+    Online.net (FR):      1.32 MiB/s
+    OVH BHS (CA):         3.86 MiB/s
+
+No IPv6 connectivity detected
+-------------------------------------------------
+```
+
+
+> ioping 
+
+```bash
+--- /tmp/ (ext4 /dev/sda3) ioping statistics ---
+19 requests completed in 187.8 ms, 76 KiB read, 101 iops, 404.8 KiB/s
+generated 20 requests in 19.0 s, 80 KiB, 1 iops, 4.21 KiB/s
+min/avg/max/mdev = 772.1 us / 9.88 ms / 55.4 ms / 17.7 ms
+
+--- /dev/sda (block device 100 GiB) ioping statistics ---
+19 requests completed in 145.1 ms, 76 KiB read, 130 iops, 523.8 KiB/s
+generated 20 requests in 19.0 s, 80 KiB, 1 iops, 4.21 KiB/s
+min/avg/max/mdev = 2.44 ms / 7.64 ms / 57.5 ms / 11.8 ms
+```
  </td>
 
 </tr>
