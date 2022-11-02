@@ -1,0 +1,1 @@
+C:\Users\USER\GIT_ACCOUNTS\free-repo\cypress-example-docker-compose\e2e
