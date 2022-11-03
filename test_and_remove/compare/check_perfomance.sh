@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #check disk
-
 echo -e "\n\n----------- FIO DISK test started -----------\n\n" > ./test_result.txt
 fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=fiotest --filename=testfio --bs=4k --iodepth=64 --size=8G --readwrite=randrw --rwmixread=75 --max-jobs=1 >> ./test_result.txt
 rm testfio
