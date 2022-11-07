@@ -17,7 +17,7 @@ $num_lma = '62'; $num_1 = '1'; $num_change_1c = '158'; $mae='100'; $boss_lab='11
 
 if ($status == 'P' || $status == 'D') {
 
-    if ($user_payed !== $num_lma && $user_payed !== $num_1 && $user_payed !== $mae) {
+    if ($user_payed !== $num_lma && $user_payed !== $num_1) {
         enityUpdate('crm.invoice.update', $invoice_id, $InvalidStatus);
         $message[] = "Зафиксирована попытка самовольно завершения счета, либо изменение уже оплаченного счета. Счет id:$invoice_id";
         $converted_message = http_build_query($message);
