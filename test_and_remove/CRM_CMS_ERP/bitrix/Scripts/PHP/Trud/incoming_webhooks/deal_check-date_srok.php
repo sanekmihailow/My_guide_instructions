@@ -11,7 +11,7 @@ $kolvo_days =        $arDeal['UF_CRM_1520316012'];
 $date_Current_srok = $arDeal['UF_CRM_1601015507'];
 $date_srok_compare = date(DateTime::W3C, strtotime($date_start. " + $kolvo_days days"));
 $date_srok = date('Y-m-d', strtotime($date_start. " + $kolvo_days days"));
-$str = http_build_query($date);
+//$str = http_build_query($date);
 
 if ("$date_Current_srok" !== "$date_srok_compare") {
     $query_date = $date_srok . 'T03%3A00%3A00.321Z';
