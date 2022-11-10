@@ -47,26 +47,30 @@ read thepath &&
 echo -e "\n \033[0;32m please enter the name user\n \033[0m"
 read conf &&
 
-sed -i '$ a \\n\n<tls-auth>' $thepath/$conf.conf || echo "\n tls-err"
-cat $thepath/ta.key >> $thepath/$conf.conf || echo "\n tls-err"
-sed -i '$ a </tls-auth>' $thepath/$conf.conf || echo "\n tls-err"
+# combine with ta    
+sed -i '$ a \\n\n<tls-auth>' $thepath/$conf.conf || echo -e "\n tls-err"
+cat $thepath/ta.key >> $thepath/$conf.conf || echo -e "\n tls-err"
+sed -i '$ a </tls-auth>' $thepath/$conf.conf || echo -e "\n tls-err"
 
+# combine with ca
 sleep 1
-sed -i '$ a \\n\n<ca>' $thepath/$conf.conf || echo "\n ca-err"
-cat $thepath/ca.crt >> $thepath/$conf.conf || echo "\n ca-err"
-sed -i '$ a </ca>' $thepath/$conf.conf || echo "\n ca-err"
+sed -i '$ a \\n\n<ca>' $thepath/$conf.conf || echo -e "\n ca-err"
+cat $thepath/ca.crt >> $thepath/$conf.conf || echo -e "\n ca-err"
+sed -i '$ a </ca>' $thepath/$conf.conf || echo -e "\n ca-err"
 
+# combine with client.crt
 sleep 1
-sed -i '$ a \\n\n<cert>' $thepath/$conf.conf || echo "\n cert-err"
-cat $thepath/$conf.crt >> $thepath/$conf.conf || echo "\n cert-err"
-sed -i '$ a </cert>' $thepath/$conf.conf || echo "\n cert-err"
+sed -i '$ a \\n\n<cert>' $thepath/$conf.conf || echo -e "\n cert-err"
+cat $thepath/$conf.crt >> $thepath/$conf.conf || echo -e "\n cert-err"
+sed -i '$ a </cert>' $thepath/$conf.conf || echo -e "\n cert-err"
 
+#combine with client private key     
 sleep 1
-sed -i '$ a \\n\n<key>' $thepath/$conf.conf || echo "\n key-err"
-cat $thepath/$conf.key >> $thepath/$conf.conf || echo "\n key-err"
-sed -i '$ a </key>' $thepath/$conf.conf || echo "\n key-err"
+sed -i '$ a \\n\n<key>' $thepath/$conf.conf || echo -e "\n key-err"
+cat $thepath/$conf.key >> $thepath/$conf.conf || echo -e "\n key-err"
+sed -i '$ a </key>' $thepath/$conf.conf || echo -e "\n key-err"
 
-mv $thepath/$conf.conf $thepath/$conf.ovpn || echo "\n mv-err"
+mv $thepath/$conf.conf $thepath/$conf.ovpn || echo -e "\n mv-err"
 
 echo -e "\n \033one-cert OK \n \033[0ma"
 
