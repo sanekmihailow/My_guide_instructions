@@ -1,3 +1,10 @@
+
+[yutube-p1](https://youtu.be/1TlwP2cPrhg)
+
+[youtube-p2](https://youtu.be/a3VPqcq-TaA)
+
+[linuxoide-discover](https://linoxide.com/configure-iscsi-storage-redhat-linux/)
+
 # iSCSI 
 
 > подключается как блочное устройство
@@ -118,5 +125,10 @@ iscsiadm --mode node --targetname iqn.2019-11.local.seele:c8-vm01 --login
 iscsiadm --mode session -P 0
 iscsiadm --mode session -P 1
 
+
+```
+
+```
+iscsiadm -m discovery -t st -p 192.168.0.1
 
 ```
