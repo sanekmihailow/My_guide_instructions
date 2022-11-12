@@ -40,7 +40,7 @@ targetcli ls
 umount -l /dev/vdb
 
 mkdir /iSCSI
-targetcli1
+targetcli
 /> /backstores/fileio create size=2G name=file0 file_or_dev=/iSCSI/file0.img
 /> saveconfig
 /> /backstores/block create name=block0 dev=/dev/vdb
