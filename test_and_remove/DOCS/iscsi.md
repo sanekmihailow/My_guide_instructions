@@ -32,6 +32,7 @@
 ```nginx
 yum install targetcli -y
 systemctl enable targetclid && systemctl start targetclid
+systemctl enable target && systemctl start target
     #firewall-cmd --zone=public --list-all
     #firewall-cmd --add-port=3260/tcp --permanent
 targetcli ls
@@ -39,7 +40,7 @@ targetcli ls
 umount -l /dev/vdb
 
 mkdir /iSCSI
-targetcli
+targetcli1
 /> /backstores/fileio create size=2G name=file0 file_or_dev=/iSCSI/file0.img
 /> saveconfig
 /> /backstores/block create name=block0 dev=/dev/vdb
