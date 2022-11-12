@@ -31,7 +31,7 @@
 > Server (c8-vm01)
 ```nginx
 yum install targetcli -y
-systemctl enable targetcli && systemctl start targetcli
+systemctl enable targetclid && systemctl start targetclid
     #firewall-cmd --zone=public --list-all
     #firewall-cmd --add-port=3260/tcp --permanent
 targetcli ls
