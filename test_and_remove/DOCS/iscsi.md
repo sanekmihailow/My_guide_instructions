@@ -36,12 +36,14 @@ systemctl enable targetclid && systemctl start targetclid
     #firewall-cmd --add-port=3260/tcp --permanent
 targetcli ls
 
+umount -l /dev/vdb
+
 mkdir /iSCSI
 targetcli
 /> /backstores/fileio create size=2G name=file0 file_or_dev=/iSCSI/file0.img
 /> saveconfig
 /> /backstores/block create name=block0 dev=/dev/vdb
-    #/> /backstores/pscsi create name=/ dev=/
+    #/> /backstores/pscsi create name=/ dev=/sr0
     #/> /backstores/ramdisk name=ram0 size=3G
 /> /iscsi create wwn
 /> /iscsi/iqn.2019-11.local.seele:c8-vm01/tpg1/luns create /backstores/block/block0
