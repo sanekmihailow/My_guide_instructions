@@ -133,5 +133,5 @@ iscsiadm --mode session -P 1
 
 ```
 iscsiadm -m discovery -t st -p 192.168.0.1
-
+ls -l /var/lib/iscsi/nodes/
 ```
