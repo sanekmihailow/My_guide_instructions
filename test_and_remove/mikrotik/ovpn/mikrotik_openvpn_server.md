@@ -2,9 +2,9 @@
   <details>
     <summary> links </summary>
     
-[voxlink.ru](https://voxlink.ru/kb/voip-devices-configuration/ovpnclientmikrotik/)
-    
-[mikrotiklab.ru](https://mikrotiklab.ru/nastrojka/artga-openvpn.html) 
+[voxlink.ru](https://voxlink.ru/kb/voip-devices-configuration/ovpnclientmikrotik/), 
+[mikrotiklab.ru](https://mikrotiklab.ru/nastrojka/artga-openvpn.html), 
+[mytechnote.ru](https://www.mytechnote.ru/kak-nastroit-openvpn-server-na-mikrotik)    
     
 </details>
 </d>
