@@ -130,3 +130,5 @@ reboot
 ```
 sudo systemctl daemon-reload
 ```
+     
+> error **static_key_parse_error** - синтаксическая ошибка (может проблема в кодировке)
