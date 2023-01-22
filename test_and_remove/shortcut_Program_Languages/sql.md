@@ -162,10 +162,10 @@ ON table1.new_name_column = table2.id;
 </d>
 
 ```sql
-- SELECT
+- SELECT <column> as <c1>
     - - DISTINCT
     - - AS
-    - - COUNT, MIN, MAX, AVG, SUM, ROUND, 
+    - - COUNT(column), MIN(...), MAX(...), AVG(...), SUM(...), ROUND(...), 
     - - LEN, LENGTH, LOCATE, INSTR, CHARACTER_LENGTH, CHAR_LENGTH
     - - LCASE, UCASE, LOWER, UPPER
     - - CASE, IF, IF
@@ -175,7 +175,7 @@ ON table1.new_name_column = table2.id;
     - - CONCAT, CONCAT_WS
 
 
-- FROM
+- FROM <table> as <t1>
     - - INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN, Self JOIN, CROSS JOIN
     - - UNION SELECT, UNION ALL SELECT
     - - INTERSECT SELECT
