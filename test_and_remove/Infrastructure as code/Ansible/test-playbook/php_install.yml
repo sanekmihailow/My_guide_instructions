@@ -1,0 +1,51 @@
+---
+- name: Update php version
+  hosts: all
+  gather_facts: False
+  become: yes
+  connection: local
+
+  tasks:
+      - name: create backup file
+        copy:
+            src: /etc/php.ini
+            dest: /etc/php.ini.bak
+            owner: root
+            group: root
+            mode: '0644'
+            backup: true
+
+      - name: Activate repo
+        yum:
+            enablerepo: "remi,remi-php80"
+            name:
+                - php
+                - php-cli
+                - php-fedora-autoloader
+                - php-gd
+                - php-json
+                - php-ldap
+                - php-mbstring
+                - php-mysqlnd
+                - php-opcache
+                - php-pdo
+                - php-pear
+                - php-pecl-apcu
+                - php-pecl-geoip
+                - php-pecl-mcrypt
+                - php-pecl-memcache
+                - php-pecl-rrd
+                - php-pecl-xdebug
+                - php-pecl-zip
+                - php-process
+                - php-pspell
+                - php-sodium
+                - php-xml
+                - php-zipstream
+            state: latest
+            update_cache: yes
+
+
+
+
+
