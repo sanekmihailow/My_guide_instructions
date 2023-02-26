@@ -1,0 +1,16 @@
+---
+- name: test
+  hosts: localservers
+  gather_facts: False
+  become: yes
+  connection: local
+
+  tasks:
+      - name: create backup file
+        copy:
+            src: /etc/php.ini
+            dest: /etc/php.ini.bak
+            owner: root
+            group: root
+            mode: '0644'
+            backup: true
