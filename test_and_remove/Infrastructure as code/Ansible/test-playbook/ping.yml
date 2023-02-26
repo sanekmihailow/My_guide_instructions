@@ -1,0 +1,13 @@
+---
+- name: test
+  hosts: localservers
+  gather_facts: False
+  become: yes
+  connection: local
+
+  tasks:
+      - name: ping
+        ansible.builtin.ping:
+      - name: Print message
+        ansible.builtin.debug:
+            msg: Hello world
