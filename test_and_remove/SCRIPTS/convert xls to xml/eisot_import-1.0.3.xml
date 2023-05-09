@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RegistrySet xsi:noNamespaceSchemaLocation="schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<RegistryRecord>
+<Worker>
+<LastName>Исангулов</LastName>
+<FirstName>Артемий</FirstName>
+<MiddleName>Анатольевич</MiddleName>
+<Snils>127-127-127 88</Snils>
+<Position>Инженер</Position>
+<EmployerInn>6399079997</EmployerInn>
+<EmployerTitle>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "РОГА"</EmployerTitle>
+</Worker>
+<Organization>
+<Inn>6399079997</Inn>
+<Title>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "РОГА"</Title>
+</Organization>
+<Test isPassed="true" learnProgramId="1">
+<Date>2002-05-30T01:00:00</Date>
+<ProtocolNumber>ОПП 21/23</ProtocolNumber>
+<LearnProgramTitle>Оказание первой помощи пострадавшим</LearnProgramTitle>
+</Test>
+</RegistryRecord>
+<RegistryRecord>
+<Worker>
+<LastName>Исангулов</LastName>
+<FirstName>Артемий</FirstName>
+<MiddleName>Анатольевич</MiddleName>
+<Snils>127-127-127 88</Snils>
+<Position>Инженер</Position>
+<EmployerInn>6399079997</EmployerInn>
+<EmployerTitle>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "РОГА"</EmployerTitle>
+</Worker>
+<Organization>
+<Inn>6399079997</Inn>
+<Title>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "РОГА"</Title>
+</Organization>
+<Test isPassed="true" learnProgramId="2">
+<Date>2002-05-30T01:00:00</Date>
+<ProtocolNumber>ПСЗ 21/23</ProtocolNumber>
+<LearnProgramTitle>Использование (применение) средств индивидуальной защиты</LearnProgramTitle>
+</Test>
+</RegistryRecord>
+</RegistrySet>
