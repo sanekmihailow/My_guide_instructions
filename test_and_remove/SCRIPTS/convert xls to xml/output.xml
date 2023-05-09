@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RegistrySet xsi:noNamespaceSchemaLocation="schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<RegistryRecord>
+  <Worker>
+    <LastName>Володин</LastName>
+    <FirstName>Владимир</FirstName>
+    <MiddleName>Владимирович</MiddleName>
+    <Snils>117-218-082 32</Snils>
+    <Position>слесарь-ремонтник ОГМ</Position>
+    <EmployerInn>6453054397</EmployerInn>
+    <EmployerTitle>АО «Саратовстройстекло»</EmployerTitle>
+  </Worker>
+  <Organization>
+    <Inn>6453158692</Inn>
+    <Title>ГАУ ДПО СО «ПРУЦ»</Title>
+  </Organization>
+  <Test isPassed="True" learnProgramId="1">
+    <Date>2002-05-30T01:00:00</Date>
+    <ProtocolNumber>169-ДО</ProtocolNumber>
+    <LearnProgramTitle>Оказание первой помощи пострадавшим</LearnProgramTitle>
+  </Test>
+</RegistryRecord>
+<RegistryRecord>
+  <Worker>
+    <LastName>Володин</LastName>
+    <FirstName>Владимир</FirstName>
+    <MiddleName>Владимирович</MiddleName>
+    <Snils>117-218-082 32</Snils>
+    <Position>слесарь-ремонтник ОГМ</Position>
+    <EmployerInn>6453054397</EmployerInn>
+    <EmployerTitle>АО «Саратовстройстекло»</EmployerTitle>
+  </Worker>
+  <Organization>
+    <Inn>6453158692</Inn>
+    <Title>ГАУ ДПО СО «ПРУЦ»</Title>
+  </Organization>
+  <Test isPassed="True" learnProgramId="2">
+    <Date>2002-05-30T01:00:00</Date>
+    <ProtocolNumber>169-ДО</ProtocolNumber>
+    <LearnProgramTitle>Использование (применение) средств индивидуальной защиты</LearnProgramTitle>
+  </Test>
+</RegistryRecord>
+<RegistryRecord>
+  <Worker>
+    <LastName>В….н</LastName>
+    <FirstName>В….р</FirstName>
+    <MiddleName>В….ч</MiddleName>
+    <Snils>Ххх-ххх-ххх хх</Snils>
+    <Position>слесарь-ремонтник ОГМ</Position>
+    <EmployerInn>6…………7</EmployerInn>
+    <EmployerTitle>АО «ззззззззззззо»</EmployerTitle>
+  </Worker>
+  <Organization>
+    <Inn>6453158692</Inn>
+    <Title>ГАУ ДПО СО «ПРУЦ»</Title>
+  </Organization>
+  <Test isPassed="True" learnProgramId="4">
+    <Date>2002-05-30T01:00:00</Date>
+    <ProtocolNumber>169-ДО</ProtocolNumber>
+    <LearnProgramTitle>Безопасные методы и приемы выполнения работ при воздействии вредных и (или) опасных производственных факторов, источников опасности, идентифицированных в рамках специальной оценки условий труда и оценки профессиональных рисков</LearnProgramTitle>
+  </Test>
+</RegistryRecord>
+<RegistryRecord>
+  <Worker>
+    <LastName>В….н</LastName>
+    <FirstName>В….р</FirstName>
+    <MiddleName>В….ч</MiddleName>
+    <Snils>Ххх-ххх-ххх хх</Snils>
+    <Position>слесарь-ремонтник ОГМ</Position>
+    <EmployerInn>6…………7</EmployerInn>
+    <EmployerTitle>АО «ззззззззззззо»</EmployerTitle>
+  </Worker>
+  <Organization>
+    <Inn>6453158692</Inn>
+    <Title>ГАУ ДПО СО «ПРУЦ»</Title>
+  </Organization>
+  <Test isPassed="True" learnProgramId="7">
+    <Date>2002-05-30T01:00:00</Date>
+    <ProtocolNumber>169-ДО</ProtocolNumber>
+    <LearnProgramTitle>Безопасные методы и приемы выполнения ремонтных, монтажных и демонтажных работ зданий и сооружений</LearnProgramTitle>
+  </Test>
+</RegistryRecord>
+<RegistryRecord>
+  <Worker>
+    <LastName>В….н</LastName>
+    <FirstName>В….р</FirstName>
+    <MiddleName>В….ч</MiddleName>
+    <Snils>Ххх-ххх-ххх хх</Snils>
+    <Position>слесарь-ремонтник ОГМ</Position>
+    <EmployerInn>6…………7</EmployerInn>
+    <EmployerTitle>АО «ззззззззззззо»</EmployerTitle>
+  </Worker>
+  <Organization>
+    <Inn>6453158692</Inn>
+    <Title>ГАУ ДПО СО «ПРУЦ»</Title>
+  </Organization>
+  <Test isPassed="True" learnProgramId="8">
+    <Date>2002-05-30T01:00:00</Date>
+    <ProtocolNumber>169-ДО</ProtocolNumber>
+    <LearnProgramTitle>Безопасные методы и приемы выполнения работ при размещении, монтаже, техническом обслуживании и ремонте технологического оборудования (включая технологическое оборудование)</LearnProgramTitle>
+  </Test>
+</RegistryRecord>
+<RegistryRecord>
+  <Worker>
+    <LastName>В….н</LastName>
+    <FirstName>В….р</FirstName>
+    <MiddleName>В….ч</MiddleName>
+    <Snils>Ххх-ххх-ххх хх</Snils>
+    <Position>слесарь-ремонтник ОГМ</Position>
+    <EmployerInn>6…………7</EmployerInn>
+    <EmployerTitle>АО «ззззззззззззо»</EmployerTitle>
+  </Worker>
+  <Organization>
+    <Inn>6453158692</Inn>
+    <Title>ГАУ ДПО СО «ПРУЦ»</Title>
+  </Organization>
+  <Test isPassed="True" learnProgramId="9">
+    <Date>2002-05-30T01:00:00</Date>
+    <ProtocolNumber>169-ДО</ProtocolNumber>
+    <LearnProgramTitle>Безопасные методы и приемы выполнения работ на высоте</LearnProgramTitle>
+  </Test>
+</RegistryRecord>
+<RegistryRecord>
+  <Worker>
+    <LastName>В….н</LastName>
+    <FirstName>В….р</FirstName>
+    <MiddleName>В….ч</MiddleName>
+    <Snils>Ххх-ххх-ххх хх</Snils>
+    <Position>слесарь-ремонтник ОГМ</Position>
+    <EmployerInn>6…………7</EmployerInn>
+    <EmployerTitle>АО «ззззззззззззо»</EmployerTitle>
+  </Worker>
+  <Organization>
+    <Inn>6453158692</Inn>
+    <Title>ГАУ ДПО СО «ПРУЦ»</Title>
+  </Organization>
+  <Test isPassed="True" learnProgramId="10">
+    <Date>2002-05-30T01:00:00</Date>
+    <ProtocolNumber>169-ДО</ProtocolNumber>
+    <LearnProgramTitle>Безопасные методы и приемы выполнения пожароопасных работ</LearnProgramTitle>
+  </Test>
+</RegistryRecord>
+</RegistrySet>
