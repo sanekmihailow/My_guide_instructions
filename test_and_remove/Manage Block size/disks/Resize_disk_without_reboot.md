@@ -169,7 +169,7 @@ tmpfs           379M     0  379M   0% /run/user/1003
 
 --------------
 
-- sudo ls -l /sys/class/scsi_device/ ${\color{purple}*}$ $/device/block
+- sudo ls -l /sys/class/scsi_device/ ${\color{purple}*}$ /device/block
 - sudo sh -c " 1 > /sys/class/scsi_device/ ${\color{purple}0:0:1:0}$ /device/rescan"
 - dmesg |tail
 
