@@ -1,6 +1,37 @@
 ### Resize sdX disk size without restart server'
 
-<d>
+
+
+
+- sudo ls -l /sys/class/scsi_device/ ${\color{purple}*}$ /device/block
+- sudo sh -c " 1 > /sys/class/scsi_device/ ${\color{purple}0:0:1:0}$ /device/rescan"
+- dmesg |tail
+
+- sudo fdisk -l
+- sudo fdisk /dev/sd ${\color{purple}X}$
+```
+Command (m for help): m
+Command (m for help): p
+Command (m for help): d
+Command (m for help): n
+primary
+Command (m for help): w
+Command (m for help): q
+```
+
+- sudo partx -u /dev/sd<pr>*X*</pr>
+- sudo resize2fs -p /dev/sd**X1** || </r> sudo xfs_growfs /dev/sd**X1**
+
+
+${\color{red} ----------------------------------------------------- }$
+${\color{red} ==================================================================== }$
+${\color{red} ----------------------------------------------------- }$
+
+
+
+
+
+
 <details>
     <summary>Details</summary>
 
@@ -165,25 +196,3 @@ tmpfs           379M     0  379M   0% /run/user/1003
 ```
 
 </details>
-</d>    
-
---------------
-
-- sudo ls -l /sys/class/scsi_device/ ${\color{purple}*}$ /device/block
-- sudo sh -c " 1 > /sys/class/scsi_device/ ${\color{purple}0:0:1:0}$ /device/rescan"
-- dmesg |tail
-
-- sudo fdisk -l
-- sudo fdisk /dev/sd ${\color{purple}X}$
-```
-Command (m for help): m
-Command (m for help): p
-Command (m for help): d
-Command (m for help): n
-primary
-Command (m for help): w
-Command (m for help): q
-```
-
-- sudo partx -u /dev/sd<pr>*X*</pr>
-- sudo resize2fs -p /dev/sd**X1** || </r> sudo xfs_growfs /dev/sd**X1**
