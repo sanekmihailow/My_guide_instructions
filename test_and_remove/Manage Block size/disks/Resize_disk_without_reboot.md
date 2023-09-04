@@ -4,7 +4,7 @@
 
 
 - sudo ls -l /sys/class/scsi_device/ ${\color{purple}*}$ /device/block
-- sudo sh -c " 1 > /sys/class/scsi_device/ ${\color{purple}0:0:1:0}$ /device/rescan"
+- sudo sh -c "echo 1 > /sys/class/scsi_device/ ${\color{purple}0:0:1:0}$ /device/rescan"
 - dmesg |tail
 
 - sudo fdisk -l
