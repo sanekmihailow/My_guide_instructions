@@ -1,4 +1,4 @@
-### Resize sdX disk size without restart server'
+## Resize sdX disk size without restart server
 
 
 
