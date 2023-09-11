@@ -135,6 +135,10 @@ Using default value 2048
 Last sector, +sectors or +size{K,M,G} (2048-314572799, default 314572799):
 Using default value 314572799
 Partition 1 of type Linux and of size 150 GiB is set
+
+Created a new partition 1 of type 'Linux filesystem' and of size 161.1 GB.
+Do you want to remove the signature? [Y]es/[N]o: N
+
  
 Command (m for help): p
  
