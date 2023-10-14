@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 14.10.2023 -->
+<opml version="1.0">
+  <head>
+    <title>Feeds of sanek mihailow from Inoreader [https://www.inoreader.com]</title>
+  </head>
+  <body>
+    <outline text="nixhub.ru" title="nixhub.ru" type="rss" xmlUrl="https://nixhub.ru/index.xml" htmlUrl="https://nixhub.ru/"/>
+    <outline text="Дайджест новости" title="Дайджест новости">
+      <outline text="gagadget.com" title="gagadget.com" type="rss" xmlUrl="http://gagadget.com/rss.xml" htmlUrl="http://gagadget.com/"/>
+      <outline text="Tproger" title="Tproger" type="rss" xmlUrl="https://tproger.ru/feed/" htmlUrl="https://tproger.ru/"/>
+      <outline text="Техноджем" title="Техноджем" type="rss" xmlUrl="https://tehnojam.pro/feed" htmlUrl="https://tehnojam.pro/"/>
+      <outline text="Securitylab.ru" title="Securitylab.ru" type="rss" xmlUrl="http://www.securitylab.ru/_Services/Export/RSS/" htmlUrl="http://www.securitylab.ru/"/>
+      <outline text="SecureNews" title="SecureNews" type="rss" xmlUrl="https://securenews.ru/feed/" htmlUrl="https://securenews.ru/"/>
+      <outline text="Overclockers.ru / Общая лента" title="Overclockers.ru / Общая лента" type="rss" xmlUrl="http://www.overclockers.ru/rss/all.rss" htmlUrl="http://www.overclockers.ru/"/>
+      <outline text="Роутер — Роутеры" title="Роутер — Роутеры" type="rss" xmlUrl="http://routers.in.ua/category/nastrojka-routera/feed/" htmlUrl="https://routers.in.ua"/>
+      <outline text="Хакер" title="Хакер" type="rss" xmlUrl="http://www.xakep.ru/articles/rss/default.asp" htmlUrl="http://xakep.ru/"/>
+    </outline>
+    <outline text="Администрирование " title="Администрирование ">
+      <outline text="nixCraft" title="nixCraft" type="rss" xmlUrl="https://www.cyberciti.com/feed/" htmlUrl="https://www.cyberciti.biz/"/>
+      <outline text="ShellHacks" title="ShellHacks" type="rss" xmlUrl="https://www.shellhacks.com/feed/" htmlUrl="https://www.shellhacks.com/"/>
+      <outline text="Sysadminium" title="Sysadminium" type="rss" xmlUrl="https://sysadminium.ru/feed/" htmlUrl="https://sysadminium.ru/"/>
+      <outline text="Вики IT-KB" title="Вики IT-KB" type="rss" xmlUrl="https://wiki.it-kb.ru/feed.php" htmlUrl="https://wiki.it-kb.ru/"/>
+      <outline text="Администрирование серверов" title="Администрирование серверов" type="rss" xmlUrl="https://system-admins.ru/feed/" htmlUrl="https://system-admins.ru"/>
+      <outline text="HostAdmina" title="HostAdmina" type="rss" xmlUrl="http://hostadmina.ru/rss.rss" htmlUrl="https://hostadmina.ru/rss.rss"/>
+      <outline text="Заметки Эникейщика" title="Заметки Эникейщика" type="rss" xmlUrl="http://7d3.ru/feed" htmlUrl="http://7d3.ru/"/>
+      <outline text="DigitalOcean Community Tutorials" title="DigitalOcean Community Tutorials" type="rss" xmlUrl="https://www.digitalocean.com/community/tutorials/feed" htmlUrl="https://www.digitalocean.com/community/tutorials"/>
+      <outline text="AdminGuide.Ru RSS Feed" title="AdminGuide.Ru RSS Feed" type="rss" xmlUrl="https://adminguide.ru/feed/" htmlUrl="https://adminguide.ru/"/>
+      <outline text="Stan's blog" title="Stan's blog" type="rss" xmlUrl="https://angristan.xyz/rss/" htmlUrl="https://angristan.xyz/"/>
+      <outline text="Linux сервер" title="Linux сервер" type="rss" xmlUrl="http://integrator.adior.ru/index.php/linux-server?format=feed&amp;type=rss" htmlUrl="http://integrator.adior.ru/index.php/linux-server"/>
+      <outline text="Заметки сисадмина" title="Заметки сисадмина" type="rss" xmlUrl="https://sanotes.ru/feed/" htmlUrl="https://sanotes.ru"/>
+      <outline text="igNix.ru" title="igNix.ru" type="rss" xmlUrl="http://www.ignix.ru/rss.xml" htmlUrl="http://www.ignix.ru/"/>
+      <outline text="IT Блог" title="IT Блог" type="rss" xmlUrl="http://notessysadmin.com/feed" htmlUrl="http://notessysadmin.com/"/>
+      <outline text="Статьи на BOZZA.RU" title="Статьи на BOZZA.RU" type="rss" xmlUrl="https://bozza.ru/rss.php" htmlUrl="https://bozza.ru/"/>
+      <outline text="MNorin.com" title="MNorin.com" type="rss" xmlUrl="https://mnorin.com/feed" htmlUrl="https://mnorin.com/"/>
+      <outline text="Блог системных администраторов ИНЭЛСИС" title="Блог системных администраторов ИНЭЛСИС" type="rss" xmlUrl="http://blog.inelsis.ru/?feed=rss2" htmlUrl="http://blog.inelsis.ru/"/>
+      <outline text="秋月次元-二次元ACG论坛" title="秋月次元-二次元ACG论坛" type="rss" xmlUrl="https://www.tux.in.ua/feed" htmlUrl="https://www.tux.in.ua/"/>
+      <outline text="selivan.github.io" title="selivan.github.io" type="rss" xmlUrl="https://selivan.github.io/feed.xml" htmlUrl="https://selivan.github.io/"/>
+      <outline text="blog.bissquit.com" title="blog.bissquit.com" type="rss" xmlUrl="http://blog.bissquit.com/feed/" htmlUrl="http://blog.bissquit.com/"/>
+      <outline text="Server admin" title="Server admin" type="rss" xmlUrl="https://unixmin.com/feed" htmlUrl="https://unixmin.com"/>
+      <outline text="заметки системного администратора" title="заметки системного администратора" type="rss" xmlUrl="http://nslookup.org.ua/blog/feed/" htmlUrl="http://nslookup.org.ua/blog"/>
+      <outline text="Pavel Sysadmin" title="Pavel Sysadmin" type="rss" xmlUrl="http://pavel-sysadmin.zzz.com.ua/feed/" htmlUrl="http://pavel-sysadmin.zzz.com.ua"/>
+      <outline text="Welcome to Linode Docs on Linode Guides &amp; Tutorials" title="Welcome to Linode Docs on Linode Guides &amp; Tutorials" type="rss" xmlUrl="https://www.linode.com/docs/index.xml" htmlUrl="https://www.linode.com/docs/"/>
+      <outline text="Bozaro. Экспериментариум" title="Bozaro. Экспериментариум" type="rss" xmlUrl="https://bozaro.ru/index.xml" htmlUrl="https://bozaro.ru/index.xml"/>
+      <outline text="Логово сисадмина" title="Логово сисадмина" type="rss" xmlUrl="https://blog.shtrykov.com/index.xml" htmlUrl="https://blog.shtrykov.com"/>
+      <outline text="Админчег" title="Админчег" type="rss" xmlUrl="https://ctopmbi4.wordpress.com/feed/" htmlUrl="https://ctopmbi4.wordpress.com/"/>
+      <outline text="системное администрирование – PVSM.RU" title="системное администрирование – PVSM.RU" type="rss" xmlUrl="http://www.pvsm.ru/cat/sistemnoe-administrirovanie/feed" htmlUrl="http://www.pvsm.ru/"/>
+      <outline text="Наброски админа" title="Наброски админа" type="rss" xmlUrl="https://feeds.feedburner.com/wpconfig/SDKu" htmlUrl="https://wpconfig.ru/"/>
+      <outline text="Виконую встановлення, налаштування, супроводження серверів. Для деталей використовуйте форму зворотнього звʼязку" title="Виконую встановлення, налаштування, супроводження серверів. Для деталей використовуйте форму зворотнього звʼязку" type="rss" xmlUrl="https://skeletor.org.ua/?feed=rss2" htmlUrl="http://skeletor.org.ua"/>
+      <outline text="Home" title="Home" type="rss" xmlUrl="https://techexpert.tips/feed/" htmlUrl="https://techexpert.tips/"/>
+      <outline text="Server Admin — Авторский блог системного администратора" title="Server Admin — Авторский блог системного администратора" type="rss" xmlUrl="https://serveradmin.ru/feed/" htmlUrl="https://serveradmin.ru/"/>
+      <outline text="Записки молодого админа" title="Записки молодого админа" type="rss" xmlUrl="http://feeds2.feedburner.com/angel2s2" htmlUrl="http://blog.angel2s2.ru/"/>
+      <outline text="vsupalov.com" title="vsupalov.com" type="rss" xmlUrl="https://vsupalov.com/index.xml" htmlUrl="https://vsupalov.com/"/>
+    </outline>
+    <outline text="Hacking" title="Hacking">
+      <outline text="ToolsWatch.org" title="ToolsWatch.org" type="rss" xmlUrl="http://www.toolswatch.org/feed/" htmlUrl="http://www.toolswatch.org/"/>
+      <outline text="CYBERPUNK" title="CYBERPUNK" type="rss" xmlUrl="http://feeds.feedburner.com/cyberpunk_main" htmlUrl="https://www.cyberpunk.rs/"/>
+      <outline text="Hacking Tutorials" title="Hacking Tutorials" type="rss" xmlUrl="http://www.hackingtutorials.org/feed/" htmlUrl="http://www.hackingtutorials.org/"/>
+    </outline>
+    <outline text="PBX" title="PBX">
+      <outline text="awsswa" title="awsswa" type="rss" xmlUrl="http://awsswa.livejournal.com/data/rss" htmlUrl="https://awsswa.livejournal.com/"/>
+      <outline text="Недавние изменения" title="Недавние изменения" type="rss" xmlUrl="https://asterisk-pbx.ru/wiki/feed.php" htmlUrl="https://asterisk-pbx.ru/wiki/"/>
+    </outline>
+    <outline text="Programming" title="Programming">
+      <outline text="Записки программиста" title="Записки программиста" type="rss" xmlUrl="https://eax.me/feed/" htmlUrl="http://eax.me/"/>
+    </outline>
+    <outline text="Cyber_security" title="Cyber_security">
+      <outline text="HackWare.ru" title="HackWare.ru" type="rss" xmlUrl="https://hackware.ru/?feed=rss2" htmlUrl="https://hackware.ru/"/>
+      <outline text="/dev/mem" title="/dev/mem" type="rss" xmlUrl="https://pustovoi.ru/feed" htmlUrl="https://pustovoi.ru"/>
+      <outline text="Cryptoworld" title="Cryptoworld" type="rss" xmlUrl="https://cryptoworld.su/feed/" htmlUrl="https://cryptoworld.su/"/>
+      <outline text="OpenNews.opennet.ru: Проблемы безопасности" title="OpenNews.opennet.ru: Проблемы безопасности" type="rss" xmlUrl="http://www.opennet.ru/opennews/opennews_sec.rss" htmlUrl="http://www.opennet.ru/opennews/index.shtml?f=vuln"/>
+      <outline text="Detectify Labs" title="Detectify Labs" type="rss" xmlUrl="http://labs.detectify.com/rss" htmlUrl="http://labs.detectify.com/"/>
+      <outline text="Форум информационной безопасности - Codeby.net" title="Форум информационной безопасности - Codeby.net" type="rss" xmlUrl="https://codeby.net/articles/index.rss" htmlUrl="https://codeby.net/"/>
+    </outline>
+    <outline text="windows" title="windows">
+      <outline text="iT Notes" title="iT Notes" type="rss" xmlUrl="http://win13.ru/feed/" htmlUrl="http://win13.ru/"/>
+    </outline>
+    <outline text="DIY" title="DIY">
+      <outline text="My *nix world » Hardware Category Feed" title="My *nix world » Hardware Category Feed" type="rss" xmlUrl="http://mynixworld.info/category/hardware/feed/" htmlUrl="https://mynixworld.info/category/hardware/"/>
+      <outline text="Blog – Hackaday" title="Blog – Hackaday" type="rss" xmlUrl="http://www.hackaday.com/rss.xml" htmlUrl="http://hackaday.com/"/>
+    </outline>
+    <outline text="Open Source" title="Open Source">
+      <outline text="Opensource.com" title="Opensource.com" type="rss" xmlUrl="https://opensource.com/rss.xml" htmlUrl="https://opensource.com/frontpage"/>
+    </outline>
+    <outline text="Forum" title="Forum">
+      <outline text="Linux.org.ru" title="Linux.org.ru" type="rss" xmlUrl="https://www.linux.org.ru/section-rss.jsp?section=2&amp;group=1340" htmlUrl="http://www.linux.org.ru/"/>
+      <outline text="ANTICHAT - Security online community" title="ANTICHAT - Security online community" type="rss" xmlUrl="https://forum.antichat.ru/forums/-/index.rss" htmlUrl=""/>
+      <outline text="Linux.org.ru: Форум - General" title="Linux.org.ru: Форум - General" type="rss" xmlUrl="http://www.linux.org.ru/section-rss.jsp?section=2&amp;group=126" htmlUrl="http://www.linux.org.ru/"/>
+    </outline>
+    <outline text="NEWS_" title="NEWS_">
+      <outline text="Linux.org.ru" title="Linux.org.ru" type="rss" xmlUrl="https://www.linux.org.ru/section-rss.jsp?section=1" htmlUrl="http://www.linux.org.ru/"/>
+      <outline text="Percona Database Performance Blog" title="Percona Database Performance Blog" type="rss" xmlUrl="http://www.mysqlperformanceblog.com/feed/" htmlUrl="http://www.percona.com/blog"/>
+      <outline text="News archlinux.org.ru" title="News archlinux.org.ru" type="rss" xmlUrl="http://archlinux.org.ru/news/feed/" htmlUrl="http://archlinux.org.ru/news/"/>
+      <outline text="OpenNews.opennet.ru: Обзоры и статьи" title="OpenNews.opennet.ru: Обзоры и статьи" type="rss" xmlUrl="http://www.opennet.ru/opennews/opennews_arts.rss" htmlUrl="http://www.opennet.ru/opennews/index.shtml?f=arts"/>
+      <outline text="NGINX" title="NGINX" type="rss" xmlUrl="https://www.nginx.com/feed/" htmlUrl="https://www.nginx.com/"/>
+      <outline text="GitLab" title="GitLab" type="rss" xmlUrl="https://about.gitlab.com/atom.xml" htmlUrl="https://www.gitlab.com/"/>
+      <outline text="Zabbix Blog" title="Zabbix Blog" type="rss" xmlUrl="http://blog.zabbix.com/feed/" htmlUrl="http://blog.zabbix.com/"/>
+      <outline text="Blackarch blog" title="Blackarch blog" type="rss" xmlUrl="https://blackarch.org/rss.xml" htmlUrl="https://blackarch.org/"/>
+    </outline>
+    <outline text="linux" title="linux">
+      <outline text="Tecmint: Linux Howtos, Tutorials &amp; Guides" title="Tecmint: Linux Howtos, Tutorials &amp; Guides" type="rss" xmlUrl="http://www.tecmint.com/feed/" htmlUrl="http://www.tecmint.com/"/>
+      <outline text="«Я и Ubuntu»" title="«Я и Ubuntu»" type="rss" xmlUrl="http://feeds2.feedburner.com/meandubuntu/Atom?format=xml" htmlUrl="http://meandubuntu.ru/"/>
+      <outline text="Linux — Записи обо всём" title="Linux — Записи обо всём" type="rss" xmlUrl="https://xakinfo.ru/category/%d0%be%d0%bf%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d0%be%d0%bd%d0%bd%d1%8b%d0%b5-%d1%81%d0%b8%d1%81%d1%82%d0%b5%d0%bc%d1%8b/linux/feed/" htmlUrl="https://xakinfo.ru"/>
+      <outline text="compizomania" title="compizomania" type="rss" xmlUrl="http://compizomania.blogspot.com/feeds/posts/default" htmlUrl="http://compizomania.blogspot.com/"/>
+      <outline text="Linux.org.ru" title="Linux.org.ru" type="rss" xmlUrl="http://www.linux.org.ru/section-rss.jsp?section=3" htmlUrl="http://www.linux.org.ru/"/>
+      <outline text="Наш Блогосайт: Linux и «лирика»" title="Наш Блогосайт: Linux и «лирика»" type="rss" xmlUrl="https://www.alv.me/feed/" htmlUrl="https://www.alv.me/"/>
+      <outline text="linux-notes.org" title="linux-notes.org" type="rss" xmlUrl="http://linux-notes.org/feed/" htmlUrl="http://linux-notes.org/"/>
+      <outline text="Linux Journal - The Original Magazine of the Linux Community" title="Linux Journal - The Original Magazine of the Linux Community" type="rss" xmlUrl="https://www.linuxjournal.com/node/feed" htmlUrl="http://www.linuxjournal.com/"/>
+      <outline text="Виртуальная энциклопедия &quot;Linux по" title="Виртуальная энциклопедия &quot;Linux по" type="rss" xmlUrl="http://rus-linux.net/news.rss" htmlUrl="http://rus-linux.net/"/>
+      <outline text="Блог любителя экспериментов" title="Блог любителя экспериментов" type="rss" xmlUrl="http://feeds.feedburner.com/k-max/feed" htmlUrl="http://www.k-max.name/"/>
+      <outline text="Linux Today" title="Linux Today" type="rss" xmlUrl="http://linuxtoday.com/backend/biglt.rss" htmlUrl="http://www.linuxtoday.com/"/>
+      <outline text="OpenNews.opennet.ru" title="OpenNews.opennet.ru" type="rss" xmlUrl="http://www.opennet.ru/opennews/opennews_all.rss" htmlUrl="http://www.opennet.ru/opennews/"/>
+      <outline text="OMG! Ubuntu!" title="OMG! Ubuntu!" type="rss" xmlUrl="http://feeds.feedburner.com/d0od" htmlUrl="http://www.omgubuntu.co.uk/"/>
+      <outline text="/linux – DarkFess" title="/linux – DarkFess" type="rss" xmlUrl="https://darkfess.ru/category/linux/feed/" htmlUrl="https://darkfess.ru"/>
+      <outline text="linux – PVSM.RU" title="linux – PVSM.RU" type="rss" xmlUrl="http://www.pvsm.ru/cat/linux/feed" htmlUrl="https://www.pvsm.ru"/>
+      <outline text="ИТ Блог. Администрирование серверов на основе Linux (Ubuntu, Debian, CentOS, openSUSE)" title="ИТ Блог. Администрирование серверов на основе Linux (Ubuntu, Debian, CentOS, openSUSE)" type="rss" xmlUrl="https://andreyex.ru/feed/" htmlUrl="https://andreyex.ru/"/>
+      <outline text="Русскоязычное Linux" title="Русскоязычное Linux" type="rss" xmlUrl="http://community.livejournal.com/ru_linux/data/rss" htmlUrl=""/>
+      <outline text="ИТ" title="ИТ" type="rss" xmlUrl="http://xray-dx.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="http://xray-dx.blogspot.com/"/>
+      <outline text="Traff / Seo / Etc" title="Traff / Seo / Etc" type="rss" xmlUrl="https://antoshabrain.blogspot.com/feeds/posts/default?alt=rss" htmlUrl="https://antoshabrain.blogspot.com/"/>
+      <outline text="LinuxRussia.com" title="LinuxRussia.com" type="rss" xmlUrl="http://www.linuxrussia.com/feed" htmlUrl="http://www.linuxrussia.com/"/>
+      <outline text="Записная книжка сисадмина" title="Записная книжка сисадмина" type="rss" xmlUrl="http://wikiadmin.net/atom.xml" htmlUrl="http://wikiadmin.net/"/>
+      <outline text="Ubuntu-News.Ru" title="Ubuntu-News.Ru" type="rss" xmlUrl="http://ubuntu-news.ru/rss.xml" htmlUrl="http://ubuntu-news.ru/"/>
+      <outline text="LinuxTheBest" title="LinuxTheBest" type="rss" xmlUrl="https://linuxthebest.net/feed/" htmlUrl="https://linuxthebest.net/"/>
+      <outline text="Linux, GNU/Linux, free software..." title="Linux, GNU/Linux, free software..." type="rss" xmlUrl="http://www.reddit.com/r/linux/.rss" htmlUrl="http://www.reddit.com/r/linux/"/>
+      <outline text="Новости Айтишника" title="Новости Айтишника" type="rss" xmlUrl="http://www.aitishnik.ru/ninjarsssyndicator.html" htmlUrl="https://www.aitishnik.ru/"/>
+      <outline text="nixCraft" title="nixCraft" type="rss" xmlUrl="http://www.cyberciti.biz/faq/feed/" htmlUrl="http://www.cyberciti.biz/faq"/>
+      <outline text="It's FOSS" title="It's FOSS" type="rss" xmlUrl="http://feeds.feedburner.com/ItsFoss" htmlUrl="http://itsfoss.com"/>
+    </outline>
+    <outline text="ЯП+++" title="ЯП+++">
+      <outline text="Библиотека программиста" title="Библиотека программиста" type="rss" xmlUrl="https://proglib.io/feed/" htmlUrl="https://proglib.io/"/>
+    </outline>
+    <outline text="BLOGS" title="BLOGS">
+      <outline text="StraNN'ое место - 2" title="StraNN'ое место - 2" type="rss" xmlUrl="https://strannick-ru.livejournal.com/data/rss" htmlUrl="https://strannick-ru.livejournal.com/"/>
+    </outline>
+  </body>
+</opml>
