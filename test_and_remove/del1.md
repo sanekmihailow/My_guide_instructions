@@ -2,7 +2,7 @@
 `vgdisplay`
 `lvdisplay`
 # Lv increase
-Run `pvresize /dev/sd*` to have LVM pick up the new space.
+Run `pvresize /dev/sdX` to have LVM pick up the new space.
 `lvextend -r -L+20G /dev/vg0/lv_home`
 
 > если resize2fs не сработал, на всякий `resize2fs /dev/myserver/mylogicalvolume`
