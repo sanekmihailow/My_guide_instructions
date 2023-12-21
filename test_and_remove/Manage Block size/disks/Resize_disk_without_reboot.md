@@ -1,6 +1,12 @@
 ## Resize sdX disk size without restart server
 
-
+> Если нет патиций достаточно rescan + resize
+<details>
+    
+- `sudo sh -c "echo 1 > /sys/class/scsi_device/0:2:0:1/device/rescan"`
+- `sudo resize2fs -p /dev/sdX || sudo xfs_growfs /dev/sdX`
+ 
+</details>
 
 
 - sudo ls -l /sys/class/scsi_device/ ${\color{purple}*}$ /device/block
