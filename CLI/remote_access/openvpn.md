@@ -1,22 +1,33 @@
-# Ubuntu 16
+OpenVPN
+====
 
-<d>
-     <details>
-          
-##### 1) easy rsa
-```nginx
+OpenVPN — свободная реализация технологии виртуальной частной сети с открытым исходным кодом для создания зашифрованных каналoв типа точка-точка или сервер-клиенты между компьютерами.
+
+Содержание
+---
+Ubuntu 16
+---
+<!--rehype:body-class=cols-2-->
+
+### easy rsa
+
+```shell
 apt install openvpn openssl easy-rsa iptables
 mkdir /etc/openvpn/easy-rsa
 cp  -r /usr/share/easy-rsa/* /etc/openvpn/easy-rsa/
 ```
-> **/etc/openvpn/easy-rsa/vars** | change value
+
+**/etc/openvpn/easy-rsa/vars** | change value
+
 ```
-          "export KEY_country ....."
+"export KEY_country ....."
 ```
-##### 2) create server and user key
-```nginx
+
+### create server and user key
+
+```shell
 cd /etc/openvpn/easy-rsa
-source ./vars && ./clean-all            #clean-all cleaned all files in folder keys
+source ./vars && ./clean-all # clean-all cleaned all files in folder keys
 ln -s openssl-1.0.0.cnf openssl.cnf
 ./build-ca
 ./build-key-server Serv
@@ -24,22 +35,26 @@ ln -s openssl-1.0.0.cnf openssl.cnf
 ./build-dh
 openvpn --genkey --secret keys/ta.key
 ```
-##### 3) create user folder and copy (server, user) key
-```nginx
+
+### create user folder and copy (server, user) key
+<!--rehype:wrap-class=row-span-3-->
+
+```shell
 cd keys
 mkdir -p /etc/openvpn/ccd/user1
 cp Serv.crt Serv.key ca.crt dh2048.pem ta.key /etc/openvpn
 cp user1.crt user1.key ca.crt ta.key /etc/openvpn/ccd/user1/
 ```
+
 if you want use on client all in one config file add in you **user.conf**
 
 ```
-          key-direction 1
+key-direction 1
 ```
+
 and  use this script
-<details>
-     
-```bash
+
+```shell
 #!/bin/bash
 echo -e "\n \033[0;32m please enter the path to files\n \033[0m"
 read thepath &&
@@ -76,26 +91,32 @@ echo -e "\n \033one-cert OK \n \033[0ma"
 
 exit 0
 ```
-</details>
 
-##### 4) create server and user conf
-```nginx
+### create server and user conf
+
+```shell
 vim /etc/openvpn/Serv.conf
 vim /etc/openvpn/ccd/user1/user1.conf
 service openvpn restart
-#openvpn --config Serv.conf (start specify directly config)    
+#openvpn --config Serv.conf (start specify directly config)
 #netstat -npl
 ```
-##### 5) edit kernel sets for nat
-> **/etc/sysctl.conf** |uncomment 
+
+### edit kernel sets for nat
+
+**/etc/sysctl.conf** | uncomment 
+
 ```
-          net_ipv4.ip_forward=1
+net_ipv4.ip_forward=1
 ```
-```nginx
+
+```shell
 echo 1 >> /proc/sys/net/ipv4/conf/all/forwarding
 ```
-##### 6) iptables sets
-```nginx
+
+### iptables sets
+
+```shell
 #C |and/or -p tcp
 iptables -I INPUT  -p udp  --dport 1194 -j ACCEPT
 #C |ip local mask vpn-server not wan i.e. 192.168.99.0 - network openvpn
@@ -107,27 +128,34 @@ iptables -A FORWARD -i tun0 -j ACCEPT
 #M iptables -A OUTPUT -o tun0 -j ACCEPT
 iptables-save > /etc/iptables.rules
 ```
-> **/etc/network/interfaces**|at the END add:
+
+**/etc/network/interfaces**|at the END add:
+
 ```
-          pre-up iptables-restore < /etc/iptables.rules                     
+pre-up iptables-restore < /etc/iptables.rules
 ```
+
 OR
-```nginx
+
+```shell
 apt install iptables-persistent
 ```
-```nginx
+
+```shell
 reboot
 ```
 
-</details>
-</d>
 
-# Ubuntu 18
+Ubuntu 18
+---
+<!--rehype:body-class=cols-1-->
 
-> if not listen and start openvpn
-> you need uncomment in **/etc/default/openvpn**
-`AUTOSTART="all"`
-```
+### notes
+
+if not listen and start openvpn
+you need uncomment in **/etc/default/openvpn** `AUTOSTART="all"`
+
+```shell
 sudo systemctl daemon-reload
 ```
      

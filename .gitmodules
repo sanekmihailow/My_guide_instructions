@@ -1,0 +1,3 @@
+[submodule "jaywcjlove-reference"]
+	path = jaywcjlove-reference
+	url = git@github.com:jaywcjlove/reference.git
