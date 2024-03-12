@@ -47,6 +47,7 @@ if (empty($Ar_learnContact)) {
         $lastname = trim($lastname, " ");
 		$FIname = $lastname .= "_$name";
         $translit_FI = transliterator_transliterate('Russian-Latin/BGN; Lower()', "$FIname");
+	$translit_FI = str_replace('·', '', $translit_FI);
         $get_username = $USER_FIELD_MANAGER->GetUserFieldValue('CRM_CONTACT', 'UF_CRM_CONTACT_USERNAME_LEARN',$id);
         if (empty($get_username)) {
             $username = $translit_FI; $username .= "_$numerator";
